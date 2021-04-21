@@ -23,6 +23,23 @@ export default makeStyles((theme)=>({
       color: "#007982",
       fontSize:'32px',
       fontWeight:'bold'
+    },
+    button: {
+      fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+      padding: 0,
+      backgroundColor: "#0C9EB5",
+      color:'white',
+      width: '80px',
+      height: '31px',
+      borderRadius: '20px',
+      fontSize: '15px'
+    },
+    textfield: {
+      padding: 0, 
+      width: '212px',
+      height: '31px',
+      margin: '20px',
+      borderRadius: '3px'
     }
 }))
 
