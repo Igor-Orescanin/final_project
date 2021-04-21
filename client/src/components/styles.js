@@ -1,29 +1,93 @@
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-
+import image from '../image/background_mobile.svg'
 
 export default makeStyles((theme)=>({
+  
 
-  myColor: {
+  container:{
+    // backgroundColor:'green'
+    //backgroundImage: `url(${image})`,
+    //  marginTop:'90px',
+     height:'100vh',
+    maxWidth: '100%',
+    padding:'0',
+   // backgroundColor:'yellow',
+    //  backgroundSize: 'cover',
+    backgroundRepeat:'no-repeat',
+   alignSelf:'center',
+   backgroundPosition:'bottom',
+  },
+
+  paper: {
+    //backgroundColor:'yellow',
+    //backgroundImage: `url(${image})`,
+    // height:'30px',
+    //height:'100vh',
+    //maxWidth: '100%',
+    // heigh:'100vh',
+    // padding:'0',
+    // backgroundRepeat:'no-repeat',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', 
+    // justifyItems:'center',
+    // backgroundPosition:'bottom',
+   
+  },
+
+  form: {
+    marginTop:'10px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  typography:{
+    marginTop:'64px',
+    fontFamily: ('Roboto','sans-serif'),    
+    color: "#007982",
+    fontSize:'24px',
+    fontWeight:'bold',
+  },
+
+  link:{
+    paddingTop:'20px',
+    paddingBottom:'20px',
+  },
+   backgr:{ 
+    heigh:'100px',
+      backgroundColor:'yellow',
+      //backgroundImage: `url(${image})`,
+      // height:'30px',
+      //height:'100vh',
+      //maxWidth: '100%',
+      heigh:'100px',
+      padding:'0',
+      backgroundRepeat:'no-repeat',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center', 
+      justifyItems:'center',
+      backgroundPosition:'bottom',
+   
+   },
+
+  avatar: {
+    margin:'10px',
       backgroundColor:"#007982",
+      alignContent:'center',
      
-      width:'80px',
-      height:'80px'
+      // width:'80px',
+      // height:'80px'
    
     },
     otherColor: {
       backgroundColor: "#007982"
       
     },
-    typography:{
-      variant:"body2",
-      color:"textSecondary",
-      align:"center",
-      color: "#007982",
-      fontSize:'32px',
-      fontWeight:'bold'
-    },
+  
     button: {
       fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
       padding: 0,
@@ -40,7 +104,16 @@ export default makeStyles((theme)=>({
       height: '31px',
       margin: '20px',
       borderRadius: '3px'
-    }
+    },
+  // bg:{
+  //    backgroundImage: `url(${image})`,
+  //    height:'100vh',
+  //    backgroundRepeat:'no-repeat',
+  //   alignSelf:'center',
+  //   backgroundPosition:'center',
+  // }
+
+
 }))
 
 // 25.47.119.246
