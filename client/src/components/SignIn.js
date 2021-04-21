@@ -30,8 +30,8 @@ const SignIn = () => {
         <Container component="main" maxWidth="xs" >
         <div> 
        
-             <Avatar className={classes.myColor} > 
-                 <AccountCircleIcon className={classes.otherColor} fontSize="large"/> 
+             <Avatar variant='circle' className={classes.myColor} > 
+                 {/* <AccountCircleIcon className={classes.otherColor} fontSize="large"/>  */}
                 
              </Avatar> 
           
