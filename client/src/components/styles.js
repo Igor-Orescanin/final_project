@@ -131,6 +131,7 @@ export default makeStyles((theme) => ({
     fontSize: '15px'
   },
   navbar: {
+    
     padding:0,
     backgroundColor: '#30D4DE',
     backgroundSize: 'fit-content',
@@ -142,7 +143,7 @@ export default makeStyles((theme) => ({
   display: 'flex',
   justifyContent: 'space-between',
   borderBottom: '1px solid black',
-  padding: '15px'
+  padding: '20px 15px 5px 15px' 
   
 },
 navBottom: {
@@ -150,7 +151,7 @@ navBottom: {
   justifyContent: 'space-between',
  listStyle: 'none',
  padding: '15px',
-}
+},
   // bg:{
   //    backgroundImage: `url(${image})`,
   //    height:'100vh',
@@ -158,6 +159,45 @@ navBottom: {
   //   alignSelf:'center',
   //   backgroundPosition:'center',
   // }
+
+
+//__________________Navbar Styles_________________________________
+  navContainer:{
+    padding:'0px',
+    backgroundColor:'#30D4DE',
+    height:'75px',
+    borderBottom:'4px solid #0C9EB5',
+    display: 'flex',
+    flexDirection: 'column  ',
+    justifyContent:'center'
+  },
+ 
+  secondaryNav:{ 
+    borderBottom:'2px solid #0C9EB5',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignContent:'center',
+  },
+
+  icon:{
+    marginRight:'25px' ,
+    color:'#ffffff'
+  },
+
+  primaryNav:{
+    marginTop:'7px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignContent:'center',
+
+  },
+
+  typo:{
+    marginLeft:'25px' ,
+    fontSize: '15px',
+     fontWeight:700,
+     color:'#ffffff'
+  }
 
 
 }))
