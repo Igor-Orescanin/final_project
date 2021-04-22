@@ -24,16 +24,17 @@ export default makeStyles((theme)=>({
     //backgroundColor:'yellow',
     //backgroundImage: `url(${image})`,
     // height:'30px',
-    //height:'100vh',
-    //maxWidth: '100%',
+    height:'100vh',
+    maxWidth: '100%',
     // heigh:'100vh',
     // padding:'0',
-    // backgroundRepeat:'no-repeat',
+     backgroundRepeat:'no-repeat',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center', 
-    // justifyItems:'center',
-    // backgroundPosition:'bottom',
+     justifyItems:'center',
+     backgroundPosition:'bottom',
+    //  backgroundSize:'cover'
    
   },
 
@@ -50,20 +51,24 @@ export default makeStyles((theme)=>({
     color: "#007982",
     fontSize:'24px',
     fontWeight:'bold',
+    
   },
+  
 
   link:{
     paddingTop:'20px',
     paddingBottom:'20px',
+    color:"#007982",
   },
    backgr:{ 
-    heigh:'100px',
-      backgroundColor:'yellow',
-      //backgroundImage: `url(${image})`,
+    //heigh:'100px',
+      //backgroundColor:'yellow',
+      backgroundImage: `url(${image})`,
       // height:'30px',
-      //height:'100vh',
-      //maxWidth: '100%',
-      heigh:'100px',
+      height:'340px',
+      minWidth: '580px',
+      //heigh:'200px',
+      //width:'300px',
       padding:'0',
       backgroundRepeat:'no-repeat',
       display: 'flex',

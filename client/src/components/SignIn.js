@@ -35,7 +35,7 @@ const SignIn = () => {
 
             {/* <TextField className={classes.textfield} id="outlined-basic" label="Email Address*" variant="outlined" />  */}
             <TextField className={classes.textfield} id="outlined-basic"  variant="outlined" size="small"/>
-             <TextField variant="outlined" required  id="email" label="Email Address" name="email" size="small"  />
+             <TextField variant="outlined" required  id="email" label="Email Address" name="email" size="small"/>
              <Link className={classes.link} href="#" variant="body2">
                  Forgot password
              </Link>
