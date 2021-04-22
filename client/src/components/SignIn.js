@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter, Link, Route } from 'react-router-dom'
 
 //styles
 import { makeStyles } from '@material-ui/core/styles'; //generel
@@ -10,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar'; //avatar
 import useStyles from './styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+//import Link from '@material-ui/core/Link';
 
 
 import '../App.css';
@@ -39,7 +40,10 @@ const SignIn = () => {
              <Link className={classes.link} href="#" variant="body2">
                  Forgot password
              </Link>
-             <Button className={classes.button} variant="contained" color="primary">Sign-In</Button>
+             
+             <Button  className={classes.button} variant="contained" color="primary">Sign-In</Button>
+            
+             
               <div className={classes.backgr}></div> 
              
              </form>
