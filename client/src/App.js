@@ -10,15 +10,9 @@ function App() {
   return (
 <Router>
    <div className="App">
-     <Switch>
-     <Route path='/'>
-          <SignIn />
-        </Route>
-        <Route path='/welcome'>
-          <Welcome/>
-        </Route>
      
-     </Switch>
+   <Route path='/' exact component={SignIn}></Route>
+<Route path='/welcome' component={Welcome}></Route> 
       
     </div>
 </Router>
