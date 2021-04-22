@@ -20,9 +20,11 @@ import '../App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 
+  
 
-const SignIn = () => {
 
+const SignIn = (props) => {
+const { history } = props;
     const classes = useStyles();
 
     return (
@@ -41,7 +43,7 @@ const SignIn = () => {
                  Forgot password
              </Link>
              
-             <Button  className={classes.button} variant="contained" color="primary">Sign-In</Button>
+             <Button  onClick={() => history.push('/welcome')} className={classes.button} variant="contained" color="primary">Sign-In</Button>
             
              
               <div className={classes.backgr}></div> 
