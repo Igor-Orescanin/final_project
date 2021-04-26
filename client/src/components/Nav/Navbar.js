@@ -4,6 +4,9 @@ import { Container } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Typography } from '@material-ui/core';
 
+import { IconButton } from '@material-ui/core';
+
+
 function Navbar() {
     const classes = useStyles();
     return (
@@ -22,21 +25,6 @@ function Navbar() {
              </Typography>
              </div>
          </Container>
-
-        //  <Container className={classes.navbar} >
-
-        //      <div className={classes.navTop}>
-        //          <p>Hello Sandeep</p>
-        //          <SettingsIcon />
-        //      </div>
-
-        //      <div className={classes.navBottom}>
-        //          <li>Home</li>
-        //          <li>History</li>
-        //          <li>SignOut</li>
-        //      </div>
-
-        //  </Container>
 
     )
 }
