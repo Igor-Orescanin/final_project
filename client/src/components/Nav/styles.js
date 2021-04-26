@@ -7,6 +7,7 @@ import image from '../../image/background_mobile.svg'
 export default makeStyles((theme) => ({
   
 
+
   navContainer:{
     margin:'0px',
     padding:'0px',
