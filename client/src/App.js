@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="app">
 
         <Route path='/' exact component={SignIn}></Route>
         <Route path='/welcome' component={Welcome}></Route>

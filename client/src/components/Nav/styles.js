@@ -5,15 +5,18 @@ import image from '../../image/background_mobile.svg'
 
 
 export default makeStyles((theme) => ({
+  
 
   navContainer:{
+    margin:'0px',
     padding:'0px',
     backgroundColor:'#30D4DE',
     height:'75px',
     borderBottom:'4px solid #0C9EB5',
     display: 'flex',
     flexDirection: 'column  ',
-    justifyContent:'center'
+    justifyContent:'center',
+    backgroundSize:'cover'
   },
  
   secondaryNav:{ 
