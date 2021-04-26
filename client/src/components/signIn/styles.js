@@ -1,7 +1,9 @@
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import image from '../image/background_mobile.svg'
+
+import image from '../../image/background_mobile.svg'
+
 
 export default makeStyles((theme) => ({
 

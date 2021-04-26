@@ -2,12 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing:border-box;
+  max-width: none!important;
 }
 
 
 
-.App {
+.app{
   text-align: center;
+  background-size:cover;
 }
 
 

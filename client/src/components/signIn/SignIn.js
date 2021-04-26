@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 //import Link from '@material-ui/core/Link';
 
 
-import '../App.css';
+import '../../App.css';
 
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -36,9 +36,10 @@ const { history } = props;
              <Avatar className={classes.avatar}/>
              <form className={classes.form} noValidate>
 
-            {/* <TextField className={classes.textfield} id="outlined-basic" label="Email Address*" variant="outlined" />  */}
-            <TextField className={classes.textfield} id="outlined-basic"  variant="outlined" size="small"/>
-             <TextField variant="outlined" required  id="email" label="Email Address" name="email" size="small"/>
+            
+         
+            <TextField variant="outlined" required  id="email" label="Email Address" name="email" size="small"/>
+             <TextField variant="outlined" required  id="email" label="Password" name="password" size="small"/>
              <Link className={classes.link} href="#" variant="body2">
                  Forgot password
              </Link>
