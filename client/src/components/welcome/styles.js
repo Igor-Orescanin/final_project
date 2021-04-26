@@ -1,9 +1,8 @@
+// general 
 import { makeStyles } from "@material-ui/core/styles";
 
+// background picture
 import image from '../../image/background_mobile.svg'
-
-
-
 
 
 export default makeStyles((theme) => ({
@@ -33,10 +32,5 @@ export default makeStyles((theme) => ({
     background:{
         backgroundImage: `url(${image})`,
     },
- 
-   
-  
-  
-  
-  
+    
   }))
