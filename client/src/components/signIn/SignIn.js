@@ -35,11 +35,10 @@ const { history } = props;
              </Typography>
              <Avatar className={classes.avatar}/>
              <form className={classes.form} noValidate>
-
             
          
-            <TextField variant="outlined" required  id="email" label="Email Address" name="email" size="small"/>
-             <TextField variant="outlined" required  id="email" label="Password" name="password" size="small"/>
+            <TextField className={classes.inputField} variant="outlined" required  id="email" label="Email Address" name="email" size="small"/>
+             <TextField className={classes.inputField}  required id="password" label="Password" variant="outlined"  name="password" size="small"/>
              <Link className={classes.link} href="#" variant="body2">
                  Forgot password
              </Link>
