@@ -5,8 +5,8 @@ import React from "react";
 import useStyles from "./styles";
 
 // material-ui styles
-import { Container, Button } from "@material-ui/core";
-// import { StylesProvider } from "@material-ui/core/styles"; 
+import { Container, Button, ThemeProvider } from "@material-ui/core";
+// import { StylesProvider } from "@material-ui/core/styles";
 // components
 import Navbar from "../Nav/Navbar.js";
 
@@ -16,47 +16,62 @@ import { useHistory } from "react-router-dom";
 // css
 import "../../App.css";
 
+//change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+  },
+});
+
+
+//Welcome-page
 const Welcome = () => {
   const history = useHistory();
   const classes = useStyles();
 
   return (
     <>
-      <Navbar />
+      <ThemeProvider theme={theme}>
+        <Navbar />
 
-      <Container className={classes.welcome}>
-        <div>
+        <Container className={classes.welcome}>
           <Button
-            variant="outlined"
+            variant="contained"
             className={classes.welcomeBtn}
             color="primary"
-            onClick={() => history.push("/water")}
+            onClick={() => history.push("/logout")}
           >
             Water
           </Button>
-        </div>
-        <div>
+
           <Button
-            variant="outlined"
+            variant="contained"
             className={classes.welcomeBtn}
             color="primary"
             onClick={() => history.push("/light")}
           >
             Light
           </Button>
-        </div>
-        <div>
+
           <Button
-            variant="outlined"
+            variant="contained"
             className={classes.welcomeBtn}
             color="primary"
             onClick={() => history.push("/controls")}
           >
             Controls
           </Button>
-        </div>
-        <div className={classes.footer}></div>
-      </Container>
+
+          <div className={classes.footer}></div>
+        </Container>
+      </ThemeProvider>
     </>
   );
 };

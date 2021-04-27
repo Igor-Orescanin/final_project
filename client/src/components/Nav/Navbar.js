@@ -21,16 +21,16 @@ const Navbar = () => {
   return (
     <Container className={classes.navContainer}>
       <div className={classes.secondaryNav}>
-        {/* <IconButton className={`${classes.iconButton} ${classes.hand}`}>     */}
+      
         <Typography
           variant="h6"
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-          {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
+      
           Hello Sandeep
         </Typography>
-        {/* </IconButton>  */}
+       
 
         <IconButton
           className={classes.iconButton}
@@ -42,7 +42,7 @@ const Navbar = () => {
 
       <div className={classes.primaryNav}>
         <IconButton
-          className={`${classes.iconButtonSec} ${classes.iconHome}`}
+          className={`${classes.iconButtonSec}`}
           onClick={() => history.push("/")}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
