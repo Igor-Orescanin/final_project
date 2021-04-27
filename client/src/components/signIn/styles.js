@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
   container: {
     // backgroundColor:'green'
     //backgroundImage: `url(${image})`,
-    //  marginTop:'90px',
+    marginTop:'90px',
     height: '100vh',
     maxWidth: '100%',
     padding: '0',
@@ -102,20 +102,13 @@ export default makeStyles((theme) => ({
 
   },
 
+
+}))
+
+
+/* 
   otherColor: {
     backgroundColor: "#007982"
 
-  },
-
-
-  textfield: {
-    padding: '0px',
-    width: '212px',
-    height: '31px',
-    margin: '20px',
-    borderRadius: '3px'
-  },
-
-
-}))
+  }, */
 

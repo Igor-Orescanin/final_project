@@ -1,5 +1,5 @@
 // react
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
@@ -22,62 +22,61 @@ import "../../App.css";
 // const [postData, setPostData] = useState({ 
 //     email:'',
 //     password:'',
- 
+
 // })
 
 
-const SignIn = (props) => { 
-  const { history } = props;
-  const classes = useStyles();
+const SignIn = (props) => {
+    const { history } = props;
+    const classes = useStyles();
 
-  return (
-    <Container className={classes.container}>
-      <div className={classes.paper}>
-        <Typography className={classes.typography} component="h1" variant="h5">
-          Sign-In
+    return (
+        <Container className={classes.container}>
+            <div className={classes.paper}>
+                <Typography className={classes.typography} component="h1" variant="h5">
+                    Sign-In
         </Typography>
-        <Avatar className={classes.avatar} />
-        <form className={classes.form} noValidate>
-          <TextField
-            className={classes.inputField}
-            variant="outlined"
-            required
-            id="email"
-            label="Email Address"
-            name="email"
-            size="small"
-           // value={postData.email}   
-            // onChange={(e) => setPostData({...postData, email : e.target.value})} 
-          />
-          <TextField
-            className={classes.inputField}
-            required
-            id="password"
-            label="Password"
-            variant="outlined"
-            name="password"
-            size="small"
-            //value={postData.password}   
-           // onChange={(e) => setPostData({...postData, password : e.target.value})} 
-          />
-          <Link className={classes.link} href="#" variant="body2">
-            Forgot password
+                <Avatar className={classes.avatar} />
+                <form className={classes.form} noValidate>
+                    <TextField
+                        className={classes.inputField}
+                        variant="outlined"
+                        required
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        size="small"
+                    // value={postData.email}   
+                    // onChange={(e) => setPostData({...postData, email : e.target.value})} 
+                    />
+                    <TextField
+                        className={classes.inputField}
+                        required
+                        id="password"
+                        label="Password"
+                        variant="outlined"
+                        name="password"
+                        size="small"
+                    //value={postData.password}   
+                    // onChange={(e) => setPostData({...postData, password : e.target.value})} 
+                    />
+                    <Link className={classes.link} href="#" variant="body2">
+                        Forgot password
           </Link>
 
-          <Button
-            onClick={() => history.push("/welcome")}
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            Sign-In
-          </Button>
+                    <Button className={classes.button}
+                        onClick={() => history.push("/welcome")}
+                        className={classes.button}
+                        variant="contained"
+                        color="primary" >
+                        Sign-In
+                    </Button>
 
-          <div className={classes.backgr}></div>
-        </form>
-      </div>
-    </Container>
-  );
+                    <div className={classes.backgr}></div>
+                </form>
+            </div>
+        </Container>
+    );
 };
 
 export default SignIn;
