@@ -8,8 +8,9 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import useStyles from "./styles";
 
 //styles
-import { Container } from "@material-ui/core";
+import { Container} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography"; //Typography
+import Paper from "@material-ui/core/Paper/index"
 import Button from "@material-ui/core/Button"; //button
 import Avatar from "@material-ui/core/Avatar"; //avatar
 import TextField from "@material-ui/core/TextField";
@@ -25,57 +26,25 @@ import "../../App.css";
 
 // })
 
+// to connect the routes
+//
+import { useHistory } from "react-router-dom";
 
-const SignIn = (props) => {
-    const { history } = props;
+const SignIn = () => {
+    const history = useHistory();
     const classes = useStyles();
 
     return (
-        <Container className={classes.container}>
+        <Paper className={classes.container}>
             <div className={classes.paper}>
                 <Typography className={classes.typography} component="h1" variant="h5">
                     Sign-In
-        </Typography>
+                </Typography>
+                
                 <Avatar className={classes.avatar} />
-                <form className={classes.form} noValidate>
-                    <TextField
-                        className={classes.inputField}
-                        variant="outlined"
-                        required
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        size="small"
-                    // value={postData.email}   
-                    // onChange={(e) => setPostData({...postData, email : e.target.value})} 
-                    />
-                    <TextField
-                        className={classes.inputField}
-                        required
-                        id="password"
-                        label="Password"
-                        variant="outlined"
-                        name="password"
-                        size="small"
-                    //value={postData.password}   
-                    // onChange={(e) => setPostData({...postData, password : e.target.value})} 
-                    />
-                    <Link className={classes.link} href="#" variant="body2">
-                        Forgot password
-          </Link>
-
-                    <Button className={classes.button}
-                        onClick={() => history.push("/welcome")}
-                        className={classes.button}
-                        variant="contained"
-                        color="primary" >
-                        Sign-In
-                    </Button>
-
-                    <div className={classes.backgr}></div>
-                </form>
+                
             </div>
-        </Container>
+        </Paper>
     );
 };
 

@@ -6,7 +6,7 @@ import useStyles from "./styles";
 
 // material-ui styles
 import { Container, Button } from "@material-ui/core";
-
+// import { StylesProvider } from "@material-ui/core/styles"; 
 // components
 import Navbar from "../Nav/Navbar.js";
 

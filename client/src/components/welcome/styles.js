@@ -8,16 +8,16 @@ import image from "../../image/background_mobile.svg";
 export default makeStyles((theme) => ({
 
 
-  "palette":{
-    "primary":{"light":"rgba(24, 176, 195, 1)",
-    "main":"rgba(12, 158, 181, 1)",
-    "dark":"rgba(0, 140, 167, 1)",
-    "contrastText":"#fff"},},
+  // "palette":{
+  //   "primary":{"light":"rgba(24, 176, 195, 1)",
+  //   "main":"rgba(12, 158, 181, 1)",
+  //   "dark":"rgba(0, 140, 167, 1)",
+  //   "contrastText":"#fff"},},
 
 
   welcome: {
     display: "flex",
-   // backgroundColor: "Red",
+    backgroundColor: "Red",
     justifyContent: "center",
     flexDirection: 'column',
     alignItems: 'center',
