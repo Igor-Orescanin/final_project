@@ -1,40 +1,64 @@
+// react
 import React from "react";
-import Button from "@material-ui/core/Button"; //button
+
+// useStyles to use the connection
 import useStyles from "./styles";
 
-import { makeStyles } from '@material-ui/core/styles'; 
-import { Container } from "@material-ui/core";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+// material-ui styles
+import { Container, Button } from "@material-ui/core";
+
+// components
 import Navbar from "../Nav/Navbar.js";
 
+// to connect the routes
+import { useHistory } from "react-router-dom";
 
-import '../../App.css';
+// css
+import "../../App.css";
 
-function Welcome() {
+const Welcome = () => {
+  const history = useHistory();
   const classes = useStyles();
+
   return (
     <>
       <Navbar />
 
       <Container className={classes.welcome}>
-          <div className={classes.welcomeBtn}>
-              <Button
-                className={classes.buttonWel} variant="contained" color="primary">
-             Water
-          </Button>
+        <div>
           <Button
-            className={classes.buttonWel} variant="contained" color="primary">
+            variant="outlined"
+            className={classes.welcomeBtn}
+            color="primary"
+            onClick={() => history.push("/water")}
+          >
+            Water
+          </Button>
+        </div>
+        <div>
+          <Button
+            variant="outlined"
+            className={classes.welcomeBtn}
+            color="primary"
+            onClick={() => history.push("/light")}
+          >
             Light
           </Button>
-          <Button className={classes.buttonWel} variant="contained" color="primary">
+        </div>
+        <div>
+          <Button
+            variant="outlined"
+            className={classes.welcomeBtn}
+            color="primary"
+            onClick={() => history.push("/controls")}
+          >
             Controls
           </Button>
         </div>
-        <div  className={classes.background}>
-        </div>
+        <div className={classes.footer}></div>
       </Container>
     </>
   );
-}
+};
 
 export default Welcome;
