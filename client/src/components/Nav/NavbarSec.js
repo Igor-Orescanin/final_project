@@ -13,6 +13,7 @@ import { Container, Typography, IconButton } from "@material-ui/core";
 //icons
 import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
+import AssessmentIcon from "@material-ui/icons/Assessment";
 
 const Navbar = () => {
   const history = useHistory();
@@ -52,6 +53,16 @@ const Navbar = () => {
           className={classes.iconButtonSec}
           onClick={() => history.push("/logout")}
         >
+          <AssessmentIcon className={classes.iconSec} />
+          <Typography variant="h6" component="h6" className={classes.typoSec}>
+            History
+          </Typography>
+        </IconButton>
+
+        <IconButton
+          className={classes.iconButtonSec}
+          onClick={() => history.push("/logout")}
+        >
           <Typography variant="h6" component="h6" className={classes.typo2}>
             Log Out
           </Typography>
@@ -62,4 +73,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
