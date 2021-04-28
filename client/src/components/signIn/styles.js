@@ -1,43 +1,54 @@
 // general
 import { makeStyles } from "@material-ui/core/styles";
-
-
-import image from '../../image/background_mobile.svg'
-
+import image from '../../image/background_mobile.svg';
 
 export default makeStyles((theme) => ({
-  root: {
-    "& .MuiPaper-root":{
-      backgroundColor:'green'
-    }
+  container: {
+    height: '100vh',
+    maxWidth: '100%',
+    padding: '0',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    alignSelf: 'center',
+    backgroundPosition: 'bottom',
+    overflow: 'hidden'
   },
-
 
   paper: {
-    backgroundColor:'yellow',
+    height: '100vh',
+    maxWidth: '100%',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyItems: 'center',
+    backgroundPosition: 'bottom',
   },
 
-   typography: {
-  //   marginTop: '64px',
+  typography: {
+    marginTop: '64px',
     fontFamily: ('Roboto', 'sans-serif'),
-     color: "#007982",
-     fontSize: '24px',
-     fontWeight: 'bold',
-   },
+    color: "#007982",
+    fontSize: '24px',
+    fontWeight: 'bold',
+  },
 
   avatar: {
-    margin: 'auto',
-    marginTop:'20px',
+    margin: '10px',
     backgroundColor: "#007982",
-  
+    alignContent: 'center',
   },
-
-
+  form: {
+    marginTop: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   inputField: {
-    marginTop: "25px",
-    outlineColor: "#007982"
+    marginTop: "20px",
+    outlineColor: "#007982",
+    color: 'green'
   },
-
   link: {
     paddingTop: '20px',
     paddingBottom: '20px',
@@ -56,14 +67,9 @@ export default makeStyles((theme) => ({
   },
 
   backgr: {
-    //heigh:'100px',
-    //backgroundColor:'yellow',
     backgroundImage: `url(${image})`,
-    // height:'30px',
     height: '340px',
     minWidth: '580px',
-   // heigh:'200px',
-   // width:'300px',
     padding: '0',
     backgroundRepeat: 'no-repeat',
     display: 'flex',
@@ -71,7 +77,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyItems: 'center',
     backgroundPosition: 'bottom',
-  }
+
+  },
 
 }))
 

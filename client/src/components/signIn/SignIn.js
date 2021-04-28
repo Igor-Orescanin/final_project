@@ -49,6 +49,7 @@ const SignIn = () => {
                     <TextField
                         className={classes.inputField}
                         variant="outlined"
+                        multiline
                         required
                         id="email"
                         label="Email Address"
