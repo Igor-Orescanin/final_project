@@ -9,8 +9,9 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import useStyles from "./styles";
 
 //styles
-import { Container } from "@material-ui/core";
+import { Container} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography"; //Typography
+import Paper from "@material-ui/core/Paper/index"
 import Button from "@material-ui/core/Button"; //button
 import Avatar from "@material-ui/core/Avatar"; //avatar
 import TextField from "@material-ui/core/TextField";
@@ -26,12 +27,16 @@ import "../../App.css";
 
 // })
 
+// to connect the routes
+//
+import { useHistory } from "react-router-dom";
 
-const SignIn = (props) => {
-    const { history } = props;
+const SignIn = () => {
+    const history = useHistory();
     const classes = useStyles();
 
     return (
+
         <StylesProvider injectFirst>
         <Container className={classes.container}>
             <div className={classes.paper}>
@@ -80,6 +85,7 @@ const SignIn = (props) => {
                 </div>
         </Container>
         </StylesProvider>
+
     );
 };
 

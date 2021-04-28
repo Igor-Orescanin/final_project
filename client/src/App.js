@@ -6,6 +6,7 @@ import SignIn from './components/signIn/SignIn.js'
 import Welcome from './components/welcome/Welcome.js';
 import Navbar from './components/Nav/Navbar.js';
 import LogOut from './components/LogOut/LogOut.js';
+import Water from './components/Water/Water.js';
 
 // css
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
         <Route path='/welcome' component={Welcome}></Route>
         <Route path='/navbar' component={Navbar}></Route>
         <Route path='/logout' component={LogOut}></Route>
+        <Route path='/water' component={Water}></Route>
       </div>
     </Router>
 
