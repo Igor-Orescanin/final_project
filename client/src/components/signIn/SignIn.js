@@ -1,5 +1,6 @@
 // react
 import React, { useState } from "react";
+import { StylesProvider } from "@material-ui/core/styles"; 
 
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
@@ -31,11 +32,13 @@ const SignIn = (props) => {
     const classes = useStyles();
 
     return (
+        <StylesProvider injectFirst>
         <Container className={classes.container}>
             <div className={classes.paper}>
                 <Typography className={classes.typography} component="h1" variant="h5">
                     Sign-In
-        </Typography>
+                 </Typography>
+                
                 <Avatar className={classes.avatar} />
                 <form className={classes.form} noValidate>
                     <TextField
@@ -74,8 +77,9 @@ const SignIn = (props) => {
 
                     <div className={classes.backgr}></div>
                 </form>
-            </div>
+                </div>
         </Container>
+        </StylesProvider>
     );
 };
 
