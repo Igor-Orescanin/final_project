@@ -6,60 +6,32 @@ import image from '../../image/background_mobile.svg'
 
 
 export default makeStyles((theme) => ({
-
-
-  container: {
-    // backgroundColor:'green'
-    //backgroundImage: `url(${image})`,
-    marginTop:'90px',
-    height: '100vh',
-    maxWidth: '100%',
-    padding: '0',
-    // backgroundColor:'yellow',
-    //  backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    alignSelf: 'center',
-    backgroundPosition: 'bottom',
+  root: {
+    "& .MuiPaper-root":{
+      backgroundColor:'green'
+    }
   },
+
 
   paper: {
-    //backgroundColor:'yellow',
-    //backgroundImage: `url(${image})`,
-    // height:'30px',
-    height: '100vh',
-    maxWidth: '100%',
-    // heigh:'100vh',
-    // padding:'0',
-    backgroundRepeat: 'no-repeat',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyItems: 'center',
-    backgroundPosition: 'bottom',
-    //  backgroundSize:'cover'
-
+    backgroundColor:'yellow',
   },
 
-  typography: {
-    marginTop: '64px',
+   typography: {
+  //   marginTop: '64px',
     fontFamily: ('Roboto', 'sans-serif'),
-    color: "#007982",
-    fontSize: '24px',
-    fontWeight: 'bold',
-  },
+     color: "#007982",
+     fontSize: '24px',
+     fontWeight: 'bold',
+   },
 
   avatar: {
-    margin: '10px',
+    margin: 'auto',
+    marginTop:'20px',
     backgroundColor: "#007982",
-    alignContent: 'center',
+  
   },
 
-  form: {
-    marginTop: '10px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
 
   inputField: {
     marginTop: "25px",
@@ -99,16 +71,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyItems: 'center',
     backgroundPosition: 'bottom',
-
-  },
-
+  }
 
 }))
-
-
-/* 
-  otherColor: {
-    backgroundColor: "#007982"
-
-  }, */
 

@@ -55,7 +55,7 @@ const Navbar = () => {
         >
           <AssessmentIcon className={classes.iconSec} />
           <Typography variant="h6" component="h6" className={classes.typoSec}>
-            History
+            Charts
           </Typography>
         </IconButton>
 
