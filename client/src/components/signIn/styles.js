@@ -38,14 +38,40 @@ export default makeStyles((theme) => ({
     outlineColor: "#007982"
   },
 
-  container: {
-    backgroundColor:'green!important',
-    margin:'0px',
-    padding:'0px',
-    display:'flex',
-    justifyContent:'center',
+  link: {
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    color: "#007982",
   },
 
+  button: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+    padding: 0,
+    backgroundColor: "#0C9EB5",
+    color: 'white',
+    width: '80px',
+    height: '31px',
+    borderRadius: '20px',
+    fontSize: '15px'
+  },
+
+  backgr: {
+    //heigh:'100px',
+    //backgroundColor:'yellow',
+    backgroundImage: `url(${image})`,
+    // height:'30px',
+    height: '340px',
+    minWidth: '580px',
+    heigh:'200px',
+    width:'300px',
+    padding: '0',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyItems: 'center',
+    backgroundPosition: 'bottom',
+  }
 
 }))
 
