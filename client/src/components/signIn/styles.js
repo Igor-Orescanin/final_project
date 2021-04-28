@@ -44,11 +44,27 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+
+  root: {
+    '&:hover $notchedOutline': {
+      borderColor: "#007982"
+    },
+    '&$focused $notchedOutline': {
+      borderColor: "#007982"
+    }
+  },
+  focused: {},
+  notchedOutline: {},
+
+  notchedOutline: {
+    borderColor: '#007982'
+  },
+
   inputField: {
     marginTop: "20px",
-    outlineColor: "#007982",
-    color: 'green'
+    borderColor: "#007982",
   },
+
   link: {
     paddingTop: '20px',
     paddingBottom: '20px',
