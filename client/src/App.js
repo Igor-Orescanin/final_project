@@ -1,13 +1,38 @@
-import React from 'react'
-import SignIn from './components/SignIn.js'
-import './App.css';
-import useStyles from "./components/styles";
+// react
+import React from "react";
+
+//components
+import LogIn from "./components/LogIn/LogIn.js";
+import Registration from "./components/Registration/Registration.js";
+import Welcome from "./components/Welcome/Welcome.js";
+import Navbar from "./components/Nav/Navbar.js";
+import LogOut from "./components/LogOut/LogOut.js";
+import Water from "./components/Water/Water.js";
+import Setting from "./components/Setting/Setting.js";
+import Graph from "./Graph.js";
+
+
+// css
+import "./App.css";
+
+
+//react-router-dom
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <SignIn/>
-    </div>
+    <Router>
+      <div className="app">
+        <Route path="/" exact component={LogIn}></Route>
+        <Route path="/registration" component={Registration}></Route>
+        <Route path="/welcome" component={Welcome}></Route>
+        <Route path="/navbar" component={Navbar}></Route>
+        <Route path="/logout" component={LogOut}></Route>
+        <Route path="/water" component={Water}></Route>
+        <Route path="/setting" component={Setting}></Route>
+        <Route path="/graph" component={Graph}></Route>
+      </div>
+    </Router>
   );
 }
 
