@@ -6,7 +6,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
 //styles to use the connection
-import useStyles from "./styles";
+import useStyles from "./styles.js";
 
 //styles
 import { Container, ThemeProvider } from "@material-ui/core";
@@ -46,7 +46,7 @@ const theme = createMuiTheme({
 });
 
 
-const SignIn = () => {
+const Registration = () => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -147,4 +147,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default Registration;
