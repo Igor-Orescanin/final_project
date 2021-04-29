@@ -5,8 +5,11 @@ import { StylesProvider } from "@material-ui/core/styles";
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
-//styles to use the connection
-import useStyles from "./styles.js";
+import "../../App.css";
+import { useHistory } from "react-router-dom";
+
+
+
 
 //styles
 import { Container, ThemeProvider } from "@material-ui/core";
@@ -17,9 +20,9 @@ import Avatar from "@material-ui/core/Avatar"; //avatar
 import TextField from "@material-ui/core/TextField";
 //import Link from '@material-ui/core/Link'; // NOT work course of  Link from react-router-dom same name
 
-import "../../App.css";
-import { useHistory } from "react-router-dom";
 
+//styles to use the connection
+import useStyles from './styles.js'
 
 //useState react hook method returns = function of the hook setPostDate and = postData = e.target.value
 // const [postData, setPostData] = useState({ 

@@ -3,7 +3,7 @@ import React from "react";
 
 //components
 import LogIn from "./components/LogIn/LogIn.js";
-import Registration from "./components/Registrationsdf/Registration.js";
+import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
 import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
