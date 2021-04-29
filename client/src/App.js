@@ -3,11 +3,12 @@ import React from "react";
 
 //components
 import LogIn from "./components/LogIn/LogIn.js";
-import Registration from "./components/Registration/Registration";
+import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
 import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
+import Setting from "./components/Setting/Setting.js";
 import Graph from "./Graph.js";
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/navbar" component={Navbar}></Route>
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" component={Water}></Route>
+        <Route path="/setting" component={Setting}></Route>
         <Route path="/graph" component={Graph}></Route>
       </div>
     </Router>
