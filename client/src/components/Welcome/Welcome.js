@@ -46,7 +46,7 @@ const Welcome = () => {
             variant="contained"
             className={classes.welcomeBtn}
             color="primary"
-            onClick={() => history.push("/logout")}
+            onClick={() => history.push("/water")}
           >
             Water
           </Button>

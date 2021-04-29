@@ -6,7 +6,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
 //styles to use the connection
-import useStyles from "./styles";
+import useStyles from "./styles.js";
 
 //styles
 import { Container, ThemeProvider } from "@material-ui/core";
@@ -46,7 +46,7 @@ const theme = createMuiTheme({
 });
 
 
-const SignIn = () => {
+const Registration = () => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -57,7 +57,7 @@ const SignIn = () => {
             <Container className={classes.container}>
                 <div className={classes.paper}>
                     <Typography className={classes.typography} component="h1" variant="h5">
-                        Log-In
+                    Registration
                  </Typography>
 
                     <Avatar className={classes.avatar} />
@@ -105,16 +105,36 @@ const SignIn = () => {
                         //value={postData.password}   
                         // onChange={(e) => setPostData({...postData, password : e.target.value})} 
                         />
-                        <Link className={classes.link} href="#" variant="body2">
-                            Forgot password
-          </Link>
+                         <TextField
+                            className={`${classes.inputField} ${classes.myInputLabel}`}
+                            required
+                            id="rpi-mac-address"
+                            label="RPI-Mac-Address"
+                            variant="outlined"
+                            name="rpi-mac-address"
+                            size="small"
+                            BorderColor="red"
+                            InputLabelProps={{
+                                style: { color: '#007982' },
+                            }}
+                            InputProps={{
+                                classes: {
+                                    root: classes.root,
+                                    focused: classes.focused,
+                                    notchedOutline: classes.notchedOutline
+                                }
+                            }}
+                        //value={postData.password}   
+                        // onChange={(e) => setPostData({...postData, password : e.target.value})} 
+                        />
+    
 
                         <Button className={classes.button}
                             onClick={() => history.push("/welcome")}
                             className={classes.button}
                             variant="contained"
                             color="primary" >
-                            Log-In
+                            Register Now
                     </Button>
 
                         <div className={classes.backgr}></div>
@@ -127,4 +147,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default Registration;
