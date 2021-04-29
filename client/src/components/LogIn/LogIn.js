@@ -46,7 +46,7 @@ const theme = createMuiTheme({
 });
 
 
-const SignIn = () => {
+const LogIn = () => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -114,7 +114,7 @@ const SignIn = () => {
                             className={classes.button}
                             variant="contained"
                             color="primary" >
-                            Sign-In
+                            Log-In
                     </Button>
 
                         <div className={classes.backgr}></div>
@@ -127,4 +127,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default LogIn;

@@ -50,10 +50,10 @@ const Water = (props) => {
 
 
 
-  var chart = new ApexCharts(el, options);
-  chart.updateSeries([{
-  data: waterLevelClean
-  }])
+  // var chart = new ApexCharts(el, options);
+  // chart.updateSeries([{
+  // data: waterLevelClean
+  // }])
 
 
 

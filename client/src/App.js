@@ -3,6 +3,7 @@ import React from "react";
 
 //components
 import SignIn from "./components/signIn/SignIn.js";
+import LogIn from "./components/LogIn/LogIn.js";
 import Welcome from "./components/welcome/Welcome.js";
 import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
@@ -24,6 +25,7 @@ function App() {
     <Router>
       <div className="app">
         <Route path="/" exact component={SignIn}></Route>
+        <Route path="/login" exact component={LogIn}></Route>
         <Route path="/welcome" component={Welcome}></Route>
         <Route path="/navbar" component={Navbar}></Route>
         <Route path="/logout" component={LogOut}></Route>
