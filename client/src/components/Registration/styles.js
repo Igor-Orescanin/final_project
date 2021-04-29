@@ -74,10 +74,11 @@ export default makeStyles((theme) => ({
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
     padding: 0,
+    marginTop:'30px',
     backgroundColor: "#0C9EB5",
     color: 'white',
-    width: '80px',
-    height: '31px',
+    width: '120px',
+    height: '62px',
     borderRadius: '20px',
     fontSize: '15px'
   },
