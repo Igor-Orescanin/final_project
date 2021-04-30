@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
+import axios from 'axios';
+
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
@@ -24,18 +26,14 @@ import TextField from "@material-ui/core/TextField";
 //styles to use the connection
 import useStyles from './styles.js'
 
-//useState react hook method returns = function of the hook setPostDate and = postData = e.target.value
-// const [postData, setPostData] = useState({
-//     email:'',
-//     password:'',
+//change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
 
-// })
 
 // to connect the routes
 //
 
-//change color as a theme
-import { createMuiTheme } from "@material-ui/core/styles";
+
 
 const theme = createMuiTheme({
     palette: {
@@ -50,6 +48,41 @@ const theme = createMuiTheme({
 
 
 const Registration = () => {
+
+    //useState react hook method returns = function of the hook setPostDate and = postData = e.target.value
+    const [postData, setPostData] = useState({
+        // fullName: '',
+        username: '',
+        // email: '',
+        password: '',
+        macAddress: ''
+    })
+
+    const submitHandler = () => {
+        // e.preventDefault();
+
+        const registered = {
+            //fullName: postData.fullName,
+            username: postData.username,
+            //email: postData.email,
+            password: postData.password,
+            macAddress: postData.macAddress
+        }
+
+        axios.post('http://localhost:4000/registration', registered)
+            .then(response => console.log(response.data));
+
+        setPostData({
+            // fullName: '',
+            username: '',
+            // email: '',
+            password: '',
+            macAddress: ''
+        })
+
+
+    }
+
     const history = useHistory();
     const classes = useStyles();
 
@@ -64,7 +97,7 @@ const Registration = () => {
                  </Typography>
 
                     <Avatar className={classes.avatar} />
-                    <form className={classes.form} noValidate>
+                        <form className={classes.form} noValidate onSubmit={submitHandler()}>
                         <TextField
                             className={classes.inputField}
                             variant="outlined"
@@ -83,8 +116,8 @@ const Registration = () => {
                                     notchedOutline: classes.notchedOutline
                                 }
                             }}
-                        // value={postData.email}
-                        // onChange={(e) => setPostData({...postData, email : e.target.value})}
+                                value={postData.username}
+                                onChange={(e) => setPostData({ ...postData, username: e.target.value })}
                         />
                         <TextField
                             className={`${classes.inputField} ${classes.myInputLabel}`}
@@ -105,8 +138,8 @@ const Registration = () => {
                                     notchedOutline: classes.notchedOutline
                                 }
                             }}
-                        //value={postData.password}
-                        // onChange={(e) => setPostData({...postData, password : e.target.value})}
+                                value={postData.password}
+                                onChange={(e) => setPostData({ ...postData, password: e.target.value })}
                         />
                          <TextField
                             className={`${classes.inputField} ${classes.myInputLabel}`}
@@ -127,8 +160,8 @@ const Registration = () => {
                                     notchedOutline: classes.notchedOutline
                                 }
                             }}
-                        //value={postData.password}
-                        // onChange={(e) => setPostData({...postData, password : e.target.value})}
+                                value={postData.macAddress}
+                                onChange={(e) => setPostData({ ...postData, macAddress: e.target.value })}
                         />
 
 
