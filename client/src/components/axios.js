@@ -9,8 +9,6 @@ export default instance;
 
 
 
-
-
 /* 
 import Axios from "axios";
 

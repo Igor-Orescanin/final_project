@@ -78,6 +78,7 @@ const Registration = () => {
             },
             }) 
             console.log('This is our form data: ', formData);
+            history.push("/");
     }
 
 
