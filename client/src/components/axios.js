@@ -1,10 +1,12 @@
-import axios from 'axios';
+
+ import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://maritza.localhost:4000/app/registration'
+    baseURL: 'http://maritza.localhost:3005/'
 })
 
 export default instance;
+
 
 
 
@@ -14,12 +16,12 @@ import Axios from "axios";
 
 
 Axios({
-    method: "GET",
-    url: "http://localhost:5000/",
+    method: "POST",
+    url: "http://maritza.localhost:3005/registration",
     headers: {
       "Content-Type": "application/json"
     }
   }).then(res => {
     console.log(res.data.message);
   });
-   */
+    */

@@ -30,6 +30,7 @@ mongoose.connection.on("open", function () {
 });
 
 
+// middleware
 app.use(express.json());
 app.use(session({ secret: "secrets", saveUninitialized: false, resave: false }));
 app.use(cors());

@@ -1,6 +1,7 @@
 // react
 import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
+import api from '../axios';
 
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
@@ -56,9 +57,30 @@ const Registration = () => {
     const history = useHistory();
     const classes = useStyles();
 
-  /*   if (!token) {
-        return <Registration setToken={setToken} />
-    } */
+    /*   if (!token) {
+          return <Registration setToken={setToken} />
+      } */
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        'rpi-mac-address': ""
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        api({
+            'method': 'POST',
+            'url':'/registration',
+            'data': formData,
+            'headers': { 'content-type':'application/json' // override instance defaults
+            },
+            }) 
+            console.log('This is our form data: ', formData);
+    }
+
+
 
 
 
@@ -73,8 +95,9 @@ const Registration = () => {
                  </Typography>
 
                         <Avatar className={classes.avatar} />
-                        <form className={classes.form} noValidate>
+                        <form className={classes.form} noValidate onSubmit={handleSubmit}>
                             <TextField
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className={classes.inputField}
                                 variant="outlined"
                                 required
@@ -93,12 +116,13 @@ const Registration = () => {
                                     }
                                 }}
 
-                                
+
                             // value={postData.email}   
                             // onChange={(e) => setPostData({...postData, email : e.target.value})} 
                             />
 
-<TextField
+                            <TextField
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className={classes.inputField}
                                 variant="outlined"
                                 required
@@ -117,13 +141,14 @@ const Registration = () => {
                                     }
                                 }}
 
-                                
+
                             // value={postData.email}   
                             // onChange={(e) => setPostData({...postData, email : e.target.value})} 
                             />
 
 
                             <TextField
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 className={`${classes.inputField} ${classes.myInputLabel}`}
                                 required
                                 id="password"
@@ -148,6 +173,7 @@ const Registration = () => {
                             />
 
                             <TextField
+                                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                                 className={`${classes.inputField} ${classes.myInputLabel}`}
                                 required
                                 id="confirmPassword"
@@ -172,6 +198,8 @@ const Registration = () => {
                             />
 
                             <TextField
+                                onChange={(e) => setFormData({ ...formData, 'rpi-mac-address': e.target.value })}
+
                                 className={`${classes.inputField} ${classes.myInputLabel}`}
                                 required
                                 id="rpi-mac-address"
@@ -196,7 +224,7 @@ const Registration = () => {
 
 
                             <Button className={classes.button}
-                                onClick={() => history.push("/welcome")}
+                                type='submit'
                                 className={classes.button}
                                 variant="contained"
                                 color="primary" >
