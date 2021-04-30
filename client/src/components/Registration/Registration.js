@@ -25,7 +25,7 @@ import TextField from "@material-ui/core/TextField";
 import useStyles from './styles.js'
 
 //useState react hook method returns = function of the hook setPostDate and = postData = e.target.value
-// const [postData, setPostData] = useState({ 
+// const [postData, setPostData] = useState({
 //     email:'',
 //     password:'',
 

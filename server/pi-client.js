@@ -17,6 +17,8 @@ async function main() {
     const READING_INTERVAL = 500;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
 
+    socket.emit('device_connected');
+
     const gracefulShutdown = () => {
       sensor.stopReading();
       sensor.removeAllListeners();
