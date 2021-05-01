@@ -1,9 +1,10 @@
-const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const routesUrls = require('./routes/routes');
+const routeUsers = require('./routes/users');
+const routeAuth = require('./routes/auth');
+const routeDevices = require('./routes/devices');
 const cors = require('cors');
 const session = require("express-session");
 
@@ -39,7 +40,10 @@ app.use(cors());
 app.use("/public", express.static("public"));
 
 //-------    ADD ROUTE--------------------
-app.use('/', routesUrls);
+// app.use('/', routeUsers);
+app.use('/users', routeUsers);
+app.use('/auth', routeAuth);
+app.use('/devices', routeDevices);
 
 
 
