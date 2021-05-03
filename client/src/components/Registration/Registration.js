@@ -232,9 +232,10 @@ const Registration = () => {
                                 Register
                     </Button>
 
-                            <div className={classes.backgr}></div>
+                            {/* <div className={classes.backgr}></div> */}
                         </form>
                     </div>
+                    <div className={classes.footer}></div>
                 </Container>
             </ThemeProvider>
         </StylesProvider>

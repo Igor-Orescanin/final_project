@@ -5,30 +5,30 @@ import image from '../../image/background_mobile.svg';
 export default makeStyles((theme) => ({
   
   container: {
-    height: '100vh',
-    maxWidth: '100%',
-    padding: '0',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    alignSelf: 'center',
-    backgroundPosition: 'bottom',
-    overflow: 'hidden'
+   
+
+    display: "flex",
+    //backgroundColor: "Red",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    //height: "65vh",
+
+
+
   },
 
 
   paper: {
-    height: '100vh',
-    maxWidth: '100%',
-    backgroundRepeat: 'no-repeat',
+    //backgroundColor: "green",
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyItems: 'center',
-    backgroundPosition: 'bottom',
+    justifyContent:'center',
+    alignItems:'center',
   },
 
   typography: {
-    marginTop: '50px',
+    marginTop: '30px',
     marginLeft: '40px',
     marginRight: '40px',
     fontFamily: ('Roboto', 'sans-serif'),
@@ -39,6 +39,7 @@ export default makeStyles((theme) => ({
   },
 
   form: {
+    //backgroundColor: "yellow",
     marginTop: '10px',
     display: 'flex',
     flexDirection: 'column',
@@ -63,7 +64,8 @@ export default makeStyles((theme) => ({
   inputField: {
     marginTop: "20px",
     borderColor: "#007982",
-    width:'212px'
+    width:'212px',
+    backgroundColor:'white'
   },
 
 
@@ -80,18 +82,18 @@ export default makeStyles((theme) => ({
   },
 
 
-  backgr: {
+  //for the Image on the bottom
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    height: "190px",
+    //height:'170px',
+    width: "100vw",
+    //backgroundColor: "Blue",
     backgroundImage: `url(${image})`,
-    height: '340px',
-    minWidth: '580px',
-    padding: '0',
-    backgroundRepeat: 'no-repeat',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyItems: 'center',
-    backgroundPosition: 'bottom',
-
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
   },
 
 

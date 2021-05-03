@@ -127,9 +127,10 @@ const LogIn = () => {
                 Log-In
               </Button>
 
-              <div className={classes.backgr}></div>
+              
             </form>
           </div>
+          <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
     </StylesProvider>

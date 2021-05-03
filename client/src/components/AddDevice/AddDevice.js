@@ -125,8 +125,9 @@ registered in this system! </Typography>
         >
         Register
       </Button> 
-      <div className={classes.backgr}></div>
+      
       </form >
+      <div className={classes.footer}></div>
       </div>
       </Container>
 

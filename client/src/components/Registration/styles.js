@@ -4,25 +4,20 @@ import image from '../../image/background_mobile.svg';
 
 export default makeStyles((theme) => ({
   container: {
-    height: '100vh',
-    maxWidth: '100%',
-    padding: '0',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    alignSelf: 'center',
-    backgroundPosition: 'bottom',
-    overflow: 'hidden'
-  },
-
-  paper: {
-    height: '100vh',
-    maxWidth: '100%',
-    backgroundRepeat: 'no-repeat',
+  //   backgroundColor:'red',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyItems: 'center',
-    backgroundPosition: 'bottom',
+    //height:'65vh'
+  },
+
+  paper: {
+    height:'65vh',
+  // backgroundColor:'yellow',
+     display: 'flex',
+     flexDirection: 'column',
+    alignItems: 'center',
   },
 
   typography: {
@@ -63,7 +58,8 @@ export default makeStyles((theme) => ({
   inputField: {
     marginTop: "20px",
     borderColor: "#007982",
-    width:'212px'
+    width:'212px',
+    backgroundColor:'white'
   },
 
   link: {
@@ -84,20 +80,53 @@ export default makeStyles((theme) => ({
     fontSize: '15px'
   },
 
-  backgr: {
-    backgroundImage: `url(${image})`,
-    height: '340px',
-    minWidth: '580px',
-    padding: '0',
-    backgroundRepeat: 'no-repeat',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyItems: 'center',
-    backgroundPosition: 'bottom',
+  // backgr: {
+  //   backgroundImage: `url(${image})`,
+  //   height: '340px',
+  //   minWidth: '580px',
+  //   padding: '0',
+  //   backgroundRepeat: 'no-repeat',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   justifyItems: 'center',
+  //   backgroundPosition: 'bottom',
 
+  // },
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    height: "190px",
+    //height:'170px',
+    width: "100vw",
+    //backgroundColor: "Blue",
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
   },
 
 }))
 
 
+
+//  @media only screen and (max-width: 600px) {
+//     {
+//      typography: {
+//        marginTop: '24px'
+//    }, 
+//    avatar: {
+//     marginTop: '5px'
+//   }, 
+//   form: {
+//     marginTop: '0px'
+//   },
+//   inputField: {
+//     marginTop: "10px"
+//   },
+//   button:{
+//     marginTop:'10px'}
+//     ,
+//   }
+
+//  }}
