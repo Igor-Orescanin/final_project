@@ -28,14 +28,14 @@ const socket = io("http://localhost:3005", {
 
 const Water = (props) => {
 
-constructor(props) 
-  super(props);
-  this.state = {
-     option:{
+// constructor(props) 
+//   super(props);
+//   this.state = {
+//      option:{
 
-     },
+//      },
 
-  }
+//   }
 
 
   const { history } = props;
