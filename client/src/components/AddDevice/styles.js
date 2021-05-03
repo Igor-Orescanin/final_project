@@ -1,8 +1,9 @@
-// general
 import { makeStyles } from "@material-ui/core/styles";
+
 import image from '../../image/background_mobile.svg';
 
 export default makeStyles((theme) => ({
+  
   container: {
     height: '100vh',
     maxWidth: '100%',
@@ -13,6 +14,7 @@ export default makeStyles((theme) => ({
     backgroundPosition: 'bottom',
     overflow: 'hidden'
   },
+
 
   paper: {
     height: '100vh',
@@ -26,18 +28,16 @@ export default makeStyles((theme) => ({
   },
 
   typography: {
-    marginTop: '64px',
+    marginTop: '50px',
+    marginLeft: '40px',
+    marginRight: '40px',
     fontFamily: ('Roboto', 'sans-serif'),
     color: "#007982",
-    fontSize: '24px',
+    fontSize: '18px',
     fontWeight: 'bold',
+    textAlign:'center',
   },
 
-  avatar: {
-    marginTop: '20px',
-    backgroundColor: "#007982",
-    alignContent: 'center',
-  },
   form: {
     marginTop: '10px',
     display: 'flex',
@@ -66,27 +66,19 @@ export default makeStyles((theme) => ({
     width:'212px'
   },
 
-  link: {
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    color: "#007982",
-    paddingRight:'14px',
-    paddingLeft:'14px',
-    textDecoration: 'none',
-  },
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-    padding:0,
+    padding: 0,
     backgroundColor: "#0C9EB5",
     color: 'white',
-    width: '80px',
+    width: '106px',
     height: '38px',
     borderRadius: '20px',
     fontSize: '15px',
-    fontWeight: '400',
-   
+    marginTop:'20px'
   },
+
 
   backgr: {
     backgroundImage: `url(${image})`,
@@ -102,6 +94,8 @@ export default makeStyles((theme) => ({
 
   },
 
+
+
+
+
 }))
-
-

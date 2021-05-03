@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
   },
 
   avatar: {
-    margin: '10px',
+    marginTop: '20px',
     backgroundColor: "#007982",
     alignContent: 'center',
   },
@@ -63,6 +63,7 @@ export default makeStyles((theme) => ({
   inputField: {
     marginTop: "20px",
     borderColor: "#007982",
+    width:'212px'
   },
 
   link: {
@@ -77,8 +78,8 @@ export default makeStyles((theme) => ({
     marginTop:'30px',
     backgroundColor: "#0C9EB5",
     color: 'white',
-    width: '120px',
-    height: '62px',
+    width: '106px',
+    height: '38px',
     borderRadius: '20px',
     fontSize: '15px'
   },
