@@ -1,11 +1,10 @@
 const User = require("../models/User");
+
 const createError = require("http-errors");
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-
-
 
 exports.addUser = async (req, res, next) => {
   try {
@@ -21,10 +20,11 @@ exports.addUser = async (req, res, next) => {
     const plainPassword = req.body.password;
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
     const user = new User({
+      name: req.body.name,
+      lastname: req.body.lastname,
       username: req.body.username,
       email: req.body.email,
-      password: hashedPassword,
-      macAddress: req.body.macAddress
+      password: hashedPassword
     });
 
     await user.save();
@@ -56,8 +56,10 @@ exports.getUser = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
+    console.log(req.params.id);
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
+      new: true,
+      useFindAndModify: false
     });
     if (!user) throw new createError.NotFound();
     res.status(200).send(user);
@@ -80,15 +82,15 @@ exports.deleteUser = async (req, res, next) => {
 exports.loginUser = (req, res) => {
 
   //AUTENTICATION STARTS WHEN YOU LOOK THE EMAIL IN THE DB AND COMPARE THE PASSWORD
-  User.find({ email: req.body.email })
+  User.find({ username: req.body.username })
     .exec()
-    .then(user => {
-      if (user.length < 1) {
+    .then(username => {
+      if (username.length < 1) {
         return res.status(401).json({
           message: 'Auth failed'
         });
       }
-      bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+      bcrypt.compare(req.body.password, username[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
             message: 'Auth failed'
@@ -98,8 +100,8 @@ exports.loginUser = (req, res) => {
           //
           const token = jwt.sign(
             {
-              email: user[0].email,
-              userId: user[0]._id
+              username: username[0].username,
+              userId: username[0]._id
             },
             process.env.JWT_KEY,
             {

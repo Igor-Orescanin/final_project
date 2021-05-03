@@ -1,6 +1,32 @@
 const Device = require('../models/Devices');
 const createError = require("http-errors");
 
+require('dotenv').config();
+
+// exports.addDevice = async (req, res, next) => {
+//   try {
+//     const devices = await Device.find({ macAddress: req.body.macAddress }).exec();
+
+//     if (devices.length > 0) {
+//       // device already exists
+//       return res.status(409).json({
+//         message: "Device exists"
+//       });
+//     }
+
+//     const device = new Device({
+//       name: req.body.name,
+//       macAddress: req.body.macAddress
+//     });
+
+//     await device.save();
+
+//     res.status(200).send(device);
+//   } catch (e) {
+//     next(e);
+//   }
+// };
+
 
 exports.getDevices = async (req, res, next) => {
   try {

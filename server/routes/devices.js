@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
+  addDevice,
   getDevices,
   getDevice,
   updateDevice,
@@ -13,6 +14,7 @@ const {
 router
   .route('/')
   .get(getDevices)
+  // .post(addDevice);
 
 router
   .route('/:id')
