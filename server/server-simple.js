@@ -1,12 +1,49 @@
 const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const routesUrls = require('./routes/routes');
+const cors = require('cors');
+const session = require("express-session");
+
 const port = process.env.PORT || 3005;
 //----------------------SOCKET.IO------------------------------
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+
+//---------------------MONGOOSE CONNECT ----------------------
+dotenv.config();
+
+mongoose.connect(process.env.DATABASE_ACCESS, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+})
+
+mongoose.connection.on("error", console.error);
+mongoose.connection.on("open", function () {
+  console.log("Database connection established...");
+});
+
+
+// middleware
+app.use(express.json());
+app.use(session({ secret: "secrets", saveUninitialized: false, resave: false }));
+app.use(cors());
+
+// Serve static resources
+app.use("/public", express.static("public"));
+
+//-------    ADD ROUTE--------------------
+app.use('/', routesUrls);
+
+
+
+//-----------RPI SERVER ------------------
 const { logger } = require('./utils');
 
 app.get('/', (_req, res) => {
@@ -14,41 +51,20 @@ app.get('/', (_req, res) => {
 
 });
 
-const socketsMap = new Map();  // Map()  for create a object with key-value for each client(FrontEnd)
+io.on('connection', (socket) => {
+  //   socket.join('sensor_measurements');
+  socket.on('device_connected', () => {
+    logger.log('Device connected');
+    socket.on('sensorData', (sensorReading) => {
+      logger.log(`Received sensor readings`);
+        logger.log(JSON.stringify(sensorReading));
 
-io.on('connection', (socket) => {   // is connected, create the socket
-
-  const clientId = socket.handshake.query.clientId || uuidv4(); // is the clientPI or clientFrontEnd
-  const isRaspi = clientId.startsWith('sensor');
-
-  socket.on('disconnect', () => {
-    if (isRaspi) {
-      logger.log('Raspi disconnected');
-    } else {
-      logger.log('Client disconnected');
-
-      socketsMap.delete(clientId);  // delete the clientFrontEnd from the list in the Map()
-    }
-  });
-
-  if (isRaspi) {
-    logger.log('Raspi connected');
-
-    socket.on('sensorData', (sensorReading) => {    // event name, function listener
-      logger.log(`Received sensor readings from raspi: ${clientId}`);
-      logger.log(JSON.stringify(sensorReading));
-
-      socketsMap.forEach((socket, clientId) => {   // conexion con socket FEnd 1, ID
-        logger.log(`Sending data to client: ${clientId}`);
-        socket.emit('sensorReading', sensorReading);
+      // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
+      //   socket.to('sensor_measurements').emit('sensorReading', sensorReading);
+      socket.broadcast.emit('sensorReading', sensorReading);
       });
-    });
-  } else {
-    logger.log('Client connected');
-
-    socketsMap.set(clientId, socket);  // adding to Map() the socket "clientFrontend who is coming"
-  }
-});
+  });
+  });
 
 const gracefulShutdown = () => {
   process.exit(0);
