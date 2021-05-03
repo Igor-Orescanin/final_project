@@ -1,3 +1,4 @@
+import { FormHelperText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
@@ -11,20 +12,39 @@ navContainer:{
     
   },
 //_______________maritza
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // paper: {
+  //   padding: theme.spacing(2),
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
+  // },
 
 // ________ color: theme.palette.text.secondary,test
 
 
-chart:{
-  color: theme.palette.text.secondary,
-}
+// chart:{
+//   color: theme.palette.text.secondary,
+// },
+
+
+
+// root: {
+//   flexGrow: 1,
+// },
+
+ paper: {
+  display:'flex',
+  flexWrap:'wrap',
+  backgroundColor:'red',
+  margin:'20px',
+  padding: theme.spacing(2),
+  textAlign: 'center',
+//   // color: theme.palette.text.secondary,
+ },
+
+
+
 
 }))
