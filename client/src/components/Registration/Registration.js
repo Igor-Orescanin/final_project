@@ -72,7 +72,7 @@ const Registration = () => {
         e.preventDefault();
         api({
             'method': 'POST',
-            'url':'/registration',
+            'url': '/users',
             'data': formData,
             'headers': { 'content-type':'application/json' // override instance defaults
             },
@@ -197,7 +197,7 @@ const Registration = () => {
                             //value={postData.password}
                             // onChange={(e) => setPostData({...postData, password : e.target.value})}
                             />
-{/* 
+{/*
                             <TextField
                                 onChange={(e) => setFormData({ ...formData, macAddress: e.target.value })}
 

@@ -3,7 +3,7 @@ import React from "react";
 
 //connection
 import NavbarSec from "../Nav/NavbarSec.js";
-
+import Device from "../Devices/Device/Device.js"
 //styles to use the connection
 import useStyles from "./styles";
 
@@ -71,8 +71,8 @@ const AddMultiDevice = (props) => {
             <Typography className={classes.typography}>connection</Typography>
             <Typography className={classes.typography}>your devices</Typography>
 
-         <Device/>
-         
+            {/* <Device/> */}
+
             <Button
               onClick={() => history.push("/adddevice")}
               className={classes.button}

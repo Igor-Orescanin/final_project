@@ -33,6 +33,11 @@ async function getSensorReading(adcSensor) {
             if (err) {
                 return reject(err);
             }
+            
+            const levelPercentage = (value, minReading, maxReading) => {
+                return ((maxReading - minReading) - (maxReading - value)) / ((maxReading - minReading) / 100)
+            }
+
 
             let levelPercentage = 0;
 
