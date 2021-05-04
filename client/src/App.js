@@ -14,6 +14,7 @@ import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
+import io from 'socket.io-client';
 
 
 // css
@@ -23,21 +24,28 @@ import "./App.css";
 //react-router-dom
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:3005', {
   transports: ['websocket', 'polling']
 });
 
+
 function App() {
+const socket = io('http://localhost:3005', {
+  transports: ['websocket', 'polling']
+});
 
   const [response, setResponse] = useState("");
+
   useEffect(() => {
 
     socket.on("FromAPI", data => {
       setResponse(data);
     });
   }, []);
+  
   return (
     <Router>
       <div className="app">
