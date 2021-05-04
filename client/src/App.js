@@ -14,7 +14,7 @@ import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 
 // css
