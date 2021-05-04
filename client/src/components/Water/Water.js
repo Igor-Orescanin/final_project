@@ -44,7 +44,16 @@ const Water = (props) => {
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
   let waterLevel = 0;
   //console.log(waterLevelGrey);
-
+  const [chart1, setChart] = useState([
+    {
+      name: "name",
+      data: [0],
+    },
+    {
+      name: "Volts",
+      data: [0],
+    },
+  ]);
   const options = {
     chart: {
       // height:850,
@@ -90,34 +99,59 @@ const Water = (props) => {
       style: {},
     },
   };
-  let series = [
-    {
-      name: "name",
-      data: [100],
-    },
-  ];
 
   useEffect(() => {
     socket.on("sensorReading", (sensorObject) => {
-      //console.log(sensorObject)
-      let data = sensorObject.levelPercentage;
-      //options.series.data = [data];
-      options = options;
-      series[0].data[0] = 25;
-      console.log(series);
+      
+      
+      
+
+
+
+ 
+
+      if (sensorObject.label === "CLEAN") {
+        var waterLevelCleanPercentage = sensorObject.levelPercentage;
+        console.log(waterLevelCleanPercentage)
+        
+        //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
+        //setWaterLevelClean([sensorPercent]);
+      } else {
+        var waterLevelGreyPercentage = sensorObject.levelPercentage;
+        console.log(waterLevelGreyPercentage)
+      }
+//console.log(waterLevelCleanPercentage.levelPercentage)
+      console.log(sensorObject)
+      let sensorPercent = sensorObject.levelPercentage;
+      setChart([
+        {
+          name: "water Level",
+          data: [sensorPercent]
+        },
+        {
+          name: "Volts",
+          data: [sensorPercent]
+        },
+
+        
+      ]);
+      // max sensor value = 1024
+      // pre = (current *100)/1024
+      // 500 === (500 * 100) /1024 ==> 48,.....%
+
       //options.chart.updateSeries(options.series);
       //options = [...options, options.series ]
-      const sensorPercent = sensorObject.levelPercentage;
+
       //console.log(options.series.data);
       //console.log(options.series)
-      if (sensorObject.label === "CLEAN") {
-        //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-        setWaterLevelClean([sensorPercent]);
-      } else {
-        setWaterLevelGrey([sensorPercent]);
-      }
+      // if (sensorObject.label === "CLEAN") {
+      //   //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
+      //   setWaterLevelClean([sensorPercent]);
+      // } else {
+      //   setWaterLevelGrey([sensorPercent]);
+      // }
     });
-  }, [series]); // runs only once  ,,, run when the Graph component mount
+  }, []); // runs only once  ,,, run when the Graph component mount
 
   // var chart = new ApexCharts(el, options);
   // chart.updateSeries([{
@@ -280,7 +314,7 @@ const Water = (props) => {
                 <ReactApexChart
                   className={classes.chart}
                   options={options}
-                  series={series}
+                  series={chart1}
                   type="bar"
                   height={280}
                   width="100%"
