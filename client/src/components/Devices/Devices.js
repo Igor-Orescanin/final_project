@@ -3,7 +3,7 @@ import React from "react";
 
 //connection
 import NavbarSec from "../Nav/NavbarSec.js";
-import Device from "../Devices/Device/Device.js"
+import Device from "./Device/Device.js"
 //styles to use the connection
 import useStyles from "./styles";
 

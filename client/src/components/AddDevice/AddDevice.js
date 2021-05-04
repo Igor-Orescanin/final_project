@@ -118,7 +118,7 @@ registered in this system! </Typography>
 
     
         <Button
-        onClick={() => history.push("/device")}
+        onClick={() => history.push("/devices")}
         className={classes.button}
         variant="contained"
         color="primary"

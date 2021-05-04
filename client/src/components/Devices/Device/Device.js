@@ -5,7 +5,7 @@ import React from "react";
 import useStyles from "./styles";
 
 //css
-import "../../App.css";
+import "../../../App.css";
 
 // material-ui
 import {
@@ -129,4 +129,4 @@ const Device = (props) => {
 );
 };
 
-export default Decice;
+export default Device;
