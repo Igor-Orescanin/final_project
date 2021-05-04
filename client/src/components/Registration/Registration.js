@@ -62,23 +62,23 @@ const Registration = () => {
       } */
 
     const [formData, setFormData] = useState({
-        name: "",
+        username: "",
         email: "",
         password: "",
-        'rpi-mac-address': ""
+        macAddress: ""
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
         api({
             'method': 'POST',
-            'url':'/registration',
+            'url': '/users',
             'data': formData,
             'headers': { 'content-type':'application/json' // override instance defaults
             },
-            }) 
+            })
             console.log('This is our form data: ', formData);
-            history.push("/");
+            history.push("/adddevice");
     }
 
 
@@ -98,13 +98,13 @@ const Registration = () => {
                         <Avatar className={classes.avatar} />
                         <form className={classes.form} noValidate onSubmit={handleSubmit}>
                             <TextField
-                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                                 className={classes.inputField}
                                 variant="outlined"
                                 required
-                                id="name"
+                                id="username"
                                 label="Name"
-                                name="name"
+                                name="username"
                                 size="small"
                                 InputLabelProps={{
                                     style: { color: '#007982' },
@@ -118,8 +118,8 @@ const Registration = () => {
                                 }}
 
 
-                            // value={postData.email}   
-                            // onChange={(e) => setPostData({...postData, email : e.target.value})} 
+                            // value={postData.email}
+                            // onChange={(e) => setPostData({...postData, email : e.target.value})}
                             />
 
                             <TextField
@@ -143,8 +143,8 @@ const Registration = () => {
                                 }}
 
 
-                            // value={postData.email}   
-                            // onChange={(e) => setPostData({...postData, email : e.target.value})} 
+                            // value={postData.email}
+                            // onChange={(e) => setPostData({...postData, email : e.target.value})}
                             />
 
 
@@ -169,8 +169,8 @@ const Registration = () => {
                                         notchedOutline: classes.notchedOutline
                                     }
                                 }}
-                            //value={postData.password}   
-                            // onChange={(e) => setPostData({...postData, password : e.target.value})} 
+                            //value={postData.password}
+                            // onChange={(e) => setPostData({...postData, password : e.target.value})}
                             />
 
                             <TextField
@@ -194,19 +194,19 @@ const Registration = () => {
                                         notchedOutline: classes.notchedOutline
                                     }
                                 }}
-                            //value={postData.password}   
-                            // onChange={(e) => setPostData({...postData, password : e.target.value})} 
+                            //value={postData.password}
+                            // onChange={(e) => setPostData({...postData, password : e.target.value})}
                             />
-
+{/*
                             <TextField
-                                onChange={(e) => setFormData({ ...formData, 'rpi-mac-address': e.target.value })}
+                                onChange={(e) => setFormData({ ...formData, macAddress: e.target.value })}
 
                                 className={`${classes.inputField} ${classes.myInputLabel}`}
                                 required
-                                id="rpi-mac-address"
+                                id="macAddress"
                                 label="RPI-Mac-Address"
                                 variant="outlined"
-                                name="rpi-mac-address"
+                                name="macAddress"
                                 size="small"
                                 BorderColor="red"
                                 InputLabelProps={{
@@ -218,10 +218,10 @@ const Registration = () => {
                                         focused: classes.focused,
                                         notchedOutline: classes.notchedOutline
                                     }
-                                }}
-                            //value={postData.password}   
-                            // onChange={(e) => setPostData({...postData, password : e.target.value})} 
-                            />
+                                }} */}
+                            {/* //value={postData.password}
+                            // onChange={(e) => setPostData({...postData, password : e.target.value})}
+                            /> */}
 
 
                             <Button className={classes.button}
@@ -229,12 +229,13 @@ const Registration = () => {
                                 className={classes.button}
                                 variant="contained"
                                 color="primary" >
-                                Register Now
+                                Register
                     </Button>
 
-                            <div className={classes.backgr}></div>
+                            {/* <div className={classes.backgr}></div> */}
                         </form>
                     </div>
+                    <div className={classes.footer}></div>
                 </Container>
             </ThemeProvider>
         </StylesProvider>

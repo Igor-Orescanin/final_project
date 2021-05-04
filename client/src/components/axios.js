@@ -2,14 +2,18 @@
  import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://maritza.localhost:3005/'
+  baseURL: 'http://localhost:3005/'
 })
 
 export default instance;
 
 
 
-/* 
+
+
+
+/*
+
 import Axios from "axios";
 
 
