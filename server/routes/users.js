@@ -14,6 +14,11 @@ const {
   deleteUser
 } = require("../controllers/usersController");
 
+
+const {
+  assignDevice
+} = require("../controllers/assignDeviceController");
+
 router
   .route("/")
   .get(getUsers)   //use only for postman
@@ -25,5 +30,8 @@ router
   .delete(auth, deleteUser)  //use only for postman
   .put(auth, updateUser);
 
+router
+  .route("/assignDevice/:id")
+  .put(assignDevice)
 
 module.exports = router;

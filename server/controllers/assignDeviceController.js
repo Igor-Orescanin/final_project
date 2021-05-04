@@ -9,14 +9,15 @@ require('dotenv').config();
 
 exports.assignDevice = async (req, res, next) => {
   try {
-    const devices = await Device.find({ deviceId: req.body.deviceId }).exec();
-    if (devices.length > 0) {
-      console.log(devices);
-      // const user = await User.find({ _id: })
-      const { id: _id } = req.params;
+    const { _id } = req.params;   // recibimos id del client que vamos a actualizar
+    const { deviceId } = req.body; // id del dispositivo que se ingresa en el formulario
+    const userUpdated = await User.findByIdAndUpdate(_id, { $push: { assignedDevices: deviceId } }, {
+      new: true,
+      useFindAndModify: false
+    });
+    if (!userUpdated) throw new createError.NotFound();
+    res.status(200).send(userUpdated);
 
-      console.log(id);
-    }
 
   } catch (e) {
     next(e);
