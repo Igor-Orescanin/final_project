@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  addDevice,
+  addDevice,  // disable, the admin only can add RPI devices to the DB
   getDevices,
   getDevice,
   updateDevice,
@@ -14,13 +14,13 @@ const {
 router
   .route('/')
   .get(getDevices)
-  // .post(addDevice);
+  .post(addDevice);
 
 router
   .route('/:id')
   .get(getDevice)
   .put(updateDevice)
-  .delete(deleteDevice)    // aqui no necesita auth ???
+  .delete(deleteDevice)
 
 
 module.exports = router;
