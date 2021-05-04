@@ -1,15 +1,15 @@
-const express = require("express");
+// const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-const auth = require('../middleware/auth');
+// const auth = require('../middleware/auth');
 
-const {
-  assignDevice
-} = require('../controllers/assignDeviceController');
+// const {
+//   assignDevice
+// } = require('../controllers/assignDeviceController');
 
-router
-  .route('/assignDevice')
-  .post(assignDevice)
+// router
+//   .route('/assignDevice/:id')
+//   .put(assignDevice)
 
-module.exports = router;
+// module.exports = router;
