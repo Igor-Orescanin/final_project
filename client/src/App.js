@@ -9,6 +9,9 @@ import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
 import Setting from "./components/Setting/Setting.js";
+import AddDevice from "./components/AddDevice/AddDevice.js";
+import Device from "./components/Device/Device.js";
+import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
 
 
@@ -30,6 +33,9 @@ function App() {
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" component={Water}></Route>
         <Route path="/setting" component={Setting}></Route>
+        <Route path="/adddevice" component={AddDevice}></Route>
+        <Route path="/device" component={Device}></Route>
+        <Route path="/regdevice" component={RegDevice}></Route>
         <Route path="/graph" component={Graph}></Route>
       </div>
     </Router>
