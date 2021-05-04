@@ -20,8 +20,6 @@ exports.addUser = async (req, res, next) => {
     const plainPassword = req.body.password;
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
     const user = new User({
-      name: req.body.name,
-      lastname: req.body.lastname,
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword
@@ -82,15 +80,15 @@ exports.deleteUser = async (req, res, next) => {
 exports.loginUser = (req, res) => {
 
   //AUTENTICATION STARTS WHEN YOU LOOK THE EMAIL IN THE DB AND COMPARE THE PASSWORD
-  User.find({ username: req.body.username })
+  User.find({ email: req.body.email })
     .exec()
-    .then(username => {
-      if (username.length < 1) {
+    .then(email => {
+      if (email.length < 1) {
         return res.status(401).json({
           message: 'Auth failed'
         });
       }
-      bcrypt.compare(req.body.password, username[0].password, (err, result) => {
+      bcrypt.compare(req.body.password, email[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
             message: 'Auth failed'
@@ -100,8 +98,8 @@ exports.loginUser = (req, res) => {
           //
           const token = jwt.sign(
             {
-              username: username[0].username,
-              userId: username[0]._id
+              email: email[0].email,
+              userId: email[0]._id
             },
             process.env.JWT_KEY,
             {

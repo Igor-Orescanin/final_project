@@ -1,4 +1,4 @@
-<div className={classes.groupButton}>
+{/* <div className={classes.groupButton}>
 <Button
   onClick={() => history.push("/welcome")}
   className={classes.button}
@@ -51,4 +51,4 @@
     </Button>
   </DialogActions>
 </Dialog>
-</div>
+</div> */}
