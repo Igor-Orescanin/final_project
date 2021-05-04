@@ -1,9 +1,9 @@
 const io = require('socket.io-client');
 const { v4: uuidv4 } = require('uuid');
 
-const { FakeSensor } = require('./FakeSensor');
+const { FakeSensor } = require('../server/FakeSensor');
 //const { getSensor } = require('./sensor-utils');
-const { logger } = require('./utils');
+const { logger } = require('../server/utils');
 
 const getSensor = (readingInterval) => Promise.resolve(new FakeSensor(readingInterval));
 
@@ -16,6 +16,8 @@ async function main() {
     });
     const READING_INTERVAL = 500;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
+
+    socket.emit('device_connected');
 
     const gracefulShutdown = () => {
       sensor.stopReading();

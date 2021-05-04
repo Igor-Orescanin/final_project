@@ -1,39 +1,45 @@
-// general
 import { makeStyles } from "@material-ui/core/styles";
+
 import image from '../../image/background_mobile.svg';
 
 export default makeStyles((theme) => ({
+  
   container: {
-  //   backgroundColor:'red',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyItems: 'center',
-    //height:'65vh'
+   
+
+    display: "flex",
+    //backgroundColor: "Red",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    //height: "65vh",
+
+
+
   },
 
+
   paper: {
-    height:'65vh',
-  // backgroundColor:'yellow',
-     display: 'flex',
-     flexDirection: 'column',
-    alignItems: 'center',
+    //backgroundColor: "green",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent:'center',
+    alignItems:'center',
   },
 
   typography: {
-    marginTop: '64px',
+    marginTop: '30px',
+    marginLeft: '40px',
+    marginRight: '40px',
     fontFamily: ('Roboto', 'sans-serif'),
     color: "#007982",
-    fontSize: '24px',
+    fontSize: '18px',
     fontWeight: 'bold',
+    textAlign:'center',
   },
 
-  avatar: {
-    marginTop: '20px',
-    backgroundColor: "#007982",
-    alignContent: 'center',
-  },
   form: {
+    //backgroundColor: "yellow",
     marginTop: '10px',
     display: 'flex',
     flexDirection: 'column',
@@ -62,37 +68,21 @@ export default makeStyles((theme) => ({
     backgroundColor:'white'
   },
 
-  link: {
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    color: "#007982",
-  },
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
     padding: 0,
-    marginTop:'30px',
     backgroundColor: "#0C9EB5",
     color: 'white',
     width: '106px',
     height: '38px',
     borderRadius: '20px',
-    fontSize: '15px'
+    fontSize: '15px',
+    marginTop:'20px'
   },
 
-  // backgr: {
-  //   backgroundImage: `url(${image})`,
-  //   height: '340px',
-  //   minWidth: '580px',
-  //   padding: '0',
-  //   backgroundRepeat: 'no-repeat',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   justifyItems: 'center',
-  //   backgroundPosition: 'bottom',
 
-  // },
+  //for the Image on the bottom
   footer: {
     zIndex: "-1",
     position: "fixed",
@@ -106,27 +96,8 @@ export default makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
   },
 
+
+
+
+
 }))
-
-
-
-//  @media only screen and (max-width: 600px) {
-//     {
-//      typography: {
-//        marginTop: '24px'
-//    }, 
-//    avatar: {
-//     marginTop: '5px'
-//   }, 
-//   form: {
-//     marginTop: '0px'
-//   },
-//   inputField: {
-//     marginTop: "10px"
-//   },
-//   button:{
-//     marginTop:'10px'}
-//     ,
-//   }
-
-//  }}

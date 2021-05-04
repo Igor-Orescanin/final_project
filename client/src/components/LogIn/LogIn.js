@@ -45,6 +45,9 @@ const theme = createMuiTheme({
 });
 
 const LogIn = () => {
+
+  
+
   const history = useHistory();
   const classes = useStyles();
 
@@ -67,9 +70,9 @@ const LogIn = () => {
                 className={classes.inputField}
                 variant="outlined"
                 required
-                id="name"
-                label="Name"
-                name="name"
+                id="email"
+                label="Email"
+                name="email"
                 size="small"
                 InputLabelProps={{
                   style: { color: "#007982" },
@@ -116,7 +119,7 @@ const LogIn = () => {
               </div>
               <Button
                 className={classes.button}
-                onClick={() => history.push("/welcome")}
+                onClick={() => history.push("/device")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -124,9 +127,10 @@ const LogIn = () => {
                 Log-In
               </Button>
 
-              <div className={classes.backgr}></div>
+              
             </form>
           </div>
+          <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
     </StylesProvider>
