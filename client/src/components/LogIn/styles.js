@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default makeStyles((theme) => ({
   container: {
-   // backgroundColor:'red',
+    //backgroundColor:'red',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -16,7 +16,7 @@ export default makeStyles((theme) => ({
 
   paper: {
     height:'65vh',
-  //  backgroundColor:'yellow',
+  // backgroundColor:'yellow',
      display: 'flex',
      flexDirection: 'column',
     alignItems: 'center',
@@ -26,7 +26,6 @@ export default makeStyles((theme) => ({
 
   typography: {
     marginTop: '64px',
-    fontFamily: ('Roboto', 'sans-serif'),
     color: "#007982",
     fontSize: '24px',
     fontWeight: 'bold',
