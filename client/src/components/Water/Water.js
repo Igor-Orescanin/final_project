@@ -27,16 +27,89 @@ const socket = io("http://localhost:3005", {
 });
 
 const Water = (props) => {
+  // constructor(props)
+  //   super(props);
+  //   this.state = {
+  //      option:{
+
+  //      },
+
+  //   }
+
   const { history } = props;
   const classes = useStyles();
 
   //waterLevel
   const [waterLevelClean, setWaterLevelClean] = useState([]);
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
+  let waterLevel = 0;
+  //console.log(waterLevelGrey);
+
+  const options = {
+    chart: {
+      // height:850,
+      width: "50%",
+      type: "bar",
+      background: "#f4f4f4",
+      foreColor: "#0C9EB5",
+      toolbar: {
+        show: false,
+      },
+    },
+
+    series: [
+      {
+        name: "water chart",
+        data: [waterLevel, 0, 30],
+      },
+    ],
+
+    xaxis: {
+      categories: ["FreshWater", "Greywater"],
+    },
+
+    plotOptions: {
+      bar: {
+        horizontal: false,
+      },
+    },
+
+    fill: {
+      colors: ["#77A783"],
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+
+    title: {
+      text: "hello",
+      align: "center",
+      margin: 20,
+      offsetY: 20,
+      style: {},
+    },
+  };
+  let series = [
+    {
+      name: "name",
+      data: [100],
+    },
+  ];
 
   useEffect(() => {
     socket.on("sensorReading", (sensorObject) => {
+      //console.log(sensorObject)
+      let data = sensorObject.levelPercentage;
+      //options.series.data = [data];
+      options = options;
+      series[0].data[0] = 25;
+      console.log(series);
+      //options.chart.updateSeries(options.series);
+      //options = [...options, options.series ]
       const sensorPercent = sensorObject.levelPercentage;
+      //console.log(options.series.data);
+      //console.log(options.series)
       if (sensorObject.label === "CLEAN") {
         //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
         setWaterLevelClean([sensorPercent]);
@@ -44,121 +117,146 @@ const Water = (props) => {
         setWaterLevelGrey([sensorPercent]);
       }
     });
-
-
-  }, []); // runs only once  ,,, run when the Graph component mount
-
-
+  }, [series]); // runs only once  ,,, run when the Graph component mount
 
   // var chart = new ApexCharts(el, options);
   // chart.updateSeries([{
   // data: waterLevelClean
   // }])
 
+  //_______maritza
 
+  // const options = {
+  //   chart: {
+  //     height: 350,
+  //     type: "radialBar",
+  //   },
+  //   plotOptions: {
+  //     radialBar: {
+  //       hollow: {
+  //         size: "70%",
+  //       },
+  //     },
+  //   },
+  //   labels: ["WATER"],
+  // };
 
+  // -----------my first test--------------
+  //  const test = {
 
+  // series: [{
+  //     data: [waterLevelClean, waterLevelGrey],
+  //   },],
 
+  //    series: [{
+  //      data: [21, 22, 10, 28, 16, 21, 13, 30]
+  //    }],
 
+  //     chart: {
+  //       toolbar: {
+  //         show: false,
+  //       },
 
+  //       fill:{
+  //         colors:['#f44336']
+  //       },
 
-  const options = {
-    chart: {
-      height: 350,
-      type: "radialBar",
-    },
-    plotOptions: {
-      radialBar: {
-        hollow: {
-          size: "70%",
-        },
-      },
-    },
-    labels: ["WATER"],
-  };
+  //      options: {
+  //        chart: {
 
-  const test = {
+  //         fill:{
+  //           colors:['#f44336']
+  //         },
 
-    // series: [{
-    //     data: [waterLevelClean, waterLevelGrey],
-    //   },],
+  //          id: 'realtime', // new from down
+  //      height: 350,
+  //      type: "bar",
+  //      events: {
+  //        click: function (chart, w, e) {
+  //          // console.log(chart, w, e)
+  //        },
+  //      },
+  //        },
+  //      },
 
+  //      colors: "#30D4DE",
+  //      plotOptions: {
+  //        bar: {
+  //          columnWidth: "45%",
+  //          distributed: true,
+  //        },
+  //      },
+  //      dataLabels: {
+  //        enabled: false,
+  //      },
+  //      legend: {
+  //        show: false,
+  //      },
+  //      xaxis: {
+  //        categories: [
+  //          ["CleanWater"],
+  //          ["GreyWater"],
 
-
-    series: [{
-      data: [21, 22, 10, 28, 16, 21, 13, 30]
-    }],
-
-
-     chart: {
-       toolbar: {
-         show: false,
-       },
-
-      options: {
-        chart: {
-
-     
-
-
-          id: 'realtime', // new from down
-
-          height: 350,
-          type: "bar",
-          events: {
-            click: function (chart, w, e) {
-              // console.log(chart, w, e)
-            },
-          },
-        },
-      },
-
-      colors: "#30D4DE",
-      plotOptions: {
-        bar: {
-          columnWidth: "45%",
-          distributed: true,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      legend: {
-        show: false,
-      },
-      xaxis: {
-        categories: [
-          ["CleanWater"],
-          ["GreyWater"],
-         
-        ],
-        labels: {
-          style: {
-            colors: "#30D4DE",
-            fontSize: "12px",
-          },
-        },
-      },
-    },
-  };
+  //        ],
+  //        labels: {
+  //          style: {
+  //            colors: "#30D4DE",
+  //            fontSize: "12px",
+  //          },
+  //        },
+  //      },
+  //    },
+  //  };
 
   // window.setInterval(() => {
-  
-    
+
   //   ApexCharts.exec('realtime', 'updateSeries', [{
   //   data: waterLevelClean
   //   }])
-  //   }, 1000) 
+  //   }, 1000)
 
-
-
+  //  const option = {
+  //    chart:{
+  //      // height:850,
+  //      width :'50%',
+  //      type:'bar',
+  //      background:'#f4f4f4',
+  //      foreColor: '#0C9EB5',
+  //      toolbar: {
+  //        show: false,
+  //        },
+  //    },
+  //    series: [{
+  //      name: 'water chart',
+  //      data: [30]
+  //      }],
+  //    xaxis:{
+  //      categories: ['GreyWater'],
+  //    },
+  //    plotOptions:{
+  //      bar:{
+  //        horizontal:false,
+  //      }
+  //    },
+  //    fill:{
+  //      colors:['#77A783']
+  //    },
+  //    dataLabels:{
+  //      enabled: false,
+  //    },
+  //    title:{
+  //      text:'hello',
+  //      align: 'center',
+  //      margin: 20,
+  //    },
+  //  }
 
   return (
     <>
       <StylesProvider injectFirst>
         <NavbarSec />
         <Container>
-          <div>
+          {/* <div>
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <Paper className={classes.paper}>
@@ -173,13 +271,32 @@ const Water = (props) => {
                 </Paper>
               </Grid>
             </Grid>
+          </div> */}
+          <div>
+            <Grid item xs={6}>
+              <Paper className={classes.paper}>
+                {/* <ReactApexChart   className={classes.chart} options={test} series={test.series} type="bar" height={350} 
+            /> */}
+                <ReactApexChart
+                  className={classes.chart}
+                  options={options}
+                  series={series}
+                  type="bar"
+                  height={280}
+                  width="100%"
+                />
+                {/* </Paper>
+            </Grid>
+             </div>
+            
+           <div>
+            <Grid item xs={6} >
+              <Paper className={classes.paper}> */}
+                {/* <ReactApexChart className={classes.chart} options={option} series={option.series} type="bar" height={280} width='40%' */}
+                {/* />  */}
+              </Paper>
+            </Grid>
           </div>
-
-          <Paper className={classes.paper}>
-            <ReactApexChart   className={classes.chart} options={test} series={test.series} type="bar" height={350}
-            />
-          </Paper>
-
           <Button
             onClick={() => history.push("/welcome")}
             className={classes.button}

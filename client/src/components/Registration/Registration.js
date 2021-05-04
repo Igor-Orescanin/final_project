@@ -78,6 +78,7 @@ const Registration = () => {
             },
             })
             console.log('This is our form data: ', formData);
+            history.push("/adddevice");
     }
 
 
@@ -196,7 +197,7 @@ const Registration = () => {
                             //value={postData.password}
                             // onChange={(e) => setPostData({...postData, password : e.target.value})}
                             />
-
+{/* 
                             <TextField
                                 onChange={(e) => setFormData({ ...formData, macAddress: e.target.value })}
 
@@ -217,10 +218,10 @@ const Registration = () => {
                                         focused: classes.focused,
                                         notchedOutline: classes.notchedOutline
                                     }
-                                }}
-                            //value={postData.password}
+                                }} */}
+                            {/* //value={postData.password}
                             // onChange={(e) => setPostData({...postData, password : e.target.value})}
-                            />
+                            /> */}
 
 
                             <Button className={classes.button}
@@ -228,12 +229,13 @@ const Registration = () => {
                                 className={classes.button}
                                 variant="contained"
                                 color="primary" >
-                                Register Now
+                                Register
                     </Button>
 
-                            <div className={classes.backgr}></div>
+                            {/* <div className={classes.backgr}></div> */}
                         </form>
                     </div>
+                    <div className={classes.footer}></div>
                 </Container>
             </ThemeProvider>
         </StylesProvider>
