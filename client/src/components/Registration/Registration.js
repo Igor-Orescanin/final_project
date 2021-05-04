@@ -72,7 +72,7 @@ const Registration = () => {
         e.preventDefault();
         api({
             'method': 'POST',
-            'url':'/registration',
+            'url':'/users',
             'data': formData,
             'headers': { 'content-type':'application/json' // override instance defaults
             },

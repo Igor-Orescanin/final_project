@@ -1,19 +1,5 @@
-<<<<<<< HEAD
-
-import React from 'react'
-import SignIn from './components/SignIn.js'
-import { useState, useEffect } from "react";
-import Chart from 'react-apexcharts'
-import io from "socket.io-client";
-
-import './App.css';
-import useStyles from "./components/styles";
-const ENDPOINT = "http://25.55.90.80:3000";
-const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
-
-=======
 // react
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 //components
 import LogIn from "./components/LogIn/LogIn.js";
@@ -27,6 +13,7 @@ import AddDevice from "./components/AddDevice/AddDevice.js";
 import Device from "./components/Device/Device.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
+import io from 'socket.io-client';
 
 
 // css
@@ -35,17 +22,21 @@ import "./App.css";
 
 //react-router-dom
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
->>>>>>> 7f80649d5ef6a1a0c1349a20fd761b58b78a68f5
 
 function App() {
+const socket = io('http://localhost:3005', {
+  transports: ['websocket', 'polling']
+});
 
   const [response, setResponse] = useState("");
+
   useEffect(() => {
     
     socket.on("FromAPI", data => {
       setResponse(data);
     });
   }, []);
+  
   return (
     <Router>
       <div className="app">
