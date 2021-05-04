@@ -16,6 +16,7 @@ router
   .get(getDevices)
   .post(addDevice);
 
+
 router
   .route('/:id')
   .get(getDevice)
