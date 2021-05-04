@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const DeviceSchema = new mongoose.Schema({
-  name: {
+  deviceName: {
     type: String,
     require: true
   },
-  macAddress: {
+  deviceId: { //rpi id the user put in 
     type: String,
     required: true,
     unique: true
