@@ -56,7 +56,7 @@ const getSensors = (readingInterval) => Promise.resolve(getSensor());
       socket.emit('sensorData', sensorReading);
     });
 
-    console.log(run)
+    //console.log(run)
   } catch (error) {
     logger.error(error);
     process.exit(1);

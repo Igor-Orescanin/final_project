@@ -9,10 +9,20 @@ const io = require('socket.io')(server);
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 const { logger } = require('./utils');
 
-app.get('/', (_req, res) => {
-  res.sendFile(__dirname + '/../client/src/graph.html')
+
+app.use(express.static('public'))
+app.get('*', (_req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
 
 });
+
+
+
+// app.get('/', (_req, res) => {
+//   res.sendFile(__dirname + '/../client/src/graph.html')
+
+// });
+
 
 const socketsMap = new Map();  // Map()  for create a object with key-value for each client(FrontEnd)
 
@@ -37,7 +47,7 @@ io.on('connection', (socket) => {   // is connected, create the socket
     socket.on('sensorData', (sensorReading) => {    // event name, function listener
       logger.log(`Received sensor readings from raspi: ${clientId}`);
       logger.log(JSON.stringify(sensorReading));
-
+      
       socketsMap.forEach((socket, clientId) => {   // conexion con socket FEnd 1, ID
         logger.log(`Sending data to client: ${clientId}`);
         socket.emit('sensorReading', sensorReading);
