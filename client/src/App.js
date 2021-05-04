@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+
+import React from 'react'
+import SignIn from './components/SignIn.js'
+import { useState, useEffect } from "react";
+import Chart from 'react-apexcharts'
+import io from "socket.io-client";
+
+import './App.css';
+import useStyles from "./components/styles";
+const ENDPOINT = "http://25.55.90.80:3000";
+const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
+
+=======
 // react
 import React from "react";
 
@@ -21,8 +35,17 @@ import "./App.css";
 
 //react-router-dom
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+>>>>>>> 7f80649d5ef6a1a0c1349a20fd761b58b78a68f5
 
 function App() {
+
+  const [response, setResponse] = useState("");
+  useEffect(() => {
+    
+    socket.on("FromAPI", data => {
+      setResponse(data);
+    });
+  }, []);
   return (
     <Router>
       <div className="app">
