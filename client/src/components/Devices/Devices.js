@@ -43,7 +43,7 @@ const theme = createMuiTheme({
   },
 });
 
-const AddMultiDevice = (props) => {
+const Devices = (props) => {
   //for routes
   const { history } = props;
 
@@ -88,4 +88,4 @@ const AddMultiDevice = (props) => {
   );
 };
 
-export default AddMultiDevice;
+export default Devices;
