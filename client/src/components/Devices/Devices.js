@@ -76,13 +76,12 @@ const Devices = (props) => {
 
 
 // to get the data for databace
-useEffect(() => {
+useEffect( async () => {
 
-  api.fetchDevices()
-  .then(res =>{
-    setAllDevices(res.data)
-    console.log(res.data)
-  })
+  const {data} = await api.fetchDevices()
+
+  console.log(data)
+
 
 }, [])
 
