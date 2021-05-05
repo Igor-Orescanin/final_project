@@ -1,8 +1,12 @@
 // react
-import React from "react";
+import React, { useState } from "react";
+
+
+import { useHistory } from "react-router-dom";
 
 //styles to use the connection
 import useStyles from "./styles";
+
 
 //css
 import "../../../App.css";
@@ -69,7 +73,7 @@ const Device = (props) => {
   <Container className={classes.container}>
 
 
-{/* <div className={classes.groupButton}>
+<div className={classes.groupButton}>
 <Button
   onClick={() => history.push("/welcome")}
   className={classes.button}
@@ -122,7 +126,7 @@ const Device = (props) => {
     </Button>
   </DialogActions>
 </Dialog>
-</div> */}
+</div> 
 </Container>
 </ThemeProvider>
 </>
