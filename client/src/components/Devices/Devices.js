@@ -1,16 +1,12 @@
 // react
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-// axios connection to server
-// import fetchDevices from '../../api/axios.js'
-// import addDevice from '../../api/axios.js'
-// import deleteDevice from '../../api/axios.js'
+//axios
+import * as api from "../../api";
 
-import * as api from '../../api'
-
-//c onnection
+//connection to components
 import NavbarSec from "../Nav/NavbarSec.js";
-import Device from "./Device/Device.js"
+import ShowDevices from "./Device/ShowDevices.js";
 
 // styles to use the connection
 import useStyles from "./styles";
@@ -33,6 +29,7 @@ import {
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
+
 
 const theme = createMuiTheme({
   palette: {
@@ -58,72 +55,32 @@ const Devices = (props) => {
   //for styles
   const classes = useStyles();
 
-  //for dialogfeld
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-
-//a hook
-  const [allDevices, setAllDevices ] = useState([]) 
-
-
-// to get the data for databace
-useEffect( async () => {
-
-  const {data} = await api.fetchDevices()
-
-  console.log(data)
-
-
-}, [])
-
-
-
-
-
-
-
+ 
   return (
     <>
       <NavbarSec />
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          <div className={classes.paper}>
+          {/* <div className={classes.paper}> */}
             <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your devices</Typography>
+              <Typography className={classes.typography}>connected</Typography>
+              <Typography className={classes.typography}>
+                your devices
+              </Typography>
             </div>
-
-
-{/*             
-alldevices.map(dev => {
-  return (
-    <div>
-    <Device value={dev.use}/>
-    </div>
-  )
-} )  */}
-
-       
-
+            <div className={classes.paper}>
+            <ShowDevices />
             <Button
               onClick={() => history.push("/adddevice")}
-              className={classes.button}
+              className={classes.addbutton}
               variant="contained"
               color="primary"
             >
               Add new Devices
             </Button>
           </div>
+          <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
     </>

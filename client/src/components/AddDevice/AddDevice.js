@@ -1,7 +1,9 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
-//import api from '../axios';
+
+//axios';
+import * as api from '../../api'
 
 //connection
 import NavbarSec from "../Nav/NavbarSec.js";
@@ -34,10 +36,13 @@ const theme = createMuiTheme({
 });
 
 const AddDevice = (props) => { 
+      //for routes
     const { history } = props;
+
+      //for styles
     const classes = useStyles();
 
-
+//a hook
     const [formData, setFormData] = useState({
         deviceName: "",
         deviceId: ""
@@ -46,6 +51,15 @@ const AddDevice = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // useEffect(()=>{
+
+        //     api.addDevice(id, setFormData())
+
+        // })
+
+       
+
         // api({
         //     'method': 'POST',
         //     'url':'/adddevice',

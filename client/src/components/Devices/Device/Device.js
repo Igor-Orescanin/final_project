@@ -1,10 +1,16 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+// axios
+import * as api from "../../../api";
 
 import { useHistory } from "react-router-dom";
 
 //styles to use the connection
 import useStyles from "./styles";
+
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
 
 //css
 import "../../../App.css";
@@ -51,6 +57,21 @@ const Device = (props) => {
   //for styles
   const classes = useStyles();
 
+//a hook 
+  const [allDevices, setAllDevices] = useState([]);
+
+  useEffect(async () => {
+    const { data } = await api.deleteDevice()
+   
+      setAllDevices(data)
+   
+    console.log(data);
+    console.log(data[1].deviceId);
+
+  },[allDevices]);
+
+
+
   //for dialogfeld
   const [open, setOpen] = React.useState(false);
 
@@ -74,14 +95,15 @@ const Device = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-            <FormControlLabel
+            {/* <FormControlLabel
             className={classes.radioButton}
               value={props.value}
               disabled
               control={<Radio />}
               label=""
-            />
-
+            /> */}
+            <CheckCircleOutlineIcon className={classes.checkIcon}/>
+            <NotInterestedIcon className={classes.noIcon}/>
             <Button
               onClick={() => history.push("/welcome")}
               className={classes.button}
@@ -107,7 +129,7 @@ const Device = (props) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {" Are you sure you want to delet 'this Device'?"}
+                {" Are you sure you want to delete 'this Device'?"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
