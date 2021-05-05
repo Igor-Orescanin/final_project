@@ -1,14 +1,21 @@
 // react
-import React from "react";
+import React,{useState, useEffect} from "react";
 
-//connection
+// axios connection to server
+// import fetchDevices from '../../api/axios.js'
+// import addDevice from '../../api/axios.js'
+// import deleteDevice from '../../api/axios.js'
+
+import * as api from '../../api'
+
+//c onnection
 import NavbarSec from "../Nav/NavbarSec.js";
 import Device from "./Device/Device.js"
 
-//styles to use the connection
+// styles to use the connection
 import useStyles from "./styles";
 
-//css
+// css
 import "../../App.css";
 
 // material-ui
@@ -62,6 +69,29 @@ const Devices = (props) => {
     setOpen(false);
   };
 
+
+
+//a hook
+  const [allDevices, setAllDevices ] = useState([]) 
+
+
+// to get the data for databace
+useEffect(() => {
+
+  api.fetchDevices()
+  .then(res =>{
+    setAllDevices(res.data)
+    console.log(res.data)
+  })
+
+}, [])
+
+
+
+
+
+
+
   return (
     <>
       <NavbarSec />
@@ -69,10 +99,22 @@ const Devices = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
-            <Typography className={classes.typography}>connection</Typography>
+            <div className={classes.top}>
+            <Typography className={classes.typography}>connected</Typography>
             <Typography className={classes.typography}>your devices</Typography>
+            </div>
 
-            {/* <Device/> */}
+
+{/*             
+alldevices.map(dev => {
+  return (
+    <div>
+    <Device value={dev.use}/>
+    </div>
+  )
+} )  */}
+
+       
 
             <Button
               onClick={() => history.push("/adddevice")}

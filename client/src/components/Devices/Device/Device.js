@@ -1,12 +1,10 @@
 // react
 import React, { useState } from "react";
 
-
 import { useHistory } from "react-router-dom";
 
 //styles to use the connection
 import useStyles from "./styles";
-
 
 //css
 import "../../../App.css";
@@ -22,6 +20,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControlLabel,
+  Radio,
 } from "@material-ui/core";
 
 //change color as a theme
@@ -45,92 +45,89 @@ const theme = createMuiTheme({
 });
 
 const Device = (props) => {
-  
- //for routes
- const { history } = props;
+  //for routes
+  const { history } = props;
 
- //for styles
- const classes = useStyles();
+  //for styles
+  const classes = useStyles();
 
- //for dialogfeld
- const [open, setOpen] = React.useState(false);
+  //for dialogfeld
+  const [open, setOpen] = React.useState(false);
 
- const handleClickOpen = () => {
-   setOpen(true);
- };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
- const handleClose = () => {
-   setOpen(false);
- };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  //for radio button FormControlLabel
+  const [value, setValue] = React.useState('');
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <Container className={classes.container}>
+          <div className={classes.groupButton}>
+            <FormControlLabel
+            className={classes.radioButton}
+              value={props.value}
+              disabled
+              control={<Radio />}
+              label=""
+            />
 
- return (
+            <Button
+              onClick={() => history.push("/welcome")}
+              className={classes.button}
+              variant="contained"
+              color="primary"
+            >
+              Sign-In
+            </Button>
 
-  <>
-  <ThemeProvider theme={theme}>
-  <Container className={classes.container}>
-
-
-<div className={classes.groupButton}>
-<Button
-  onClick={() => history.push("/welcome")}
-  className={classes.button}
-  variant="contained"
-  color="primary"
->
-  Sign-In
-</Button>
-
-<Button
-  onClick={() => history.push("/welcome")}
-  className={classes.button}
-  variant="contained"
-  color="primary"
->
-  Sign-In
-</Button>
-
-<Button
-  onClick={handleClickOpen}
-  className={classes.button}
-  variant="contained"
-  color="secondary"
->
-  Delete
-</Button>
-<Dialog className={classes.dialog}
-  open={open}
-  onClose={handleClose}
-  aria-labelledby="alert-dialog-title"
-  aria-describedby="alert-dialog-description"
->
-  <DialogTitle
-    id="alert-dialog-title"
-
-  >
-    {" Are you sure you want to delet 'this Device'?"}
-  </DialogTitle>
-  <DialogContent>
-    <DialogContentText id="alert-dialog-description">
-      Device will be disappear and is not connected anymore!
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleClose} color="primary">
-      Disagree
-    </Button>
-    <Button onClick={handleClose} color="primary" autoFocus>
-      Agree
-    </Button>
-  </DialogActions>
-</Dialog>
-</div> 
-</Container>
-</ThemeProvider>
-</>
-);
+            <Button
+              onClick={handleClickOpen}
+              className={classes.button}
+              variant="contained"
+              color="secondary"
+            >
+              Delete
+            </Button>
+            <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {" Are you sure you want to delet 'this Device'?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Device will be disappear and is not connected anymore!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Disagree
+                </Button>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+        </Container>
+      </ThemeProvider>
+    </>
+  );
 };
 
 export default Device;

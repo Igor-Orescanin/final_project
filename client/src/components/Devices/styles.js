@@ -19,10 +19,18 @@ export default makeStyles((theme) => ({
  
   
   },
+  top:{
+    display:'flex',
+    flexDirection:'row',
+   // justifyContent:'center',
+    marging:'0px, 10px',
+    backgroundColor:'green',
+  },
+
 
   groupButton:{
-   
   },
+
 
   button:{
     borderColor: "#008CA7",
@@ -38,6 +46,8 @@ export default makeStyles((theme) => ({
     color: "#008CA7",
     fontSize: '12px',
     fontWeight: 'bold',
+    paddingTop:'30px',
+    paddingRight:'10px'
   },
   root:{
   '$.MuiTypography-h6':{

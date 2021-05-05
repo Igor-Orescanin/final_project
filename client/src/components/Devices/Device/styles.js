@@ -1,48 +1,42 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-  
-  container:{
-    backgroundColor:'red',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  
+  container: {
+    //backgroundColor: "red",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 
-  paper: {
-    height:'65vh',
-    backgroundColor:'yellow',
-     display: 'flex',
-     flexDirection: 'column',
-    alignItems: 'center',
- 
-  
+  radioButton: {
+   // backgroundColor: "yellow",
+   cursor: "default",
   },
 
-  groupButton:{
-   
+  groupButton: {
+    display: "flex",
+    flexDirection: "row",
+    // backgroundColor:'green',
+    alignItems: "center",
   },
 
-  button:{
+  button: {
     borderColor: "#008CA7",
-    marginTop:'34px',
     textTransform: "none",
-    marginRight:'10px',
-    marginLeft:'10px',
+    marginRight: "10px",
+    marginLeft: "10px",
   },
 
   typography: {
-   
-    fontFamily: ('Roboto', 'sans-serif'),
+    fontFamily: ("Roboto", "sans-serif"),
     color: "#008CA7",
-    fontSize: '12px',
-    fontWeight: 'bold',
+    fontSize: "12px",
+    fontWeight: "bold",
   },
-  root:{
-  '$.MuiTypography-h6':{
-    fontSize: '12px',
-    fontWeight: 'bold',
-  },}
-
-}))
+  root: {
+    "& .MuiTypography-h6": {
+      fontSize: "12px",
+      fontWeight: "bold",
+    },
+  },
+}));
