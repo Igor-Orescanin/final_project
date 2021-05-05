@@ -119,7 +119,7 @@ const LogIn = () => {
               </div>
               <Button
                 className={classes.button}
-                onClick={() => history.push("/device")}
+                onClick={() => history.push("/devices")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
