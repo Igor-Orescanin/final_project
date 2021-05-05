@@ -3,21 +3,27 @@ const Device = require('../models/Devices');
 
 const createError = require("http-errors");
 const jwt = require('jsonwebtoken');
-const { log } = require('async');
+
 require('dotenv').config();
 
 
 exports.assignDevice = async (req, res, next) => {
   try {
-    const { _id } = req.params;   // recibimos id del client que vamos a actualizar
-    const { deviceId } = req.body; // id del dispositivo que se ingresa en el formulario
-    const userUpdated = await User.findByIdAndUpdate(_id, { $push: { assignedDevices: deviceId } }, {
+    const { userId, deviceId } = req.params;
+
+    const device = await Device.findOne({ deviceId }).exec();
+    if (!device) {
+      throw new Error('Device not found');
+    }
+    if (device.userId) {
+      throw new Error('Device is already assigned');
+    }
+    await Device.findByIdAndUpdate(device._id, { userId }, {
       new: true,
       useFindAndModify: false
     });
-    if (!userUpdated) throw new createError.NotFound();
-    res.status(200).send(userUpdated);
 
+    res.status(200).send();
 
   } catch (e) {
     next(e);

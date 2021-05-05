@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  addDevice,  // disable, the admin only can add RPI devices to the DB
+  addDevice,
   getDevices,
   getDevice,
   updateDevice,
@@ -14,13 +14,13 @@ const {
 router
   .route('/')
   .get(getDevices)
-  .post(addDevice);
+  .post(addDevice) //use only for postman
 
 
 router
   .route('/:id')
   .get(getDevice)
-  .put(updateDevice)
+  .put(updateDevice)   // //use only for postman
   .delete(deleteDevice)
 
 

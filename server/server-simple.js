@@ -74,6 +74,23 @@ const gracefulShutdown = () => {
   process.exit(0);
 };
 
+
+/** ERROR HANDLING */
+app.use(function (req, res, next) {
+  const error = new Error("Looks like something broke...");
+  error.status = 400;
+  next(error);
+});
+
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500).send({
+    error: {
+      message: err.message
+    }
+  });
+});
+
+
 // Graceful shutdown
 process.once('SIGTERM', gracefulShutdown);  // interruptions 'SIGTERM' senales del sistema
 process.once('SIGINT', gracefulShutdown);

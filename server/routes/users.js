@@ -31,7 +31,7 @@ router
   .put(auth, updateUser);
 
 router
-  .route("/assignDevice/:id")
-  .put(assignDevice)
+  .route("/:userId/assignDevice/:deviceId")
+  .post(assignDevice)
 
 module.exports = router;

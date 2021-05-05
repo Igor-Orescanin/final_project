@@ -7,9 +7,17 @@ const DeviceSchema = new mongoose.Schema({
   },
   deviceId: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+
+  },
+  userId: {
+    type: mongoose.ObjectId
   }
+
 })
 
 module.exports = mongoose.model('Device', DeviceSchema)
+
+
+
+
