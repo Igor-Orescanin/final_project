@@ -1,5 +1,5 @@
 // axios
-import axios from 'axios';
+ import axios from 'axios';
 
 //url to the server connection
 const url = 'http://localhost:3005'
