@@ -14,8 +14,6 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     //height: "65vh",
 
-
-
   },
 
 

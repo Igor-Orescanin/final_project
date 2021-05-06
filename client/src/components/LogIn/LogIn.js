@@ -46,7 +46,6 @@ const theme = createMuiTheme({
 
 const LogIn = () => {
 
-  
 
   const history = useHistory();
   const classes = useStyles();
@@ -84,8 +83,8 @@ const LogIn = () => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-                // value={postData.email}
-                // onChange={(e) => setPostData({...postData, email : e.target.value})}
+              // value={postData.email}
+              // onChange={(e) => setPostData({...postData, email : e.target.value})}
               />
               <TextField
                 className={`${classes.inputField} ${classes.myInputLabel}`}
@@ -106,14 +105,14 @@ const LogIn = () => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-                //value={postData.password}
-                // onChange={(e) => setPostData({...postData, password : e.target.value})}
+              //value={postData.password}
+              // onChange={(e) => setPostData({...postData, password : e.target.value})}
               />
               <div className={classes.link} >
                 <Link className={classes.link} href="#" variant="body2">
                   Forgot password
                 </Link>
-                <Link className={classes.link}  onClick={() => history.push("/registration")}variant="body2">
+                <Link className={classes.link} onClick={() => history.push("/registration")} variant="body2">
                   Registration
                 </Link>
               </div>
@@ -127,7 +126,7 @@ const LogIn = () => {
                 Log-In
               </Button>
 
-              
+
             </form>
           </div>
           <div className={classes.footer}></div>
