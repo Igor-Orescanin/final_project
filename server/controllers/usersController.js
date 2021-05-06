@@ -12,7 +12,7 @@ exports.addUser = async (req, res, next) => {
 
     if (users.length > 0) {
       // user already exists
-      return res.status(409).json({
+      return res.json({
         message: "Mail exists"
       });
     }
@@ -109,7 +109,7 @@ exports.loginUser = (req, res) => {
           
           return res.json({auth: true, token: token})
         }
-        return res.status(401).json({
+        return res.json({
           auth: false, message: 'Auth failed'
         });
       });

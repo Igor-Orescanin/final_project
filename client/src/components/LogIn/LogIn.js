@@ -63,6 +63,7 @@ const handleSubmit = (e) => {
   api.loginUser(formData)
   .then(response =>{
     if(!response.data.auth){
+      console.log(response.data)
       setLoginStatus('Wrong password or email')
     } else {
       localStorage.setItem('token', response.data.token)
