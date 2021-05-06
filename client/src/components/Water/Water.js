@@ -27,15 +27,6 @@ const socket = io("http://localhost:3005", {
 });
 
 const Water = (props) => {
-  // constructor(props)
-  //   super(props);
-  //   this.state = {
-  //      option:{
-
-  //      },
-
-  //   }
-
   const { history } = props;
   const classes = useStyles();
 
@@ -44,6 +35,7 @@ const Water = (props) => {
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
   let waterLevel = 0;
   //console.log(waterLevelGrey);
+  const [loading, setLoading] = useState(false)
   const [chart1, setChart] = useState([
     {
       name: "name",
@@ -102,23 +94,20 @@ const Water = (props) => {
 
   useEffect(() => {
     socket.on("sensorReading", (sensorObject) => {
-      
-      
-      
-
-
-
- 
 
       if (sensorObject.label === "CLEAN") {
-        var waterLevelCleanPercentage = sensorObject.levelPercentage;
-        console.log(waterLevelCleanPercentage)
+        //var waterLevelCleanPercentage = sensorObject.levelPercentage;
+        setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage])
+        //setLoading(false)
+        console.log(waterLevelClean)
         
         //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
         //setWaterLevelClean([sensorPercent]);
       } else {
-        var waterLevelGreyPercentage = sensorObject.levelPercentage;
-        console.log(waterLevelGreyPercentage)
+        setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage])
+        //var waterLevelGreyPercentage = sensorObject.levelPercentage;
+        setLoading(false)
+        //console.log(waterLevelGreyPercentage)
       }
 //console.log(waterLevelCleanPercentage.levelPercentage)
       console.log(sensorObject)
@@ -130,7 +119,7 @@ const Water = (props) => {
         },
         {
           name: "Volts",
-          data: [sensorPercent]
+          data: [waterLevelGrey]
         },
 
         
@@ -142,148 +131,12 @@ const Water = (props) => {
       //options.chart.updateSeries(options.series);
       //options = [...options, options.series ]
 
-      //console.log(options.series.data);
-      //console.log(options.series)
-      // if (sensorObject.label === "CLEAN") {
-      //   //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-      //   setWaterLevelClean([sensorPercent]);
-      // } else {
-      //   setWaterLevelGrey([sensorPercent]);
-      // }
     });
   }, []); // runs only once  ,,, run when the Graph component mount
 
-  // var chart = new ApexCharts(el, options);
-  // chart.updateSeries([{
-  // data: waterLevelClean
-  // }])
-
-  //_______maritza
-
-  // const options = {
-  //   chart: {
-  //     height: 350,
-  //     type: "radialBar",
-  //   },
-  //   plotOptions: {
-  //     radialBar: {
-  //       hollow: {
-  //         size: "70%",
-  //       },
-  //     },
-  //   },
-  //   labels: ["WATER"],
-  // };
-
-  // -----------my first test--------------
-  //  const test = {
-
-  // series: [{
-  //     data: [waterLevelClean, waterLevelGrey],
-  //   },],
-
-  //    series: [{
-  //      data: [21, 22, 10, 28, 16, 21, 13, 30]
-  //    }],
-
-  //     chart: {
-  //       toolbar: {
-  //         show: false,
-  //       },
-
-  //       fill:{
-  //         colors:['#f44336']
-  //       },
-
-  //      options: {
-  //        chart: {
-
-  //         fill:{
-  //           colors:['#f44336']
-  //         },
-
-  //          id: 'realtime', // new from down
-  //      height: 350,
-  //      type: "bar",
-  //      events: {
-  //        click: function (chart, w, e) {
-  //          // console.log(chart, w, e)
-  //        },
-  //      },
-  //        },
-  //      },
-
-  //      colors: "#30D4DE",
-  //      plotOptions: {
-  //        bar: {
-  //          columnWidth: "45%",
-  //          distributed: true,
-  //        },
-  //      },
-  //      dataLabels: {
-  //        enabled: false,
-  //      },
-  //      legend: {
-  //        show: false,
-  //      },
-  //      xaxis: {
-  //        categories: [
-  //          ["CleanWater"],
-  //          ["GreyWater"],
-
-  //        ],
-  //        labels: {
-  //          style: {
-  //            colors: "#30D4DE",
-  //            fontSize: "12px",
-  //          },
-  //        },
-  //      },
-  //    },
-  //  };
-
-  // window.setInterval(() => {
-
-  //   ApexCharts.exec('realtime', 'updateSeries', [{
-  //   data: waterLevelClean
-  //   }])
-  //   }, 1000)
-
-  //  const option = {
-  //    chart:{
-  //      // height:850,
-  //      width :'50%',
-  //      type:'bar',
-  //      background:'#f4f4f4',
-  //      foreColor: '#0C9EB5',
-  //      toolbar: {
-  //        show: false,
-  //        },
-  //    },
-  //    series: [{
-  //      name: 'water chart',
-  //      data: [30]
-  //      }],
-  //    xaxis:{
-  //      categories: ['GreyWater'],
-  //    },
-  //    plotOptions:{
-  //      bar:{
-  //        horizontal:false,
-  //      }
-  //    },
-  //    fill:{
-  //      colors:['#77A783']
-  //    },
-  //    dataLabels:{
-  //      enabled: false,
-  //    },
-  //    title:{
-  //      text:'hello',
-  //      align: 'center',
-  //      margin: 20,
-  //    },
-  //  }
+  if(loading){
+    return <div> Loading ....</div>
+  }
 
   return (
     <>
