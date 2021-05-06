@@ -8,14 +8,19 @@ function validateUser() {
 
       next(); // if not, continue to next middleware
     } catch (err) {
-      const validationError = validationResult(req).array().pop();
+      const validationError = validationResult(req).array();
 
-      // console.log(JSON.stringify(validationError, undefined, 4));
+       console.log(JSON.stringify(validationError, undefined, 4));
+      res.json({error:validationError})
+
+console.log(validationResult(req).array())
 
       const error = new Error(validationError.msg);
       error.status = 400;
 
       next(error);
+      console.log(error)
+     
     }
   };
 

@@ -52,8 +52,8 @@ const theme = createMuiTheme({
 
 const Device = (props) => { //props.deviceObject.deviceId
   //for routes
-  const { history } = props;
-
+  const history = useHistory();
+  //const { history } = props;
 
 
   //for styles
@@ -95,13 +95,7 @@ const Device = (props) => { //props.deviceObject.deviceId
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-            {/* <FormControlLabel
-            className={classes.radioButton}
-              value={props.value}
-              disabled
-              control={<Radio />}
-              label=""
-            /> */}
+         
             <CheckCircleOutlineIcon className={classes.checkIcon}/>
             <NotInterestedIcon className={classes.noIcon}/>
             

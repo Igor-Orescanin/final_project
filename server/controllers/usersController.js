@@ -13,7 +13,8 @@ exports.addUser = async (req, res, next) => {
     if (users.length > 0) {
       // user already exists
       return res.json({
-        message: "Mail exists"
+        msg:"Mail exists",
+        auth: false,
       });
     }
 

@@ -15,6 +15,8 @@ export const deleteDevice = (id) => axios.delete(`${url}/${id}`);
 
 export const loginUser = (data) => axios.post(`${url}/users/login`, data);
 
+export const addUser = (data) => axios.post(`${url}/users`, data);
+
 export const authUser = () => axios.get(`${url}/users/isUser`, {headers: {
     "x-access-token": localStorage.getItem('token')
 }});
