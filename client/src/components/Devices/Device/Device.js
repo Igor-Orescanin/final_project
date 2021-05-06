@@ -50,25 +50,25 @@ const theme = createMuiTheme({
   },
 });
 
-const Device = (props) => {
+const Device = (props) => { //props.deviceObject.deviceId
   //for routes
   const { history } = props;
+
+
 
   //for styles
   const classes = useStyles();
 
+
+  const device = props.deviceObject
+
 //a hook 
-  const [allDevices, setAllDevices] = useState([]);
+ //const [device, setDevice] = useState();
 
   useEffect(async () => {
-    const { data } = await api.deleteDevice()
-   
-      setAllDevices(data)
-   
-    console.log(data);
-    console.log(data[1].deviceId);
+    const { data } = await api.deleteDevice(device.deviceId)
 
-  },[allDevices]);
+  },[]);
 
 
 
@@ -104,13 +104,15 @@ const Device = (props) => {
             /> */}
             <CheckCircleOutlineIcon className={classes.checkIcon}/>
             <NotInterestedIcon className={classes.noIcon}/>
+            
             <Button
               onClick={() => history.push("/welcome")}
               className={classes.button}
               variant="contained"
               color="primary"
             >
-              Sign-In
+             { device.deviceName }
+
             </Button>
 
             <Button

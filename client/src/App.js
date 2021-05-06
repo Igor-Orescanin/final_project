@@ -15,7 +15,7 @@ import Devices from "./components/Devices/Devices.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
-import ShowDevices from "./components/Devices/Device/ShowDevices.js";
+
 //import io from 'socket.io-client';
 
 
@@ -63,7 +63,7 @@ const socket = io('http://localhost:3005', {
         <Route path="/regdevice" component={RegDevice}></Route>
         <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
-        <Route path="/showdevices" component={ShowDevices}></Route>
+      
       </div>
     </Router>
   );

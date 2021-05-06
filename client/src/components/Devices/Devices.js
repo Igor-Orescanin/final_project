@@ -6,7 +6,8 @@ import * as api from "../../api";
 
 //connection to components
 import NavbarSec from "../Nav/NavbarSec.js";
-import ShowDevices from "./Device/ShowDevices.js";
+//import ShowDevices from "./Device/ShowDevices.js";
+import Device from "./Device/Device.js";
 
 // styles to use the connection
 import useStyles from "./styles";
@@ -25,11 +26,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  CircularProgress,
 } from "@material-ui/core";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
-
 
 const theme = createMuiTheme({
   palette: {
@@ -55,7 +56,25 @@ const Devices = (props) => {
   //for styles
   const classes = useStyles();
 
- 
+  //a hook
+  const [allDevices, setAllDevices] = useState([
+    //   {
+    //   deviceId:'',
+    //   deviceName:'',
+    // }
+  ]);
+
+  // to get the data for databace
+  useEffect(async () => {
+    const { data } = await api.fetchDevices();
+
+    setAllDevices(data);
+
+    console.log(data);
+    console.log(data[1].deviceId);
+    console.log(data[1].deviceName);
+  }, []);
+
   return (
     <>
       <NavbarSec />
@@ -63,14 +82,20 @@ const Devices = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {/* <div className={classes.paper}> */}
-            <div className={classes.top}>
-              <Typography className={classes.typography}>connected</Typography>
-              <Typography className={classes.typography}>
-                your devices
-              </Typography>
-            </div>
-            <div className={classes.paper}>
-            <ShowDevices />
+          <div className={classes.top}>
+            <Typography className={classes.typography}>connected</Typography>
+            <Typography className={classes.typography}>your devices</Typography>
+          </div>
+          <div className={classes.paper}>
+
+            {!allDevices.length ? (
+              <CircularProgress />
+            ) : (
+              allDevices.map((dev) => (
+                 <Device   deviceObject={dev}/>
+              ))
+            )}
+
             <Button
               onClick={() => history.push("/adddevice")}
               className={classes.addbutton}
