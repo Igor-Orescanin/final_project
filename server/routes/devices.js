@@ -8,20 +8,24 @@ const {
   getDevice,
   updateDevice,
   deleteDevice
-} = require('../controllers/devicesController');
+} = require("../controllers/devicesController");
 
 
 router
-  .route('/')
+  .route("/")
   .get(getDevices)
   .post(addDevice) //use only for postman
 
 
 router
-  .route('/:id')
+  .route("/:id")
   .get(getDevice)
   .put(updateDevice)   // //use only for postman
   .delete(deleteDevice)
+
+
+
+// ROUTE FOR ASSIG WATERFLOW TO A DEVICE
 
 
 module.exports = router;

@@ -1,4 +1,6 @@
-const Device = require('../models/Devices');
+//const Device = require('../models/Device');
+
+const Device = require('../models/Device');
 const createError = require("http-errors");
 
 require('dotenv').config();
@@ -14,14 +16,14 @@ exports.addDevice = async (req, res, next) => {
       });
     }
 
-    const device = new Device({
+    const deviceCreate = new Device({
       deviceName: req.body.deviceName,
       deviceId: req.body.deviceId
     });
 
-    await device.save();
+    await deviceCreate.save();
 
-    res.status(200).send(device);
+    res.status(200).send(deviceCreate);
   } catch (e) {
     next(e);
   }

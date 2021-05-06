@@ -30,6 +30,8 @@ router
   .delete(auth, deleteUser)  //use only for postman
   .put(auth, updateUser);
 
+
+// ROUTE FOR ASSIGN DEVICE TO A USER
 router
   .route("/:userId/assignDevice/:deviceId")
   .post(assignDevice)

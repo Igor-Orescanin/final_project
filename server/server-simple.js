@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
       socket.broadcast.emit('sensorReading', sensorReading);
       });
   });
-  });
+});
 
 const gracefulShutdown = () => {
   process.exit(0);

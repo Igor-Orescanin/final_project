@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const Device = require('../models/Devices');
+const Device = require('../models/Device');
 
 const createError = require("http-errors");
 const jwt = require('jsonwebtoken');
