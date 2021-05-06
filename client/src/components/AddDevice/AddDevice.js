@@ -1,7 +1,9 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
-import api from '../axios';
+
+//axios';
+import * as api from '../../api'
 
 //connection
 import NavbarSec from "../Nav/NavbarSec.js";
@@ -34,10 +36,13 @@ const theme = createMuiTheme({
 });
 
 const AddDevice = (props) => { 
+      //for routes
     const { history } = props;
+
+      //for styles
     const classes = useStyles();
 
-
+//a hook
     const [formData, setFormData] = useState({
         deviceName: "",
         deviceId: ""
@@ -46,15 +51,24 @@ const AddDevice = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api({
-            'method': 'POST',
-            'url':'/adddevice',
-            'data': formData,
-            'headers': { 'content-type':'application/json' // override instance defaults
-            },
-            })
-            console.log('This is our form data: ', formData);
-            history.push("/water");
+
+        // useEffect(()=>{
+
+        //     api.addDevice(id, setFormData())
+
+        // })
+
+       
+
+        // api({
+        //     'method': 'POST',
+        //     'url':'/adddevice',
+        //     'data': formData,
+        //     'headers': { 'content-type':'application/json' // override instance defaults
+        //     },
+        //     })
+        //     console.log('This is our form data: ', formData);
+        //     history.push("/devices");
     }
 
 
@@ -122,6 +136,7 @@ registered in this system! </Typography>
         className={classes.button}
         variant="contained"
         color="primary"
+        type='submit' 
         >
         Register
       </Button> 

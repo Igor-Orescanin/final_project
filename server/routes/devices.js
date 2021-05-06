@@ -12,7 +12,7 @@ const {
 
 
 router
-  .route('/')
+  .route('/') 
   .get(getDevices)
   .post(addDevice);
 
