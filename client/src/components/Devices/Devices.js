@@ -1,13 +1,18 @@
 // react
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-//connection
+//axios
+import * as api from "../../api";
+
+//connection to components
 import NavbarSec from "../Nav/NavbarSec.js";
-import Device from "../Devices/Device/Device.js"
-//styles to use the connection
+//import ShowDevices from "./Device/ShowDevices.js";
+import Device from "./Device/Device.js";
+
+// styles to use the connection
 import useStyles from "./styles";
 
-//css
+// css
 import "../../App.css";
 
 // material-ui
@@ -21,6 +26,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  CircularProgress,
 } from "@material-ui/core";
 
 //change color as a theme
@@ -43,23 +49,31 @@ const theme = createMuiTheme({
   },
 });
 
-const AddMultiDevice = (props) => {
+const Devices = (props) => {
   //for routes
   const { history } = props;
 
   //for styles
   const classes = useStyles();
 
-  //for dialogfeld
-  const [open, setOpen] = React.useState(false);
+  //a hook
+  const [allDevices, setAllDevices] = useState([
+    //   {
+    //   deviceId:'',
+    //   deviceName:'',
+    // }
+  ]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // to get the data for databace
+  useEffect(async () => {
+    const { data } = await api.fetchDevices();
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    setAllDevices(data);
+
+    console.log(data);
+    console.log(data[1].deviceId);
+    console.log(data[1].deviceName);
+  }, []);
 
   return (
     <>
@@ -67,25 +81,35 @@ const AddMultiDevice = (props) => {
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          <div className={classes.paper}>
-            <Typography className={classes.typography}>connection</Typography>
+          {/* <div className={classes.paper}> */}
+          <div className={classes.top}>
+            <Typography className={classes.typography}>connected</Typography>
             <Typography className={classes.typography}>your devices</Typography>
+          </div>
+          <div className={classes.paper}>
 
-            {/* <Device/> */}
+            {!allDevices.length ? (
+              <CircularProgress />
+            ) : (
+              allDevices.map((dev) => (
+                 <Device   deviceObject={dev}/>
+              ))
+            )}
 
             <Button
               onClick={() => history.push("/adddevice")}
-              className={classes.button}
+              className={classes.addbutton}
               variant="contained"
               color="primary"
             >
               Add new Devices
             </Button>
           </div>
+          <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
     </>
   );
 };
 
-export default AddMultiDevice;
+export default Devices;

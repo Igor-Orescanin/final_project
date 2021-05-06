@@ -1,7 +1,7 @@
 // react
 import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
-import api from '../axios';
+//import api from '../axios';
 
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
@@ -70,13 +70,20 @@ const Registration = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api({
-            'method': 'POST',
-            'url': '/users',
-            'data': formData,
-            'headers': { 'content-type':'application/json' // override instance defaults
-            },
-            })
+
+        // try{
+        //     const {data} = await api.post(post);
+
+        //     {type: }
+        // }
+
+        // api({
+        //     'method': 'POST',
+        //     'url': '/users',
+        //     'data': formData,
+        //     'headers': { 'content-type':'application/json' // override instance defaults
+        //     },
+        //     })
             console.log('This is our form data: ', formData);
             history.push("/adddevice");
     }

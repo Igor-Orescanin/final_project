@@ -14,7 +14,7 @@ async function main() {
     const socket = io(url, {
       transports: ['websocket', 'polling']
     });
-    const READING_INTERVAL = 500;  // half a second
+    const READING_INTERVAL = 2000;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
 
     socket.emit('device_connected');
