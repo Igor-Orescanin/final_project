@@ -12,7 +12,7 @@ exports.addUser = async (req, res, next) => {
 
     if (users.length > 0) {
       // user already exists
-      return res.status(409).json({
+      return res.json({
         message: "Mail exists"
       });
     }
@@ -82,43 +82,41 @@ exports.loginUser = (req, res) => {
   //AUTENTICATION STARTS WHEN YOU LOOK THE EMAIL IN THE DB AND COMPARE THE PASSWORD
   User.find({ email: req.body.email })
     .exec()
-    .then(email => {
-      if (email.length < 1) {
+    .then(response => {
+      if (response.length < 1) {
         return res.status(401).json({
-          message: 'Auth failed'
+          auth: false, message: 'Auth failed'
         });
       }
-      bcrypt.compare(req.body.password, email[0].password, (err, result) => {
+      bcrypt.compare(req.body.password, response[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
-            message: 'Auth failed'
+            auth: false, message: 'Auth failed'
           })
         }
         if (result) {
           //
           const token = jwt.sign(
             {
-              email: email[0].email,
-              userId: email[0]._id
+              email: response[0].email,
+              userId: response[0]._id
             },
             process.env.JWT_KEY,
             {
               expiresIn: '1h'
             }
           );
-          return res.header('auth-token', token).status(200).json({
-            message: 'Auth successful',
-            token: token
-          });
+          
+          return res.json({auth: true, token: token})
         }
-        return res.status(401).json({
-          message: 'Auth failed'
+        return res.json({
+          auth: false, message: 'Auth failed'
         });
       });
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({
+      res.json({
         error: err
       });
     });
