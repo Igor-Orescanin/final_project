@@ -10,18 +10,17 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyItems: 'center',
-    //height:'65vh'
-   
+
   },
 
   paper: {
-    height:'65vh',
-  // backgroundColor:'yellow',
-     display: 'flex',
-     flexDirection: 'column',
+    height: '65vh',
+    // backgroundColor:'yellow',
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
- 
-  
+
+
   },
 
   typography: {
@@ -61,22 +60,22 @@ export default makeStyles((theme) => ({
   inputField: {
     marginTop: "20px",
     borderColor: "#007982",
-    width:'212px',
-    backgroundColor:'white',
+    width: '212px',
+    backgroundColor: 'white',
   },
 
   link: {
     paddingTop: '20px',
     paddingBottom: '20px',
     color: "#007982",
-    paddingRight:'14px',
-    paddingLeft:'14px',
+    paddingRight: '14px',
+    paddingLeft: '14px',
     textDecoration: 'none',
   },
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-    padding:0,
+    padding: 0,
     backgroundColor: "#0C9EB5",
     color: 'white',
     width: '80px',
@@ -84,7 +83,7 @@ export default makeStyles((theme) => ({
     borderRadius: '20px',
     fontSize: '15px',
     fontWeight: '400',
-   
+
   },
 
   // backgr: {
@@ -100,27 +99,34 @@ export default makeStyles((theme) => ({
   //   backgroundPosition: 'bottom',
 
   // },
- 
- //for the Image on the bottom
- footer: {
-  zIndex: "-1",
-  position: "fixed",
-  bottom: "0px",
-  height: "190px",
-  //height:'170px',
-  width: "100vw",
-  //backgroundColor: "Blue",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-},
+
+  //for the Image on the bottom
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    height: "190px",
+    //height:'170px',
+    width: "100vw",
+    //backgroundColor: "Blue",
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  },
 
 }))
 
 
-// @media only screen and (max-width: 600px) {
-//    {
-//     typography: {
-//       marginTop: '24px',
-//   }
-// }}
+  /* typography: {
+  "@media (min-height: 360px)": {
+    marginTop: '24px',
+  },
+  "@media (min-height: 411px)": {
+    marginTop: '44px',
+  },
+  "@media (min-height: 320px)": {
+    marginTop: '24px',
+  },
+
+} */
+
