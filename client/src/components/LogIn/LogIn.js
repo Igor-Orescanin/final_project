@@ -1,6 +1,7 @@
 // react
 import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
+import * as api from '../../api'
 
 // react-router-dom
 import { BrowserRouter, Link, Route } from "react-router-dom";
@@ -46,10 +47,31 @@ const theme = createMuiTheme({
 
 const LogIn = () => {
 
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+})
   
-
+  const [loginStatus, setLoginStatus] = useState('')
   const history = useHistory();
   const classes = useStyles();
+
+
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  api.loginUser(formData)
+  .then(response =>{
+    if(!response.data.auth){
+      setLoginStatus('Wrong password or email')
+    } else {
+      localStorage.setItem('token', response.data.token)
+      history.push("/adddevice");
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+}
 
   return (
     <StylesProvider injectFirst>
@@ -65,8 +87,10 @@ const LogIn = () => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit} >
+            <h2>{loginStatus}</h2>
               <TextField
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className={classes.inputField}
                 variant="outlined"
                 required
@@ -84,10 +108,9 @@ const LogIn = () => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-                // value={postData.email}
-                // onChange={(e) => setPostData({...postData, email : e.target.value})}
               />
               <TextField
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="password"
@@ -106,8 +129,6 @@ const LogIn = () => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-                //value={postData.password}
-                // onChange={(e) => setPostData({...postData, password : e.target.value})}
               />
               <div className={classes.link} >
                 <Link className={classes.link} href="#" variant="body2">
@@ -119,15 +140,13 @@ const LogIn = () => {
               </div>
               <Button
                 className={classes.button}
-                onClick={() => history.push("/device")}
+                type='submit'
                 className={classes.button}
                 variant="contained"
                 color="primary"
               >
                 Log-In
               </Button>
-
-              
             </form>
           </div>
           <div className={classes.footer}></div>
