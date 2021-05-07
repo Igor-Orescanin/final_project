@@ -23,10 +23,6 @@ router
   .put(updateDevice)   // //use only for postman
   .delete(deleteDevice)
 
-
-
-// ROUTE FOR ASSIG WATERFLOW TO A DEVICE
-
-
+  
 module.exports = router;
 

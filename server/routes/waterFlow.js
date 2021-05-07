@@ -3,17 +3,25 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getWaterFlow
-} = require("../controllers/")
+  addWaterFlowSensor,
+  getWaterFlowSensors,
+  //getWaterFlowSensor,
+  assignWaterFlowSensor
+} = require("../controllers/assignWaterFlowController");
 
 
 router
-  .route("./devices/:deviceId");
-  .get(getWaterFlow)
+  .route("/")
+  .post(addWaterFlowSensor)   //use only for postman
+  .get(getWaterFlowSensors)    //use only for postman
+
+// router
+//  .route("/:id")
+  //.get(getWaterFlowSensor)S
 
 router
-  .route("./:deviceId/assignWaterFlow/:waterFlowId")
-  .post(assignWaterFlow)
+  .route("/:deviceRpiId/assignWaterFlowSensor/:deviceWaterFlowId")
+  .post(assignWaterFlowSensor)
 
 module.exports = router;
 

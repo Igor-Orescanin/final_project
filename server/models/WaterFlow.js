@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
 const WaterFlowSchema = new mongoose.Schema({
-  WaterFlow: {
-    type: Number,
+  deviceWaterFlowId: {
+    type: String,
     require: true
   },
-  { timestamps: true },
-  deviceId: {
+  deviceRpiId: {
     type: mongoose.ObjectId
   }
+},
 
-})
+  { timestamps: true }
+)
 
 module.exports = mongoose.model('WaterFlow', WaterFlowSchema)

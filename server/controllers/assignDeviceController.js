@@ -1,8 +1,4 @@
-const User = require('../models/User');
 const Device = require('../models/Device');
-
-const createError = require("http-errors");
-const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
