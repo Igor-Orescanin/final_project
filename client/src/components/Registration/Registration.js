@@ -72,35 +72,42 @@ const Registration = () => {
     macAddress: "",
   });
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]); // array course of map
+  //const [errors, setErrors] = useState({});
+
 const [mailExist,setMailExist] = useState('');
-  const handleSubmit = (e) => {
+ 
+
+const handleSubmit = (e) => {
     e.preventDefault();
 
     api.addUser(formData)
       .then((res) => {
-        if(!res.data.auth ){
+       
+          if(res.data.error){
+               setErrors(res.data.error)
+               console.log('fuck2')
+          }
+          else if(!res.data.auth ){
             setMailExist(res.data.msg)
-        }else if(res.data.error){
-             console.log(res.data)
-             setErrors(res.data.error)
-         }else{
-            history.push("/adddevice"); 
-         }
+           setErrors('')
+            console.log('fuck')
+           }else{
+                history.push("/adddevice");
+           }
 
-
-        console.log(res);
+        console.log(res.data);
 
       //  setErrors(res.data.error);
 
-        console.log(errors);
+        //console.log(errors);
 
-      }).catch((err) => {
-        console.log(err);
+       }).catch((error) => {
+         console.log(error);
       });
 
     // console.log('This is our form data: ', formData);
-    // history.push("/adddevice");
+     //history.push("/adddevice");
   };
 
   //for dialogfeld
