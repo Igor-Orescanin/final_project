@@ -41,7 +41,6 @@ app.use(cors());
 app.use("/public", express.static("public"));
 
 //-------    ADD ROUTE--------------------
-// app.use('/', routeUsers);
 app.use('/users', routeUsers);
 app.use('/auth', routeAuth);
 app.use('/devices', routeDevices);
@@ -51,6 +50,8 @@ app.use('/waterFlow', routeWFSensor);
 
 //-----------RPI SERVER ------------------
 const { logger } = require('./utils');
+const WaterFlow = require('./models/WaterFlow');
+const { log } = require('console');
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')
@@ -68,7 +69,25 @@ io.on('connection', (socket) => {
       // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
       //   socket.to('sensor_measurements').emit('sensorReading', sensorReading);
       socket.broadcast.emit('sensorReading', sensorReading);
-      });
+    });
+
+
+    socket.on('waterFlowData', (waterFlowReadings) => {
+      let waterReading = new WaterFlow({
+        pin: waterFlowReadings.pin,
+        model: waterFlowReadings.model,
+        isRunning: waterFlowReadings.isRunning,
+        flow: waterFlowReadings.flow,
+        volume: waterFlowReadings.volume,
+        waterFlowCounter: waterFlowReadings.waterFlowCounter,
+        ts: waterFlowReadings.ts,
+      })
+
+      waterReading.save()
+      // logger.log(`Received water flow: ${clientId}`);
+      logger.log(JSON.stringify(waterFlowReadings));
+    })
+
   });
 });
 

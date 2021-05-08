@@ -14,13 +14,17 @@ exports.addWaterFlowSensor = async (req, res, next) => {
       });
     }
 
-    const deviceCreate = new WaterFlow({
-      deviceWaterFlowId: req.body.deviceWaterFlowId,
+    const createMeasurement = new WaterFlow({
+
+      flow: req.body.flow,
+      volume: req.body.volume,
+      waterFlowCounter: req.body.waterFlowCounter
+
     });
 
-    await deviceCreate.save();
+    await createMeasurement.save();
 
-    res.status(200).send(deviceCreate);
+    res.status(200).send(createMeasurement);
   } catch (e) {
     next(e);
   }

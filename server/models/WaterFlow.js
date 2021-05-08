@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
 const WaterFlowSchema = new mongoose.Schema({
-  deviceWaterFlowId: {
-    type: String,
-    require: true
-  },
-  deviceRpiId: {
+  pin: Number,
+  model: String,
+  isRunning: Boolean,
+  flow: Number,
+  volume: Number,
+  waterFlowCounter: Number,
+  ts: Date,
+  userId: {
     type: mongoose.ObjectId
   }
 },
+  { timestamps: true },
 
-  { timestamps: true }
 )
+
 
 module.exports = mongoose.model('WaterFlow', WaterFlowSchema)
