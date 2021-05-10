@@ -8,7 +8,8 @@ const url = 'http://localhost:3005'
 export const fetchDevices =() => axios.get(`${url}/devices`);
 
 //add new device
-export const addDevice = (newDevice) => axios.device(url, newDevice);
+//export const addDevice = (newDevice) => axios.device(url, newDevice);
+export const addDevice = (data) => axios.device(`${url}/devices`, data);
 
 //delete device
 export const deleteDevice = (id) => axios.delete(`${url}/${id}`);

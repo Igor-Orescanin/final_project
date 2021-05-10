@@ -1,30 +1,18 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios
 import * as api from "../../api";
 
-// react-router-dom
-import { BrowserRouter, Link, Route } from "react-router-dom";
-
 // css
 import "../../App.css";
-
-// history
-import { useHistory } from "react-router-dom";
 
 //styles
 import {
   Container,
   ThemeProvider,
   Typography,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Paper,
   Button,
   Avatar,
   TextField,
@@ -36,6 +24,7 @@ import useStyles from "./styles.js";
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+// theme
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -47,10 +36,9 @@ const theme = createMuiTheme({
   },
 });
 
-//_______________________________________start
+//__________________________________________________________start
 
 const Registration = (props) => {
-  // const history = useHistory();
   const classes = useStyles();
   const { history } = props;
 
@@ -67,52 +55,26 @@ const Registration = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const { history } = props;
 
     api
       .addUser(formData)
       .then((res) => {
         if (res.data.error) {
           setErrors(res.data.error);
-
-          //setMailExist("")
         } else if (res.data.msg === "Mail exists") {
-          //what  the fuck is going on
-          setMailExist(res.data.msg); // maybe get insteat of set hook ??
+          setMailExist(res.data.msg);
           setErrors("");
         } else {
-          // why this don't inizialieren
           history.push("/adddevice");
-          console.log("hey igor");
         }
-
-        console.log(res.data);
+          console.log(errors.msg)
+          console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  //for dialogfeld
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <StylesProvider injectFirst>
@@ -133,30 +95,32 @@ const Registration = (props) => {
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
                 }
-                className={classes.inputField}
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
                 required
                 id="username"
                 label="Name"
                 name="username"
                 size="small"
+                error={Boolean(errors?.msg)}
+                helperText={errors?.msg}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.root,
+                //     focused: classes.focused,
+                //     notchedOutline: classes.notchedOutline,
+                //   },
+                // }}
               />
 
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className={classes.inputField}
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
                 required
                 id="email"
@@ -166,20 +130,20 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.root,
+                //     focused: classes.focused,
+                //     notchedOutline: classes.notchedOutline,
+                //   },
+                // }}
               />
 
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                className={`${classes.inputField} ${classes.myInputLabel}`}
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 required
                 id="password"
                 label="Password"
@@ -187,24 +151,23 @@ const Registration = (props) => {
                 name="password"
                 type="password"
                 size="small"
-                BorderColor="red"
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.root,
+                //     focused: classes.focused,
+                //     notchedOutline: classes.notchedOutline,
+                //   },
+                // }}
               />
 
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                className={`${classes.inputField} ${classes.myInputLabel}`}
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 required
                 id="confirmPassword"
                 label="Confirm Password"
@@ -212,17 +175,16 @@ const Registration = (props) => {
                 name="confirmPassword"
                 type="password"
                 size="small"
-                BorderColor="red"
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.root,
+                //     focused: classes.focused,
+                //     notchedOutline: classes.notchedOutline,
+                //   },
+                // }}
               />
 
               <Button
@@ -236,11 +198,11 @@ const Registration = (props) => {
               </Button>
             </form>
             {errors.length < 1 ? (
-              <div></div>
-            ) : (
-              errors.map((error,index) => <h1 key={index}>{error.msg}</h1>)
-            )}
-            <h1>{mailExist}</h1>
+             <div></div>
+           ) : (
+             errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
+           )}
+           <h1>{mailExist}</h1>  
           </div>
           <div className={classes.footer}></div>
         </Container>
