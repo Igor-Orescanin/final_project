@@ -23,7 +23,7 @@ const {
 router
   .route("/")
   .get(getUsers)   //use only for postman
-  .post(validateUser(), addUser);
+  .post(validateUser(), addUser );
 
 router
   .route("/login")

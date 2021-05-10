@@ -142,7 +142,6 @@ const handleSubmit = (e) => {
               <Button
                 className={classes.button}
                 type='submit'
-                className={classes.button}
                 variant="contained"
                 color="primary"
               >
