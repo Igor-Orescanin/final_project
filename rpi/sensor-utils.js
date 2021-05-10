@@ -1,8 +1,10 @@
 const Raspi = require('raspi');
 const I2C = require('raspi-i2c').I2C;
 const ADS1x15 = require('raspi-kit-ads1x15');
+const wfs = require('water-flow-sensor');
 
 const { Sensor } = require('./Sensor');
+const { WaterFlowSensor } = require('./WaterFlowSensor');
 const { WaterType } = require('./WaterType');
 
 function initRaspberry() {
@@ -34,7 +36,12 @@ async function getSensor(readingInterval = 500) {
     return new Sensor(adcSensor, channelsMap, readingInterval);
 }
 
+async function getWaterflowSensor() {
+    return new WaterFlowSensor(wfs);
+}
+
 module.exports = {
     getSensor,
+    getWaterflowSensor,
 };
 

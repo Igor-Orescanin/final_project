@@ -2,12 +2,12 @@ const io = require('socket.io-client');
 const { v4: uuidv4 } = require('uuid');
 
 const { FakeSensor } = require('../rpi/FakeSensor');
-const { FakeSensorFlow } = require('../rpi/FakeSensorFlow');
-//const { getSensor } = require('./sensor-utils');
+const { FakeWaterFlowSensor } = require('./FakeWaterFlowSensor');
+//const { getSensor, getWaterflowSensor } = require('./sensor-utils');
 const { logger } = require('../server/utils');
 
 const getSensor = (readingInterval) => Promise.resolve(new FakeSensor(readingInterval));
-const getSensorFlow = (readingInterval) => Promise.resolve(new FakeSensorFlow(readingInterval));
+const getWaterflowSensor = () => Promise.resolve(new FakeWaterFlowSensor());
 
 async function main() {
   try {
@@ -18,7 +18,7 @@ async function main() {
     });
     const READING_INTERVAL = 500;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
-    const sensorFlow = await getSensorFlow(READING_INTERVAL);
+    const waterflowSensor = await getWaterflowSensor();
 
     socket.emit('device_connected');
 
@@ -38,17 +38,27 @@ async function main() {
     });
 
     sensor.on('data', (sensorReading) => {
-      logger.log(JSON.stringify(sensorReading));
-      socket.emit('sensorData', sensorReading);
+      // logger.log(JSON.stringify(sensorReading));
+      // socket.emit('sensorData', sensorReading);
     });
 
-    sensorFlow.on('waterFlowDataSensor', (waterFlowReadings) => {
+    waterflowSensor.on('data', (waterFlowReadings) => {
       logger.log(JSON.stringify(waterFlowReadings));
       socket.emit('waterFlowData', waterFlowReadings);
     });
 
+    // TODO get mac address
+    // const serialNumber = os.getMacAddress()
+
+    // sensorFlow.on('waterFlowDataSensor', (waterFlowReadings) => {
+    //   logger.log(JSON.stringify(waterFlowReadings));
+    //   socket.emit('waterFlowData', waterFlowReadings);
+    //   // TODO send the serialNumber on each measurement
+    //   //socket.emit('waterFlowData', { ...waterFlowReadings, serialNumber });
+    // });
+
     sensor.startReading();
-    sensorFlow.startReading();
+    // sensorFlow.startReading();
 
   } catch (error) {
     logger.error(error);

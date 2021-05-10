@@ -8,11 +8,10 @@ const WaterFlowSchema = new mongoose.Schema({
   volume: Number,
   waterFlowCounter: Number,
   ts: Date,
-  userId: {
+  deviceId: {
     type: mongoose.ObjectId
   }
-},
-  { timestamps: true },
+}
 
 )
 

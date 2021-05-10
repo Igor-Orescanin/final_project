@@ -76,7 +76,7 @@ exports.deleteUser = async (req, res, next) => {
   }
 };
 
-//LOGIN USER IGUAL ARCHIVO: EXPRESS-LOGIN-STARTER-CODE
+//LOGIN USER
 exports.loginUser = (req, res) => {
 
   //AUTENTICATION STARTS WHEN YOU LOOK THE EMAIL IN THE DB AND COMPARE THE PASSWORD

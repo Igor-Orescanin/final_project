@@ -5,9 +5,9 @@ require('dotenv').config();
 
 exports.assignDevice = async (req, res, next) => {
   try {
-    const { userId, deviceId } = req.params;
+    const { userId, serialNumber } = req.params;
 
-    const device = await Device.findOne({ deviceId }).exec();
+    const device = await Device.findOne({ serialNumber }).exec();
     if (!device) {
       throw new Error('Device not found');
     }

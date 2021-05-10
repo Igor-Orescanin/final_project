@@ -72,8 +72,10 @@ io.on('connection', (socket) => {
     });
 
 
-    socket.on('waterFlowData', (waterFlowReadings) => {
-      let waterReading = new WaterFlow({
+    socket.on('waterFlowData', async (waterFlowReadings) => {
+      // TODO FIND DEVICE WITH SERIAL NUMBER RECEIVED
+      // TODO TRAETE EL _ID Y LOS USAS PARA INSETARLO EN new waterFlow creado de mongoose
+      const waterReading = new WaterFlow({
         pin: waterFlowReadings.pin,
         model: waterFlowReadings.model,
         isRunning: waterFlowReadings.isRunning,
@@ -81,9 +83,10 @@ io.on('connection', (socket) => {
         volume: waterFlowReadings.volume,
         waterFlowCounter: waterFlowReadings.waterFlowCounter,
         ts: waterFlowReadings.ts,
+        // TODO deviceId: device._id
       })
 
-      waterReading.save()
+      await waterReading.save()
       // logger.log(`Received water flow: ${clientId}`);
       logger.log(JSON.stringify(waterFlowReadings));
     })
@@ -119,4 +122,3 @@ process.once('SIGINT', gracefulShutdown);
 server.listen(port, () => {
   logger.log(`Server is listening on port ${port}`);
 });
-
