@@ -51,7 +51,7 @@ const Navbar = () => {
 
         <IconButton
           className={classes.iconButtonSec}
-          onClick={() => history.push("/logout")}
+          onClick={() => history.push("/weekly")}
         >
           <AssessmentIcon className={classes.iconSec} />
           <Typography variant="h6" component="h6" className={classes.typoSec}>

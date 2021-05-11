@@ -17,6 +17,7 @@ import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
 import Test from "./components/Registration/Test.js";
 import Weekly from './components/History/Weekly/Weekly.js'
+import Monthly from './components/History/Monthly/Monthly.js'
 
 
 //socket
@@ -66,6 +67,7 @@ function App() {
         <Route path="/device" component={Device}></Route>
         <Route path="/test" component={Test}></Route>
         <Route path="/weekly" component={Weekly}></Route>
+        <Route path="/monthly" component={Monthly}></Route>
 
 
       
