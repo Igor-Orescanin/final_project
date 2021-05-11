@@ -187,6 +187,7 @@ const LogIn = () => {
                 <Link className={classes.link} href="#" variant="body2">
                   Forgot password
                 </Link>
+
                 <Link
                   className={classes.link}
                   onClick={() => history.push("/registration")}

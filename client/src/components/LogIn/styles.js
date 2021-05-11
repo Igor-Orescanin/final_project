@@ -16,9 +16,9 @@ export default makeStyles((theme) => ({
     height: "65vh",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
-
+  
   typography: {
     marginTop: "64px",
     color: "#007982",
@@ -58,7 +58,7 @@ export default makeStyles((theme) => ({
     marginTop: "20px",
     bordercolor: "#007982",
     width: "212px",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
 
   link: {

@@ -14,6 +14,7 @@ import NavbarSec from "../Nav/NavbarSec.js";
 import "../../App.css";
 
 // material-ui
+
 import {
   Container,
   ThemeProvider,
@@ -72,19 +73,7 @@ const AddDevice = (props) => {
     
 console.log(deviceExist)
 console.log(errors.message)
-    //     api.addDevice(id, setFormData())
 
-    // })
-
-    // api({
-    //     'method': 'POST',
-    //     'url':'/adddevice',
-    //     'data': formData,
-    //     'headers': { 'content-type':'application/json' // override instance defaults
-    //     },
-    //     })
-    //     console.log('This is our form data: ', formData);
-    //     history.push("/devices");
   };
 
   return (
@@ -170,6 +159,7 @@ console.log(errors.message)
       </StylesProvider>
     </>
   );
+
 };
 
 export default AddDevice;
