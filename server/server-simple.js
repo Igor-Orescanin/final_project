@@ -17,6 +17,7 @@ const io = require('socket.io')(server);
 
 
 //---------------------MONGOOSE CONNECT ----------------------
+const {daysWaterFlow} = require('./controllers/waterFlowController')
 dotenv.config();
 
 mongoose.connect(process.env.DATABASE_ACCESS, {
@@ -44,11 +45,13 @@ app.use("/public", express.static("public"));
 app.use('/users', routeUsers);
 app.use('/auth', routeAuth);
 app.use('/devices', routeDevices);
+app.use('/7days', daysWaterFlow);
 
 
 
 //-----------RPI SERVER ------------------
 const { logger } = require('./utils');
+const waterFlow = require('./models/waterFlow');
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')
