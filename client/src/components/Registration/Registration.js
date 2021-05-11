@@ -65,7 +65,11 @@ const Registration = (props) => {
           setMailExist(res.data.msg);
           setErrors("");
         } else {
-          history.push("/adddevice");
+           history.push({
+             pathname: "/adddevice",
+             state: {userID : res.data._id }
+           })
+          //  console.log(res.data)
         }
           console.log(errors.msg)
           console.log(res.data);

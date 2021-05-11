@@ -10,11 +10,11 @@ exports.addDevice = async (req, res, next) => {
 
     if (devices.length > 0) {
       // device already exists
-      return res.json(409).json({
+      return res.json({
         message: "Device exists"
       });
     }
-
+  
     const deviceCreate = new Device({
       deviceName: req.body.deviceName,
       serialNumber: req.body.serialNumber

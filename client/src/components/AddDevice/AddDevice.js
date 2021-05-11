@@ -47,10 +47,14 @@ const AddDevice = (props) => {
   //for styles
   const classes = useStyles();
 
+  
+  const userId = props.location.state.userID
+//console.log(userId)
   //a hook
   const [formData, setFormData] = useState({
     deviceName: "",
-    deviceId: "",
+    serialNumber: "",
+    userId: userId,
   });
 
   const [deviceExist, setDeviceExist] = useState('');
@@ -58,22 +62,25 @@ const AddDevice = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    api.addDevice(formData)
+// console.log(userId)
+// console.log(formData)
+    api.asignDevice(formData)
     .then((res)=>{
-      if(res.data.message === "Device exists"){
-      setDeviceExist(res.data.message)
-      setErrors(res.data.error);
+      console.log(res.data)
+       if(res.data.message === "Device exists"){
+       setDeviceExist(res.data.message)
+       setErrors(res.data.error);
+      history.push('/devices')
       }
-      console.log(res.data.message)
-      console.log(res.data.error)
-      console.log(errors.message)
+       else{history.push('/devices')}
+      
+     
     }).catch((error) => {
+      if(error){ setDeviceExist('Device exist')
+        setErrors('igor')}
       console.log(error);
     });
     
-console.log(deviceExist)
-console.log(errors.message)
-
   };
 
   return (
@@ -118,15 +125,15 @@ console.log(errors.message)
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      deviceId: e.target.value,
+                      serialNumber: e.target.value
                     })
                   }
                   className={`${classes.inputField} ${classes.myInputLabel}  ${classes.root} ${classes.focused}  ${classes.notchedOutline} `}
                   required
-                  id="deviceId"
+                  id="serialNumber"
                   label="Device Id"
                   variant="outlined"
-                  name="deviceId"
+                  name="serialNumber"
                   type="text"
                   size="small"
                   InputLabelProps={{
