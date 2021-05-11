@@ -21,3 +21,7 @@ export const addUser = (data) => axios.post(`${url}/users`, data);
 export const authUser = () => axios.get(`${url}/users/isUser`, {headers: {
     "x-access-token": localStorage.getItem('token')
 }});
+
+
+
+export const get7days = () => axios.get(`${url}/7days`)
