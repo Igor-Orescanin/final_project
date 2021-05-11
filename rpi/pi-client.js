@@ -38,8 +38,8 @@ async function main() {
     });
 
     sensor.on('data', (sensorReading) => {
-      // logger.log(JSON.stringify(sensorReading));
-      // socket.emit('sensorData', sensorReading);
+      logger.log(JSON.stringify(sensorReading));
+      socket.emit('sensorData', sensorReading);
     });
 
     waterflowSensor.on('data', (waterFlowReadings) => {

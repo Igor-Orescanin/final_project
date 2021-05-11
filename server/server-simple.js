@@ -66,8 +66,8 @@ io.on('connection', (socket) => {
       logger.log(`Received sensor readings`);
         logger.log(JSON.stringify(sensorReading));
 
-      // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
-      //   socket.to('sensor_measurements').emit('sensorReading', sensorReading);
+      socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
+      socket.to('sensor_measurements').emit('sensorReading', sensorReading);
       socket.broadcast.emit('sensorReading', sensorReading);
     });
 
