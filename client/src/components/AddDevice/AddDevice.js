@@ -53,19 +53,25 @@ const AddDevice = (props) => {
   });
 
   const [deviceExist, setDeviceExist] = useState('');
-
+  const [errors, setErrors] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
 
     api.addDevice(formData)
     .then((res)=>{
-      if(res.data.message === "Device exists")
-      setDeviceExist(res.data.msg)
-      console.log(res.data)
-    }) .catch((error) => {
+      if(res.data.message === "Device exists"){
+      setDeviceExist(res.data.message)
+      setErrors(res.data.error);
+      }
+      console.log(res.data.message)
+      console.log(res.data.error)
+      console.log(errors.message)
+    }).catch((error) => {
       console.log(error);
     });
+    
 console.log(deviceExist)
+console.log(errors.message)
     //     api.addDevice(id, setFormData())
 
     // })
