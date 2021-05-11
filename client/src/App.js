@@ -14,6 +14,13 @@ import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
+import Device from "./components/Devices/Device/Device.js";
+import Test from "./components/Registration/Test.js";
+import Weekly from './components/History/Weekly/Weekly.js'
+
+
+//socket
+import io from 'socket.io-client';
 
 
 // css
@@ -21,23 +28,27 @@ import "./App.css";
 
 
 //react-router-dom
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import io from 'socket.io-client';
+
 
 const socket = io('http://localhost:3005', {
   transports: ['websocket', 'polling']
 });
 
+
 function App() {
 
+
   const [response, setResponse] = useState("");
+
   useEffect(() => {
 
     socket.on("FromAPI", data => {
       setResponse(data);
     });
   }, []);
+  
   return (
     <Router>
       <div className="app">
@@ -52,6 +63,12 @@ function App() {
         <Route path="/devices" component={Devices}></Route>
         <Route path="/regdevice" component={RegDevice}></Route>
         <Route path="/graph" component={Graph}></Route>
+        <Route path="/device" component={Device}></Route>
+        <Route path="/test" component={Test}></Route>
+        <Route path="/weekly" component={Weekly}></Route>
+
+
+      
       </div>
     </Router>
   );
