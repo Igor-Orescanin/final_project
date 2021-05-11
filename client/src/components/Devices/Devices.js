@@ -70,9 +70,9 @@ const Devices = (props) => {
 
     setAllDevices(data);
 
-    console.log(data);
-    console.log(data[1].deviceId);
-    console.log(data[1].deviceName);
+    // console.log(data);
+    // console.log(data[1].deviceId);
+    // console.log(data[1].deviceName);
   }, []);
 
   return (

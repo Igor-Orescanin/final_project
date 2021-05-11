@@ -13,7 +13,8 @@ exports.addUser = async (req, res, next) => {
     if (users.length > 0) {
       // user already exists
       return res.json({
-        message: "Mail exists"
+        msg:"Mail exists",
+        auth: false,
       });
     }
 
@@ -84,13 +85,13 @@ exports.loginUser = (req, res) => {
     .exec()
     .then(response => {
       if (response.length < 1) {
-        return res.status(401).json({
+        return res.json({
           auth: false, message: 'Auth failed'
         });
       }
       bcrypt.compare(req.body.password, response[0].password, (err, result) => {
         if (err) {
-          return res.status(401).json({
+          return res.json({
             auth: false, message: 'Auth failed'
           })
         }

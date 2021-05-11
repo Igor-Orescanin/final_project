@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
 
 
   button:{
-    borderColor: "#008CA7",
+    bordercolor: "#008CA7",
     marginTop:'34px',
     textTransform: "none",
     marginRight:'10px',
@@ -40,7 +40,7 @@ export default makeStyles((theme) => ({
   },
 
   addbutton:{
-    borderColor: "#008CA7",
+    bordercolor: "#008CA7",
     marginTop:'20px',
     textTransform: "none",
     marginRight:'10px',
