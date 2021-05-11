@@ -23,6 +23,6 @@ router
   .put(updateDevice)   // //use only for postman
   .delete(deleteDevice)
 
-  
+
 module.exports = router;
 
