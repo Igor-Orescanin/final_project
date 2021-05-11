@@ -55,7 +55,7 @@ exports.getUser = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
-    console.log(req.params.id);
+   // console.log(req.params.id);
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       useFindAndModify: false
@@ -77,7 +77,7 @@ exports.deleteUser = async (req, res, next) => {
   }
 };
 
-//LOGIN USER IGUAL ARCHIVO: EXPRESS-LOGIN-STARTER-CODE
+//LOGIN USER
 exports.loginUser = (req, res) => {
 
   //AUTENTICATION STARTS WHEN YOU LOOK THE EMAIL IN THE DB AND COMPARE THE PASSWORD

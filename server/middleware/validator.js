@@ -24,9 +24,18 @@ console.log(validationResult(req).array())
     }
   };
 
-  return [   //los nombre name, lastName viene del html porque viene del http request validando lo que viene del body
+  return [
     check('username').notEmpty().withMessage('"Name" is required').isLength({ min: 3 }).withMessage('Name must be at least 3 characters').trim().escape(),
     check('email', 'Email is required').isEmail().normalizeEmail(),
+<<<<<<< HEAD
+    check('password', 'Password is required').isLength({ min: 4 }).custom((val, { req }) => {
+      if (val !== req.body.confirm_password) {
+        throw new Error(`Password don't match!`);
+      } else {
+        return val;
+      }
+    }),
+=======
    // check('password', 'Password is required').isLength({min:4}),
      check('password', 'Password is required').isLength({min:4}).custom((value, {req}) => {
      if(value !== req.body.confirmPassword) {
@@ -52,6 +61,7 @@ console.log(validationResult(req).array())
 //       }
 //       return value;
 //  }),
+>>>>>>> main
     handler,
   ]
 }
