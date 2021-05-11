@@ -8,39 +8,20 @@ const url = 'http://localhost:3005'
 export const fetchDevices =() => axios.get(`${url}/devices`);
 
 //add new device
-export const addDevice = (newDevice) => axios.device(url, newDevice);
+//export const addDevice = (newDevice) => axios.device(url, newDevice);
+export const addDevice = (deviceId) => axios.post(`${url}/devices`, deviceId);
 
 //delete device
 export const deleteDevice = (id) => axios.delete(`${url}/${id}`);
 
-//export const postUser =(newUser) => axios.post(`${url}/users`);
+export const loginUser = (data) => axios.post(`${url}/users/login`, data);
+
+export const addUser = (data) => axios.post(`${url}/users`, data);
+
+export const authUser = () => axios.get(`${url}/users/isUser`, {headers: {
+    "x-access-token": localStorage.getItem('token')
+}});
 
 
 
-
-
-
-
-
-// const instance = axios.create({
-//   baseURL: 'http://localhost:3005/'
-// })
-
-// export default instance;
-
-
-/*
-
-import Axios from "axios";
-
-
-Axios({
-    method: "POST",
-    url: "http://maritza.localhost:3005/registration",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  });
-    */
+export const get7days = () => axios.get(`${url}/7days`)

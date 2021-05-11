@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
     margin: "20px",
     width: "80px",
     borderRadius: "9px",
-    borderColor: "#008CA7",
+    bordercolor: "#008CA7",
     border: "solid",
     fontSize: "15px",
     textTransform: "none",

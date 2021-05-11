@@ -1,38 +1,42 @@
 // react
 import React, { useState } from "react";
+
+// style
 import { StylesProvider } from "@material-ui/core/styles";
 
-// react-router-dom
-import { BrowserRouter, Link, Route } from "react-router-dom";
+//axios
+import * as api from "../../api";
 
-//styles to use the connection
+// styles to use the connection
 import useStyles from "./styles";
 
 //styles
-import { Container, ThemeProvider } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography"; //Typography
-import Paper from "@material-ui/core/Paper/index";
-import Button from "@material-ui/core/Button"; //button
-import Avatar from "@material-ui/core/Avatar"; //avatar
-import TextField from "@material-ui/core/TextField";
-//import Link from '@material-ui/core/Link'; // NOT work course of  Link from react-router-dom same name
+import {
+  Container,
+  ThemeProvider,
+  Typography,
+  Link,
+  Button,
+  Avatar,
+  TextField,
+  Dialog,
+  DialogContent,
+  IconButton,
+} from "@material-ui/core";
+// alert
+import Alert from "@material-ui/lab/Alert";
+import CloseIcon from '@material-ui/icons/Close';
 
+// css
 import "../../App.css";
+
+// history for the routes
 import { useHistory } from "react-router-dom";
 
-//useState react hook method returns = function of the hook setPostDate and = postData = e.target.value
-// const [postData, setPostData] = useState({
-//     email:'',
-//     password:'',
-
-// })
-
-// to connect the routes
-//
-
-//change color as a theme
+// change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+// theme
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -44,11 +48,52 @@ const theme = createMuiTheme({
   },
 });
 
+//__________________________________________________________start
 const LogIn = () => {
+  //hook
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-
+  const [loginStatus, setLoginStatus] = useState("");
   const history = useHistory();
   const classes = useStyles();
+
+  //alert
+  const [open, setOpen] = React.useState(true);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+
+  // handleSubmit on imputfield
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    api
+      .loginUser(formData)
+      .then((response) => {
+        if (!response.data.auth) {
+          console.log(response.data);
+          setLoginStatus("Wrong password or email");
+          handleClickOpen()
+
+        } else {
+          localStorage.setItem("token", response.data.token);
+          
+        // do we have any device when yes  history.push ('/devices') if not  history.push("/adddevice")
+          history.push("/adddevice"); 
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <StylesProvider injectFirst>
@@ -64,9 +109,41 @@ const LogIn = () => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+             
+           
+              <Dialog in={open}>
+              <DialogContent>
+                <Alert 
+                severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                >
+                  {loginStatus}
+                </Alert>
+                </DialogContent>
+              </Dialog>
+           
+             
+             
+             
+
+              <h2>{loginStatus}</h2>
               <TextField
-                className={classes.inputField}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className={`${classes.inputField} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
                 required
                 id="email"
@@ -76,17 +153,18 @@ const LogIn = () => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
-              // value={postData.email}
-              // onChange={(e) => setPostData({...postData, email : e.target.value})}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.root,
+                //     focused: classes.focused,
+                //     notchedOutline: classes.notchedOutline,
+                //   },
+                // }}
               />
               <TextField
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="password"
@@ -94,7 +172,6 @@ const LogIn = () => {
                 variant="outlined"
                 name="password"
                 size="small"
-                BorderColor="red"
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -105,28 +182,28 @@ const LogIn = () => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-              //value={postData.password}
-              // onChange={(e) => setPostData({...postData, password : e.target.value})}
               />
-              <div className={classes.link} >
+              <div className={classes.link}>
                 <Link className={classes.link} href="#" variant="body2">
                   Forgot password
                 </Link>
-                <Link className={classes.link} onClick={() => history.push("/registration")} variant="body2">
+
+                <Link
+                  className={classes.link}
+                  onClick={() => history.push("/registration")}
+                  variant="body2"
+                >
                   Registration
                 </Link>
               </div>
               <Button
                 className={classes.button}
-                onClick={() => history.push("/devices")}
-                className={classes.button}
+                type="submit"
                 variant="contained"
                 color="primary"
               >
                 Log-In
               </Button>
-
-
             </form>
           </div>
           <div className={classes.footer}></div>

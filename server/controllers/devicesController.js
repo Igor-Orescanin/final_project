@@ -1,27 +1,28 @@
-const Device = require('../models/Devices');
+
+const Device = require('../models/Device');
 const createError = require("http-errors");
 
 require('dotenv').config();
 
 exports.addDevice = async (req, res, next) => {
   try {
-    const devices = await Device.find({ deviceId: req.body.deviceId }).exec();
+    const devices = await Device.find({ serialNumber: req.body.serialNumber }).exec();
 
     if (devices.length > 0) {
       // device already exists
-      return res.status(409).json({
+      return res.json(409).json({
         message: "Device exists"
       });
     }
 
-    const device = new Device({
+    const deviceCreate = new Device({
       deviceName: req.body.deviceName,
-      deviceId: req.body.deviceId
+      serialNumber: req.body.serialNumber
     });
 
-    await device.save();
+    await deviceCreate.save();
 
-    res.status(200).send(device);
+    res.status(200).send(deviceCreate);
   } catch (e) {
     next(e);
   }

@@ -11,7 +11,8 @@ const {
   getUsers,
   getUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser
 } = require("../controllers/usersController");
 
 
@@ -22,16 +23,22 @@ const {
 router
   .route("/")
   .get(getUsers)   //use only for postman
-  .post(validateUser(), addUser);
+  .post(validateUser(), addUser );
 
+router
+  .route("/login")
+  .post(loginUser)
+  
 router
   .route("/:id")
   .get(getUser)   //use only for postman
   .delete(auth, deleteUser)  //use only for postman
   .put(auth, updateUser);
 
+
+// ROUTE FOR ASSIGN DEVICE TO A USER
 router
-  .route("/assignDevice/:id")
-  .put(assignDevice)
+  .route("/:userId/assignDevice/:deviceId")
+  .post(assignDevice)
 
 module.exports = router;
