@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import zIndex from "@material-ui/core/styles/zIndex";
 
-import image from '../../../image/background_mobile.svg';
+import image from '../../../image/charts_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 320 221" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Vector-3-3x" serif:id="Vector 3@3x" transform="matrix(1,0,0,1,159.732,114.82)">
+        <g id="welcome_bg_mobile" transform="matrix(-1.0011,0,0,1,0.0913014,-3.32)">
+            <g id="Vector-3-3x1" serif:id="Vector 3@3x">
+                <g id="welcome_bg_mobile1" serif:id="welcome_bg_mobile" transform="matrix(1,0,0,1,-160,-110.5)">
+                    <clipPath id="_clip1">
+                        <rect x="0" y="0" width="320" height="221"/>
+                    </clipPath>
+                    <g clip-path="url(#_clip1)">
+                        <g transform="matrix(1,0,0,1,0,2)">
+                            <g id="Vector-3-3x2" serif:id="Vector 3@3x">
+                                <g>
+                                    <g>
+                                        <g transform="matrix(1,0,0,1,-0.649,59.258)">
+                                            <g id="Subtract">
+                                                <g>
+                                                    <g>
+                                                        <path d="M0,101L0,9.384C0,9.384 16,140.574 148,54.921C280,-30.732 320,9.384 320,9.384L320,101L0,101Z" style="fill:rgb(0,162,172);"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g transform="matrix(0.727704,0,0,1,88.7517,-2)">
+                                            <rect x="-129.6" y="152.067" width="455.538" height="76.536" style="fill:rgb(0,162,172);"/>
+                                        </g>
+                                        <g transform="matrix(1,0,0,1,0.129,62.407)">
+                                            <g id="Vector-2" serif:id="Vector 2">
+                                                <g>
+                                                    <g>
+                                                        <path d="M328,14.5C324.248,10.333 308.763,0 291.163,0C269.163,0 235.396,5.5 170.42,65C164.585,70.343 129.491,103.5 120.793,109C112.096,114.5 92.654,128 73.724,128.5C54.794,129 42.003,126.5 20.004,100.5C3.18,80.618 0.419,66.875 0.05,61.509L0.05,59C0.05,59 -0.063,59.858 0.05,61.509L0.05,223L328,223L328,14.5Z" style="fill:rgb(48,212,222);fill-rule:nonzero;"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="welcome_bg_mobile2" serif:id="welcome_bg_mobile">
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
