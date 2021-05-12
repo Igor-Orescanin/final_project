@@ -12,7 +12,7 @@ exports.addDevice = async (req, res, next) => {
 
     if (devices.length > 0) {
       // device already exists
-      return res.status(409).json({
+      return res.json(409).json({
         message: "Device exists"
       });
     }

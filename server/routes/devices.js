@@ -12,7 +12,11 @@ const {
 
 
 router
+<<<<<<< HEAD
   .route("/")
+=======
+  .route('/') 
+>>>>>>> main
   .get(getDevices)
   .post(addDevice) //use only for postman
 
