@@ -112,8 +112,7 @@ const LogIn = () => {
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
              
            
-              <Dialog in={open}>
-              <DialogContent>
+              
                 <Alert 
                 severity="error"
                   action={
@@ -131,9 +130,7 @@ const LogIn = () => {
                 >
                   {loginStatus}
                 </Alert>
-                </DialogContent>
-              </Dialog>
-           
+              
              
              
              

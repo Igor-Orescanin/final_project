@@ -145,7 +145,7 @@ const Water = (props) => {
     <>
       <StylesProvider injectFirst>
         <NavbarSec />
-        <Container>
+        <Container className={classes.container}>
           {/* <div>
             <Grid container spacing={3}>
               <Grid item xs={6}>
@@ -195,6 +195,7 @@ const Water = (props) => {
           >
             Sign-In
           </Button>
+          <div className={classes.footer}></div>
         </Container>
       </StylesProvider>
     </>

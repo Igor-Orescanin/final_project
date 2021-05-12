@@ -1,8 +1,23 @@
 import { FormHelperText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+// background picture
+import image from "../../image/water2_bg_mobile.svg";
+
 export default makeStyles((theme) => ({
-  
+ 
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyItems: "center",
+  },
+
+
+
+
+
+
 navContainer:{
 
     margin:'0px',
@@ -42,8 +57,20 @@ navContainer:{
   padding: theme.spacing(2),
   textAlign: 'center',
 //   // color: theme.palette.text.secondary,
- },
 
+ },
+ footer: {
+  zIndex: "-1",
+  position: "fixed",
+  bottom: "0px",
+  height: "300px",
+  //height:'170px',
+  width: "100vw",
+  //backgroundColor: "Blue",
+  backgroundImage: `url(${image})`,
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+},
 
 
 

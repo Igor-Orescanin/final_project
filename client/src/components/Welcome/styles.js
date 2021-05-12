@@ -2,7 +2,7 @@
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 
 // background picture
-import image from "../../image/background_mobile.svg";
+import image from "../../image/welcome2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
 
@@ -36,7 +36,7 @@ export default makeStyles((theme) => ({
     zIndex: "-1",
     position: "fixed",
     bottom: "0px",
-    height: "190px",
+    height: "230px",
     //height:'170px',
     width: "100vw",
     //backgroundColor: "Blue",

@@ -72,7 +72,7 @@ const AddDevice = (props) => {
        setErrors(res.data.error);
       history.push('/devices')
       }
-       else{history.push('/devices')}
+    
       
      
     }).catch((error) => {
