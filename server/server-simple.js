@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const routeUsers = require('./routes/users');
 const routeAuth = require('./routes/auth');
 const routeDevices = require('./routes/devices');
+const routeWFSensor = require('./routes/waterFlow');
 const cors = require('cors');
 const session = require("express-session");
 
@@ -45,7 +46,7 @@ app.use("/public", express.static("public"));
 app.use('/users', routeUsers);
 app.use('/auth', routeAuth);
 app.use('/devices', routeDevices);
-app.use('/7days', daysWaterFlow);
+app.use('/waterFlow', routeWFSensor);
 
 
 
