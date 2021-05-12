@@ -49,7 +49,8 @@ const AddDevice = (props) => {
 
   
   const userId = props.location.state.userID
-//console.log(userId)
+   console.log(userId)
+
   //a hook
   const [formData, setFormData] = useState({
     deviceName: "",
@@ -57,8 +58,12 @@ const AddDevice = (props) => {
     userId: userId,
   });
 
+console.log(userId)
+
   const [deviceExist, setDeviceExist] = useState('');
+
   const [errors, setErrors] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -66,18 +71,24 @@ const AddDevice = (props) => {
 // console.log(formData)
     api.asignDevice(formData)
     .then((res)=>{
-      console.log(res.data)
        if(res.data.message === "Device exists"){
        setDeviceExist(res.data.message)
        setErrors(res.data.error);
-      history.push('/devices')
-      }
+      
+       // ---------------------- is not working right now not sure why
+      // }else{
+      //   history.push('/devices')
+      //   //  history.push({
+      //   //    pathname: "/devices",
+      //   //    state: {userID : res.data._id }
+      //   //  })
+       }
     
       
      
     }).catch((error) => {
       if(error){ setDeviceExist('Device exist')
-        setErrors('igor')}
+        setErrors('error')}
       console.log(error);
     });
     
@@ -101,7 +112,7 @@ const AddDevice = (props) => {
                       deviceName: e.target.value,
                     })
                   }
-                  className={`${classes.inputField} ${classes.myInputLabel} ${classes.root} ${classes.focused}  ${classes.notchedOutline}  `}
+                  className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
                   id="deviceName"
                   label="Device Name"
@@ -112,13 +123,13 @@ const AddDevice = (props) => {
                   InputLabelProps={{
                     style: { color: "#007982" },
                   }}
-                  // InputProps={{
-                  //   classes: {
-                  //     root: classes.root,
-                  //     focused: classes.focused,
-                  //     notchedOutline: classes.notchedOutline,
-                  //   },
-                  // }}
+                   InputProps={{
+                     classes: {
+                       root: classes.root,
+                       focused: classes.focused,
+                       notchedOutline: classes.notchedOutline,
+                     },
+                   }}
                 />
 
                 <TextField
@@ -128,7 +139,7 @@ const AddDevice = (props) => {
                       serialNumber: e.target.value
                     })
                   }
-                  className={`${classes.inputField} ${classes.myInputLabel}  ${classes.root} ${classes.focused}  ${classes.notchedOutline} `}
+                  className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
                   id="serialNumber"
                   label="Device Id"
@@ -139,18 +150,17 @@ const AddDevice = (props) => {
                   InputLabelProps={{
                     style: { color: "#007982" },
                   }}
-                  // InputProps={{
-                  //   classes: {
-                  //     root: classes.root,
-                  //     focused: classes.focused,
-                  //     notchedOutline: classes.notchedOutline,
-                  //   },
-                  // }}
+                   InputProps={{
+                     classes: {
+                       root: classes.root,
+                       focused: classes.focused,
+                       notchedOutline: classes.notchedOutline,
+                     },
+                   }}
                 />
 
                 <Button
                   onClick={handleSubmit}
-                 // onClick={() => history.push("/devices")}
                   className={classes.button}
                   variant="contained"
                   color="primary"

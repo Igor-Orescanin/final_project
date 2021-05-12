@@ -79,8 +79,11 @@ const LogIn = () => {
         } else {
           localStorage.setItem("token", response.data.token);
           
-        
-          history.push("/devices"); 
+          history.push({
+            pathname: "/devices",
+            state: {userID : response.data._id }
+          })
+         // history.push("/devices"); 
         }
       })
       .catch((err) => {

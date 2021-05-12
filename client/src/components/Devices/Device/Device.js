@@ -81,6 +81,7 @@ const Device = (props) => { //props.deviceObject.deviceId
 
   const handleClose = () => {
     setOpen(false);
+    
   };
 
   //for radio button FormControlLabel
@@ -133,7 +134,7 @@ const Device = (props) => { //props.deviceObject.deviceId
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleClose}  color="primary">
                   Disagree
                 </Button>
                 <Button onClick={handleClose} color="primary" autoFocus>

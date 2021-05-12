@@ -19,6 +19,19 @@ const Navbar = () => {
   const history = useHistory();
   const classes = useStyles();
 
+  // const [formData, setFormData] = useState({
+  //   email: "",
+  //   password: "",
+  //   userID : data._id,
+  //   userName: data.userName 
+  // });
+
+  // console.log(formData);
+
+
+
+
+
   return (
     <Container className={classes.navContainer}>
       <div className={classes.secondaryNav}>
@@ -29,13 +42,14 @@ const Navbar = () => {
           className={`${classes.typo} ${classes.hand}`}
         >
           {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
+          {/* Hello {formData.userName} */}
           Hello Sandeep
         </Typography>
         {/* </IconButton>  */}
 
         <IconButton
           className={classes.iconButton}
-          onClick={() => history.push("/")}
+          onClick={() => history.push("/setting")}
         >
           <SettingsIcon className={classes.icon} />
         </IconButton>
@@ -44,7 +58,7 @@ const Navbar = () => {
       <div className={classes.primaryNav}>
         <IconButton
           className={`${classes.iconButtonSec} ${classes.iconHome}`}
-          onClick={() => history.push("/")}
+          onClick={() => history.push("/devices")}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>

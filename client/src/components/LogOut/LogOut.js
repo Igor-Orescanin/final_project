@@ -1,8 +1,9 @@
 // react
 import React from "react";
 
-//connection
-import NavbarSec from "../Nav/NavbarSec.js";
+// style
+import { StylesProvider } from "@material-ui/core/styles";
+
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -11,28 +12,62 @@ import useStyles from "./styles";
 import '../../App.css';
 
 // material-ui
-import { Container } from "@material-ui/core";
-import Button from "@material-ui/core/Button"; //button
+import { Container,Typography,Button,ThemeProvider } from "@material-ui/core";
+
+
+// change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
+
+// theme
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+  },
+});
+
+
+
+
 
 const LogOut = (props) => { 
     const { history } = props;
     const classes = useStyles();
   
     return (
-      <> 
-        <NavbarSec />
-        <Container>
+       
+      <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Container className={classes.container}>
+        <div className={classes.top}></div>
+          <div className={classes.paper}>
+            <Typography
+              className={classes.typography}
+              component="h1"
+              variant="h5"
+            >
+              Have a nice Day and see you again on NaunetMon
+            </Typography>
+        
         <Button
-        onClick={() => history.push("/welcome")}
+        onClick={() => history.push("/")}
         className={classes.button}
         variant="contained"
         color="primary"
         >
-        Sign-In
+        Login again
       </Button> 
+      </div>
+      <div className={classes.footer}></div>
       </Container>
-      </>
-      );
+      </ThemeProvider>
+    </StylesProvider>
+      
+  );
 };
 
 export default LogOut;
