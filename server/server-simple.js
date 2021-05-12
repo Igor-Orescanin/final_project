@@ -55,7 +55,7 @@ app.use('/waterFlow', routeWFSensor);
 const { logger } = require('./utils');
 const WaterFlow = require('./models/WaterFlow');
 const Device = require('./models/Device');
-
+const User = require('./models/User');
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')
@@ -66,22 +66,31 @@ io.on('connection', (socket) => {
   //   socket.join('sensor_measurements');
   socket.on('device_connected', () => {
     logger.log('Device connected');
-    socket.on('sensorData', (sensorReading) => {
+    socket.on('sensorData', async (sensorReading) => {
       // logger.log(`Received sensor readings`);
       // logger.log(JSON.stringify(sensorReading));
 
-      //TODO COMO ME TRAIGO EL EMAIL DEL USER Y EL CLEANTHRESOLD
-      const device = Device.findOne({ serialNumber: sensorReading.serialNumber }).exec();
-      console.log(device.cleanWaterLevelAlertThreshold);
-
+      //--------------------- EMAIL ALERT -----------------------------------------------
+      const device = await Device.findOne({ serialNumber: sensorReading.serialNumber }).exec();
+      const user = await User.findOne({ _id: device.userId }).exec();
+      const email = user.email;
 
       if (sensorReading.label === "CLEAN") {
-        if (sensorReading.levelPercentage >= 50) {
-          console.log("Email alert");
-
-
+        if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
+          let message = "Alert clean water level is low";
+          emailSender.sendEmail(email, message, (ok) => {
+            if (ok) {
+              // resolve();
+            } else {
+              // reject();
+            }
+          })
         }
 
+      } else if (sensorReading.label === "WASTE") {
+        if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
+          //console.log("Email alert waste water low");
+        }
       }
 
       // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
@@ -90,23 +99,24 @@ io.on('connection', (socket) => {
     });
 
 
-    socket.on('waterFlowData', async (waterFlowReadings) => {
-      // TODO FIND DEVICE WITH SERIAL NUMBER RECEIVED
-      // TODO TRAETE EL _ID Y LOS USAS PARA INSETARLO EN new waterFlow creado de mongoose
-      const waterReading = new WaterFlow({
-        pin: waterFlowReadings.pin,
-        model: waterFlowReadings.model,
-        isRunning: waterFlowReadings.isRunning,
-        flow: waterFlowReadings.flow,
-        volume: waterFlowReadings.volume,
-        waterFlowCounter: waterFlowReadings.waterFlowCounter,
-        ts: waterFlowReadings.ts,
-        // TODO deviceId: device._id
-      })
+    // WATERFLOW CODE ----------------------------------------------
+    // socket.on('waterFlowData', async (waterFlowReadings) => {
+    //   // TODO FIND DEVICE WITH SERIAL NUMBER RECEIVED
+    //   // TODO TRAETE EL _ID Y LOS USAS PARA INSETARLO EN new waterFlow creado de mongoose
+    //   const waterReading = new WaterFlow({
+    //     pin: waterFlowReadings.pin,
+    //     model: waterFlowReadings.model,
+    //     isRunning: waterFlowReadings.isRunning,
+    //     flow: waterFlowReadings.flow,
+    //     volume: waterFlowReadings.volume,
+    //     waterFlowCounter: waterFlowReadings.waterFlowCounter,
+    //     ts: waterFlowReadings.ts,
+    //     // TODO deviceId: device._id
+    //   })
 
-      await waterReading.save()
-      logger.log(JSON.stringify(waterFlowReadings));
-    })
+    //   await waterReading.save()
+    //   logger.log(JSON.stringify(waterFlowReadings));
+    // })
 
   });
 });

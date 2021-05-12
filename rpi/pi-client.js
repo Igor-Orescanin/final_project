@@ -39,8 +39,10 @@ async function main() {
     });
 
 
-    // GET MAC ADDRESS OR SERIAL NUMBER
-    const callMac = () =>{
+
+
+  // GET MAC ADDRESS OR SERIAL NUMBER
+    const callMac = () => {
       return getmac.default()
     }
     const serialNumber = callMac();

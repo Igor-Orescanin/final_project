@@ -1,7 +1,7 @@
 
 const Device = require('../models/Device');
 const createError = require("http-errors");
-const { log } = require('async');
+
 
 
 require('dotenv').config();
@@ -61,8 +61,6 @@ exports.updateDevice = async (req, res, next) => {
 
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
-
-    console.log(device.cleanWaterLevelAlertThreshold);
 
   } catch (e) {
     next(e);
