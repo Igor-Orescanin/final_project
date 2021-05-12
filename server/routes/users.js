@@ -38,7 +38,7 @@ router
 
 // ROUTE FOR ASSIGN DEVICE TO A USER
 router
-  .route("/:userId/assignDevice/:deviceId")
+  .route("/:userId/assignDevice/:serialNumber")
   .post(assignDevice)
 
 module.exports = router;
