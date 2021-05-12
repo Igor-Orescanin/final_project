@@ -2,48 +2,13 @@ const WaterFlow = require('../models/waterFlow');
 
 
 exports.daysWaterFlow = async(req,res) => {
-    // let d = new Date();
 
-    // d.setDate(d.getDate()-7);
-    // try{
+    let d = new Date();
+    d.setDate(d.getDate()-30);
+    console.log(d)
 
-    // } catch (e) {
-
-    // }
-
-
-    // const liters = await WaterFlow.aggregate(
-    //     [{
-    //         '$group': {
-    //             _id: { 
-    //                 "interval": {
-    //                     "$subtract": [
-    //                         { "$minute": "$ts" },
-    //                         { "$mod": [{ "$minute": "$ts" }, 1] }
-    //                     ]
-    //                 }
-    //             },
-    //             "count": { "$sum": 1 }
-        
-    //         }
-    //     }]);
-
-    // const liters = await WaterFlow.aggregate([
-    //     { $sort: { createdDate: -1 } },
-    //     { "$group": {
-    //       "_id": {
-    //         "$toDate": {
-    //           "$subtract": [
-    //             { "$toLong": { "$toDate": "$_id" }  },
-    //             { "$mod": [ { "$toLong": { "$toDate": "$_id" } }, 1000 * 60 * 1 ] }
-    //           ]
-    //         }
-    //       },
-    //       "count": { "$sum": 1 }
-    //     }}
-    //   ])
-    
-    const liters = await WaterFlow.aggregate([
+    const readings = await WaterFlow.aggregate([
+        {$match: {'ts': {$gt: d}}},
         {
             "$project": {
                 "ts": 1,
@@ -61,29 +26,33 @@ exports.daysWaterFlow = async(req,res) => {
                     }
                 },
 
-                "grouped_data": { "$push": {"ts": "$ts", "waterFlowCounter": "$waterFlowCounter" } }
+                "daylyReading": { "$push": {"ts": "$ts", "waterFlowCounter": "$waterFlowCounter" } }
             }
         },
         {
             "$project":{
                 "_id": 0,
-                "grouped_data": 1
+                "daylyReading": 1
             }
         }
         ,
-
-        {"$sort": {"ts": 1}}
+        {"$sort": {"daylyReading": 1}}
     ])
     
 
     var result = []; 
-
-    liters.forEach(el => {
+    for (let index = 0; index < readings.length; index++) {
+        // IF WE ARE NOT ON LAST INDEX TAKE THE FIRST READING OF THE NEXT DAY AND SUBSTRACT IT FROM FIRST READING OF PRESENT DAY 
+        if(index !== readings.length -1){
+            result.push({time: readings[index].daylyReading[0].ts, value: readings[index +1].daylyReading[0].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})
+        } else {
+            // ON THE LAST INDEX TAKE THE LAST READING OF THE LAST DAY AND SUBSTRACT IT FROM THE FIRST READING OF THE SAME DAY
+            result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})
+        }
         
-       result.push({time: el.grouped_data[0].ts, value: el.grouped_data[el.grouped_data.length -1].waterFlowCounter - el.grouped_data[0].waterFlowCounter})
-       
-    })
-    res.send(liters)
+        
+    }
+    res.send(readings)
     console.log(result)
 
 
