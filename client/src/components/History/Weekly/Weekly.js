@@ -32,15 +32,10 @@ function Weekly(props) {
         chart: {
             height: 400,
             width: 600,
-            type: 'area',
-            dropShadow: {
-                enabled: true,
-                color: '#000',
-                top: 100,
-                left: 7,
-                blur: 10,
-                opacity: 0.2
-            },
+            type: 'line',
+            line: {
+                color: ['black']
+              },
             toolbar: {
                 show: false,
             },
@@ -49,7 +44,8 @@ function Weekly(props) {
             enabled: false,
         },
         stroke: {
-            curve: 'smooth'
+            curve: 'smooth',
+            colors: '#0C9EB5'
         },
 
         xaxis: {
@@ -100,9 +96,9 @@ function Weekly(props) {
                                 color="primary"
                                 type='submit'>Monthly</Button>
                         </div>
-                        <h3>Weekly</h3>
+                        <h3 className={classes.liveTime}>Weekly</h3>
                         <div id="chart" className={classes.chart}>
-                            <ReactApexChart options={options} series={series} type="area" height={350} />
+                            <ReactApexChart options={options} series={series} type="line" height={350} />
                         </div>
 
                         <div className={classes.continerWeeklyDetail}>
