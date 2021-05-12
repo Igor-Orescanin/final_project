@@ -42,6 +42,10 @@ export default makeStyles((theme) => ({
         marginRight: '20px',
     },
 
+    liveTime: {
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+    },
+
     chart: {
         width: '90vw',
         zIndex: '-2'
@@ -49,6 +53,7 @@ export default makeStyles((theme) => ({
 
 
     continerMonthlyDetail: {
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         color: '#0C9EB5',
         zIndex: "-5",
         height: '38vh',
