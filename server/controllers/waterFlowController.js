@@ -4,7 +4,7 @@ const WaterFlow = require('../models/waterFlow');
 exports.daysWaterFlow = async(req,res) => {
 
     let d = new Date();
-    d.setDate(d.getDate()-30);
+    d.setDate(d.getDate()-3030);
     console.log(d)
 
     const readings = await WaterFlow.aggregate([
