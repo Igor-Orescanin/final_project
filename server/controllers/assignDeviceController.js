@@ -12,7 +12,7 @@ exports.assignDevice = async (req, res, next) => {
       throw new Error('Device not found');
     }
     if (device.userId) {
-      throw new Error('Device is already assigned');
+      throw new Error('Device is already assigned');  
     }
     await Device.findByIdAndUpdate(device._id, { userId }, {
       new: true,

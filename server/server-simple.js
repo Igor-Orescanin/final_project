@@ -8,6 +8,8 @@ const routeDevices = require('./routes/devices');
 const routeWFSensor = require('./routes/waterFlow');
 const cors = require('cors');
 const session = require("express-session");
+const emailSender = require('./emailSender');
+
 
 const port = process.env.PORT || 3005;
 //----------------------SOCKET.IO------------------------------
@@ -23,7 +25,8 @@ dotenv.config();
 mongoose.connect(process.env.DATABASE_ACCESS, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 })
 
 mongoose.connection.on("error", console.error);
@@ -51,7 +54,8 @@ app.use('/waterFlow', routeWFSensor);
 //-----------RPI SERVER ------------------
 const { logger } = require('./utils');
 const WaterFlow = require('./models/WaterFlow');
-const { log } = require('console');
+const Device = require('./models/Device');
+
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')
@@ -63,11 +67,25 @@ io.on('connection', (socket) => {
   socket.on('device_connected', () => {
     logger.log('Device connected');
     socket.on('sensorData', (sensorReading) => {
-      logger.log(`Received sensor readings`);
-        logger.log(JSON.stringify(sensorReading));
+      // logger.log(`Received sensor readings`);
+      // logger.log(JSON.stringify(sensorReading));
 
-      socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
-      socket.to('sensor_measurements').emit('sensorReading', sensorReading);
+      //TODO COMO ME TRAIGO EL EMAIL DEL USER Y EL CLEANTHRESOLD
+      const device = Device.findOne({ serialNumber: sensorReading.serialNumber }).exec();
+      console.log(device.cleanWaterLevelAlertThreshold);
+
+
+      if (sensorReading.label === "CLEAN") {
+        if (sensorReading.levelPercentage >= 50) {
+          console.log("Email alert");
+
+
+        }
+
+      }
+
+      // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
+      // socket.to('sensor_measurements').emit('sensorReading', sensorReading);
       socket.broadcast.emit('sensorReading', sensorReading);
     });
 
@@ -87,7 +105,6 @@ io.on('connection', (socket) => {
       })
 
       await waterReading.save()
-      // logger.log(`Received water flow: ${clientId}`);
       logger.log(JSON.stringify(waterFlowReadings));
     })
 

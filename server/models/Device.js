@@ -10,6 +10,12 @@ const DeviceSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  cleanWaterLevelAlertThreshold: {
+    type: Number
+  },
+  wasteWaterLevelAlertThreshold: {
+    type: Number
+  },
   userId: {
     type: mongoose.ObjectId
   }

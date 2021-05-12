@@ -20,7 +20,7 @@ router
 router
   .route("/:id")
   .get(getDevice)
-  .put(updateDevice)   // //use only for postman
+  .put(updateDevice)   // update the thresold level
   .delete(deleteDevice)
 
 
