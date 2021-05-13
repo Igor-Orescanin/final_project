@@ -40,7 +40,7 @@ exports.getDevices = async (req, res, next) => {
 
 exports.getDevice = async (req, res, next) => {
   try {
-    const device = await Device.findById(req.params.id);
+    const device = await Device.find({userId:req.params.id}).exec() ;
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
   } catch (e) {

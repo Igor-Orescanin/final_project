@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -14,10 +14,25 @@ import { Container, Typography, IconButton } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 
-const Navbar = () => {
+
+
+
+const Navbar = (props) => {
   const history = useHistory();
   const classes = useStyles();
+console.log(props)
 
+useEffect(() => {
+  const user = props.data
+  console.log(props)
+}, [])
+
+
+// if (!user){
+//   return <div></div>
+// }
+ // const userName = props.location.state.userName
+console.log(props.location)
   // const [formData, setFormData] = useState({
   //   email: "",
   //   password: "",
@@ -28,7 +43,7 @@ const Navbar = () => {
   // console.log(formData);
 
   return (
-   // {userName = userId ? (''):(<dv></dv>)},
+   
     <Container className={classes.navContainer}>
       <div className={classes.secondaryNav}>
         <Typography
@@ -36,8 +51,7 @@ const Navbar = () => {
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-          Hello Sandeep
-        {/*{formData.userName} */}
+           Hello {props.username} 
         </Typography>
 
         <IconButton

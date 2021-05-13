@@ -59,17 +59,16 @@ const Device = (props) => { //props.deviceObject.deviceId
   //for styles
   const classes = useStyles();
 
+ 
+  const username = props.username
+
+  console.log(props.username)
+
 
   const device = props.deviceObject
-
+console.log(device)
 //a hook 
  //const [device, setDevice] = useState();
-
-  useEffect(async () => {
-    const { data } = await api.deleteDevice(device.deviceId)
-
-  },[]);
-
 
 
   //for dialogfeld
@@ -82,6 +81,11 @@ const Device = (props) => { //props.deviceObject.deviceId
   const handleClose = () => {
     setOpen(false);
     
+  };
+  const handleClose1 = () => {
+    setOpen(false);
+    api.deleteDevice(device._id)
+    // history.push('/devices')
   };
 
   //for radio button FormControlLabel
@@ -96,12 +100,15 @@ const Device = (props) => { //props.deviceObject.deviceId
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-         
-            <CheckCircleOutlineIcon className={classes.checkIcon}/>
-            <NotInterestedIcon className={classes.noIcon}/>
+         {/* {device.connected ?  <CheckCircleOutlineIcon className={classes.checkIcon}/>: <NotInterestedIcon className={classes.noIcon}/>} */}
+             <CheckCircleOutlineIcon className={classes.checkIcon}/>
+             <NotInterestedIcon className={classes.noIcon}/>
             
             <Button
-              onClick={() => history.push("/welcome")}
+              onClick={() => history.push({
+                pathname: "/welcome",
+                state: {userId :device.userId ,username:username}
+              })}
               className={classes.button}
               variant="contained"
               color="primary"
@@ -137,7 +144,7 @@ const Device = (props) => { //props.deviceObject.deviceId
                 <Button onClick={handleClose}  color="primary">
                   Disagree
                 </Button>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={handleClose1} color="primary" autoFocus>
                   Agree
                 </Button>
               </DialogActions>

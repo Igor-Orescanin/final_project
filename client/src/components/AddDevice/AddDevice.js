@@ -6,7 +6,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import * as api from "../../api";
 
 //connection
-import NavbarSec from "../Nav/NavbarSec.js";
+import Navbar from "../Nav/Navbar.js";
 
 //import { useHistory } from "react-router-dom";
 
@@ -48,8 +48,10 @@ const AddDevice = (props) => {
   const classes = useStyles();
 
   
-  const userId = props.location.state.userID
-   console.log(userId)
+   const userId = props.location.state.userId
+  // //  console.log(userId)
+
+   const username = props.location.state.username
 
   //a hook
   const [formData, setFormData] = useState({
@@ -58,7 +60,7 @@ const AddDevice = (props) => {
     userId: userId,
   });
 
-console.log(userId)
+//console.log(userId)
 
   const [deviceExist, setDeviceExist] = useState('');
 
@@ -68,20 +70,23 @@ console.log(userId)
     e.preventDefault();
 
 // console.log(userId)
-// console.log(formData)
+ console.log(formData)
+
     api.asignDevice(formData)
     .then((res)=>{
-       if(res.data.message === "Device exists"){
+
+      console.log(res)
+
+       if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
-       setErrors(res.data.error);
       
        // ---------------------- is not working right now not sure why
-      // }else{
-      //   history.push('/devices')
-      //   //  history.push({
-      //   //    pathname: "/devices",
-      //   //    state: {userID : res.data._id }
-      //   //  })
+      }else{
+       // history.push('/devices')
+         history.push({
+           pathname: "/devices",
+         state: {userId : userId , username:username}
+         })
        }
     
       
@@ -98,12 +103,14 @@ console.log(userId)
     <>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <NavbarSec />
+          <Navbar username={username}/> 
           <Container className={classes.container}>
             <div className={classes.paper}>
               <Typography className={classes.typography}>
                 You don't have any devices registered in this system!{" "}
               </Typography>
+
+              <Typography> {deviceExist} </Typography>
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                   onChange={(e) =>

@@ -15,9 +15,14 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const history = useHistory();
   const classes = useStyles();
+
+
+  const user = props.data
+  // const userName = props.location.state.userName
+
 
   // const [formData, setFormData] = useState({
   //   email: "",
@@ -43,7 +48,7 @@ const Navbar = () => {
         >
           {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
           {/* Hello {formData.userName} */}
-          Hello Sandeep
+          Hello 
         </Typography>
         {/* </IconButton>  */}
 

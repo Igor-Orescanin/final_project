@@ -42,6 +42,10 @@ const Registration = (props) => {
   const classes = useStyles();
   const { history } = props;
 
+
+  const fetchUser = props.fetchUser
+  console.log(props)
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -66,15 +70,18 @@ const Registration = (props) => {
           setMailExist(res.data.msg);
           setErrors("");
         } else {
+          const fetchUser = props.fetchUser
+         
+          fetchUser(res.data)
            history.push({
-             pathname: "/adddevice",
-             state: {userID : res.data._id }
+            pathname: "/adddevice",
+            state: {userId : res.data._id, username: res.data.username}
            })
-          //  console.log(res.data)
+          
         }
-          console.log(errors.msg)
-          console.log(res.data);
-          console.log(Object.values(errors)); 
+     
+          // console.log(res.data);
+          // console.log(Object.values(errors)); 
       })
       .catch((error) => {
         console.log(error);

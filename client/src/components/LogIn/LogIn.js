@@ -78,11 +78,11 @@ const LogIn = () => {
 
         } else {
           localStorage.setItem("token", response.data.token);
-          
-          history.push({
-            pathname: "/devices",
-            state: {userID : response.data._id }
-          })
+          console.log(response.data)
+             history.push({
+               pathname: "/devices",
+               state: {userId : response.data.userId ,username:response.data.username}
+             })
          // history.push("/devices"); 
         }
       })
