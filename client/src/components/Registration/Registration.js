@@ -50,7 +50,7 @@ const Registration = (props) => {
     username: "",
     email: "",
     password: "",
-    macAddress: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState([]);
