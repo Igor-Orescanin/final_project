@@ -5,14 +5,14 @@
 const url = 'http://localhost:3005'
 
 //get device
-export const fetchDevices =() => axios.get(`${url}/devices`);
+export const fetchDevices =(id) => axios.get(`${url}/devices/${id}`);
 
 //add new device
 //export const addDevice = (newDevice) => axios.device(url, newDevice);
-export const addDevice = (deviceId) => axios.post(`${url}/devices`, deviceId);
+export const asignDevice = (data) => axios.post(`${url}/users/${data.userId}/assignDevice/${data.serialNumber}`, data);
 
 //delete device
-export const deleteDevice = (id) => axios.delete(`${url}/${id}`);
+export const deleteDevice = (id) => axios.delete(`${url}/devices/${id}`);
 
 export const loginUser = (data) => axios.post(`${url}/users/login`, data);
 

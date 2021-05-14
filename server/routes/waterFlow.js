@@ -3,19 +3,31 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getWaterFlowSensors,
-  getDataByDate
+    getWeekWaterFlow,
+    getMonthWaterFlow,
+    getYearWaterFlow,
+    getMinWaterFlow
 } = require("../controllers/waterFlowController");
 
 
 router
-  .route("/")
-  .get(getWaterFlowSensors)    //use only for postman
+  .route("/week")
+  .get(getWeekWaterFlow)   
 
 
 router
-  .route("/measurements")
-  .get(getDataByDate)
+  .route("/month")
+  .get(getMonthWaterFlow)
+
+
+router
+  .route("/year")
+  .get(getYearWaterFlow)
+
+
+router
+  .route("/minutes")        //to check my database 
+  .get(getMinWaterFlow)
 
 module.exports = router;
 

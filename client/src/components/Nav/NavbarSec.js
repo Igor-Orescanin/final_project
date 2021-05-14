@@ -15,9 +15,27 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const history = useHistory();
   const classes = useStyles();
+
+
+  const user = props.data
+  // const userName = props.location.state.userName
+
+
+  // const [formData, setFormData] = useState({
+  //   email: "",
+  //   password: "",
+  //   userID : data._id,
+  //   userName: data.userName 
+  // });
+
+  // console.log(formData);
+
+
+
+
 
   return (
     <Container className={classes.navContainer}>
@@ -29,13 +47,14 @@ const Navbar = () => {
           className={`${classes.typo} ${classes.hand}`}
         >
           {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
-          Hello Sandeep
+          {/* Hello {formData.userName} */}
+          Hello 
         </Typography>
         {/* </IconButton>  */}
 
         <IconButton
           className={classes.iconButton}
-          onClick={() => history.push("/")}
+          onClick={() => history.push("/setting")}
         >
           <SettingsIcon className={classes.icon} />
         </IconButton>
@@ -44,14 +63,14 @@ const Navbar = () => {
       <div className={classes.primaryNav}>
         <IconButton
           className={`${classes.iconButtonSec} ${classes.iconHome}`}
-          onClick={() => history.push("/")}
+          onClick={() => history.push("/devices")}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>
 
         <IconButton
           className={classes.iconButtonSec}
-          onClick={() => history.push("/logout")}
+          onClick={() => history.push("/weekly")}
         >
           <AssessmentIcon className={classes.iconSec} />
           <Typography variant="h6" component="h6" className={classes.typoSec}>

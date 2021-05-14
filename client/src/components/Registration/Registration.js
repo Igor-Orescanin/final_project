@@ -168,13 +168,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
               <div>{formik.touched.username && formik.errors.username ? formik.errors.username : ""}</div>
 
@@ -195,13 +195,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
               <div>{formik.touched.email && formik.errors.email ? formik.errors.email : ""}</div>
 
@@ -226,13 +226,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
 
               <div>{formik.touched.password && formik.errors.password ? formik.errors.password : ""}</div>
@@ -257,13 +257,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
               <div>{formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : ""}</div>
 
