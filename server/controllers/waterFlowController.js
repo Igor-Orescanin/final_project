@@ -1,5 +1,5 @@
 
-const WaterFlow = require('../models/waterFlow');
+const WaterFlow = require('../models/WaterFlow');
 
 
 exports.getWeekWaterFlow = async(req,res,next) => {
