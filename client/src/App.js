@@ -16,6 +16,7 @@ import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
 import Test from "./components/Registration/Test.js";
+import Mytest from "./components/Registration/Mytest.js";
 import Weekly from './components/History/Weekly/Weekly.js'
 import Monthly from './components/History/Monthly/Monthly.js'
 
@@ -68,6 +69,7 @@ function App() {
         <Route path="/test" component={Test}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
+        <Route path="/mytest" component={Mytest}></Route>
 
 
       

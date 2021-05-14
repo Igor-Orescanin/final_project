@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios
-import * as api from "../../api";
+//import * as api from "../../api";
 
 // css
 import "../../App.css";
@@ -20,6 +20,7 @@ import {
 
 //styles to use the connection
 import useStyles from "./styles.js";
+import { useForm, Controller } from "react-hook-form";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -38,9 +39,10 @@ const theme = createMuiTheme({
 
 //__________________________________________________________start
 
-const Registration = (props) => {
+const Registration = () => {
   const classes = useStyles();
-  const { history } = props;
+  const { register, handleSubmit, control, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -49,35 +51,36 @@ const Registration = (props) => {
     macAddress: "",
   });
 
-  const [errors, setErrors] = useState([]);
 
-  const [mailExist, setMailExist] = useState("");
+  //const [ setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  //const [mailExist, setMailExist] = useState("");
 
-    api
-      .addUser(formData)
-      .then((res) => {
-        if (res.data.error) {
-          setErrors(res.data.error);
-        } else if (res.data.msg === "Mail exists") {
-          setMailExist(res.data.msg);
-          setErrors("");
-        } else {
-           history.push({
-             pathname: "/adddevice",
-             state: {userID : res.data._id }
-           })
-          //  console.log(res.data)
-        }
-          console.log(errors.msg)
-          console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  /* const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        api
+          .addUser(formData)
+          .then((res) => {
+            if (res.data.error) {
+              setErrors(res.data.error);
+            } else if (res.data.msg === "Mail exists") {
+              setMailExist(res.data.msg);
+              setErrors("");
+            } else {
+              history.push({
+                pathname: "/adddevice",
+                state: { userID: res.data._id }
+              })
+              //  console.log(res.data)
+            }
+            console.log(errors.msg)
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }; */
 
 
   return (
@@ -94,7 +97,10 @@ const Registration = (props) => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+
+           
+
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
@@ -106,19 +112,29 @@ const Registration = (props) => {
                 label="Name"
                 name="username"
                 size="small"
-                error={Boolean(errors?.msg)}
-                helperText={errors?.msg}
-                InputLabelProps={{
-                  style: { color: "#007982" },
-                }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+
+              // {...register("username",
+              //   {
+              //     required: true,
+              //     maxLength: 20,
+              //   })
+              // }
+              // error={Boolean(errors.username)}
+              //  helperText='username is required!!!!'
+
+              // InputLabelProps={{
+              //   style: { color: "#007982" },
+              // }}
+
+              // InputProps={{
+              //   classes: {
+              //     root: classes.root,
+              //     focused: classes.focused,
+              //     notchedOutline: classes.notchedOutline,
+              //   },
+              // }}
               />
+
 
               <TextField
                 onChange={(e) =>
@@ -134,13 +150,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+              // InputProps={{
+              //   classes: {
+              //     root: classes.root,
+              //     focused: classes.focused,
+              //     notchedOutline: classes.notchedOutline,
+              //   },
+              // }}
               />
 
               <TextField
@@ -158,13 +174,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+              // InputProps={{
+              //   classes: {
+              //     root: classes.root,
+              //     focused: classes.focused,
+              //     notchedOutline: classes.notchedOutline,
+              //   },
+              // }}
               />
 
               <TextField
@@ -182,13 +198,13 @@ const Registration = (props) => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+              // InputProps={{
+              //   classes: {
+              //     root: classes.root,
+              //     focused: classes.focused,
+              //     notchedOutline: classes.notchedOutline,
+              //   },
+              // }}
               />
 
               <Button
@@ -200,13 +216,15 @@ const Registration = (props) => {
               >
                 Register
               </Button>
+
             </form>
-            {errors.length < 1 ? (
-             <div></div>
-           ) : (
-             errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
-           )}
-           <h1>{mailExist}</h1>  
+
+            {/* {errors.length < 1 ? (
+              <div></div>
+            ) : (
+              errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
+            )}
+            <h1>{mailExist}</h1> */}
           </div>
           <div className={classes.footer}></div>
         </Container>
