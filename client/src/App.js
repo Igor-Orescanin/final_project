@@ -42,31 +42,40 @@ const socket = io('http://localhost:3005', {
 function App() {
 
 
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState({});
+
+const fetchUser =(user)=>{
+  setResponse(user)
+  //console.log(response)
+} 
 
   useEffect(() => {
 
-    socket.on("FromAPI", data => {
-      setResponse(data);
-    });
-  }, []);
+    // socket.on("FromAPI", data => {
+    //   setResponse(data);
+    // });
+
+    console.log(response)
+  }, [response]);
   
+
   return (
     <Router>
       <div className="app">
         <Route path="/" exact component={LogIn}></Route>
-        <Route path="/registration" component={Registration}></Route>
+        <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
+        {/* <Route path="/registration" component={Registration}></Route> */}
         <Route path="/welcome" component={Welcome}></Route>
-        <Route path="/navbar" component={Navbar}></Route>
+       <Route path="/navbar" render={(props)=><Navbar {...props} response={response}/>}></Route>
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" component={Water}></Route>
         <Route path="/setting" component={Setting}></Route>
         <Route path="/adddevice" component={AddDevice}></Route>
         <Route path="/devices" component={Devices}></Route>
         <Route path="/regdevice" component={RegDevice}></Route>
-        <Route path="/graph" component={Graph}></Route>
+       <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
-        <Route path="/test" component={Test}></Route>
+       <Route path="/test" component={Test}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
         <Route path="/mytest" component={Mytest}></Route>

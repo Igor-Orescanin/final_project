@@ -32,14 +32,20 @@ const theme = createMuiTheme({
 
 
 //Welcome-page
-const Welcome = () => {
+const Welcome = (props) => {
   const history = useHistory();
   const classes = useStyles();
+
+  const username = props.location.state.username
+  const userId = props.location.state.userId
+
+
+
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        <Navbar username={username}/>
 
         <Container className={classes.welcome}>
           <Button

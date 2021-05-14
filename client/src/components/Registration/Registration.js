@@ -44,6 +44,10 @@ const Registration = () => {
   const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => console.log(data);
 
+
+  const fetchUser = props.fetchUser
+  console.log(props)
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -51,36 +55,40 @@ const Registration = () => {
     macAddress: "",
   });
 
+  const [errors, setErrors] = useState([]);
 
-  //const [ setErrors] = useState([]);
 
-  //const [mailExist, setMailExist] = useState("");
+  const [mailExist, setMailExist] = useState("");
 
-  /* const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        api
-          .addUser(formData)
-          .then((res) => {
-            if (res.data.error) {
-              setErrors(res.data.error);
-            } else if (res.data.msg === "Mail exists") {
-              setMailExist(res.data.msg);
-              setErrors("");
-            } else {
-              history.push({
-                pathname: "/adddevice",
-                state: { userID: res.data._id }
-              })
-              //  console.log(res.data)
-            }
-            console.log(errors.msg)
-            console.log(res.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }; */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    api
+      .addUser(formData)
+      .then((res) => {
+        if (res.data.error) {
+          setErrors(res.data.error);
+        } else if (res.data.msg === "Mail exists") {
+          setMailExist(res.data.msg);
+          setErrors("");
+        } else {
+          const fetchUser = props.fetchUser
+         
+          fetchUser(res.data)
+           history.push({
+            pathname: "/adddevice",
+            state: {userId : res.data._id, username: res.data.username}
+           })
+          
+        }
+     
+          // console.log(res.data);
+          // console.log(Object.values(errors)); 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+   };
 
 
   return (
@@ -105,42 +113,39 @@ const Registration = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
                 }
-                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+                // test for error
+                error={Boolean(errors?.mari)}
+                helperText={errors?.mari}
+
+                className={`${classes.inputField}`}
                 variant="outlined"
                 required
                 id="username"
                 label="Name"
                 name="username"
                 size="small"
-
-              // {...register("username",
-              //   {
-              //     required: true,
-              //     maxLength: 20,
-              //   })
-              // }
-              // error={Boolean(errors.username)}
-              //  helperText='username is required!!!!'
-
-              // InputLabelProps={{
-              //   style: { color: "#007982" },
-              // }}
-
-              // InputProps={{
-              //   classes: {
-              //     root: classes.root,
-              //     focused: classes.focused,
-              //     notchedOutline: classes.notchedOutline,
-              //   },
-              // }}
+                InputLabelProps={{
+                  style: { color: "#007982" },
+                }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
-
-
+       
+                <h1>{errors.msg}</h1>
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+                //test for error
+                error={Boolean(errors?.mari)}
+                helperText={errors?.mari}
+                
+                className={`${classes.inputField}`}
                 variant="outlined"
                 required
                 id="email"
@@ -150,20 +155,20 @@ const Registration = () => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-              // InputProps={{
-              //   classes: {
-              //     root: classes.root,
-              //     focused: classes.focused,
-              //     notchedOutline: classes.notchedOutline,
-              //   },
-              // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
 
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+                className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="password"
                 label="Password"
@@ -174,20 +179,20 @@ const Registration = () => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-              // InputProps={{
-              //   classes: {
-              //     root: classes.root,
-              //     focused: classes.focused,
-              //     notchedOutline: classes.notchedOutline,
-              //   },
-              // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
 
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+                className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="confirmPassword"
                 label="Confirm Password"
@@ -198,13 +203,13 @@ const Registration = () => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-              // InputProps={{
-              //   classes: {
-              //     root: classes.root,
-              //     focused: classes.focused,
-              //     notchedOutline: classes.notchedOutline,
-              //   },
-              // }}
+                 InputProps={{
+                   classes: {
+                     root: classes.root,
+                     focused: classes.focused,
+                     notchedOutline: classes.notchedOutline,
+                   },
+                 }}
               />
 
               <Button
@@ -219,12 +224,13 @@ const Registration = () => {
 
             </form>
 
-            {/* {errors.length < 1 ? (
-              <div></div>
-            ) : (
-              errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
-            )}
-            <h1>{mailExist}</h1> */}
+            {errors.length < 1 ? (
+             <div></div>
+           ) : (
+
+             errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
+           )}
+           <h1>{mailExist}</h1>  
           </div>
           <div className={classes.footer}></div>
         </Container>

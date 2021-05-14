@@ -3,7 +3,7 @@ const EventEmitter = require('events');
 const { WaterType } = require('./WaterType');
 
 class FakeSensor extends EventEmitter {
-    constructor(interval = 500) {
+    constructor(interval = 2000) {
         super();
         this._interval = interval;
         this._timer = undefined;

@@ -19,13 +19,10 @@ import {
   Button,
   Avatar,
   TextField,
-  Dialog,
-  DialogContent,
   IconButton,
 } from "@material-ui/core";
 // alert
 import Alert from "@material-ui/lab/Alert";
-import CloseIcon from '@material-ui/icons/Close';
 
 // css
 import "../../App.css";
@@ -63,10 +60,6 @@ const LogIn = () => {
   //alert
   const [open, setOpen] = React.useState(true);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -85,9 +78,12 @@ const LogIn = () => {
 
         } else {
           localStorage.setItem("token", response.data.token);
-          
-        // do we have any device when yes  history.push ('/devices') if not  history.push("/adddevice")
-          history.push("/adddevice"); 
+          console.log(response.data)
+             history.push({
+               pathname: "/devices",
+               state: {userId : response.data.userId ,username:response.data.username}
+             })
+         // history.push("/devices"); 
         }
       })
       .catch((err) => {
@@ -112,35 +108,34 @@ const LogIn = () => {
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
              
            
-              
-                <Alert 
-                severity="error"
-                  action={
-                    <IconButton
-                      aria-label="close"
-                      color="inherit"
-                      size="small"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                    >
-                      <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                  }
-                >
-                  {loginStatus}
-                </Alert>
-              
-             
-             
-             
+              {loginStatus.length < 1 ?(
+                <div></div>
+              ):
+              <Alert 
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                 
+                  </IconButton>
+                }
+              >
+                {loginStatus}
+              </Alert>
+            
+              }
 
-              <h2>{loginStatus}</h2>
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className={`${classes.inputField} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+                className={`${classes.inputField} `}
                 variant="outlined"
                 required
                 id="email"
@@ -150,13 +145,13 @@ const LogIn = () => {
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                // InputProps={{
-                //   classes: {
-                //     root: classes.root,
-                //     focused: classes.focused,
-                //     notchedOutline: classes.notchedOutline,
-                //   },
-                // }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
               />
               <TextField
                 onChange={(e) =>
@@ -164,6 +159,7 @@ const LogIn = () => {
                 }
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
+                type='password'
                 id="password"
                 label="Password"
                 variant="outlined"
