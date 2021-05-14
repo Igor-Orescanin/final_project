@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios
-//import * as api from "../../api";
+import * as api from "../../api";
 
 // css
 import "../../App.css";
@@ -39,12 +39,10 @@ const theme = createMuiTheme({
 
 //__________________________________________________________start
 
-const Registration = () => {
+const Registration = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, control, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
-
-
+  const { history } = props;
+ 
   const fetchUser = props.fetchUser
   console.log(props)
 
@@ -105,7 +103,7 @@ const Registration = () => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
 
            
 
