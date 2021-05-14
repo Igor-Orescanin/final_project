@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios
-import * as api from "../../api";
+//import * as api from "../../api";
 
 // css
 import "../../App.css";
@@ -20,6 +20,7 @@ import {
 
 //styles to use the connection
 import useStyles from "./styles.js";
+import { useForm, Controller } from "react-hook-form";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -38,9 +39,10 @@ const theme = createMuiTheme({
 
 //__________________________________________________________start
 
-const Registration = (props) => {
+const Registration = () => {
   const classes = useStyles();
-  const { history } = props;
+  const { register, handleSubmit, control, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
 
 
   const fetchUser = props.fetchUser
@@ -103,7 +105,10 @@ const Registration = (props) => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+
+           
+
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
@@ -216,6 +221,7 @@ const Registration = (props) => {
               >
                 Register
               </Button>
+
             </form>
 
             {errors.length < 1 ? (
