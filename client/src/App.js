@@ -52,10 +52,8 @@ const fetchUser =(user)=>{
 
     // socket.on("FromAPI", data => {
     //   setResponse(data);
-    // });
-
-    console.log(response)
-  }, [response]);
+    ///console.log(response)
+  }, []);
   
 
   return (
@@ -77,7 +75,6 @@ const fetchUser =(user)=>{
        <Route path="/test" component={Test}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
-     
 
 
       

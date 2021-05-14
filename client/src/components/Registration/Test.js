@@ -66,19 +66,19 @@ const Test = (props) => {
     .addUser(formData)
     .then((res) => {
 
-      if (!ValidatorForm.hasValidationRule('isPasswordMatch')) {
-        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-            const { formData } = formData.password;
-            if (value !== formData.password) {
-                return false;
-            }
-            return true;
-        });
-    }
+    //   if (!ValidatorForm.hasValidationRule('isPasswordMatch')) {
+    //     ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+    //         const { formData } = formData.password;
+    //         if (value !== formData.password) {
+    //             return false;
+    //         }
+    //         return true;
+    //     });
+    // }
 
-    if (ValidatorForm.hasValidationRule('isPasswordMatch')) {
-      ValidatorForm.removeValidationRule('isPasswordMatch');
-    }
+    // if (ValidatorForm.hasValidationRule('isPasswordMatch')) {
+    //   ValidatorForm.removeValidationRule('isPasswordMatch');
+    // }
 
 
 
