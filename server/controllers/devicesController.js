@@ -12,11 +12,11 @@ exports.addDevice = async (req, res, next) => {
 
     if (devices.length > 0) {
       // device already exists
-      return res.json(409).json({
+      return res.json({
         message: "Device exists"
       });
     }
-
+  
     const deviceCreate = new Device({
       deviceName: req.body.deviceName,
       serialNumber: req.body.serialNumber,
@@ -44,7 +44,7 @@ exports.getDevices = async (req, res, next) => {
 
 exports.getDevice = async (req, res, next) => {
   try {
-    const device = await Device.findById(req.params.id);
+    const device = await Device.find({userId:req.params.id}).exec() ;
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
   } catch (e) {

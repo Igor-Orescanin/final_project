@@ -20,6 +20,7 @@ const io = require('socket.io')(server);
 
 
 //---------------------MONGOOSE CONNECT ----------------------
+const {daysWaterFlow} = require('./controllers/waterFlowController')
 dotenv.config();
 
 mongoose.connect(process.env.DATABASE_ACCESS, {
@@ -56,6 +57,7 @@ const { logger } = require('./utils');
 const WaterFlow = require('./models/WaterFlow');
 const Device = require('./models/Device');
 const User = require('./models/User');
+
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')

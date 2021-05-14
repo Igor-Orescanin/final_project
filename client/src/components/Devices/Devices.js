@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import * as api from "../../api";
 
 //connection to components
-import NavbarSec from "../Nav/NavbarSec.js";
+import Navbar from "../Nav/Navbar.js";
 //import ShowDevices from "./Device/ShowDevices.js";
 import Device from "./Device/Device.js";
 
@@ -56,17 +56,15 @@ const Devices = (props) => {
   //for styles
   const classes = useStyles();
 
+
+  const username = props.location.state.username
+  const userId =props.location.state.userId
   //a hook
-  const [allDevices, setAllDevices] = useState([
-    //   {
-    //   deviceId:'',
-    //   deviceName:'',
-    // }
-  ]);
+  const [allDevices, setAllDevices] = useState([]);
 
   // to get the data for databace
   useEffect(async () => {
-    const { data } = await api.fetchDevices();
+    const { data } = await api.fetchDevices(userId);
 
     setAllDevices(data);
 
@@ -77,7 +75,7 @@ const Devices = (props) => {
 
   return (
     <>
-      <NavbarSec />
+      <Navbar username={username} />
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
@@ -92,12 +90,15 @@ const Devices = (props) => {
               <CircularProgress />
             ) : (
               allDevices.map((dev) => (
-                 <Device   deviceObject={dev}/>
+                 <Device   deviceObject={dev} username={username} />
               ))
             )}
 
             <Button
-              onClick={() => history.push("/adddevice")}
+              onClick={() =>      history.push({
+                pathname: "/adddevice",
+                state: {userId : userId, username: username}
+               })}
               className={classes.addbutton}
               variant="contained"
               color="primary"

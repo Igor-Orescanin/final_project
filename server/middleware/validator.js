@@ -34,6 +34,7 @@ console.log(validationResult(req).array())
         return val;
       }
     }),
+
     handler,
   ]
 }

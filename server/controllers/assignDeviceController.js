@@ -5,16 +5,18 @@ require('dotenv').config();
 
 exports.assignDevice = async (req, res, next) => {
   try {
-    const { userId, serialNumber } = req.params;
+    const { userId, serialNumber} = req.params;
 
+    const {deviceName }= req.body;
+    
     const device = await Device.findOne({ serialNumber }).exec();
-    if (!device) {
-      throw new Error('Device not found');
-    }
+     if (!device) {
+      return res.json({ message:'Device not found'});
+     }
     if (device.userId) {
-      throw new Error('Device is already assigned');  
+     return res.json({ message:'Device is already assigned'});
     }
-    await Device.findByIdAndUpdate(device._id, { userId }, {
+    await Device.findByIdAndUpdate(device._id, { userId, deviceName}, {
       new: true,
       useFindAndModify: false
     });
