@@ -2,7 +2,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 // image background
-import image from "../../image/background_mobile.svg";
+import image from "../../image/welcome3_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
@@ -85,7 +85,7 @@ export default makeStyles((theme) => ({
     zIndex: "-1",
     position: "fixed",
     bottom: "0px",
-    height: "190px",
+    height: "250px",
     width: "100vw",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",

@@ -100,7 +100,7 @@ exports.loginUser = (req, res) => {
           const token = jwt.sign(
             {
               email: response[0].email,
-              userId: response[0]._id
+              userId: response[0]._id,
             },
             process.env.JWT_KEY,
             {
@@ -108,7 +108,7 @@ exports.loginUser = (req, res) => {
             }
           );
           
-          return res.json({auth: true, token: token})
+          return res.json({auth: true, token: token, username: response[0].username , userId:response[0]._id })
         }
         return res.json({
           auth: false, message: 'Auth failed'

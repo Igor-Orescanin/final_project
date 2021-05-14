@@ -1,5 +1,6 @@
 const io = require('socket.io-client');
 const { v4: uuidv4 } = require('uuid');
+const getmac = require('getmac');
 
 const { FakeSensor } = require('../rpi/FakeSensor');
 const { FakeWaterFlowSensor } = require('./FakeWaterFlowSensor');
@@ -16,7 +17,7 @@ async function main() {
     const socket = io(url, {
       transports: ['websocket', 'polling']
     });
-    const READING_INTERVAL = 500;  // half a second
+    const READING_INTERVAL = 2000;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
     const waterflowSensor = await getWaterflowSensor();
 
@@ -37,18 +38,25 @@ async function main() {
       process.exit(1);
     });
 
+
+
+
+  // GET MAC ADDRESS OR SERIAL NUMBER
+    const callMac = () => {
+      return getmac.default()
+    }
+    const serialNumber = callMac();
+
     sensor.on('data', (sensorReading) => {
       logger.log(JSON.stringify(sensorReading));
-      socket.emit('sensorData', sensorReading);
+      socket.emit('sensorData', {...sensorReading, serialNumber});
     });
 
-    waterflowSensor.on('data', (waterFlowReadings) => {
-      logger.log(JSON.stringify(waterFlowReadings));
-      socket.emit('waterFlowData', waterFlowReadings);
-    });
+    // waterflowSensor.on('data', (waterFlowReadings) => {
+    //   logger.log(JSON.stringify(waterFlowReadings));
+    //   socket.emit('waterFlowData', waterFlowReadings);
+    // });
 
-    // TODO get mac address
-    // const serialNumber = os.getMacAddress()
 
     // sensorFlow.on('waterFlowDataSensor', (waterFlowReadings) => {
     //   logger.log(JSON.stringify(waterFlowReadings));

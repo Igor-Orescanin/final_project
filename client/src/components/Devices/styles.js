@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-import image from '../../image/background_mobile.svg';
+import image from '../../image/welcome3_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
   
@@ -68,7 +68,7 @@ export default makeStyles((theme) => ({
     zIndex: "-1",
     position: "fixed",
     bottom: "0px",
-    height: "190px",
+    height: "250px",
     //height:'170px',
     width: "100vw",
     //backgroundColor: "Blue",
