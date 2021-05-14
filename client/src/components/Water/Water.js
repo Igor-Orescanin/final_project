@@ -36,6 +36,7 @@ const Water = (props) => {
   let waterLevel = 0;
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false)
+
   const [chart1, setChart] = useState([
     {
       name: "name",
@@ -46,6 +47,8 @@ const Water = (props) => {
       data: [0],
     },
   ]);
+
+  
   const options = {
     chart: {
       // height:850,

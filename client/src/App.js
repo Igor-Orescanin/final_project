@@ -15,8 +15,12 @@ import Devices from "./components/Devices/Devices.js";
 import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
+import Test from "./components/Registration/Test.js";
+import Weekly from './components/History/Weekly/Weekly.js'
 
-//import io from 'socket.io-client';
+
+//socket
+import io from 'socket.io-client';
 
 
 // css
@@ -24,7 +28,7 @@ import "./App.css";
 
 
 //react-router-dom
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 
@@ -34,9 +38,7 @@ const socket = io('http://localhost:3005', {
 
 
 function App() {
-const socket = io('http://localhost:3005', {
-  transports: ['websocket', 'polling']
-});
+
 
   const [response, setResponse] = useState("");
 
@@ -62,6 +64,10 @@ const socket = io('http://localhost:3005', {
         <Route path="/regdevice" component={RegDevice}></Route>
         <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
+        <Route path="/test" component={Test}></Route>
+        <Route path="/weekly" component={Weekly}></Route>
+
+
       
       </div>
     </Router>

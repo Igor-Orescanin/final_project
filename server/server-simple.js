@@ -42,7 +42,6 @@ app.use(cors());
 app.use("/public", express.static("public"));
 
 //-------    ADD ROUTE--------------------
-// app.use('/', routeUsers);
 app.use('/users', routeUsers);
 app.use('/auth', routeAuth);
 app.use('/devices', routeDevices);
@@ -52,7 +51,9 @@ app.use('/waterFlow', routeWFSensor);
 
 //-----------RPI SERVER ------------------
 const { logger } = require('./utils');
-const waterFlow = require('./models/waterFlow');
+const WaterFlow = require('./models/WaterFlow');
+const { log } = require('console');
+
 
 app.get('/', (_req, res) => {
   res.sendFile(__dirname + '/../client/src/graph.html')
@@ -67,16 +68,54 @@ io.on('connection', (socket) => {
       logger.log(`Received sensor readings`);
         logger.log(JSON.stringify(sensorReading));
 
-      // socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
-      //   socket.to('sensor_measurements').emit('sensorReading', sensorReading);
+      socket.broadcast.to('sensor_measurements').emit('sensorReading', sensorReading);
+      socket.to('sensor_measurements').emit('sensorReading', sensorReading);
       socket.broadcast.emit('sensorReading', sensorReading);
-      });
+    });
+
+
+    socket.on('waterFlowData', async (waterFlowReadings) => {
+      // TODO FIND DEVICE WITH SERIAL NUMBER RECEIVED
+      // TODO TRAETE EL _ID Y LOS USAS PARA INSETARLO EN new waterFlow creado de mongoose
+      const waterReading = new WaterFlow({
+        pin: waterFlowReadings.pin,
+        model: waterFlowReadings.model,
+        isRunning: waterFlowReadings.isRunning,
+        flow: waterFlowReadings.flow,
+        volume: waterFlowReadings.volume,
+        waterFlowCounter: waterFlowReadings.waterFlowCounter,
+        ts: waterFlowReadings.ts,
+        // TODO deviceId: device._id
+      })
+
+      await waterReading.save()
+      // logger.log(`Received water flow: ${clientId}`);
+      logger.log(JSON.stringify(waterFlowReadings));
+    })
+
   });
-  });
+});
 
 const gracefulShutdown = () => {
   process.exit(0);
 };
+
+
+/** ERROR HANDLING */
+app.use(function (req, res, next) {
+  const error = new Error("Looks like something broke...");
+  error.status = 400;
+  next(error);
+});
+
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500).send({
+    error: {
+      message: err.message
+    }
+  });
+});
+
 
 // Graceful shutdown
 process.once('SIGTERM', gracefulShutdown);  // interruptions 'SIGTERM' senales del sistema
@@ -85,4 +124,3 @@ process.once('SIGINT', gracefulShutdown);
 server.listen(port, () => {
   logger.log(`Server is listening on port ${port}`);
 });
-
