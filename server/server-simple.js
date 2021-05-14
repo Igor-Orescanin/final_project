@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
 
       if (sensorReading.label === "CLEAN") {
         if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
-          let message = "Alert clean water level is low";
+          let message = `ALERT Clean water level tank is lower than ${device.cleanWaterLevelAlertThreshold}% percentage`;
           emailSender.sendEmail(email, message, (ok) => {
             if (ok) {
               // resolve();
@@ -89,7 +89,14 @@ io.on('connection', (socket) => {
 
       } else if (sensorReading.label === "WASTE") {
         if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
-          //console.log("Email alert waste water low");
+          let message = `ALERT Grey water level tank is higher than ${device.wasteWaterLevelAlertThreshold}% percentage`;
+          emailSender.sendEmail(email, message, (ok) => {
+            if (ok) {
+              // resolve();
+            } else {
+              // reject();
+            }
+          })
         }
       }
 
