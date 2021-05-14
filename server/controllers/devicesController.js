@@ -2,6 +2,8 @@
 const Device = require('../models/Device');
 const createError = require("http-errors");
 
+
+
 require('dotenv').config();
 
 exports.addDevice = async (req, res, next) => {
@@ -17,7 +19,9 @@ exports.addDevice = async (req, res, next) => {
   
     const deviceCreate = new Device({
       deviceName: req.body.deviceName,
-      serialNumber: req.body.serialNumber
+      serialNumber: req.body.serialNumber,
+      cleanWaterLevelAlertThreshold: req.body.cleanWaterLevelAlertThreshold,
+      wasteWaterLevelAlertThreshold: req.body.wasteWaterLevelAlertThreshold
     });
 
     await deviceCreate.save();
@@ -51,13 +55,17 @@ exports.getDevice = async (req, res, next) => {
 exports.updateDevice = async (req, res, next) => {
   try {
     const device = await Device.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
+      new: true,
+
     });
+
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
+
   } catch (e) {
     next(e);
   }
+
 };
 
 

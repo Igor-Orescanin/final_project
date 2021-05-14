@@ -13,7 +13,7 @@ function initRaspberry() {
     });
 }
 
-async function getSensor(readingInterval = 500) {
+async function getSensor(readingInterval = 2000) {
     await initRaspberry();
 
     // Init Raspi-I2c

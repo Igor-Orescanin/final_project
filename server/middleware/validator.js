@@ -20,38 +20,21 @@ console.log(validationResult(req).array())
 
       next(error);
       console.log(error)
-     
+
     }
   };
 
   return [
     check('username').notEmpty().withMessage('"Name" is required').isLength({ min: 3 }).withMessage('Name must be at least 3 characters').trim().escape(),
     check('email', 'Email is required').isEmail().normalizeEmail(),
-   // check('password', 'Password is required').isLength({min:4}),
-     check('password', 'Password is required').isLength({min:4}).custom((value, {req}) => {
-     if(value !== req.body.confirmPassword) {
-         throw new Error('Password is not matching')
-     } else {
-         return value;
-     }
- }),
+    check('password', 'Password is required').isLength({ min: 4 }).custom((val, { req }) => {
+      if (val !== req.body.confirm_password) {
+        throw new Error(`Password don't match!`);
+      } else {
+        return val;
+      }
+    }),
 
-//-----------------all of them are working we can have them later but to test go with the stuff on top 
-
-// check('password').trim().notEmpty().withMessage('Password required')
-// .isLength({ min: 5 }).withMessage('password must be minimum 5 length')
-// .matches(/(?=.*?[A-Z])/).withMessage('At least one Uppercase')
-// .matches(/(?=.*?[a-z])/).withMessage('At least one Lowercase')
-// .matches(/(?=.*?[0-9])/).withMessage('At least one Number')
-// .matches(/(?=.*?[#?!@$%^&*-])/).withMessage('At least one special character')
-// .not().matches(/^$|\s+/).withMessage('White space not allowed'),
-// // confirm password validation
-// check('confirmPassword').custom((value, { req }) => {
-//      if (value !== req.body.password) {
-//            throw new Error('Password Confirmation does not match password');
-//       }
-//       return value;
-//  }),
     handler,
   ]
 }
