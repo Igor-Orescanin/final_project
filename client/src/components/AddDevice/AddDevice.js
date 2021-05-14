@@ -6,7 +6,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import * as api from "../../api";
 
 //connection
-import NavbarSec from "../Nav/NavbarSec.js";
+import Navbar from "../Nav/Navbar.js";
 
 //import { useHistory } from "react-router-dom";
 
@@ -47,45 +47,70 @@ const AddDevice = (props) => {
   //for styles
   const classes = useStyles();
 
+  
+   const userId = props.location.state.userId
+  // //  console.log(userId)
+
+   const username = props.location.state.username
+
   //a hook
   const [formData, setFormData] = useState({
     deviceName: "",
-    deviceId: "",
+    serialNumber: "",
+    userId: userId,
   });
 
+//console.log(userId)
+
   const [deviceExist, setDeviceExist] = useState('');
+
   const [errors, setErrors] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    api.addDevice(formData)
+// console.log(userId)
+ console.log(formData)
+
+    api.asignDevice(formData)
     .then((res)=>{
-      if(res.data.message === "Device exists"){
-      setDeviceExist(res.data.message)
-      setErrors(res.data.error);
-      }
-      console.log(res.data.message)
-      console.log(res.data.error)
-      console.log(errors.message)
+
+      console.log(res)
+
+       if(res.data.message === "Device is already assigned"){
+       setDeviceExist(res.data.message)
+      
+       // ---------------------- is not working right now not sure why
+      }else{
+       // history.push('/devices')
+         history.push({
+           pathname: "/devices",
+         state: {userId : userId , username:username}
+         })
+       }
+    
+      
+     
     }).catch((error) => {
+      if(error){ setDeviceExist('Device exist')
+        setErrors('error')}
       console.log(error);
     });
     
-console.log(deviceExist)
-console.log(errors.message)
-
   };
 
   return (
     <>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <NavbarSec />
+          <Navbar username={username}/> 
           <Container className={classes.container}>
             <div className={classes.paper}>
               <Typography className={classes.typography}>
                 You don't have any devices registered in this system!{" "}
               </Typography>
+
+              <Typography> {deviceExist} </Typography>
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                   onChange={(e) =>
@@ -94,7 +119,7 @@ console.log(errors.message)
                       deviceName: e.target.value,
                     })
                   }
-                  className={`${classes.inputField} ${classes.myInputLabel} ${classes.root} ${classes.focused}  ${classes.notchedOutline}  `}
+                  className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
                   id="deviceName"
                   label="Device Name"
@@ -105,45 +130,44 @@ console.log(errors.message)
                   InputLabelProps={{
                     style: { color: "#007982" },
                   }}
-                  // InputProps={{
-                  //   classes: {
-                  //     root: classes.root,
-                  //     focused: classes.focused,
-                  //     notchedOutline: classes.notchedOutline,
-                  //   },
-                  // }}
+                   InputProps={{
+                     classes: {
+                       root: classes.root,
+                       focused: classes.focused,
+                       notchedOutline: classes.notchedOutline,
+                     },
+                   }}
                 />
 
                 <TextField
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      deviceId: e.target.value,
+                      serialNumber: e.target.value
                     })
                   }
-                  className={`${classes.inputField} ${classes.myInputLabel}  ${classes.root} ${classes.focused}  ${classes.notchedOutline} `}
+                  className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
-                  id="deviceId"
+                  id="serialNumber"
                   label="Device Id"
                   variant="outlined"
-                  name="deviceId"
+                  name="serialNumber"
                   type="text"
                   size="small"
                   InputLabelProps={{
                     style: { color: "#007982" },
                   }}
-                  // InputProps={{
-                  //   classes: {
-                  //     root: classes.root,
-                  //     focused: classes.focused,
-                  //     notchedOutline: classes.notchedOutline,
-                  //   },
-                  // }}
+                   InputProps={{
+                     classes: {
+                       root: classes.root,
+                       focused: classes.focused,
+                       notchedOutline: classes.notchedOutline,
+                     },
+                   }}
                 />
 
                 <Button
                   onClick={handleSubmit}
-                 // onClick={() => history.push("/devices")}
                   className={classes.button}
                   variant="contained"
                   color="primary"
