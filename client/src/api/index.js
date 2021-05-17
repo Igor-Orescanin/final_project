@@ -22,6 +22,6 @@ export const authUser = () => axios.get(`${url}/users/isUser`, {headers: {
     "x-access-token": localStorage.getItem('token')
 }});
 
-
+export const getUser = (id) => axios.get(`${url}/users/${id}`)
 
 export const get7days = () => axios.get(`${url}/7days`)

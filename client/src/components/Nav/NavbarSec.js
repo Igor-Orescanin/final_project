@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import useStyles from "./styles";
 
 // to connect the routes
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 // material-ui styles
 import { Container, Typography, IconButton } from "@material-ui/core";
@@ -15,14 +15,35 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
+
 //--------------------------------------start
+
 
 const NavbarSec = (props) => {
   const history = useHistory();
   const classes = useStyles();
+  const location = useLocation();
+
 
   const username = props.username;
-  const userId = props.userId;
+  
+
+  const isChart = location.pathname.includes('water');
+  // const userName = props.location.state.userName
+
+
+  // const [formData, setFormData] = useState({
+  //   email: "",
+  //   password: "",
+  //   userID : data._id,
+  //   userName: data.userName 
+  // });
+
+  // console.log(formData);
+
+
+
+
 
 
   return (
@@ -34,8 +55,8 @@ const NavbarSec = (props) => {
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-         
-          Hello {props.username} 
+
+          Hello {username} 
         </Typography>
        
 
@@ -59,7 +80,7 @@ const NavbarSec = (props) => {
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>
 
-        <IconButton
+        {isChart && <IconButton
           className={classes.iconButtonSec}
           onClick={() => history.push("/weekly")}
         >
@@ -67,7 +88,7 @@ const NavbarSec = (props) => {
           <Typography variant="h6" component="h6" className={classes.typoSec}>
             Charts
           </Typography>
-        </IconButton>
+        </IconButton>}
 
         <IconButton
           className={classes.iconButtonSec}

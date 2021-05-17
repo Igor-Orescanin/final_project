@@ -13,6 +13,7 @@ import { Container, Typography, IconButton } from "@material-ui/core";
 //icons
 import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
+import AssessmentIcon from "@material-ui/icons/Assessment";
 
 //--------------------------------------start
 
@@ -20,16 +21,26 @@ const Navbar = (props) => {
   const history = useHistory();
   const classes = useStyles();
 
-  console.log(props);
+
 
   const username = props.username;
   const userId = props.userId;
 
-useEffect(() => {
-  console.log(username, userId)
-  }
-, [])
-  
+
+// if (!user){
+//   return <div></div>
+// }
+ // const userName = props.location.state.userName
+//console.log(props.location)
+  // const [formData, setFormData] = useState({
+  //   email: "",
+  //   password: "",
+  //   userID : data._id,
+  //   userName: data.userName 
+  // });
+
+  // console.log(formData);
+
 
   return (
     <Container className={classes.navContainer}>
@@ -67,6 +78,16 @@ useEffect(() => {
           })}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
+        </IconButton>
+
+        <IconButton
+          className={classes.iconButtonSec}
+          onClick={() => history.push("/weekly")}
+        >
+          <AssessmentIcon className={classes.iconSec} />
+          <Typography variant="h6" component="h6" className={classes.typoSec}>
+            Charts
+          </Typography>
         </IconButton>
 
         <IconButton

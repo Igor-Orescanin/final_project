@@ -67,6 +67,7 @@ const Registration = (props) => {
   const classes = useStyles();
   const { history } = props;
 
+
   const fetchUser = props.fetchUser;
  // console.log(props);
 
@@ -80,6 +81,7 @@ const Registration = (props) => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [mailExist, setMailExist] = useState("");
+
 
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
@@ -164,6 +166,7 @@ const Registration = (props) => {
   //           pathname: "/adddevice",
   //           state: {userId : res.data._id, username: res.data.username}
   //          })
+
           
   //       }
      

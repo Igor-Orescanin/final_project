@@ -48,10 +48,10 @@ const AddDevice = (props) => {
   const classes = useStyles();
 
   
-   const userId = props.location.state.userId
-  // //  console.log(userId)
+   const userId = props.userId
+    console.log(userId)
 
-   const username = props.location.state.username
+   //const username = props.location.state.username
 
   //a hook
   const [formData, setFormData] = useState({
@@ -85,7 +85,7 @@ const AddDevice = (props) => {
        // history.push('/devices')
          history.push({
            pathname: "/devices",
-         state: {userId : userId , username:username}
+       
          })
        }
     
@@ -103,7 +103,7 @@ const AddDevice = (props) => {
     <>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <Navbar username={username}/> 
+          
           <Container className={classes.container}>
             <div className={classes.paper}>
               <Typography className={classes.typography}>
