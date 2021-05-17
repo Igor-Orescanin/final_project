@@ -3,7 +3,7 @@ import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
 import NavbarSec from "../Nav/NavbarSec.js";
-import useStyles from "./styles.js";
+import useStyles from "./Styles.js";
 
 // material-ui
 import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
@@ -23,32 +23,31 @@ function Light(props) {
 
                 <NavbarSec />
                 <Container className={classes.container} >
-                <h1 className={classes.heading}>Setting</h1>
                     <div className={classes.paper}>
 
                         <div className={classes.buttons}>
                             <Button
-                                onClick={() => history.push("/emailalert")}
+                                onClick={() => history.push("/lightone")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
-                                type='submit'>E-mail Alert</Button>
+                                type='submit'>Light 1</Button>
 
                             <Button
-                                onClick={() => history.push("/")}
+                                onClick={() => history.push("/lighttwo")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Add Light</Button>
+                            >Light 2</Button>
 
                             <Button
-                                onClick={() => history.push("/")}
+                                onClick={() => history.push("/lightthree")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Light Control</Button>
+                            >Light 3</Button>
 
                         </div>
 
