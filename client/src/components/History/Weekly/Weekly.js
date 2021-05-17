@@ -121,5 +121,4 @@ function Weekly(props) {
         </>
     )
 }
-
-// export default Weekly
+export default Weekly

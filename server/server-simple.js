@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const routeUsers = require('./routes/users');
 const routeAuth = require('./routes/auth');
 const routeDevices = require('./routes/devices');
-const routeWFSensor = require('./routes/waterFlow');
+// const routeWFSensor = require('./routes/waterFlow');
 const cors = require('cors');
 const session = require("express-session");
 const emailSender = require('./emailSender');
@@ -20,7 +20,7 @@ const io = require('socket.io')(server);
 
 
 //---------------------MONGOOSE CONNECT ----------------------
-const {daysWaterFlow} = require('./controllers/waterFlowController')
+// const {daysWaterFlow} = require('./controllers/waterFlowController')
 dotenv.config();
 
 mongoose.connect(process.env.DATABASE_ACCESS, {
@@ -48,13 +48,13 @@ app.use("/public", express.static("public"));
 app.use('/users', routeUsers);
 app.use('/auth', routeAuth);
 app.use('/devices', routeDevices);
-app.use('/waterFlow', routeWFSensor);
+// app.use('/waterFlow', routeWFSensor);
 
 
 
 //-----------RPI SERVER ------------------
 const { logger } = require('./utils');
-const WaterFlow = require('./models/WaterFlow');
+// const WaterFlow = require('./models/WaterFlow');
 const Device = require('./models/Device');
 const User = require('./models/User');
 
@@ -90,7 +90,7 @@ io.on('connection', (socket) => {
         }
 
       } else if (sensorReading.label === "WASTE") {
-        if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
+        if (sensorReading.levelPercentage >= device.cleanWaterLevelAlertThreshold) {
           let message = `ALERT Grey water level tank is higher than ${device.wasteWaterLevelAlertThreshold}% percentage`;
           emailSender.sendEmail(email, message, (ok) => {
             if (ok) {

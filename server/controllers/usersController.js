@@ -27,8 +27,7 @@ exports.addUser = async (req, res, next) => {
     });
 
     await user.save();
-
-    res.status(200).send(user);
+    res.json({ msg: "Thanks for registering" })
   } catch (e) {
     next(e);
   }
@@ -107,7 +106,7 @@ exports.loginUser = (req, res) => {
               expiresIn: '1h'
             }
           );
-          
+
           return res.json({auth: true, token: token, username: response[0].username , userId:response[0]._id })
         }
         return res.json({
