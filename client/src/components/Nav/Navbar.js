@@ -1,5 +1,5 @@
 // react
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -15,8 +15,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
-
-
+//--------------------------------------start
 
 const Navbar = (props) => {
   const history = useHistory();
@@ -24,6 +23,8 @@ const Navbar = (props) => {
 
 
 
+  const username = props.username;
+  const userId = props.userId;
 
 
 // if (!user){
@@ -40,8 +41,8 @@ const Navbar = (props) => {
 
   // console.log(formData);
 
+
   return (
-   
     <Container className={classes.navContainer}>
       <div className={classes.secondaryNav}>
         <Typography
@@ -49,12 +50,18 @@ const Navbar = (props) => {
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-           Hello {props.username} 
+          Hello {props.username}
         </Typography>
 
         <IconButton
           className={classes.iconButton}
-          onClick={() => history.push("/setting")}
+          onClick={() =>
+          
+            history.push({
+              pathname: "/setting",
+              state: {userId :userId, username:username},
+            })
+          }
         >
           <SettingsIcon className={classes.icon} />
         </IconButton>
@@ -63,7 +70,12 @@ const Navbar = (props) => {
       <div className={classes.primaryNav}>
         <IconButton
           className={`${classes.iconButtonSec}`}
-          onClick={() => history.push("/devices")}
+          onClick={() => 
+           
+            history.push({
+            pathname: "/devices",
+            state: {userId :userId, username:username},
+          })}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>

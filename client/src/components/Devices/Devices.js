@@ -59,6 +59,7 @@ const Devices = (props) => {
 
   const username = props.username
   const userId = props.userId
+
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
@@ -75,6 +76,7 @@ const Devices = (props) => {
 
   return (
     <>
+
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {/* <div className={classes.paper}> */}

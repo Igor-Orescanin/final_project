@@ -43,7 +43,8 @@ const fetchUser =(user)=>{
 } 
 
   useEffect(() => {
-    
+
+  
   }, [response]);
 
   if(response._id){
@@ -68,6 +69,7 @@ const fetchUser =(user)=>{
       </Router>
     );
   }
+
 
   return (
     <Router>

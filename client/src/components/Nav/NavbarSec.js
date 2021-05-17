@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -15,10 +15,18 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
+
+//--------------------------------------start
+
+
 const NavbarSec = (props) => {
   const history = useHistory();
   const classes = useStyles();
   const location = useLocation();
+
+
+  const username = props.username;
+  
 
   const isChart = location.pathname.includes('water');
   // const userName = props.location.state.userName
@@ -37,24 +45,28 @@ const NavbarSec = (props) => {
 
 
 
+
   return (
     <Container className={classes.navContainer}>
       <div className={classes.secondaryNav}>
-        {/* <IconButton className={`${classes.iconButton} ${classes.hand}`}>     */}
+
         <Typography
           variant="h6"
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-          {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
-          {/* Hello {formData.userName} */}
-          Hello {props.username} 
+
+          Hello {username} 
         </Typography>
-        {/* </IconButton>  */}
+       
 
         <IconButton
           className={classes.iconButton}
-          onClick={() => history.push("/setting")}
+          onClick={() =>   history.push({
+            pathname: "/setting",
+            state: {userId : props.userId, user: props.username},
+          })
+        }
         >
           <SettingsIcon className={classes.icon} />
         </IconButton>
