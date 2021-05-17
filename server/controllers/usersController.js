@@ -108,7 +108,7 @@ exports.loginUser = (req, res) => {
             }
           );
           
-          return res.json({auth: true, token: token, username: response[0].username , userId:response[0]._id })
+          return res.json({auth: true, token: token, username: response[0].username , _id:response[0]._id })
         }
         return res.json({
           auth: false, message: 'Auth failed'
