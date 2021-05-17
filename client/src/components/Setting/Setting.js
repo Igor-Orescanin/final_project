@@ -1,9 +1,21 @@
-import React from 'react';
+
+// react
+import React,{useEffect, useState}from "react";
+
+
+//styles to use the connection
+import useStyles from "./styles";
+
+//css
+import '../../App.css';
+
+
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-import NavbarSec from "../Nav/NavbarSec.js";
-import useStyles from "./styles.js";
+
+
+
 
 // material-ui
 import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
@@ -15,6 +27,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 function Light(props) {
 
     const classes = useStyles();
+
     const { history } = props;
 
     return (

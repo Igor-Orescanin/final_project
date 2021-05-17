@@ -35,17 +35,10 @@ const theme = createMuiTheme({
 const Welcome = (props) => {
   const history = useHistory();
   const classes = useStyles();
-
-  const username = props.location.state.username
-  const userId = props.location.state.userId
-
-
-
-
+  
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar username={username}/>
 
         <Container className={classes.welcome}>
           <Button
