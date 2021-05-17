@@ -86,9 +86,21 @@ const Registration = (props) => {
 
     const response = await axios
       .post("http://localhost:3005/users", data)
+
+      // .then((response) => {
+      //      if (response.data.msg === "Mail exists") {
+      //        setMailExist(response.data.msg);
+      //      }
+          
+      //     console.log(response)
+          
+          // })
+
+           
       .catch((err) => {
         if (err && err.response) {
           setError(err.response.message);
+          console.log(err)
 
         //  }else if (data.msg === "Mail exists") {
         //     setMailExist(data.msg);
@@ -103,7 +115,6 @@ const Registration = (props) => {
     //   setMailExist(response.data.msg);
     //    }
     
-
    
     // response = await api
     // .addUser(formik)
