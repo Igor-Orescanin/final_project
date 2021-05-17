@@ -73,23 +73,52 @@ const Registration = (props) => {
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
 
-    const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
+    api
+      .addUser(values)
+      .then((res) => {
+        console.log(res);
+        if (res.data.msg === "Mail exists") {
+          setError(res.data.msg);
+          setSuccess(null);
+        } else if (res.data.msg === "Thanks for registering") {
+          setError(null);
+          setSuccess(res.data.msg);
+          formik.resetForm();
+        }
 
-      if (err && err.response) {
-        console.log("Error:", err);
+        // else {
+        //   const fetchUser = props.fetchUser
 
-        setError(err.response.data.msg);
-        setSuccess(null);
-      }
+        //   fetchUser(res.data)
+        //   history.push({
+        //     pathname: "/adddevice",
+        //     state: { userId: res.data._id, username: res.data.username }
+        //   })
 
-    });
+        // }
+      })
 
-    if (response && response.data) {
-      console.log(response.data);
-      setError(null);
-      setSuccess(response.data.msg);
-      formik.resetForm();
-    }
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+
+    // OLD SOLUTION
+    // const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
+    //   if (err && err.response) {
+    //     console.log("Error:", err);
+
+    //     setError(err.response.data.msg);
+    //     setSuccess(null);
+    //   }
+    // });
+    // if (response && response.data) {
+    //   console.log(response.data);
+    //   setError(null);
+    //   setSuccess(response.data.msg);
+    //   formik.resetForm();
+    // }
   };
 
   const formik = useFormik({
