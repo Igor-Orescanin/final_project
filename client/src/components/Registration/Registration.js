@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
+// error handling in a form with validation
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 //axios
 import * as api from "../../api";
-
+import axios from "axios"; 
 // css
 import "../../App.css";
 
@@ -20,7 +24,6 @@ import {
 
 //styles to use the connection
 import useStyles from "./styles.js";
-import { useForm, Controller } from "react-hook-form";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -37,57 +40,143 @@ const theme = createMuiTheme({
   },
 });
 
+//validations
+//const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
+const validationSchema = yup.object({
+  username: yup.string().min(3).required("Name is required"),
+  email: yup.string().email("Email is required").required(),
+  password: yup
+    .string()
+    .matches(PASSWORD_REGEX, "Please enter a strong password")
+    .required(),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .when("password", {
+      is: (val) => (val && val.length > 0 ? true : false),
+      then: yup
+        .string()
+        .oneOf([yup.ref("password")], "Password does not match"),
+    }),
+});
+
 //__________________________________________________________start
 
 const Registration = (props) => {
   const classes = useStyles();
   const { history } = props;
- 
-  const fetchUser = props.fetchUser
-  console.log(props)
-
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    macAddress: "",
-  });
-
-  const [errors, setErrors] = useState([]);
 
 
+  const fetchUser = props.fetchUser;
+ // console.log(props);
+
+  // const [formData, setFormData] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
+
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
   const [mailExist, setMailExist] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    api
-      .addUser(formData)
-      .then((res) => {
-        if (res.data.error) {
-          setErrors(res.data.error);
-        } else if (res.data.msg === "Mail exists") {
-          setMailExist(res.data.msg);
-          setErrors("");
-        } else {
-          const fetchUser = props.fetchUser
-         
-          fetchUser(res.data)
-           history.push({
-            pathname: "/adddevice",
-            state: {userId : res.data._id, username: res.data.username}
-           })
+  const onSubmit = async (values) => {
+    const { confirmPassword, ...data } = values;
+
+    const response = await axios
+      .post("http://localhost:3005/users", data)
+
+      // .then((response) => {
+      //      if (response.data.msg === "Mail exists") {
+      //        setMailExist(response.data.msg);
+      //      }
           
-        }
-     
-          // console.log(res.data);
-          // console.log(Object.values(errors)); 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-   };
+      //     console.log(response)
+          
+          // })
 
+           
+      .catch((err) => {
+        if (err && err.response) {
+          setError(err.response.message);
+          console.log(err)
+
+        //  }else if (data.msg === "Mail exists") {
+        //     setMailExist(data.msg);
+             }
+          });
+        
+    if (response && response.data) {
+      setSuccess(response.data.message);
+      formik.resetForm();
+    }
+    // else if (response.data.msg === "Mail exists") {
+    //   setMailExist(response.data.msg);
+    //    }
+    
+   
+    // response = await api
+    // .addUser(formik)
+    // .then((response) => {
+    //   if (response.data.msg === "Mail exists") {
+    //     setMailExist(response.data.msg);
+    //   } })
+    //   console.log(mailExist)
+
+  };
+  
+
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validateOnBlur: true,
+    onSubmit,
+    validationSchema: validationSchema,
+  });
+
+
+
+
+
+  //  const handleSubmit = (e) => {
+  //    e.preventDefault();
+
+  //    api
+  //      .addUser(formData)
+  //      .then((res) => {
+  //       if (res.data.error) {
+  //         setErrors(res.data.error);
+  //        } else if (res.data.msg === "Mail exists") { 
+    // console.log(res.data.msg) 
+    //      if (res.data.msg === "Mail exists") {
+    //        setMailExist(res.data.msg);
+    //      } 
+         //else {
+  //         const fetchUser = props.fetchUser
+         
+  //         fetchUser(res.data)
+  //          history.push({
+  //           pathname: "/adddevice",
+  //           state: {userId : res.data._id, username: res.data.username}
+  //          })
+
+          
+  //       }
+     
+  //         // console.log(res.data);
+  //         // console.log(Object.values(errors)); 
+  //     })
+  //      .catch((error) => {
+  //        console.log(error);
+  //      });
+  //  };
 
   return (
     <StylesProvider injectFirst>
@@ -103,18 +192,15 @@ const Registration = (props) => {
             </Typography>
 
             <Avatar className={classes.avatar} />
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
 
-           
-
+            <div> {success ? success : ""} </div>
+            <form
+              className={classes.form} noValidate onSubmit={formik.handleSubmit}
+            >
               <TextField
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
-                // test for error
-                error={Boolean(errors?.mari)}
-                helperText={errors?.mari}
-
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className={`${classes.inputField}`}
                 variant="outlined"
                 required
@@ -122,27 +208,24 @@ const Registration = (props) => {
                 label="Name"
                 name="username"
                 size="small"
+                error={formik.touched.username && Boolean(formik.errors.username)}
+                helperText={formik.touched.username && formik.errors.username ? formik.errors.username : ""}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                 InputProps={{
-                   classes: {
-                     root: classes.root,
-                     focused: classes.focused,
-                     notchedOutline: classes.notchedOutline,
-                   },
-                 }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
               />
-       
-                <h1>{errors.msg}</h1>
+
               <TextField
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                //test for error
-                error={Boolean(errors?.mari)}
-                helperText={errors?.mari}
-                
+                value={formik.values.email}
+                onChange={formik.handleChange} 
+                onBlur={formik.handleBlur}
                 className={`${classes.inputField}`}
                 variant="outlined"
                 required
@@ -150,22 +233,24 @@ const Registration = (props) => {
                 label="Email"
                 name="email"
                 size="small"
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ""}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                 InputProps={{
-                   classes: {
-                     root: classes.root,
-                     focused: classes.focused,
-                     notchedOutline: classes.notchedOutline,
-                   },
-                 }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
               />
 
               <TextField
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="password"
@@ -174,22 +259,24 @@ const Registration = (props) => {
                 name="password"
                 type="password"
                 size="small"
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ""}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                 InputProps={{
-                   classes: {
-                     root: classes.root,
-                     focused: classes.focused,
-                     notchedOutline: classes.notchedOutline,
-                   },
-                 }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
               />
 
               <TextField
-                onChange={(e) =>
-                  setFormData({ ...formData, confirmPassword: e.target.value })
-                }
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
                 id="confirmPassword"
@@ -198,37 +285,32 @@ const Registration = (props) => {
                 name="confirmPassword"
                 type="password"
                 size="small"
+                error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                helperText={formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : ""}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
-                 InputProps={{
-                   classes: {
-                     root: classes.root,
-                     focused: classes.focused,
-                     notchedOutline: classes.notchedOutline,
-                   },
-                 }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
               />
 
               <Button
                 className={classes.button}
                 type="submit"
-                onClick={handleSubmit}
+               // onClick={handleSubmit}
                 variant="contained"
                 color="primary"
               >
                 Register
               </Button>
-
             </form>
 
-            {errors.length < 1 ? (
-             <div></div>
-           ) : (
-
-             errors.map((error, index) => <h1 key={index}>{error.msg}</h1>)
-           )}
-           <h1>{mailExist}</h1>  
+            <h1>{mailExist}</h1>
           </div>
           <div className={classes.footer}></div>
         </Container>

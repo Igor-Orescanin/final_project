@@ -144,7 +144,7 @@ const Water = (props) => {
   return (
     <>
       <StylesProvider injectFirst>
-        <NavbarSec />
+        
         <Container className={classes.container}>
           {/* <div>
             <Grid container spacing={3}>

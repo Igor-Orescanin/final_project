@@ -76,8 +76,6 @@ function Weekly(props) {
     return (
         <>
             <StylesProvider injectFirst>
-
-                <NavbarSec />
                 <Container className={classes.container} >
                     <div className={classes.paper}>
                         <div className={classes.buttons}>

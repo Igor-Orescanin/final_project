@@ -28,7 +28,7 @@ console.log(validationResult(req).array())
     check('username').notEmpty().withMessage('"Name" is required').isLength({ min: 3 }).withMessage('Name must be at least 3 characters').trim().escape(),
     check('email', 'Email is required').isEmail().normalizeEmail(),
     check('password', 'Password is required').isLength({ min: 4 }).custom((val, { req }) => {
-      if (val !== req.body.confirm_password) {
+      if (val !== req.body.confirmPassword) {
         throw new Error(`Password don't match!`);
       } else {
         return val;

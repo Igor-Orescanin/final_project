@@ -13,12 +13,6 @@ export default makeStyles((theme) => ({
         alignItems: "left",
     },
 
-    heading: {
-      color: "#0C9EB5",
-      marginTop: '10px',
-      fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-    },
-
     paper: {
         //backgroundColor: 'green',
         display: 'flex',
@@ -35,7 +29,7 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-around',
         alignItems: 'left',
         margin: '10px',
-        height: '45vh',
+        height: '60vh',
     },
 
     button: {
@@ -43,7 +37,7 @@ export default makeStyles((theme) => ({
         padding: 0,
         backgroundColor: "#0C9EB5",
         color: 'white',
-        width: '140px',
+        width: '106px',
         height: '38px',
         borderRadius: '10px',
         fontSize: '15px',
