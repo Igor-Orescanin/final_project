@@ -34,7 +34,6 @@ function Light(props) {
         <>
             <StylesProvider injectFirst>
 
-                <NavbarSec />
                 <Container className={classes.container} >
                 <h1 className={classes.heading}>Setting</h1>
                     <div className={classes.paper}>
