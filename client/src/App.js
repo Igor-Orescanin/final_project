@@ -19,7 +19,7 @@ import Test from "./components/Registration/Test.js";
 import Weekly from './components/History/Weekly/Weekly.js'
 import Monthly from './components/History/Monthly/Monthly.js'
 import Light from "./components/Lights/Light.js";
-import EmailAlert from "./components/Setting/EmailAlert/EmailAlert.js";
+import EmailAlert from "./components/Setting/EmailAlert/EmailAlert";
 
 //socket
 import io from 'socket.io-client';
