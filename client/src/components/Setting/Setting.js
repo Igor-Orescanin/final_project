@@ -20,7 +20,6 @@ const Setting = (props) => {
   
     return (
       <> 
-        <NavbarSec />
         <Container>
         <Button
         onClick={() => history.push("/welcome")}

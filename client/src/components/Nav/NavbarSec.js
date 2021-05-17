@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import useStyles from "./styles";
 
 // to connect the routes
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 // material-ui styles
 import { Container, Typography, IconButton } from "@material-ui/core";
@@ -15,12 +15,12 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
-const Navbar = (props) => {
+const NavbarSec = (props) => {
   const history = useHistory();
   const classes = useStyles();
+  const location = useLocation();
 
-
-  const user = props.data
+  const isChart = location.pathname.includes('water');
   // const userName = props.location.state.userName
 
 
@@ -48,7 +48,7 @@ const Navbar = (props) => {
         >
           {/* <Typography variant="h6" component="h6" className={classes.typo}> */}
           {/* Hello {formData.userName} */}
-          Hello 
+          Hello {props.username} 
         </Typography>
         {/* </IconButton>  */}
 
@@ -68,7 +68,7 @@ const Navbar = (props) => {
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>
 
-        <IconButton
+        {isChart && <IconButton
           className={classes.iconButtonSec}
           onClick={() => history.push("/weekly")}
         >
@@ -76,7 +76,7 @@ const Navbar = (props) => {
           <Typography variant="h6" component="h6" className={classes.typoSec}>
             Charts
           </Typography>
-        </IconButton>
+        </IconButton>}
 
         <IconButton
           className={classes.iconButtonSec}
@@ -91,4 +91,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+export default NavbarSec;

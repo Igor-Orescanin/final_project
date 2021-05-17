@@ -49,8 +49,7 @@ const Registration = (props) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    password: "",
-    macAddress: "",
+    password: ""
   });
 
   const [errors, setErrors] = useState([]);
@@ -70,12 +69,10 @@ const Registration = (props) => {
           setMailExist(res.data.msg);
           setErrors("");
         } else {
-          const fetchUser = props.fetchUser
-         
           fetchUser(res.data)
            history.push({
             pathname: "/adddevice",
-            state: {userId : res.data._id, username: res.data.username}
+            //state: {userId : res.data._id, username: res.data.username}
            })
           
         }

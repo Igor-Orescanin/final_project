@@ -57,8 +57,8 @@ const Devices = (props) => {
   const classes = useStyles();
 
 
-  const username = props.location.state.username
-  const userId =props.location.state.userId
+  const username = props.username
+  const userId = props.userId
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
@@ -75,8 +75,6 @@ const Devices = (props) => {
 
   return (
     <>
-      <Navbar username={username} />
-
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {/* <div className={classes.paper}> */}
