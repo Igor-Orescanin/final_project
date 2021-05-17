@@ -77,7 +77,7 @@ const fetchUser =(user)=>{
   return (
     <Router>
       <div className="app">
-        <Route path="/" exact component={LogIn}></Route>
+        <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
         {/* <Route path="/registration" component={Registration}></Route> */}
 
