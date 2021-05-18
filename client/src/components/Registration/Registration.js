@@ -80,117 +80,6 @@ const Registration = (props) => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
-<<<<<<< HEAD
-  const fetchUser = props.fetchUser;
- // console.log(props);
-
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // });
-
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
-  const [mailExist, setMailExist] = useState("");
-
-
-  const onSubmit = async (values) => {
-    const { confirmPassword, ...data } = values;
-
-    const response = await axios
-      .post("http://localhost:3005/users", data)
-
-      // .then((response) => {
-      //      if (response.data.msg === "Mail exists") {
-      //        setMailExist(response.data.msg);
-      //      }
-          
-      //     console.log(response)
-          
-          // })
-
-           
-      .catch((err) => {
-        if (err && err.response) {
-          setError(err.response.message);
-          console.log(err)
-
-        //  }else if (data.msg === "Mail exists") {
-        //     setMailExist(data.msg);
-             }
-          });
-        
-    if (response && response.data) {
-      setSuccess(response.data.message);
-      formik.resetForm();
-    }
-    // else if (response.data.msg === "Mail exists") {
-    //   setMailExist(response.data.msg);
-    //    }
-    
-   
-    // response = await api
-    // .addUser(formik)
-    // .then((response) => {
-    //   if (response.data.msg === "Mail exists") {
-    //     setMailExist(response.data.msg);
-    //   } })
-    //   console.log(mailExist)
-
-  };
-  
-
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validateOnBlur: true,
-    onSubmit,
-    validationSchema: validationSchema,
-  });
-
-
-
-
-
-  //  const handleSubmit = (e) => {
-  //    e.preventDefault();
-
-  //    api
-  //      .addUser(formData)
-  //      .then((res) => {
-  //       if (res.data.error) {
-  //         setErrors(res.data.error);
-  //        } else if (res.data.msg === "Mail exists") { 
-    // console.log(res.data.msg) 
-    //      if (res.data.msg === "Mail exists") {
-    //        setMailExist(res.data.msg);
-    //      } 
-         //else {
-  //         const fetchUser = props.fetchUser
-         
-  //         fetchUser(res.data)
-  //          history.push({
-  //           pathname: "/adddevice",
-  //           state: {userId : res.data._id, username: res.data.username}
-  //          })
-
-          
-  //       }
-     
-  //         // console.log(res.data);
-  //         // console.log(Object.values(errors)); 
-  //     })
-  //      .catch((error) => {
-  //        console.log(error);
-  //      });
-  //  };
-=======
 
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
@@ -253,7 +142,6 @@ const Registration = (props) => {
     validationSchema: validationSchema,
   });
 
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 
   return (
 
@@ -271,24 +159,13 @@ const Registration = (props) => {
 
             <Avatar className={classes.avatar} />
 
-<<<<<<< HEAD
-            <div> {success ? success : ""} </div>
-            <form
-              className={classes.form} noValidate onSubmit={formik.handleSubmit}
-            >
-=======
             <form className={classes.form} onSubmit={formik.handleSubmit}>
 
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
               <TextField
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-<<<<<<< HEAD
-                className={`${classes.inputField}`}
-=======
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="outlined"
                 required
                 id="username"
@@ -309,20 +186,12 @@ const Registration = (props) => {
                 }}
               />
 
-<<<<<<< HEAD
-              <TextField
-                value={formik.values.email}
-                onChange={formik.handleChange} 
-                onBlur={formik.handleBlur}
-                className={`${classes.inputField}`}
-=======
 
               <TextField
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="outlined"
                 required
                 id="email"
@@ -347,11 +216,7 @@ const Registration = (props) => {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-<<<<<<< HEAD
-                className={`${classes.inputField} ${classes.myInputLabel}`}
-=======
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 required
                 id="password"
                 label="Password"
@@ -377,11 +242,7 @@ const Registration = (props) => {
                 value={formik.values.confirmPassword}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-<<<<<<< HEAD
-                className={`${classes.inputField} ${classes.myInputLabel}`}
-=======
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 required
                 id="confirmPassword"
                 label="Confirm Password"
@@ -412,22 +273,13 @@ const Registration = (props) => {
               <Button
                 className={classes.button}
                 type="submit"
-<<<<<<< HEAD
-               // onClick={handleSubmit}
-=======
                 disable={!formik.isValid}
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="contained"
                 color="primary"
               >
                 Register
               </Button>
             </form>
-<<<<<<< HEAD
-
-            <h1>{mailExist}</h1>
-=======
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
           </div>
 
           <div className={classes.footer}></div>
