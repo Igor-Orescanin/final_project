@@ -46,7 +46,7 @@ const theme = createMuiTheme({
 });
 
 //__________________________________________________________start
-const LogIn = () => {
+const LogIn = (props) => {
   //hook
   const [formData, setFormData] = useState({
     email: "",
@@ -59,6 +59,7 @@ const LogIn = () => {
 
   //alert
   const [open, setOpen] = React.useState(true);
+  const fetchUser = props.fetchUser;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -79,9 +80,10 @@ const LogIn = () => {
         } else {
           localStorage.setItem("token", response.data.token);
           console.log(response.data)
+          fetchUser(response.data)
              history.push({
                pathname: "/devices",
-               state: {userId : response.data.userId ,username:response.data.username}
+               
              })
          // history.push("/devices");
         }
@@ -130,7 +132,6 @@ const LogIn = () => {
               </Alert>
 
               }
-
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })

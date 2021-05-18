@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import zIndex from "@material-ui/core/styles/zIndex";
 
-import image from '../../image/charts_bg_mobile.svg';
+import image from '../../../image/charts_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 
@@ -9,47 +9,56 @@ export default makeStyles((theme) => ({
         //backgroundColor: 'red',
         display: "flex",
         flexDirection: "column",
-        justifyContent: "left",
-        alignItems: "left",
-    },
-
-    heading: {
-      color: "#0C9EB5",
-      marginTop: '10px',
-      fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        color: "#0C9EB5",
+        marginTop: '50px'
     },
 
     paper: {
         //backgroundColor: 'green',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'left',
-        alignItems: 'left',
-
-
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
-    buttons: {
+    bothForm: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignItems: 'left',
-        margin: '10px',
-        height: '45vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '15px'
     },
+
+    formText: {
+        position: 'relative',
+        top: '30px'
+    },
+
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 130,
+
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+
 
     button: {
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         padding: 0,
-        backgroundColor: "#0C9EB5",
-        color: 'white',
-        width: '140px',
+        backgroundColor: "white",
+        color: '#0C9EB5',
+        width: '115px',
         height: '38px',
+        border: '1px solid #0C9EB5',
         borderRadius: '10px',
         fontSize: '15px',
         marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
+
     },
 
 
