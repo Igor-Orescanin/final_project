@@ -8,7 +8,11 @@ import * as yup from "yup";
 
 //axios
 import * as api from "../../api";
+<<<<<<< HEAD
 import axios from "axios"; 
+=======
+import axios from "axios";
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 // css
 import "../../App.css";
 
@@ -40,9 +44,14 @@ const theme = createMuiTheme({
   },
 });
 
+<<<<<<< HEAD
 //validations
 //const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
+=======
+const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
+
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 const validationSchema = yup.object({
   username: yup.string().min(3).required("Name is required"),
   email: yup.string().email("Email is required").required(),
@@ -64,10 +73,14 @@ const validationSchema = yup.object({
 //__________________________________________________________start
 
 const Registration = (props) => {
+
   const classes = useStyles();
   const { history } = props;
 
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
 
+<<<<<<< HEAD
   const fetchUser = props.fetchUser;
  // console.log(props);
 
@@ -177,8 +190,73 @@ const Registration = (props) => {
   //        console.log(error);
   //      });
   //  };
+=======
+
+  const onSubmit = async (values) => {
+    const { confirmPassword, ...data } = values;
+
+    api
+      .addUser(values)
+      .then((res) => {
+        console.log(res);
+        if (res.data.msg === "Mail exists") {
+          setError(res.data.msg);
+          setSuccess(null);
+        } else if (res.data.msg === "Thanks for registering") {
+          setError(null);
+          setSuccess(res.data.msg);
+          formik.resetForm();
+        }
+
+        else {
+          const fetchUser = props.fetchUser
+
+          fetchUser(res.data)
+          history.push({
+            pathname: "/adddevice",
+            state: { userId: res.data._id, username: res.data.username }
+          })
+
+        }
+      })
+
+
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  // OLD SOLUTION
+  //   const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
+  //     if (err && err.response) {
+  //       console.log("Error:", err);
+  //       console.log("Error response:", err.response);
+  //       setError(err.response.data.msg);
+  //       setSuccess(null);
+  //       formik.resetForm();
+  //     }
+
+  //   });
+  //   if (response && response.data) {
+  //     console.log(response.data);
+  //     setError(null);
+  //     setSuccess(response.data.msg);
+  //     formik.resetForm();
+  //   }
+  // };
+
+
+  const formik = useFormik({
+    initialValues: { username: "", email: "", password: "", confirmPassword: "", },
+    validateOnBlur: true,
+    onSubmit,
+    validationSchema: validationSchema,
+  });
+
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 
   return (
+
     <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
@@ -193,15 +271,24 @@ const Registration = (props) => {
 
             <Avatar className={classes.avatar} />
 
+<<<<<<< HEAD
             <div> {success ? success : ""} </div>
             <form
               className={classes.form} noValidate onSubmit={formik.handleSubmit}
             >
+=======
+            <form className={classes.form} onSubmit={formik.handleSubmit}>
+
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
               <TextField
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+<<<<<<< HEAD
                 className={`${classes.inputField}`}
+=======
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="outlined"
                 required
                 id="username"
@@ -222,11 +309,20 @@ const Registration = (props) => {
                 }}
               />
 
+<<<<<<< HEAD
               <TextField
                 value={formik.values.email}
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}`}
+=======
+
+              <TextField
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="outlined"
                 required
                 id="email"
@@ -251,7 +347,11 @@ const Registration = (props) => {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+<<<<<<< HEAD
                 className={`${classes.inputField} ${classes.myInputLabel}`}
+=======
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 required
                 id="password"
                 label="Password"
@@ -277,7 +377,11 @@ const Registration = (props) => {
                 value={formik.values.confirmPassword}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+<<<<<<< HEAD
                 className={`${classes.inputField} ${classes.myInputLabel}`}
+=======
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 required
                 id="confirmPassword"
                 label="Confirm Password"
@@ -299,19 +403,33 @@ const Registration = (props) => {
                 }}
               />
 
+              {/*  message "Thanks for registering" from backend usersController.js */}
+              {!error && <div> {success ? success : ""}</div>}
+
+              {/*  message "Mail Exist" from backend usersController.js */}
+              {!success && <div> {error ? error : ""}</div>}
+
               <Button
                 className={classes.button}
                 type="submit"
+<<<<<<< HEAD
                // onClick={handleSubmit}
+=======
+                disable={!formik.isValid}
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
                 variant="contained"
                 color="primary"
               >
                 Register
               </Button>
             </form>
+<<<<<<< HEAD
 
             <h1>{mailExist}</h1>
+=======
+>>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
           </div>
+
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
