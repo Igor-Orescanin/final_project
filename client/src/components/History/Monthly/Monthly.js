@@ -8,22 +8,37 @@ import Button from "@material-ui/core/Button"; //button
 import { createMuiTheme } from "@material-ui/core/styles";
 
 
-import NavbarSec from "../../Nav/NavbarSec.js";
+import * as api from "../../../api";
 import useStyles from "./styles.js";
 import ReactApexChart from 'react-apexcharts';
 
 
-function Weekly(props) {
+function Monthly(props) {
 
     const { history } = props;
     const classes = useStyles();
 
+    let waterData = [];
+    let dataTimeStamp = [];
 
+    useEffect(() => {
+        api.getMonth()
+        .then(res => {
+            console.log(res)
+            res.data.forEach(reading => {
+                waterData.push(reading.value.toFixed())
+                dataTimeStamp.push(reading.time)
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, [])
 
 
     const series = [{
         name: 'Water',
-        data: [31, 40, 28, 51, 42, 92, 100, 90, 82, 78, 68, 78]
+        data: waterData
     }]
     const options = {
         title: {
@@ -44,13 +59,12 @@ function Weekly(props) {
             colors: '#0C9EB5'
         },
         xaxis: {
-            //type: 'datetime',
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-            /* title: {
+            type: 'datetime',
+            title: {
                 text: 'Monthly',
-            }, */
+            }, 
 
-            /* categories: ["2018-09-19T00:00:00.000Z", "2018-09-20T01:30:00.000Z", "2018-09-21T02:30:00.000Z", "2018-09-22T03:30:00.000Z", "2018-09-23T04:30:00.000Z", "2018-09-24T05:30:00.000Z", "2018-09-25T06:30:00.000Z"] */
+            categories: dataTimeStamp
         },
         tooltip: {
             x: {
@@ -58,11 +72,8 @@ function Weekly(props) {
             },
         },
         yaxis: {
-            /* title: {
-                text: 'Liter'
-            }, */
             min: 0,
-            max: 100
+            max: Math.max(...waterData)
         },
 
     }
@@ -116,4 +127,4 @@ function Weekly(props) {
     )
 }
 
-export default Weekly
+export default Monthly
