@@ -22,6 +22,11 @@ import {
   TextField,
   Button,
   IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
 
 // alert
@@ -70,10 +75,15 @@ const AddDevice = (props) => {
 
   const [errors, setErrors] = useState('');
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    
   };
 
 //a hook
@@ -107,7 +117,12 @@ useEffect(async () => {
        setDeviceExist(res.data.message)
        handleClickOpen()
       
-       // ---------------------- is not working right now not sure why
+      
+      } else if(res.data.message === "Device not found"){
+       setDeviceExist(res.data.message)
+       handleClickOpen()
+
+
       }else{
        // history.push('/devices')
          history.push({
@@ -237,6 +252,7 @@ useEffect(async () => {
                 <Button
                  // onClick={handleSubmit}
                   className={classes.buttonHelp}
+                  onClick={handleClickOpen} 
                   variant="contained"
                   color="primary"
                   type="submit"
@@ -245,6 +261,32 @@ useEffect(async () => {
                 >
                   Need help?
                 </Button>
+                <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"What need I to do here?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Your can choose your own Device Name.
+If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
+If you bought your own device pleace contact us per Email: NaunetMon.com!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+
+
               </form>
               <div className={classes.footer}></div>
             </div>

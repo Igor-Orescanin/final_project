@@ -86,7 +86,7 @@ console.log(device)
   const handleClose1 = () => {
     setOpen(false);
     api.deleteDevice(device._id)
-    // history.push('/devices')
+    //history.push('/devices')
   };
 
   //for radio button FormControlLabel
@@ -118,14 +118,7 @@ console.log(device)
 
             </Button>
               <DeleteIcon className={classes.deleteIcon}  onClick={handleClickOpen} /> 
-            {/* <Button
-              onClick={handleClickOpen}
-              className={classes.button}
-              variant="contained"
-              color="secondary"
-            >
-              Delete
-            </Button> */}
+            
             <Dialog
               className={classes.dialog}
               open={open}
