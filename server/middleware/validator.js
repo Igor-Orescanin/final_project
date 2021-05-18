@@ -29,13 +29,8 @@ function validateUser() {
   return [
     check('username').notEmpty().withMessage('"Name" is required').isLength({ min: 3 }).withMessage('Name must be at least 3 characters').trim().escape(),
     check('email', 'Email is required').isEmail().normalizeEmail(),
-<<<<<<< HEAD
-    check('password', 'Password is required').isLength({ min: 4 }).custom((val, { req }) => {
-      if (val !== req.body.confirmPassword) {
-=======
     check('password', 'Password is required').isLength({ min: 6 }).custom((val, { req }) => {
       if (req.body.password !== req.body.confirmPassword) {
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
         throw new Error(`Password don't match!`);
       } else {
         return val;
