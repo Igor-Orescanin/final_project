@@ -70,6 +70,7 @@ const Registration = (props) => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
+
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
 
@@ -86,40 +87,43 @@ const Registration = (props) => {
           formik.resetForm();
         }
 
-        // else {
-        //   const fetchUser = props.fetchUser
+        else {
+          const fetchUser = props.fetchUser
 
-        //   fetchUser(res.data)
-        //   history.push({
-        //     pathname: "/adddevice",
-        //     state: { userId: res.data._id, username: res.data.username }
-        //   })
+          fetchUser(res.data)
+          history.push({
+            pathname: "/adddevice",
+            state: { userId: res.data._id, username: res.data.username }
+          })
 
-        // }
+        }
       })
+
 
       .catch((error) => {
         console.log(error);
       });
+  }
 
+  // OLD SOLUTION
+  //   const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
+  //     if (err && err.response) {
+  //       console.log("Error:", err);
+  //       console.log("Error response:", err.response);
+  //       setError(err.response.data.msg);
+  //       setSuccess(null);
+  //       formik.resetForm();
+  //     }
 
+  //   });
+  //   if (response && response.data) {
+  //     console.log(response.data);
+  //     setError(null);
+  //     setSuccess(response.data.msg);
+  //     formik.resetForm();
+  //   }
+  // };
 
-    // OLD SOLUTION
-    // const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
-    //   if (err && err.response) {
-    //     console.log("Error:", err);
-
-    //     setError(err.response.data.msg);
-    //     setSuccess(null);
-    //   }
-    // });
-    // if (response && response.data) {
-    //   console.log(response.data);
-    //   setError(null);
-    //   setSuccess(response.data.msg);
-    //   formik.resetForm();
-    // }
-  };
 
   const formik = useFormik({
     initialValues: { username: "", email: "", password: "", confirmPassword: "", },
