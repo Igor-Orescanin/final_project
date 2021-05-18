@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios';
@@ -76,6 +76,19 @@ const AddDevice = (props) => {
     setOpen(true);
   };
 
+//a hook
+const [allDevices, setAllDevices] = useState([]);
+
+// to get the data for databace
+useEffect(async () => {
+  const { data } = await api.fetchDevices(userId);
+
+  setAllDevices(data);
+}, []);
+
+
+  //lengh of character
+  const CHARACTER_LIMIT = 10;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,10 +96,12 @@ const AddDevice = (props) => {
 // console.log(userId)
  console.log(formData)
 
+
     api.asignDevice(formData)
     .then((res)=>{
 
       console.log(res)
+
 
        if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
@@ -104,13 +119,15 @@ const AddDevice = (props) => {
       
      
     }).catch((error) => {
-      if(error){ setDeviceExist('Device exist')
+      if(error){ setDeviceExist('register a Device!')
         setErrors('error')}
       console.log(error);
     });
-    
+
+  
   };
 
+ 
   return (
     <>
       <StylesProvider injectFirst>
@@ -118,12 +135,19 @@ const AddDevice = (props) => {
           
           <Container className={classes.container}>
             <div className={classes.paper}>
-              <Typography className={classes.typography}>
-                You don't have any devices registered in this system!{" "}
+
+            {allDevices.length < 1 ?
+                <Typography className={classes.typography}>
+                   You don't have any devices registered in this system!
               </Typography>
-
-              <Typography> {deviceExist} </Typography>
-
+              :
+              <Typography className={classes.typography}>
+                 Register a new device in this system!
+              </Typography>
+              }
+              {deviceExist.length < 1 ?(
+                <div></div>
+              ):
               <Alert 
               severity="error"
                 action={
@@ -141,7 +165,7 @@ const AddDevice = (props) => {
               >
                {deviceExist}
               </Alert>
-
+              }
 
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
@@ -161,6 +185,9 @@ const AddDevice = (props) => {
                   size="small"
                   InputLabelProps={{
                     style: { color: "#007982" },
+                  }}
+                  inputProps={{
+                    maxlength: CHARACTER_LIMIT
                   }}
                    InputProps={{
                      classes: {

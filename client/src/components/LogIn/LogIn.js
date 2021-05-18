@@ -82,8 +82,7 @@ const LogIn = (props) => {
           console.log(response.data)
           fetchUser(response.data)
              history.push({
-               pathname: "/devices",
-               
+               pathname: "/devices",  
              })
          // history.push("/devices"); 
         }

@@ -77,13 +77,8 @@ function App() {
   return (
     <Router>
       <div className="app">
-<<<<<<< HEAD
         <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
-=======
-        <Route path="/" exact component={LogIn}></Route>
-        <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
->>>>>>> sandeep
         {/* <Route path="/registration" component={Registration}></Route> */}
 
       </div>

@@ -38,8 +38,7 @@ export default makeStyles((theme) => ({
   },
 
   button: {
-    maxWidth:'140px',
-    minWidth:'140px',
+    minWidth:'120px',
     bordercolor: "#008CA7",
     textTransform: "none",
    //marginRight: "6px",
