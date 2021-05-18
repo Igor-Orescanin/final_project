@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button"; //button
 import { createMuiTheme } from "@material-ui/core/styles";
 
 
-import NavbarSec from "../../Nav/NavbarSec.js";
+import * as api from "../../../api";
 import useStyles from "./styles.js";
 import ReactApexChart from 'react-apexcharts';
 
@@ -18,12 +18,26 @@ function Weekly(props) {
     const { history } = props;
     const classes = useStyles();
 
+    let waterData = [];
+    let dataTimeStamp = [];
 
-
+    useEffect(() => {
+        api.getWeek()
+        .then(res => {
+            console.log(res)
+            res.data.forEach(reading => {
+                waterData.push(reading.value.toFixed())
+                dataTimeStamp.push(reading.time)
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, [])
 
     const series = [{
         name: 'Water',
-        data: [46, 68, 32, 78, 42, 66, 77]
+        data: waterData
     }]
     const options = {
         title: {
@@ -47,19 +61,11 @@ function Weekly(props) {
             curve: 'smooth',
             colors: '#0C9EB5'
         },
-
         xaxis: {
-            categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
-            /* title: {
-                text: 'Weekly'
-            } */
+            type: 'datetime',
 
+                categories: dataTimeStamp
         },
-        /*    xaxis: {
-               type: 'datetime',   
-   
-                categories: ["2018-09-01T00:00:00.000Z", "2018-09-06T05:30:00.000Z", "2018-09-07T02:30:00.000Z", "2018-09-10T03:30:00.000Z", "2018-09-10T17:30:00.000Z", "2018-09-18T05:30:00.000Z", "2018-09-19T06:30:00.000Z","2018-09-22T06:30:00.000Z","2018-09-23T06:30:00.000Z","2018-09-24T06:30:00.000Z","2018-09-25T06:30:00.000Z","2018-09-26T06:30:00.000Z","2018-09-27T06:30:00.000Z","2018-09-28T06:30:00.000Z","2018-09-29T06:30:00.000Z","2018-09-30T06:30:00.000Z","2018-09-31T06:30:00.000Z","2018-10-01T06:30:00.000Z"] 
-           }, */
         tooltip: {
             x: {
                 format: 'dd/MM/yy HH:mm'
@@ -67,7 +73,7 @@ function Weekly(props) {
         },
         yaxis: {
             min: 0,
-            max: 100
+            max: Math.max(...waterData)
         },
 
     }
@@ -119,5 +125,4 @@ function Weekly(props) {
         </>
     )
 }
-
 export default Weekly

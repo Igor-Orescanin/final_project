@@ -43,13 +43,8 @@ function App() {
     console.log(response)
   }
 
-  useEffect(() => {
-
-
-  }, [response]);
-
-  if (response._id) {
-
+  if(response._id){
+    
     return (
       <Router>
         <div className="app">
@@ -79,8 +74,6 @@ function App() {
       <div className="app">
         <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
-        {/* <Route path="/registration" component={Registration}></Route> */}
-
       </div>
     </Router>
   );

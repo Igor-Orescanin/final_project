@@ -27,8 +27,7 @@ exports.addUser = async (req, res, next) => {
     });
 
     await user.save();
-
-    res.status(200).send(user);
+    res.json({ msg: "Thanks for registering", user: user })
   } catch (e) {
     next(e);
   }

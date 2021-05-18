@@ -28,12 +28,12 @@ router
 router
   .route("/login")
   .post(loginUser)
-  
+
 router
   .route("/:id")
   .get(getUser)   //use only for postman
   .delete(auth, deleteUser)  //use only for postman
-  .put(auth, updateUser);
+  .put(updateUser);
 
 
 // ROUTE FOR ASSIGN DEVICE TO A USER
