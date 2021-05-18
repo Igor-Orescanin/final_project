@@ -52,7 +52,7 @@ navContainer:{
  paper: {
   display:'flex',
   flexWrap:'wrap',
-  backgroundColor:'red',
+  //backgroundColor:'red',
   margin:'20px',
   padding: theme.spacing(2),
   textAlign: 'center',

@@ -19,7 +19,7 @@ import Test from "./components/Registration/Test.js";
 import Weekly from './components/History/Weekly/Weekly.js'
 import Monthly from './components/History/Monthly/Monthly.js'
 import Light from "./components/Lights/Light.js";
-import EmailAlert from "./components/Setting/EmailAlert/EmailAlert.js";
+import EmailAlert from "./components/Setting/EmailAlert/EmailAlert";
 
 //socket
 import io from 'socket.io-client';
@@ -38,36 +38,36 @@ function App() {
 
   const [response, setResponse] = useState({});
 
-const fetchUser =(user)=>{
-  setResponse(user)
-  console.log(response)
-} 
+  const fetchUser = (user) => {
+    setResponse(user)
+    console.log(response)
+  }
 
   useEffect(() => {
 
-  
+
   }, [response]);
 
-  if(response._id){
-    
+  if (response._id) {
+
     return (
       <Router>
         <div className="app">
-          <NavbarSec username={response.username}/>
+          <NavbarSec username={response.username} />
           <Route path="/welcome" component={Welcome}></Route>
           <Route path="/logout" component={LogOut}></Route>
           <Route path="/water" component={Water}></Route>
           <Route path="/setting" component={Setting}></Route>
-          <Route path="/adddevice" render={(props)=><AddDevice {...props} userId={response._id}/>}></Route>
-          <Route path="/devices" render={(props)=><Devices {...props} userId={response._id} username={response.username}/>}></Route>
+          <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
+          <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
           <Route path="/regdevice" component={RegDevice}></Route>
-         <Route path="/graph" component={Graph}></Route>
+          <Route path="/graph" component={Graph}></Route>
           <Route path="/device" component={Device}></Route>
-         <Route path="/test" component={Test}></Route>
+          <Route path="/test" component={Test}></Route>
           <Route path="/weekly" component={Weekly}></Route>
           <Route path="/monthly" component={Monthly}></Route>
-      <Route path="/light" component={Light}></Route>
-        <Route path="/emailalert" component={EmailAlert}></Route>
+          <Route path="/light" component={Light}></Route>
+          <Route path="/emailalert" component={EmailAlert}></Route>
         </div>
       </Router>
     );
@@ -77,8 +77,13 @@ const fetchUser =(user)=>{
   return (
     <Router>
       <div className="app">
+<<<<<<< HEAD
         <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
+=======
+        <Route path="/" exact component={LogIn}></Route>
+        <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
+>>>>>>> sandeep
         {/* <Route path="/registration" component={Registration}></Route> */}
 
       </div>

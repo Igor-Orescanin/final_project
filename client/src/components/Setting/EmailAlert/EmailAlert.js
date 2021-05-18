@@ -35,7 +35,6 @@ function EmailAlert(props) {
         <>
             <StylesProvider injectFirst>
 
-                <NavbarSec />
                 <Container className={classes.container} >
 
                     <div className={classes.paper}>

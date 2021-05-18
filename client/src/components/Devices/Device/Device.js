@@ -11,6 +11,7 @@ import useStyles from "./styles";
 
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 //css
 import "../../../App.css";
@@ -110,21 +111,21 @@ console.log(device)
                 state: {userId :device.userId ,username:username}
               })}
               className={classes.button}
-              variant="contained"
+             variant="contained"
               color="primary"
             >
              { device.deviceName }
 
             </Button>
-
-            <Button
+              <DeleteIcon className={classes.deleteIcon}  onClick={handleClickOpen} /> 
+            {/* <Button
               onClick={handleClickOpen}
               className={classes.button}
               variant="contained"
               color="secondary"
             >
               Delete
-            </Button>
+            </Button> */}
             <Dialog
               className={classes.dialog}
               open={open}

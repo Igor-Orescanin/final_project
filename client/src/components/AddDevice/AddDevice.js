@@ -20,8 +20,12 @@ import {
   ThemeProvider,
   Typography,
   TextField,
+  Button,
+  IconButton,
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button"; //button
+
+// alert
+import Alert from "@material-ui/lab/Alert";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -66,6 +70,13 @@ const AddDevice = (props) => {
 
   const [errors, setErrors] = useState('');
 
+  const [open, setOpen] = React.useState(true);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -79,6 +90,7 @@ const AddDevice = (props) => {
 
        if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
+       handleClickOpen()
       
        // ---------------------- is not working right now not sure why
       }else{
@@ -111,6 +123,26 @@ const AddDevice = (props) => {
               </Typography>
 
               <Typography> {deviceExist} </Typography>
+
+              <Alert 
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                 
+                  </IconButton>
+                }
+              >
+               {deviceExist}
+              </Alert>
+
+
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                   onChange={(e) =>
@@ -174,6 +206,17 @@ const AddDevice = (props) => {
                   type="submit"
                 >
                   Register
+                </Button>
+                <Button
+                 // onClick={handleSubmit}
+                  className={classes.buttonHelp}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ border: '2px solid' }}
+                
+                >
+                  Need help?
                 </Button>
               </form>
               <div className={classes.footer}></div>

@@ -78,6 +78,8 @@ export default makeStyles((theme) => ({
     height: "38px",
     borderRadius: "20px",
     fontSize: "15px",
+    borderColor: "#008CA7",
+    border: "solid",
   },
 
   // image

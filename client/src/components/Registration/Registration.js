@@ -205,7 +205,7 @@ const Registration = (props) => {
                 variant="outlined"
                 required
                 id="username"
-                label="Name"
+                label="User Name"
                 name="username"
                 size="small"
                 error={formik.touched.username && Boolean(formik.errors.username)}
