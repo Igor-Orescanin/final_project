@@ -8,11 +8,7 @@ import * as yup from "yup";
 
 //axios
 import * as api from "../../api";
-<<<<<<< HEAD
-import axios from "axios"; 
-=======
 import axios from "axios";
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 // css
 import "../../App.css";
 
@@ -44,14 +40,9 @@ const theme = createMuiTheme({
   },
 });
 
-<<<<<<< HEAD
 //validations
 //const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
-=======
-const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
-
->>>>>>> 91afd7cc21e8fd8dd23d50309403e48f612e85f9
 const validationSchema = yup.object({
   username: yup.string().min(3).required("Name is required"),
   email: yup.string().email("Email is required").required(),
