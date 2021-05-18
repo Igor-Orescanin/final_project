@@ -24,4 +24,6 @@ export const authUser = () => axios.get(`${url}/users/isUser`, {headers: {
 
 export const getUser = (id) => axios.get(`${url}/users/${id}`)
 
-export const get7days = () => axios.get(`${url}/7days`)
+export const getWeek = () => axios.get(`${url}/waterFlow/week`)
+
+export const getMonth = () => axios.get(`${url}/waterFlow/month`)

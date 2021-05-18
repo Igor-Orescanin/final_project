@@ -43,11 +43,6 @@ const fetchUser =(user)=>{
   console.log(response)
 } 
 
-  useEffect(() => {
-
-  
-  }, [response]);
-
   if(response._id){
     
     return (
@@ -79,8 +74,6 @@ const fetchUser =(user)=>{
       <div className="app">
         <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
-        {/* <Route path="/registration" component={Registration}></Route> */}
-
       </div>
     </Router>
   );
