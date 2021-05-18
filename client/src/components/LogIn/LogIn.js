@@ -83,7 +83,7 @@ const LogIn = () => {
                pathname: "/devices",
                state: {userId : response.data.userId ,username:response.data.username}
              })
-         // history.push("/devices"); 
+         // history.push("/devices");
         }
       })
       .catch((err) => {
@@ -106,12 +106,12 @@ const LogIn = () => {
 
             <Avatar className={classes.avatar} />
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
-             
-           
+
+
               {loginStatus.length < 1 ?(
                 <div></div>
               ):
-              <Alert 
+              <Alert
               severity="error"
                 action={
                   <IconButton
@@ -122,13 +122,13 @@ const LogIn = () => {
                       setOpen(false);
                     }}
                   >
-                 
+
                   </IconButton>
                 }
               >
                 {loginStatus}
               </Alert>
-            
+
               }
 
               <TextField

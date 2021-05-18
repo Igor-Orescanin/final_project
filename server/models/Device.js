@@ -16,6 +16,10 @@ const DeviceSchema = new mongoose.Schema({
   wasteWaterLevelAlertThreshold: {
     type: Number
   },
+  isConnected: {
+    type: Boolean,
+    default: false
+  },
   userId: {
     type: mongoose.ObjectId
   }
