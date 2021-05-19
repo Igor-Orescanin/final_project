@@ -43,13 +43,8 @@ function App() {
     console.log(response)
   }
 
-  useEffect(() => {
-
-
-  }, [response]);
-
-  //if (response._id) {
-
+  if(response._id){
+    
     return (
       <Router>
         <div className="app">
@@ -68,22 +63,20 @@ function App() {
           <Route path="/monthly" component={Monthly}></Route>
           <Route path="/light" component={Light}></Route>
           <Route path="/emailalert" component={EmailAlert}></Route>
-
         </div>
       </Router>
     );
-  //}
+  }
 
-
-  /* return (
+  
+  return (
     <Router>
       <div className="app">
         <Route path="/" exact render={(props)=><LogIn {...props} fetchUser={fetchUser}/>}></Route>
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
-
       </div>
     </Router>
-  ); */
+  ); 
 }
 
 export default App;

@@ -64,121 +64,69 @@ const validationSchema = yup.object({
 //__________________________________________________________start
 
 const Registration = (props) => {
+  const fetchUser = props.fetchUser
   const classes = useStyles();
   const { history } = props;
 
-
-  const fetchUser = props.fetchUser;
- // console.log(props);
-
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // });
-
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
-  const [mailExist, setMailExist] = useState("");
 
 
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
 
-    const response = await axios
-      .post("http://localhost:3005/users", data)
+    api
+      .addUser(values)
+      .then((res) => {
+        console.log(res);
+        if (res.data.msg === "Mail exists") {
+          setError(res.data.msg);
+          setSuccess(null);
+        } else if (res.data.msg === "Thanks for registering") {
+          fetchUser(res.data.user)
+          setError(null);
+          setSuccess(res.data.msg);
+          formik.resetForm();
+          history.push({
+            pathname: "/adddevice",
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-      // .then((response) => {
-      //      if (response.data.msg === "Mail exists") {
-      //        setMailExist(response.data.msg);
-      //      }
-          
-      //     console.log(response)
-          
-          // })
+  // OLD SOLUTION
+  //   const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
+  //     if (err && err.response) {
+  //       console.log("Error:", err);
+  //       console.log("Error response:", err.response);
+  //       setError(err.response.data.msg);
+  //       setSuccess(null);
+  //       formik.resetForm();
+  //     }
 
-           
-      .catch((err) => {
-        if (err && err.response) {
-          setError(err.response.message);
-          console.log(err)
+  //   });
+  //   if (response && response.data) {
+  //     console.log(response.data);
+  //     setError(null);
+  //     setSuccess(response.data.msg);
+  //     formik.resetForm();
+  //   }
+  // };
 
-        //  }else if (data.msg === "Mail exists") {
-        //     setMailExist(data.msg);
-             }
-          });
-        
-    if (response && response.data) {
-      setSuccess(response.data.message);
-      formik.resetForm();
-    }
-    // else if (response.data.msg === "Mail exists") {
-    //   setMailExist(response.data.msg);
-    //    }
-    
-   
-    // response = await api
-    // .addUser(formik)
-    // .then((response) => {
-    //   if (response.data.msg === "Mail exists") {
-    //     setMailExist(response.data.msg);
-    //   } })
-    //   console.log(mailExist)
-
-  };
-  
 
   const formik = useFormik({
-    initialValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
+    initialValues: { username: "", email: "", password: "", confirmPassword: "", },
     validateOnBlur: true,
     onSubmit,
     validationSchema: validationSchema,
   });
 
 
-
-
-
-  //  const handleSubmit = (e) => {
-  //    e.preventDefault();
-
-  //    api
-  //      .addUser(formData)
-  //      .then((res) => {
-  //       if (res.data.error) {
-  //         setErrors(res.data.error);
-  //        } else if (res.data.msg === "Mail exists") { 
-    // console.log(res.data.msg) 
-    //      if (res.data.msg === "Mail exists") {
-    //        setMailExist(res.data.msg);
-    //      } 
-         //else {
-  //         const fetchUser = props.fetchUser
-         
-  //         fetchUser(res.data)
-  //          history.push({
-  //           pathname: "/adddevice",
-  //           state: {userId : res.data._id, username: res.data.username}
-  //          })
-
-          
-  //       }
-     
-  //         // console.log(res.data);
-  //         // console.log(Object.values(errors)); 
-  //     })
-  //      .catch((error) => {
-  //        console.log(error);
-  //      });
-  //  };
-
   return (
+
     <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
@@ -193,15 +141,13 @@ const Registration = (props) => {
 
             <Avatar className={classes.avatar} />
 
-            <div> {success ? success : ""} </div>
-            <form
-              className={classes.form} noValidate onSubmit={formik.handleSubmit}
-            >
+            <form className={classes.form} onSubmit={formik.handleSubmit}>
+
               <TextField
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`${classes.inputField}`}
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
                 required
                 id="username"
@@ -222,11 +168,12 @@ const Registration = (props) => {
                 }}
               />
 
+
               <TextField
                 value={formik.values.email}
-                onChange={formik.handleChange} 
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`${classes.inputField}`}
+                className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
                 required
                 id="email"
@@ -251,7 +198,7 @@ const Registration = (props) => {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`${classes.inputField} ${classes.myInputLabel}`}
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 required
                 id="password"
                 label="Password"
@@ -277,7 +224,7 @@ const Registration = (props) => {
                 value={formik.values.confirmPassword}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`${classes.inputField} ${classes.myInputLabel}`}
+                className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 required
                 id="confirmPassword"
                 label="Confirm Password"
@@ -299,19 +246,24 @@ const Registration = (props) => {
                 }}
               />
 
+              {/*  message "Thanks for registering" from backend usersController.js */}
+              {!error && <div> {success ? success : ""}</div>}
+
+              {/*  message "Mail Exist" from backend usersController.js */}
+              {!success && <div> {error ? error : ""}</div>}
+
               <Button
                 className={classes.button}
                 type="submit"
-               // onClick={handleSubmit}
+                disable={!formik.isValid}
                 variant="contained"
                 color="primary"
               >
                 Register
               </Button>
             </form>
-
-            <h1>{mailExist}</h1>
           </div>
+
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
