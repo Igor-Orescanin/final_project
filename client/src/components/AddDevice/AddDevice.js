@@ -249,6 +249,7 @@ useEffect(async () => {
                 >
                   Register
                 </Button>
+                </form>
                 <Button
                  // onClick={handleSubmit}
                   className={classes.buttonHelp}
@@ -287,7 +288,7 @@ If you bought your own device pleace contact us per Email: NaunetMon.com!
 
 
 
-              </form>
+       
               <div className={classes.footer}></div>
             </div>
           </Container>
