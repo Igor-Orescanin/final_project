@@ -6,8 +6,9 @@ exports.getWeekWaterFlow = async(req,res,next) => {
 
     let d = new Date();
     d.setDate(d.getDate() - 7);
-    console.log(d);
-
+    console.log(d,'khgdfs');
+    // const readings = await WaterFlow.find()
+    // console.log(readings)
     try {
         const readings = await WaterFlow.aggregate([
         {"$match": {"ts": {"$gt": d}}},
@@ -40,31 +41,32 @@ exports.getWeekWaterFlow = async(req,res,next) => {
         ,
         {"$sort": {"daylyReading": 1}}
     ])
-    
 
     var result = []; 
     for (let index = 0; index < readings.length; index++) {
         // IF WE ARE NOT ON LAST INDEX TAKE THE FIRST READING OF THE NEXT DAY AND SUBSTRACT IT FROM FIRST READING OF PRESENT DAY 
         if(index !== readings.length -1){
-            let nextDayReading = readings[index +1].monthlyReading[0].waterFlowCounter;
-            let presentDayReading = readings[index].monthlyReading[0].waterFlowCounter;
+            let nextDayReading = readings[index +1].daylyReading[0].waterFlowCounter;
+            let presentDayReading = readings[index].daylyReading[0].waterFlowCounter;
         // IF THE NEXT DAY READING IS SMALLER THAN PRESENT DAY READING WE WILL TAKE THE LAST READING OF THE PRESENT DAY AND SUBSTRACT IT FROM THE FIRST READING OF THE SAME DAY
             if(nextDayReading < presentDayReading){
-                result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[readings[index].monthlyReading.length -1].waterFlowCounter - readings[index].monthlyReading[0].waterFlowCounter})
+                if(readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter < readings[index].daylyReading[0].waterFlowCounter){
+                    result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter})
+                } else {result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})}
             } else {
-                result.push({time: readings[index].monthlyReading[0].ts, value:  nextDayReading - presentDayReading})
+                result.push({time: readings[index].daylyReading[0].ts, value:  nextDayReading - presentDayReading})
             }
         } else if (index === readings.length -1){
-            if(readings[index].monthlyReading.length < 2){
-                result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[0].waterFlowCounter})
+            if(readings[index].daylyReading.length < 2){
+                result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[0].waterFlowCounter})
             } else {
         // ON THE LAST INDEX TAKE THE LAST READING OF THE LAST DAY AND SUBSTRACT IT FROM THE FIRST READING OF THE SAME DAY
-            result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[readings[index].monthlyReading.length -1].waterFlowCounter - readings[index].monthlyReading[0].waterFlowCounter})
+            result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})
             }
         }
     }
     res.status(200).send(result);
-    console.log(result);
+    console.log(readings);
     } catch (e) {
         next(e);
     }
@@ -117,20 +119,22 @@ try {
     for (let index = 0; index < readings.length; index++) {
         // IF WE ARE NOT ON LAST INDEX TAKE THE FIRST READING OF THE NEXT DAY AND SUBSTRACT IT FROM FIRST READING OF PRESENT DAY 
         if(index !== readings.length -1){
-            let nextDayReading = readings[index +1].monthlyReading[0].waterFlowCounter;
-            let presentDayReading = readings[index].monthlyReading[0].waterFlowCounter;
+            let nextDayReading = readings[index +1].daylyReading[0].waterFlowCounter;
+            let presentDayReading = readings[index].daylyReading[0].waterFlowCounter;
         // IF THE NEXT DAY READING IS SMALLER THAN PRESENT DAY READING WE WILL TAKE THE LAST READING OF THE PRESENT DAY AND SUBSTRACT IT FROM THE FIRST READING OF THE SAME DAY
             if(nextDayReading < presentDayReading){
-                result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[readings[index].monthlyReading.length -1].waterFlowCounter - readings[index].monthlyReading[0].waterFlowCounter})
+                if(readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter < readings[index].daylyReading[0].waterFlowCounter){
+                    result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter})
+                } else {result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})}
             } else {
-                result.push({time: readings[index].monthlyReading[0].ts, value:  nextDayReading - presentDayReading})
+                result.push({time: readings[index].daylyReading[0].ts, value:  nextDayReading - presentDayReading})
             }
         } else if (index === readings.length -1){
-            if(readings[index].monthlyReading.length < 2){
-                result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[0].waterFlowCounter})
+            if(readings[index].daylyReading.length < 2){
+                result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[0].waterFlowCounter})
             } else {
         // ON THE LAST INDEX TAKE THE LAST READING OF THE LAST DAY AND SUBSTRACT IT FROM THE FIRST READING OF THE SAME DAY
-            result.push({time: readings[index].monthlyReading[0].ts, value: readings[index].monthlyReading[readings[index].monthlyReading.length -1].waterFlowCounter - readings[index].monthlyReading[0].waterFlowCounter})
+            result.push({time: readings[index].daylyReading[0].ts, value: readings[index].daylyReading[readings[index].daylyReading.length -1].waterFlowCounter - readings[index].daylyReading[0].waterFlowCounter})
             }
         }
     }

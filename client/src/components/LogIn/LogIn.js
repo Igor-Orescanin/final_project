@@ -76,16 +76,13 @@ const LogIn = (props) => {
           console.log(response.data);
           setLoginStatus("Wrong password or email");
           handleClickOpen()
-
         } else {
           localStorage.setItem("token", response.data.token);
           console.log(response.data)
           fetchUser(response.data)
              history.push({
                pathname: "/devices",
-               
              })
-         // history.push("/devices");
         }
       })
       .catch((err) => {

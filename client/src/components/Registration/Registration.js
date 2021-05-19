@@ -9,6 +9,7 @@ import * as yup from "yup";
 //axios
 import * as api from "../../api";
 import axios from "axios";
+
 // css
 import "../../App.css";
 
@@ -64,7 +65,7 @@ const validationSchema = yup.object({
 //__________________________________________________________start
 
 const Registration = (props) => {
-
+  const fetchUser = props.fetchUser
   const classes = useStyles();
   const { history } = props;
 
@@ -83,24 +84,15 @@ const Registration = (props) => {
           setError(res.data.msg);
           setSuccess(null);
         } else if (res.data.msg === "Thanks for registering") {
+          fetchUser(res.data.user)
           setError(null);
           setSuccess(res.data.msg);
           formik.resetForm();
-        }
-
-        else {
-          const fetchUser = props.fetchUser
-
-          fetchUser(res.data)
           history.push({
             pathname: "/adddevice",
-            state: { userId: res.data._id, username: res.data.username }
           })
-
         }
       })
-
-
       .catch((error) => {
         console.log(error);
       });
