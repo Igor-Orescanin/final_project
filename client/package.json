@@ -19,9 +19,9 @@
     "react-hook-form": "^7.5.2",
     "react-material-ui-form-validator": "^2.1.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^4.0.3",
     "socket.io-client": "^4.0.1",
-    "update": "^0.4.2",
+    "update": "^0.7.4",
     "web-vitals": "^1.1.1",
     "yup": "^0.32.9"
   },

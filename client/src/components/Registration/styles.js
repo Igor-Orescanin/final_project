@@ -78,8 +78,15 @@ export default makeStyles((theme) => ({
     height: "38px",
     borderRadius: "20px",
     fontSize: "15px",
+    borderColor: "#008CA7",
+    border: "solid",
   },
-
+  error:{
+    marginTop: '4px',
+    color:'#f44336;',
+    fontFamily: ("Roboto", "sans-serif"),
+    fontSize: "0.75rem",
+  },
   // image
   footer: {
     zIndex: "-1",
