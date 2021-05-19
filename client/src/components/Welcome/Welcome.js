@@ -65,7 +65,7 @@ const Welcome = (props) => {
             color="primary"
             onClick={() => history.push("/controls")}
           >
-            Controls
+            USB Devices
           </Button>
 
           <div className={classes.footer}></div>

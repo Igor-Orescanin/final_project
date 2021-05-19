@@ -66,20 +66,27 @@ app.get('/', (_req, res) => {
 
 io.on('connection', (socket) => {
   //   socket.join('sensor_measurements');
+  let serialNumber;
+
   socket.on('device_connected', () => {
     logger.log('Device connected');
+
     socket.on('sensorData', async (sensorReading) => {
       // logger.log(`Received sensor readings`);
       // logger.log(JSON.stringify(sensorReading));
+      serialNumber = sensorReading.serialNumber
 
       //--------------------- EMAIL ALERT -----------------------------------------------
       const device = await Device.findOne({ serialNumber: sensorReading.serialNumber }).exec();
       const user = await User.findOne({ _id: device.userId }).exec();
       const email = user.email;
 
+      const rpiConnected = await Device.findOneAndUpdate({ serialNumber: sensorReading.serialNumber }, { isConnected: true }, { new: true });
+      console.log(rpiConnected.isConnected);
+
       if (sensorReading.label === "CLEAN") {
         if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
-          let message = `ALERT Clean water level tank is lower than ${device.cleanWaterLevelAlertThreshold}% percentage`;
+          let message = `ALERT Clean water level tank is lower than ${device.cleanWaterLevelAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
           emailSender.sendEmail(email, message, (ok) => {
             if (ok) {
               // resolve();
@@ -90,8 +97,8 @@ io.on('connection', (socket) => {
         }
 
       } else if (sensorReading.label === "WASTE") {
-        if (sensorReading.levelPercentage >= device.cleanWaterLevelAlertThreshold) {
-          let message = `ALERT Grey water level tank is higher than ${device.wasteWaterLevelAlertThreshold}% percentage`;
+        if (sensorReading.levelPercentage >= device.wasteWaterLevelAlertThreshold) {
+          let message = `ALERT Grey water level tank is higher than ${device.wasteWaterLevelAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
           emailSender.sendEmail(email, message, (ok) => {
             if (ok) {
               // resolve();
@@ -128,6 +135,12 @@ io.on('connection', (socket) => {
     // })
 
   });
+
+  socket.on("disconnect", async () => {
+    const rpiDisconnected = await Device.findOneAndUpdate({ serialNumber }, { isConnected: false }, { new: true });
+    console.log(rpiDisconnected.isConnected);
+  });
+
 });
 
 const gracefulShutdown = () => {

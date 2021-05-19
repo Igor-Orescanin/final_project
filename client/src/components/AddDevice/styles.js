@@ -69,6 +69,23 @@ export default makeStyles((theme) => ({
     marginTop: "20px",
   },
 
+  buttonHelp: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+    padding: 0,
+    borderColor: "#0C9EB5",
+    color: "#0C9EB5",
+    width: "106px",
+    height: "32px",
+    borderRadius: "5px",
+    fontSize: "15px",
+    marginTop: "30px",
+    textTransform: "none",
+    '&:hover': {
+      backgroundColor: '#0C9EB5',
+      color:'white',
+    },
+  },
+
   //for the Image on the bottom
   footer: {
     zIndex: "-1",

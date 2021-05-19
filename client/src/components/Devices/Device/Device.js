@@ -11,6 +11,7 @@ import useStyles from "./styles";
 
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 //css
 import "../../../App.css";
@@ -85,7 +86,7 @@ console.log(device)
   const handleClose1 = () => {
     setOpen(false);
     api.deleteDevice(device._id)
-    // history.push('/devices')
+    //history.push('/devices')
   };
 
   //for radio button FormControlLabel
@@ -110,21 +111,14 @@ console.log(device)
                 state: {userId :device.userId ,username:username}
               })}
               className={classes.button}
-              variant="contained"
+             variant="contained"
               color="primary"
             >
              { device.deviceName }
 
             </Button>
-
-            <Button
-              onClick={handleClickOpen}
-              className={classes.button}
-              variant="contained"
-              color="secondary"
-            >
-              Delete
-            </Button>
+              <DeleteIcon className={classes.deleteIcon}  onClick={handleClickOpen} /> 
+            
             <Dialog
               className={classes.dialog}
               open={open}

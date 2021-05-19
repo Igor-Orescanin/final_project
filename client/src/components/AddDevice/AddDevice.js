@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 
 //axios';
@@ -20,8 +20,17 @@ import {
   ThemeProvider,
   Typography,
   TextField,
+  Button,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button"; //button
+
+// alert
+import Alert from "@material-ui/lab/Alert";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -66,21 +75,54 @@ const AddDevice = (props) => {
 
   const [errors, setErrors] = useState('');
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    
+  };
+
+//a hook
+const [allDevices, setAllDevices] = useState([]);
+
+// to get the data for databace
+useEffect(async () => {
+  const { data } = await api.fetchDevices(userId);
+
+  setAllDevices(data);
+}, []);
+
+
+  //lengh of character
+  const CHARACTER_LIMIT = 10;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
 // console.log(userId)
  console.log(formData)
 
+
     api.asignDevice(formData)
     .then((res)=>{
 
       console.log(res)
 
+
        if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
+       handleClickOpen()
       
-       // ---------------------- is not working right now not sure why
+      
+      } else if(res.data.message === "Device not found"){
+       setDeviceExist(res.data.message)
+       handleClickOpen()
+
+
       }else{
        // history.push('/devices')
          history.push({
@@ -92,13 +134,15 @@ const AddDevice = (props) => {
       
      
     }).catch((error) => {
-      if(error){ setDeviceExist('Device exist')
+      if(error){ setDeviceExist('register a Device!')
         setErrors('error')}
       console.log(error);
     });
-    
+
+  
   };
 
+ 
   return (
     <>
       <StylesProvider injectFirst>
@@ -106,11 +150,38 @@ const AddDevice = (props) => {
           
           <Container className={classes.container}>
             <div className={classes.paper}>
-              <Typography className={classes.typography}>
-                You don't have any devices registered in this system!{" "}
-              </Typography>
 
-              <Typography> {deviceExist} </Typography>
+            {allDevices.length < 1 ?
+                <Typography className={classes.typography}>
+                   You don't have any devices registered in this system!
+              </Typography>
+              :
+              <Typography className={classes.typography}>
+                 Register a new device in this system!
+              </Typography>
+              }
+              {deviceExist.length < 1 ?(
+                <div></div>
+              ):
+              <Alert 
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                 
+                  </IconButton>
+                }
+              >
+               {deviceExist}
+              </Alert>
+              }
+
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                   onChange={(e) =>
@@ -129,6 +200,9 @@ const AddDevice = (props) => {
                   size="small"
                   InputLabelProps={{
                     style: { color: "#007982" },
+                  }}
+                  inputProps={{
+                    maxlength: CHARACTER_LIMIT
                   }}
                    InputProps={{
                      classes: {
@@ -175,7 +249,46 @@ const AddDevice = (props) => {
                 >
                   Register
                 </Button>
-              </form>
+                </form>
+                <Button
+                 // onClick={handleSubmit}
+                  className={classes.buttonHelp}
+                  onClick={handleClickOpen} 
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ border: '2px solid' }}
+                
+                >
+                  Need help?
+                </Button>
+                <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"What need I to do here?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Your can choose your own Device Name.
+If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
+If you bought your own device pleace contact us per Email: NaunetMon.com!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+
+
+       
               <div className={classes.footer}></div>
             </div>
           </Container>
