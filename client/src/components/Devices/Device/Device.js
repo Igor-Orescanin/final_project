@@ -101,9 +101,7 @@ console.log(device)
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-         {/* {device.connected ?  <CheckCircleOutlineIcon className={classes.checkIcon}/>: <NotInterestedIcon className={classes.noIcon}/>} */}
-             <CheckCircleOutlineIcon className={classes.checkIcon}/>
-             <NotInterestedIcon className={classes.noIcon}/>
+         {device.isConnected ?  <CheckCircleOutlineIcon className={classes.checkIcon}/>: <NotInterestedIcon className={classes.noIcon}/>} 
             
             <Button
               onClick={() => history.push({
