@@ -11,6 +11,12 @@ import Button from "@material-ui/core/Button"; //button
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+import DeleteIcon from '@material-ui/icons/Delete';
+import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+
+
+
 
 function Light(props) {
 
@@ -24,29 +30,58 @@ function Light(props) {
                 <Container className={classes.container} >
                     <div className={classes.paper}>
 
+                        <Typography className={classes.heading} variant="h4" component="h4">
+                            Your Controls </Typography>
+
                         <div className={classes.buttons}>
-                            <Button
-                                onClick={() => history.push("/lightone")}
+                        
+                         <div className={classes.buttonRow}>
+                         <WbIncandescentIcon className={classes.bulbIcon}/>
+                                 <Button
+                                //onClick={() => history.push("/lightone")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
-                                type='submit'>Light 1</Button>
+                                type='submit'>Light 1
+                           
+                                </Button>
+                               <DeleteIcon className={classes.deleteIcon} /> 
+                          </div>
+                      
+                            
+                          <div className={classes.buttonRow}>
+                          <EmojiObjectsIcon className={classes.bulbIcon}/>
+                                 <Button
+                                //onClick={() => history.push("/lightone")}
+                                className={classes.button}
+                                variant="contained"
+                                color="primary"
+                                type='submit'>Light 2
+                           
+                                </Button>
+                               <DeleteIcon className={classes.deleteIcon} /> 
+                          </div>
+
+                          <div className={classes.buttonRow}>
+                          <WbIncandescentIcon className={classes.bulbIcon}/>
+                                 <Button
+                                //onClick={() => history.push("/lightone")}
+                                className={classes.button}
+                                variant="contained"
+                                color="primary"
+                                type='submit'>Light 3
+                           
+                                </Button>
+                               <DeleteIcon className={classes.deleteIcon} /> 
+                          </div>
 
                             <Button
-                                onClick={() => history.push("/lighttwo")}
-                                className={classes.button}
+                                //onClick={() => history.push("/lightthree")}
+                                className={classes.addLight}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Light 2</Button>
-
-                            <Button
-                                onClick={() => history.push("/lightthree")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'
-                            >Light 3</Button>
+                            >Add New Light</Button>
 
                         </div>
 

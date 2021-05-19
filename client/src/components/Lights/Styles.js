@@ -9,25 +9,33 @@ export default makeStyles((theme) => ({
         //backgroundColor: 'red',
         display: "flex",
         flexDirection: "column",
-        justifyContent: "left",
-        alignItems: "left",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
     paper: {
         //backgroundColor: 'green',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'left',
-        alignItems: 'left',
+        justifyContent: 'center',
+        alignItems: 'center',
 
 
+    },
+
+    heading: {
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        color: '#0C9EB5',
+        marginTop: '20px',
+        marginLeft: '20px',
+        marginRight: '20px',
     },
 
     buttons: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
-        alignItems: 'left',
+        alignItems: 'center',
         margin: '10px',
         height: '60vh',
     },
@@ -44,6 +52,38 @@ export default makeStyles((theme) => ({
         marginTop: '20px',
         marginLeft: '20px',
         marginRight: '20px',
+    },
+
+    addLight: {
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        padding: 0,
+        backgroundColor: "#0C9EB5",
+        color: 'white',
+        width: '146px',
+        height: '38px',
+        borderRadius: '10px',
+        fontSize: '15px',
+
+    },
+
+
+    buttonRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    deleteIcon: {
+        fontSize: '40px',
+        marginTop: '15px',
+        color: '#0C9EB5',
+    },
+
+    bulbIcon: {
+        fontSize: '40px',
+        marginTop: '25px',
+        color: '#0C9EB5',
     },
 
 
