@@ -40,7 +40,7 @@ export default makeStyles((theme) => ({
   },
 
   addbutton:{
-    bordercolor: "#008CA7",
+    borderColor: "#008CA7",
     marginTop:'20px',
     textTransform: "none",
     marginRight:'10px',

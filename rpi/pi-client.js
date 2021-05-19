@@ -40,16 +40,16 @@ async function main() {
 
 
   // GET MAC ADDRESS OR SERIAL NUMBER
-    const callMac = () => {
-      return getmac.default()
-    }
-    const serialNumber = callMac();
+    // const callMac = () => {
+    //   return getmac.default()
+    // }
+    // const serialNumber = callMac();
 
     socket.emit('device_connected');
 
     sensor.on('data', (sensorReading) => {
       logger.log(JSON.stringify(sensorReading));
-      socket.emit('sensorData', { ...sensorReading, serialNumber });
+      socket.emit('sensorData', { ...sensorReading, serialNumber: "ac:67:5d:62:ec:e7" });
     });
 
     // waterflowSensor.on('data', (waterFlowReadings) => {

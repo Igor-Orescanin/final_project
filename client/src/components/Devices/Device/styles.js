@@ -32,9 +32,13 @@ export default makeStyles((theme) => ({
   noIcon:{
     color:'red'
   },
+  deleteIcon:{
+    color:'#0C9EB5',
+    marginLeft:'5px'
+  },
 
   button: {
-   
+    minWidth:'120px',
     bordercolor: "#008CA7",
     textTransform: "none",
    //marginRight: "6px",
@@ -42,6 +46,7 @@ export default makeStyles((theme) => ({
   },
 
   typography: {
+    minInlineSize:'140px',
     fontFamily: ("Roboto", "sans-serif"),
     color: "#008CA7",
     fontSize: "12px",

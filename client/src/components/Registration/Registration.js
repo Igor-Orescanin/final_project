@@ -150,9 +150,8 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
-                required
                 id="username"
-                label="Name"
+                label="User Name"
                 name="username"
                 size="small"
                 error={formik.touched.username && Boolean(formik.errors.username)}
@@ -176,7 +175,6 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
-                required
                 id="email"
                 label="Email"
                 name="email"
@@ -193,14 +191,15 @@ const Registration = (props) => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-              />
+              />  
+              {/*  message "Mail Exist" from backend usersController.js */}
+              {!success && <div className={classes.error}> {error ? error : ""}</div>}
 
               <TextField
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
-                required
                 id="password"
                 label="Password"
                 variant="outlined"
@@ -226,7 +225,6 @@ const Registration = (props) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
-                required
                 id="confirmPassword"
                 label="Confirm Password"
                 variant="outlined"
@@ -250,8 +248,7 @@ const Registration = (props) => {
               {/*  message "Thanks for registering" from backend usersController.js */}
               {!error && <div> {success ? success : ""}</div>}
 
-              {/*  message "Mail Exist" from backend usersController.js */}
-              {!success && <div> {error ? error : ""}</div>}
+            
 
               <Button
                 className={classes.button}
