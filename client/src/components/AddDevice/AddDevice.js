@@ -115,12 +115,12 @@ useEffect(async () => {
 
        if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
-       handleClickOpen()
+   
       
       
       } else if(res.data.message === "Device not found"){
        setDeviceExist(res.data.message)
-       handleClickOpen()
+      
 
 
       }else{
@@ -170,9 +170,7 @@ useEffect(async () => {
                     aria-label="close"
                     color="inherit"
                     size="small"
-                    onClick={() => {
-                      setOpen(false);
-                    }}
+                    
                   >
                  
                   </IconButton>
