@@ -82,6 +82,7 @@ io.on('connection', (socket) => {
       const email = user.email;
 
       const rpiConnected = await Device.findOneAndUpdate({ serialNumber: sensorReading.serialNumber }, { isConnected: true }, { new: true });
+      console.log(rpiConnected.isConnected);
 
       if (sensorReading.label === "CLEAN") {
         if (sensorReading.levelPercentage <= device.cleanWaterLevelAlertThreshold) {
@@ -136,7 +137,8 @@ io.on('connection', (socket) => {
   });
 
   socket.on("disconnect", async () => {
-    const res = await Device.findOneAndUpdate({ serialNumber }, { isConnected: false }, { new: true });
+    const rpiDisconnected = await Device.findOneAndUpdate({ serialNumber }, { isConnected: false }, { new: true });
+    console.log(rpiDisconnected.isConnected);
   });
 
 });
