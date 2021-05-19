@@ -18,17 +18,15 @@ export default makeStyles((theme) => ({
 
   //for the button
   welcomeBtn: {
-    margin: "20px",
-    width: "80px",
+    margin: "10px",
+    width: "150px",
     borderRadius: "9px",
-    bordercolor: "#008CA7",
+    borderColor: "#008CA7",
     border: "solid",
-    fontSize: "15px",
+    fontSize: "18px",
     textTransform: "none",
-    paddingTop: "7px",
-    paddingBottom: "7px",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    paddingTop: "10px",
+    paddingBottom: "10px"
   },
 
   //for the Image on the bottom
