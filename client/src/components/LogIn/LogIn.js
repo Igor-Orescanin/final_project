@@ -105,12 +105,12 @@ const LogIn = (props) => {
 
             <Avatar className={classes.avatar} />
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
-             
-           
+
+
               {loginStatus.length < 1 ?(
                 <div></div>
               ):
-              <Alert 
+              <Alert
               severity="error"
                 action={
                   <IconButton
@@ -121,13 +121,13 @@ const LogIn = (props) => {
                       setOpen(false);
                     }}
                   >
-                 
+
                   </IconButton>
                 }
               >
                 {loginStatus}
               </Alert>
-            
+
               }
               <TextField
                 onChange={(e) =>

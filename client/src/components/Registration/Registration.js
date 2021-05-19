@@ -8,7 +8,8 @@ import * as yup from "yup";
 
 //axios
 import * as api from "../../api";
-import axios from "axios"; 
+import axios from "axios";
+
 // css
 import "../../App.css";
 
