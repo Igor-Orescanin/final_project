@@ -1,11 +1,9 @@
-import { FormHelperText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 // background picture
 import image from "../../image/water2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
- 
   container: {
     display: "flex",
     flexDirection: "column",
@@ -13,65 +11,82 @@ export default makeStyles((theme) => ({
     justifyItems: "center",
   },
 
-
-
-
-
-
-navContainer:{
-
-    margin:'0px',
-    padding:'0px',
-    backgroundColor:'#30D4DE',
-    borderBottom:'4px solid #0C9EB5',
-    
+  paper:{
+    zIndex: "-2",
+    paddingTop:'20px',
+    paddingBottom:'20px',
+    marginBottom:'120px',
+    borderColor:'#30D4DE',
+    border:'solid',
+    borderWidth:'1px',
+    textAlign:'center',
   },
-//_______________maritza
-  // root: {
-  //   flexGrow: 1,
-  // },
-  // paper: {
-  //   padding: theme.spacing(2),
-  //   textAlign: 'center',
-  //   color: theme.palette.text.secondary,
-  // },
 
-// ________ color: theme.palette.text.secondary,test
+  typography: {
+    fontFamily: ("Roboto", "sans-serif"),
+    color: "#008CA7",
+    fontSize: "12px",
+    fontWeight: "bold",
+    marginTop: "-10px",
+  },
 
+  typographyInfo1:{
+    zIndex: "-2",
+    marginRight:'140px',
+    marginTop:'50px',
+    color: "#008CA7",
+    fontSize: "12px",
+    fontFamily: ('Roboto', 'sans-serif'),
+  },
 
-// chart:{
-//   color: theme.palette.text.secondary,
-// },
+  typographyInfo:{
+    fontSize: "12px",
+    fontFamily: ('Roboto', 'sans-serif'),
+    paddingLeft:'37px',
+    paddingRight:'37px',
+  },
+  typographyInfo2:{
+    fontSize: "15px",
+    fontFamily: ('Roboto', 'sans-serif'),
+    paddingTop:'17px',
+    paddingLeft:'37px',
+    paddingRight:'37px',
+    color: "#008CA7",
+  },
 
+  button: {
+    textAlign: "center",
+    fontSize: "15px",
+    bordercolor: "#008CA7",
+    marginTop: "40px",
+    textTransform: "none",
+    paddingRight: "10px",
+    paddingLeft: "10px",
+    paddingTop: "7px",
+    paddingBottom: "7px",
+  },
 
+  chart: {
+    marginTop: "20px",
+    marginButton: "0px",
+  },
 
-// root: {
-//   flexGrow: 1,
-// },
+  iconButton:{
+    color:'#008CA7',
+    marginTop:'40px',
+  },
 
- paper: {
-  display:'flex',
-  flexWrap:'wrap',
-  //backgroundColor:'red',
-  margin:'20px',
-  padding: theme.spacing(2),
-  textAlign: 'center',
-//   // color: theme.palette.text.secondary,
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    height: "300px",
+    //height:'170px',
+    width: "100vw",
+    //backgroundColor: "Blue",
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  },
 
- },
- footer: {
-  zIndex: "-1",
-  position: "fixed",
-  bottom: "0px",
-  height: "300px",
-  //height:'170px',
-  width: "100vw",
-  //backgroundColor: "Blue",
-  backgroundImage: `url(${image})`,
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-},
-
-
-
-}))
+}));

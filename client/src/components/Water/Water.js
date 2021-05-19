@@ -7,8 +7,8 @@ import ReactApexChart from "react-apexcharts";
 //for socket.io
 import io from "socket.io-client";
 
-//connection
-import NavbarSec from "../Nav/NavbarSec.js";
+//axios
+import * as api from "../../api";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -17,9 +17,31 @@ import useStyles from "./styles";
 import "../../App.css";
 
 // material-ui
-import { Container, Button, Paper, Grid } from "@material-ui/core";
+import { Container, ThemeProvider, Typography, Button, Paper, Grid } from "@material-ui/core";
 import { StylesProvider } from "@material-ui/core/styles";
 
+//icon
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+//change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#18B0C3",
+      main: "##fff",
+      dark: "#008CA7",
+      contrastText: "#0C9EB5",
+    },
+  },
+});
 //___________start coding
 // use/get the socket
 const socket = io("http://localhost:3005", {
@@ -54,7 +76,7 @@ const Water = (props) => {
       // height:850,
       width: "50%",
       type: "bar",
-      background: "#f4f4f4",
+      background: '#fff',
       foreColor: "#0C9EB5",
       toolbar: {
         show: false,
@@ -80,6 +102,7 @@ const Water = (props) => {
 
     fill: {
       colors: ["#77A783"],
+      
     },
 
     dataLabels: {
@@ -87,7 +110,6 @@ const Water = (props) => {
     },
 
     title: {
-      text: "hello",
       align: "center",
       margin: 20,
       offsetY: 20,
@@ -143,8 +165,8 @@ const Water = (props) => {
 
   return (
     <>
-      <StylesProvider injectFirst>
-        
+     
+      <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {/* <div>
             <Grid container spacing={3}>
@@ -164,7 +186,7 @@ const Water = (props) => {
           </div> */}
           <div>
             <Grid item xs={6}>
-              <Paper className={classes.paper}>
+              {/* <Paper className={classes.paper}> */}
                 {/* <ReactApexChart   className={classes.chart} options={test} series={test.series} type="bar" height={350} 
             /> */}
                 <ReactApexChart
@@ -184,20 +206,41 @@ const Water = (props) => {
               <Paper className={classes.paper}> */}
                 {/* <ReactApexChart className={classes.chart} options={option} series={option.series} type="bar" height={280} width='40%' */}
                 {/* />  */}
-              </Paper>
+              {/* </Paper> */}
             </Grid>
           </div>
+
+<Typography className={classes.typography}>Realtime Data</Typography>
+
+
           <Button
             onClick={() => history.push("/welcome")}
             className={classes.button}
             variant="contained"
             color="primary"
           >
-            Sign-In
-          </Button>
+            Modify Alert</Button>
+
+          <ExpandMoreIcon className={classes.iconButton} fontSize="large" ></ExpandMoreIcon> 
+          <Typography className={classes.typographyInfo1} >
+          Information
+        </Typography >
+          <Paper className={classes.paper}>
+        <Typography className={classes.typographyInfo}>
+          your Freshwaer is by {}%
+        </Typography>
+        <Typography className={classes.typographyInfo}>
+         your Greywater is by {}%
+        </Typography>
+        <Typography className={classes.typographyInfo2}>
+         all is good for you!
+        </Typography>
+      </Paper>
+
           <div className={classes.footer}></div>
         </Container>
-      </StylesProvider>
+        </ThemeProvider>
+     
     </>
   );
 };
