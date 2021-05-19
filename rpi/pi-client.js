@@ -21,8 +21,6 @@ async function main() {
     const sensor = await getSensor(READING_INTERVAL);
     const waterflowSensor = await getWaterflowSensor();
 
-    socket.emit('device_connected');
-
     const gracefulShutdown = () => {
       sensor.stopReading();
       sensor.removeAllListeners();
@@ -47,9 +45,11 @@ async function main() {
     }
     const serialNumber = callMac();
 
+    socket.emit('device_connected');
+
     sensor.on('data', (sensorReading) => {
       logger.log(JSON.stringify(sensorReading));
-      socket.emit('sensorData', {...sensorReading, serialNumber});
+      socket.emit('sensorData', { ...sensorReading, serialNumber });
     });
 
     // waterflowSensor.on('data', (waterFlowReadings) => {
