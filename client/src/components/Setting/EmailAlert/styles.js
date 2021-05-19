@@ -1,49 +1,59 @@
 import { makeStyles } from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
 
 import image from '../../../image/charts_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 
     container: {
-        //backgroundColor: 'red',
+        //backgroundColor: 'orange',
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         color: "#0C9EB5",
-        marginTop: '50px'
+        height: '60vh',
     },
 
-    paper: {
-        //backgroundColor: 'green',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    bothForm: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '15px'
-    },
-
-    formText: {
-        position: 'relative',
-        top: '30px'
+    heading: {
+        marginBottom: '30px'
     },
 
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 130,
-
+        minWidth: 120,
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
+    },
+
+    selectDiv: {
+        height: '50px'
+    },
+
+
+    /*  root: {
+         "&:hover $notchedOutline": {
+             bordercolor: "#007982",
+         },
+         "&$focused $notchedOutline": {
+             bordercolor: "#007982",
+         },
+     },
+     focused: {},
+     notchedOutline: {},
+ 
+     notchedOutline: {
+         bordercolor: "#007982",
+     }, */
+
+
+
+    waterDiv: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
 

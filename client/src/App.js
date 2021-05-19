@@ -68,7 +68,7 @@ function App() {
     );
   }
 
-
+  
   return (
     <Router>
       <div className="app">
@@ -76,7 +76,7 @@ function App() {
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
       </div>
     </Router>
-  );
+  ); 
 }
 
 export default App;
