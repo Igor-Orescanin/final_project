@@ -39,12 +39,12 @@ function App() {
 
   const [response, setResponse] = useState({});
 
-  /* const fetchUser = (user) => {
+   const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
 
-  if(response._id){ */
+  if(response._id){ 
     
     return (
       <Router>
@@ -69,7 +69,7 @@ function App() {
         </div>
       </Router>
     );
-  /* }
+   }
 
   
   return (
@@ -79,7 +79,7 @@ function App() {
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
       </div>
     </Router>
-  );  */
+  );  
 }
 
 export default App;

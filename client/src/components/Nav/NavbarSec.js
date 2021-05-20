@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -27,27 +27,14 @@ const NavbarSec = (props) => {
 
   const username = props.username;
   
-
   const isChart = location.pathname.includes('water');
-  // const userName = props.location.state.userName
 
-
-  // const [formData, setFormData] = useState({
-  //   email: "",
-  //   password: "",
-  //   userID : data._id,
-  //   userName: data.userName 
-  // });
-
-  // console.log(formData);
-
-
-
-
+  const isFixed = location.pathname.includes('water') || location.pathname.includes('weekly') || location.pathname.includes('monthly');
 
 
   return (
-    <Container className={classes.navContainer}>
+    <Container
+    className={isFixed ?`${classes.navContainer}  ${classes.fixed}`:`${classes.navContainer}`}>
       <div className={classes.secondaryNav}>
 
         <Typography
@@ -55,7 +42,6 @@ const NavbarSec = (props) => {
           component="h6"
           className={`${classes.typo} ${classes.hand}`}
         >
-
           Hello {username} 
         </Typography>
        
