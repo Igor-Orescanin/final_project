@@ -44,23 +44,23 @@ function Light(props) {
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
-                                type='submit'>E-mail Alert</Button>
+                                type='submit'>Water</Button>
 
                             <Button
-                                onClick={() => history.push("/")}
+                                onClick={() => history.push("/light")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Add Light</Button>
+                            >Light</Button>
 
                             <Button
-                                onClick={() => history.push("/")}
+                                onClick={() => history.push("/devices")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Light Control</Button>
+                            >Devices</Button>
 
                         </div>
 
