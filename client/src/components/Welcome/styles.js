@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
 
   //for the container
   welcome: {
+  
     display: "flex",
     //backgroundColor: "Red",
     justifyContent: "center",
