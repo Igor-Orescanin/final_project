@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-//connection to components
-import Navbar from "../Nav/Navbar.js";
 //import ShowDevices from "./Device/ShowDevices.js";
 import Device from "./Device/Device.js";
 
@@ -21,11 +19,6 @@ import {
   Typography,
   ThemeProvider,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   CircularProgress,
 } from "@material-ui/core";
 

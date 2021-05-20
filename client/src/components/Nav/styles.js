@@ -14,6 +14,12 @@ export default makeStyles((theme) => ({
     padding: "0px",
     backgroundColor: "#30D4DE",
     borderBottom: "4px solid #0C9EB5",
+   
+  },
+
+  fixed:{
+    position:'fixed',
+    
   },
   //div with name and settingIcon
   secondaryNav: {

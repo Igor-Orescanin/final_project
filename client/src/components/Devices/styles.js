@@ -10,11 +10,14 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     height:'65vh',
+  
+
   },
 
   paper: {
    // height:'65vh',
   //  backgroundColor:'yellow',
+   // marginTop:'80px',
      display: 'flex',
      flexDirection: 'column',
     alignItems: 'center',
@@ -49,7 +52,6 @@ export default makeStyles((theme) => ({
 
 
   typography: {
-   
     fontFamily: ('Roboto', 'sans-serif'),
     color: "#008CA7",
     fontSize: '12px',
