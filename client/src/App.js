@@ -18,8 +18,9 @@ import Device from "./components/Devices/Device/Device.js";
 import Test from "./components/Registration/Test.js";
 import Weekly from './components/History/Weekly/Weekly.js'
 import Monthly from './components/History/Monthly/Monthly.js'
-import Light from "./components/Lights/Light.js";
+import Light from "./components/Lights/Light/Light";
 import EmailAlert from "./components/Setting/EmailAlert/EmailAlert";
+import Lights from "./components/Lights/Lights";
 
 //socket
 import io from 'socket.io-client';
@@ -38,12 +39,12 @@ function App() {
 
   const [response, setResponse] = useState({});
 
-  const fetchUser = (user) => {
+  /* const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
 
-  if(response._id){
+  if(response._id){ */
     
     return (
       <Router>
@@ -63,10 +64,12 @@ function App() {
           <Route path="/monthly" component={Monthly}></Route>
           <Route path="/light" component={Light}></Route>
           <Route path="/emailalert" component={EmailAlert}></Route>
+          <Route path="/lights" component={Lights}></Route>
+
         </div>
       </Router>
     );
-  }
+  /* }
 
   
   return (
@@ -76,7 +79,7 @@ function App() {
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
       </div>
     </Router>
-  ); 
+  );  */
 }
 
 export default App;

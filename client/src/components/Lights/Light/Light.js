@@ -2,7 +2,7 @@ import React from 'react';
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-import NavbarSec from "../Nav/NavbarSec.js";
+import NavbarSec from "../../Nav/NavbarSec.js";
 import useStyles from "./Styles.js";
 
 // material-ui
