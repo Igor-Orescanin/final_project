@@ -14,12 +14,13 @@ export default makeStyles((theme) => ({
     padding: "0px",
     backgroundColor: "#30D4DE",
     borderBottom: "4px solid #0C9EB5",
-   
   },
 
-  fixed:{
-    position:'fixed',
-    
+  fixed: {
+    position: "fixed",
+    zIndex: "1",
+
+
   },
   //div with name and settingIcon
   secondaryNav: {
@@ -50,17 +51,19 @@ export default makeStyles((theme) => ({
     padding: "12px",
     cursor: "default",
   },
-  //icon 
+  //icon
   icon: {
     marginLeft: "25px",
     marginRight: "25px",
     //color:'#00A2AC',
   },
-  //icon chart icon 
+  //icon chart icon
   iconSec: {
     marginLeft: "25px",
-  },
+
   
+  },
+
   //typography on name
   typo: {
     marginLeft: "25px",

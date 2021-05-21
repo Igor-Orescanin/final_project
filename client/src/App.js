@@ -9,6 +9,7 @@ import Welcome from "./components/Welcome/Welcome.js";
 import NavbarSec from "./components/Nav/NavbarSec";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
+import Water2 from "./components/Water/Water2.js";
 import Setting from "./components/Setting/Setting.js";
 import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
@@ -39,12 +40,12 @@ function App() {
 
   const [response, setResponse] = useState({});
 
-  /* const fetchUser = (user) => {
+   const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
 
-  if(response._id){ */
+  if(response._id){ 
     
     return (
       <Router>
@@ -52,7 +53,7 @@ function App() {
           <NavbarSec username={response.username} />
           <Route path="/welcome" component={Welcome}></Route>
           <Route path="/logout" component={LogOut}></Route>
-          <Route path="/water" component={Water}></Route>
+          <Route path="/water" component={Water2}></Route>
           <Route path="/setting" component={Setting}></Route>
           <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
           <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
@@ -69,7 +70,7 @@ function App() {
         </div>
       </Router>
     );
-  /* }
+   }
 
   
   return (
@@ -79,7 +80,7 @@ function App() {
         <Route path="/registration" render={(props)=><Registration {...props} fetchUser={fetchUser}/>}></Route>
       </div>
     </Router>
-  );  */
+  );  
 }
 
 export default App;
