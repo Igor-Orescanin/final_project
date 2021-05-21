@@ -67,7 +67,7 @@ export default makeStyles((theme) => ({
   },
 
   chart: {
-    marginTop: "20px",
+    marginTop: "120px",
     marginButton: "0px",
   },
 

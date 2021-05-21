@@ -21,11 +21,47 @@ export default makeStyles((theme) => ({
 
     },
 
+
+    paper2:{
+        zIndex: "-2",
+        paddingTop:'20px',
+        paddingBottom:'20px',
+        marginBottom:'120px',
+        borderColor:'#30D4DE',
+        border:'solid',
+        borderWidth:'1px',
+        textAlign:'center',
+      },
+
+      iconButton:{
+        color:'#008CA7',
+        marginTop:'-30px',
+      }, 
+      typographyInfo:{
+        fontSize: "12px",
+        fontFamily: ('Roboto', 'sans-serif'),
+        paddingLeft:'37px',
+        paddingRight:'37px',
+      },
+      typographyInfo2:{
+          marginTop:'10px',
+        zIndex: "-2",
+        fontSize: "15px",
+        fontFamily: ('Roboto', 'sans-serif'),
+        paddingTop:'17px',
+        paddingLeft:'37px',
+        paddingRight:'37px',
+        color: "#008CA7",
+        fontWeight: 'bold',        
+        
+      },
+
     buttons: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: '10px',
+        marginTop:'120px'
     },
 
     button: {
@@ -33,17 +69,22 @@ export default makeStyles((theme) => ({
         padding: 0,
         backgroundColor: "#0C9EB5",
         color: 'white',
-        width: '106px',
+        width: '110px',
+        paddingTop:'3px',
         height: '38px',
-        borderRadius: '20px',
+        borderRadius: '5px',
         fontSize: '15px',
-        marginTop: '20px',
+        marginTop: '10px',
         marginLeft: '20px',
-        marginRight: '20px'
+        marginRight: '20px',
+        textTransform: "none",
     },
 
     liveTime: {
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        color:'#008CA7',
+        fontSize: '12px',
+        marginTop: '10px',
     },
 
     chart: {
