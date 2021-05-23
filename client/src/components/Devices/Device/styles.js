@@ -39,10 +39,13 @@ export default makeStyles((theme) => ({
 
   button: {
     minWidth:'120px',
-    bordercolor: "#008CA7",
+    borderColor: "#008CA7",
     textTransform: "none",
    //marginRight: "6px",
      marginLeft: "10px",
+     paddingTop:'8px',
+     border: "solid",
+     borderWidth: "2px",
   },
 
   typography: {

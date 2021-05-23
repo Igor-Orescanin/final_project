@@ -6,31 +6,28 @@ import image from "../../image/welcome2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
 
-  //for the container
-  welcome: {
-  
+
+  container: {
     display: "flex",
-    //backgroundColor: "Red",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
     height: "65vh",
   },
 
-  //for the button
-  welcomeBtn: {
+  button: {
     margin: "10px",
     width: "150px",
-    borderRadius: "9px",
+    borderRadius: "7px",
     borderColor: "#008CA7",
     border: "solid",
     fontSize: "18px",
+    borderWidth: "2px",
     textTransform: "none",
-    paddingTop: "10px",
+    paddingTop: "12px",
     paddingBottom: "10px"
   },
 
-  //for the Image on the bottom
   footer: {
     zIndex: "-1",
     position: "fixed",

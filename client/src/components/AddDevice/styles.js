@@ -66,7 +66,11 @@ export default makeStyles((theme) => ({
     height: "38px",
     borderRadius: "20px",
     fontSize: "15px",
-    marginTop: "20px",
+    marginTop: "30px",
+    border: "solid",
+    borderWidth: "2px",
+    paddingTop: "2px",
+    borderColor: "#008CA7",
   },
 
   buttonHelp: {
@@ -76,7 +80,8 @@ export default makeStyles((theme) => ({
     color: "#0C9EB5",
     width: "106px",
     height: "32px",
-    borderRadius: "5px",
+    paddingTop: "2px",
+    borderRadius: "4px",
     fontSize: "15px",
     marginTop: "30px",
     textTransform: "none",

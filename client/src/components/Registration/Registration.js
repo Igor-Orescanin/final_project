@@ -1,5 +1,7 @@
 // react
 import React, { useState } from "react";
+
+// style
 import { StylesProvider } from "@material-ui/core/styles";
 
 // error handling in a form with validation
@@ -8,10 +10,12 @@ import * as yup from "yup";
 
 //axios
 import * as api from "../../api";
-import axios from "axios";
 
 // css
 import "../../App.css";
+
+//styles to use the connection
+import useStyles from "./styles.js";
 
 //styles
 import {
@@ -22,9 +26,6 @@ import {
   Avatar,
   TextField,
 } from "@material-ui/core";
-
-//styles to use the connection
-import useStyles from "./styles.js";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -134,8 +135,6 @@ const Registration = (props) => {
           <div className={classes.paper}>
             <Typography
               className={classes.typography}
-              component="h1"
-              variant="h5"
             >
               Registration
             </Typography>
@@ -150,6 +149,7 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
+                required
                 id="username"
                 label="User Name"
                 name="username"
@@ -175,6 +175,7 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField}  ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 variant="outlined"
+                required
                 id="email"
                 label="Email"
                 name="email"
@@ -201,6 +202,7 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 id="password"
+                required
                 label="Password"
                 variant="outlined"
                 name="password"
@@ -226,6 +228,7 @@ const Registration = (props) => {
                 onBlur={formik.handleBlur}
                 className={`${classes.inputField} ${classes.myInputLabel} ${classes.focused} ${classes.notchedOutline} ${classes.root}`}
                 id="confirmPassword"
+                required
                 label="Confirm Password"
                 variant="outlined"
                 name="confirmPassword"

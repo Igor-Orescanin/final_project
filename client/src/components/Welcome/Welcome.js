@@ -7,8 +7,6 @@ import useStyles from "./styles";
 // material-ui styles
 import { Container, Button, ThemeProvider } from "@material-ui/core";
 // import { StylesProvider } from "@material-ui/core/styles";
-// components
-import Navbar from "../Nav/Navbar.js";
 
 // to connect the routes
 import { useHistory } from "react-router-dom";
@@ -40,10 +38,10 @@ const Welcome = (props) => {
     <>
       <ThemeProvider theme={theme}>
 
-        <Container className={classes.welcome}>
+        <Container className={classes.container}>
           <Button
             variant="contained"
-            className={classes.welcomeBtn}
+            className={classes.button}
             color="primary"
             onClick={() => history.push("/water")}
           >
@@ -52,16 +50,16 @@ const Welcome = (props) => {
 
           <Button
             variant="contained"
-            className={classes.welcomeBtn}
+            className={classes.button}
             color="primary"
-            onClick={() => history.push("/light")}
+            onClick={() => history.push("/lights")}
           >
             Light
           </Button>
 
           <Button
             variant="contained"
-            className={classes.welcomeBtn}
+            className={classes.button}
             color="primary"
             onClick={() => history.push("/controls")}
           >

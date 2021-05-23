@@ -5,8 +5,6 @@ import { StylesProvider } from "@material-ui/core/styles";
 //axios';
 import * as api from "../../api";
 
-//connection
-import Navbar from "../Nav/Navbar.js";
 
 //import { useHistory } from "react-router-dom";
 
@@ -273,7 +271,7 @@ useEffect(async () => {
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                 Your can choose your own Device Name.
-If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
+If you bought a Naunet Device you can find the Id of the bottom of your Device 'the Device Id'.
 If you bought your own device pleace contact us per Email: NaunetMon.com!
                 </DialogContentText>
               </DialogContent>

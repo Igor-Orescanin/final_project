@@ -5,9 +5,34 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from "./styles.js";
-import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
+import { Container,   ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { borders } from '@material-ui/system';
+
+// style
+import { StylesProvider } from "@material-ui/core/styles";
+
+
+//change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
+
+// theme
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+  },
+});
+
+
+
+
+
+
 
 
 function EmailAlert() {
@@ -25,8 +50,11 @@ function EmailAlert() {
     };
 
     return (
-        <div>
+        
 
+<StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+      <div>
             <Container className={classes.container} >
 
                 <Typography className={classes.heading} variant="h4" component="h4">
@@ -46,14 +74,14 @@ function EmailAlert() {
                             value={freshWater}
                             onChange={handleChangeFresh}
                             label="freshWater"
-                            borderColor="secondary.main"
-                        // InputProps={{
-                        //     classes: {
-                        //         root: classes.root,
-                        //         focused: classes.focused,
-                        //         notchedOutline: classes.notchedOutline,
-                        //     },
-                        // }}
+                           
+                            InputProps={{
+                                classes: {
+                                  root: classes.root,
+                                  focused: classes.focused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
                         >
                             <MenuItem value="">
                                 <em>None</em>
@@ -102,6 +130,8 @@ function EmailAlert() {
             </Container>
 
         </div>
+        </ThemeProvider>
+    </StylesProvider>
     )
 }
 
