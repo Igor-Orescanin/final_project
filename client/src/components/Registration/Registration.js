@@ -126,6 +126,8 @@ const Registration = (props) => {
     validationSchema: validationSchema,
   });
 
+   //lengh of character
+   const CHARACTER_LIMIT = 10;
 
   return (
 
@@ -158,6 +160,9 @@ const Registration = (props) => {
                 helperText={formik.touched.username && formik.errors.username ? formik.errors.username : ""}
                 InputLabelProps={{
                   style: { color: "#007982" },
+                }}
+                inputProps={{
+                  maxlength: CHARACTER_LIMIT
                 }}
                 InputProps={{
                   classes: {

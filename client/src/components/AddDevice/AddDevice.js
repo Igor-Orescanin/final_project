@@ -1,6 +1,6 @@
 // react
 import React, { useState, useEffect } from "react";
-import { StylesProvider } from "@material-ui/core/styles";
+
 
 //axios';
 import * as api from "../../api";
@@ -45,6 +45,16 @@ const theme = createMuiTheme({
       contrastText: "#fff",
     },
   },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "#30D4DE",
+        borderStyle: "solid",
+      }
+    }
+  }
 });
 
 const AddDevice = (props) => {
@@ -143,7 +153,7 @@ useEffect(async () => {
  
   return (
     <>
-      <StylesProvider injectFirst>
+   
         <ThemeProvider theme={theme}>
           
           <Container className={classes.container}>
@@ -289,7 +299,7 @@ If you bought your own device pleace contact us per Email: NaunetMon.com!
             </div>
           </Container>
         </ThemeProvider>
-      </StylesProvider>
+  
     </>
   );
 

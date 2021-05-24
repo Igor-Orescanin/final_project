@@ -23,8 +23,17 @@ import {
   Typography,
   Button,
   Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Grid,
 } from "@material-ui/core";
+
+// icon
+import WarningIcon from '@material-ui/icons/Warning';
+
 import { StylesProvider } from "@material-ui/core/styles";
 
 //icon
@@ -48,6 +57,16 @@ const theme = createMuiTheme({
       contrastText: "#0C9EB5",
     },
   },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "red",
+        borderStyle: "solid",
+      }
+    }
+  }
 });
 //___________start coding
 // use/get the socket
@@ -65,6 +84,23 @@ const Water2 = (props) => {
   let waterLevel = 0;
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
+
+
+
+  const [open, setOpen] = React.useState(true); // need false for start
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    
+  };
+
+
+
+
 
   const [chart1, setChart] = useState([
     {
@@ -244,6 +280,11 @@ const Water2 = (props) => {
       },
   };
 
+
+
+
+
+
   return (
     <>
 
@@ -313,6 +354,7 @@ const Water2 = (props) => {
             className={classes.iconButton}
             fontSize="large"
           ></ExpandMoreIcon>
+
           <Typography className={classes.typographyInfo1}>
             Information
           </Typography>
@@ -327,6 +369,33 @@ const Water2 = (props) => {
               all is good for you!
             </Typography>
           </Paper>
+
+          <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title"  className={classes.alertTitle}>
+                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
+                {"!!!Alert!!!"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Your Freshwater is low 
+                </DialogContentText>
+                {/* <DialogContentText id="alert-dialog-description">
+                Your Greywater is high 
+                </DialogContentText> */}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>

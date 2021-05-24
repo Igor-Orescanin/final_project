@@ -11,9 +11,8 @@ export default makeStyles((theme) => ({
         alignItems: "center",
         justifyItems: "center",
       },
- 
- 
- 
+
+
  paper2:{
     zIndex: "-2",
     paddingTop:'20px',
@@ -64,16 +63,19 @@ export default makeStyles((theme) => ({
       button: {
         textAlign: "center",
         fontSize: "15px",
-        bordercolor: "#008CA7",
+        borderColor: "#008CA7",
         marginTop: "0px",
         textTransform: "none",
         paddingRight: "10px",
         paddingLeft: "10px",
-        paddingTop: "7px",
+        paddingTop: "9px",
         paddingBottom: "7px",
       },
  
- 
+      alertTitle:{
+        color:'red',
+        textAlign:'center',
+      },
  
  
  
