@@ -1,6 +1,6 @@
 
 // react
-import React,{useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 
 
 //styles to use the connection
@@ -35,7 +35,7 @@ function Light(props) {
             <StylesProvider injectFirst>
 
                 <Container className={classes.container} >
-                <h1 className={classes.heading}>Setting</h1>
+                    <h1 className={classes.heading}>Setting</h1>
                     <div className={classes.paper}>
 
                         <div className={classes.buttons}>
@@ -70,7 +70,7 @@ function Light(props) {
                 </Container>
 
 
-            </StylesProvider >
+            </StylesProvider>
         </>
     )
 }

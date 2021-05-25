@@ -86,7 +86,7 @@ const Device = (props) => { //props.deviceObject.deviceId
   };
 
   //for radio button FormControlLabel
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);

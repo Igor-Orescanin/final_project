@@ -1,99 +1,164 @@
-import React from 'react';
-import { StylesProvider } from "@material-ui/core/styles";
+// react
+import React, { useState, useEffect } from "react";
+
+import SvgIcon from "@material-ui/core/SvgIcon";
+import LightOff from '../../../image/light_off.svg';
+import LightOn from '../../../image/light_off.svg';
+
+// axios
+import * as api from "../../../api";
+
 import { useHistory } from "react-router-dom";
 
-import NavbarSec from "../../Nav/NavbarSec.js";
-import useStyles from "./Styles.js";
+//styles to use the connection
+import useStyles from "./Styles";
+
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+//css
+import "../../../App.css";
 
 // material-ui
-import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
-import Button from "@material-ui/core/Button"; //button
+import {
+    Container,
+    Typography,
+    ThemeProvider,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    FormControlLabel,
+    Radio,
+    Icon,
+} from "@material-ui/core";
+
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            light: "#18B0C3",
+            main: "#0C9EB5",
+            dark: "#008CA7",
+            contrastText: "#fff",
+        },
+        secondary: {
+            light: "#18B0C3",
+            main: "##fff",
+            dark: "#008CA7",
+            contrastText: "#0C9EB5",
+        },
+    },
+});
+
+const Light = (props) => {
+    // props.deviceObject.deviceId
+    //for routes
+    const history = useHistory();
+    //const { history } = props;
 
 
-
-
-function Light(props) {
-
+    //for styles
     const classes = useStyles();
-    const { history } = props;
+
+
+    const username = props.username
+
+    console.log(props.username)
+
+
+    const light = props.lightObject    // Marika is not sure if light or device
+    console.log(light)
+    //a hook 
+    // const [light, setLight] = useState();
+
+
+    //for dialogfeld
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+
+    };
+    const handleClose1 = () => {
+        setOpen(false);
+        // api.deleteLight(light._id)      // Mari is not sure if light or device
+    };
+
+    //for radio button FormControlLabel
+    const [value, setValue] = useState('');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    const lightHandler = () => {
+
+    }
 
     return (
         <>
-            <StylesProvider injectFirst>
-
-                <Container className={classes.container} >
-                    <div className={classes.paper}>
-
-                        <Typography className={classes.heading} variant="h4" component="h4">
-                            Your Controls </Typography>
-
-                        <div className={classes.buttons}>
-                        
-                         <div className={classes.buttonRow}>
-                         <WbIncandescentIcon className={classes.bulbIcon}/>
-                                 <Button
-                                //onClick={() => history.push("/lightone")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'>Light 1
-                           
-                                </Button>
-                               <DeleteIcon className={classes.deleteIcon} /> 
-                          </div>
-                      
-                            
-                          <div className={classes.buttonRow}>
-                          <EmojiObjectsIcon className={classes.bulbIcon}/>
-                                 <Button
-                                //onClick={() => history.push("/lightone")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'>Light 2
-                           
-                                </Button>
-                               <DeleteIcon className={classes.deleteIcon} /> 
-                          </div>
-
-                          <div className={classes.buttonRow}>
-                          <WbIncandescentIcon className={classes.bulbIcon}/>
-                                 <Button
-                                //onClick={() => history.push("/lightone")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'>Light 3
-                           
-                                </Button>
-                               <DeleteIcon className={classes.deleteIcon} /> 
-                          </div>
-
-                            <Button
-                                //onClick={() => history.push("/lightthree")}
-                                className={classes.addLight}
-                                variant="contained"
-                                color="primary"
-                                type='submit'
-                            >Add New Light</Button>
-
-                        </div>
+            <ThemeProvider theme={theme}>
+                <Container className={classes.container}>
+                    <div className={classes.groupButton}>
+                        {/*  {light.status ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />} */}
 
 
-                        <div className={classes.footer}></div>
+                        <img width='25' height='25' src={LightOff}></img>
+
+                        <Button
+                            onClick={() => lightHandler()}
+
+
+                            className={classes.button}
+                            variant="contained"
+                            color="primary"
+                        //  value={light.gpio}
+                        >
+                            Light 1
+                          {/*    {light.name}   Igor and GPIO */}
+
+                        </Button>
+                        <DeleteIcon className={classes.deleteIcon} onClick={handleClickOpen} />
+
+                        <Dialog
+                            className={classes.dialog}
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                                {" Are you sure you want to delete 'this Light'?"}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Light will be disappear and is not connected anymore!
+                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    Disagree
+                </Button>
+                                <Button onClick={handleClose1} color="primary" autoFocus>
+                                    Agree
+                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </Container>
-
-
-            </StylesProvider >
+            </ThemeProvider>
         </>
-    )
-}
+    );
+};
 
-export default Light
+export default Light;
