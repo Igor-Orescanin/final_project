@@ -113,20 +113,6 @@ const Water2 = (props) => {
     },
   ]);
 
-  // this useEffect was from the graph.js
-
-  //   useEffect(() => {
-  //     socket.on('sensorReading', sensorObject => {
-  //       const sensorPercent = sensorObject.levelPercentage;
-  //       if (sensorObject.label === "CLEAN") {
-  //         //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-  //         setWaterLevelClean([sensorPercent]);
-  //       } else {
-  //         setWaterLevelGrey([sensorPercent]);
-  //       }
-  //     });
-  //   }, []);
-
   //_____________________________________
 
   // this useEffect is from the water.js
@@ -226,6 +212,7 @@ const Water2 = (props) => {
       labels: ["Freshwater"],
 
   };
+//_____ 2. chart
 
   const options2 = {
     chart: {
@@ -282,9 +269,6 @@ const Water2 = (props) => {
 
 
 
-
-
-
   return (
     <>
 
@@ -307,42 +291,9 @@ const Water2 = (props) => {
             />
           </div>
 
-          {/* 
-<div>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <ReactApexChart options={options} series={waterLevelClean} type="radialBar" height={180}
-                  />
-                </Paper>
-              </Grid>
-              <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <ReactApexChart options={options} series={waterLevelGrey} type="radialBar" height={350}
-                  />
-                </Paper>
-              </Grid>
-            </Grid>
-          </div> */}
-
-          {/* <div className={classes.chart}>
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Paper >
-            <ReactApexChart options={options} series={waterLevelClean} type="radialBar" height={350} />
-
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper>
-            <ReactApexChart options={options} series={waterLevelGrey} type="radialBar" height={350} />
-          </Paper>
-        </Grid>
-      </Grid>
-    </div> */}
 
           <Button
-            onClick={() => history.push("/welcome")}
+            onClick={() => history.push("/emailalert")}
             className={classes.button}
             variant="contained"
             color="primary"
@@ -385,9 +336,9 @@ const Water2 = (props) => {
                 <DialogContentText id="alert-dialog-description">
                 Your Freshwater is low 
                 </DialogContentText>
-                {/* <DialogContentText id="alert-dialog-description">
+                 <DialogContentText id="alert-dialog-description">
                 Your Greywater is high 
-                </DialogContentText> */}
+                </DialogContentText> 
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary" autoFocus>

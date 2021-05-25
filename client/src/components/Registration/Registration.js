@@ -127,7 +127,7 @@ const Registration = (props) => {
   });
 
    //lengh of character
-   const CHARACTER_LIMIT = 10;
+   const CHARACTER_LIMIT = 15;
 
   return (
 
