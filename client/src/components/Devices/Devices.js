@@ -49,7 +49,6 @@ const Devices = (props) => {
   //for styles
   const classes = useStyles();
 
-
   const username = props.username
   const userId = props.userId
 
@@ -57,18 +56,20 @@ const Devices = (props) => {
   const [allDevices, setAllDevices] = useState([]);
 
   // to get the data for databace
-  useEffect(async () => {
-    const { data } = await api.fetchDevices(userId);
-
-    setAllDevices(data);
-
-
-
-
-    // console.log(data);
-    // console.log(data[1].deviceId);
-    // console.log(data[1].deviceName);  
+  useEffect(() => {
+    getDevices();
   }, []);
+
+  const getDevices = async () => {
+    const { data } = await api.fetchDevices(userId);
+    setAllDevices(data);
+  }
+
+  const deviceDeleteHandler = async (_id) => {
+    console.log(_id);
+    await api.deleteDevice(_id);
+    getDevices();
+  }
 
   return (
     <>
@@ -85,8 +86,9 @@ const Devices = (props) => {
             {!allDevices.length ? (
               <CircularProgress />
             ) : (
-              allDevices.map((dev) => (
-                 <Device   deviceObject={dev} username={username} />
+                allDevices.map((dev, index) => (
+
+                  <Device key={index} deviceObject={dev} username={username} deviceDeleted={() => deviceDeleteHandler(dev._id)} />
               ))
             )}
 
