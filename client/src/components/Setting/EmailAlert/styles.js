@@ -68,36 +68,36 @@ export default makeStyles((theme) => ({
         color: '#30D4DE'
     },
 
-  waterDiv: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    waterDiv: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
-  button: {
-    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
-    padding: 0,
-    backgroundColor: "white",
-    color: "#0C9EB5",
-    width: "115px",
-    height: "38px",
-    border: "1px solid #0C9EB5",
-    borderRadius: "10px",
-    fontSize: "15px",
-    marginTop: "20px",
-  },
+    button: {
+        fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+        padding: 0,
+        backgroundColor: "white",
+        color: "#0C9EB5",
+        width: "115px",
+        height: "38px",
+        border: "1px solid #0C9EB5",
+        borderRadius: "10px",
+        fontSize: "15px",
+        marginTop: "20px",
+    },
 
-  //for the Image on the bottom
-  footer: {
-    zIndex: "-1",
-    position: "fixed",
-    bottom: "0px",
-    left: "0px",
-    height: "250px",
-    width: "100vw",
-    backgroundImage: `url(${image})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  },
+    //for the Image on the bottom
+    footer: {
+        zIndex: "-1",
+        position: "fixed",
+        bottom: "0px",
+        left: "0px",
+        height: "250px",
+        width: "100vw",
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+    },
 }));

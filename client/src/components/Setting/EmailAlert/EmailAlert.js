@@ -13,6 +13,8 @@ import { borders } from '@material-ui/system';
 import { StylesProvider } from "@material-ui/core/styles";
 
 import { createMuiTheme } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core/styles";
+
 
 const theme = createMuiTheme({
   palette: {

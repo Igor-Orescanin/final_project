@@ -41,12 +41,12 @@ function App() {
   const [response, setResponse] = useState({});
 
 
-    const fetchUser = (user) => {
+     const fetchUser = (user) => {
       setResponse(user)
       console.log(response)
     }
   
-    if (response._id) {
+    if (response._id) { 
 
   return (
     <Router>
@@ -58,12 +58,11 @@ function App() {
         <Route path="/setting" component={Setting}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
         <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
-        <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
         <Route path="/light" component={Light}></Route>
-        <Route path="/emailalert" component={EmailAlert}></Route>
+        <Route path="/emailalert" component={EmailAlert}></Route> 
         <Route path="/lights" component={Lights}></Route>
         <Route path="/addlight" component={AddLight}></Route>
         <Route path="/addcontrol" component={AddControl}></Route>
@@ -87,7 +86,7 @@ function App() {
          <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
        </div>
      </Router>
-   ); 
+   );  
 
 }
 
