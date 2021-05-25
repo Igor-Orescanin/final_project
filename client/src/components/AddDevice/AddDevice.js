@@ -64,7 +64,7 @@ const AddDevice = (props) => {
   //for styles
   const classes = useStyles();
 
-  
+
    const userId = props.userId
     console.log(userId)
 
@@ -91,7 +91,7 @@ const AddDevice = (props) => {
 
   const handleClose = () => {
     setOpen(false);
-    
+
   };
 
 //a hook
@@ -123,39 +123,39 @@ useEffect(async () => {
 
        if(res.data.message === "Device is already assigned"){
        setDeviceExist(res.data.message)
-   
-      
-      
+
+
+
       } else if(res.data.message === "Device not found"){
        setDeviceExist(res.data.message)
-      
+
 
 
       }else{
        // history.push('/devices')
          history.push({
            pathname: "/devices",
-       
+
          })
        }
-    
-      
-     
+
+
+
     }).catch((error) => {
       if(error){ setDeviceExist('register a Device!')
         setErrors('error')}
       console.log(error);
     });
 
-  
+
   };
 
- 
+
   return (
     <>
    
         <ThemeProvider theme={theme}>
-          
+
           <Container className={classes.container}>
             <div className={classes.paper}>
 
@@ -171,16 +171,16 @@ useEffect(async () => {
               {deviceExist.length < 1 ?(
                 <div></div>
               ):
-              <Alert 
+                <Alert
               severity="error"
                 action={
                   <IconButton
                     aria-label="close"
                     color="inherit"
                     size="small"
-                    
+
                   >
-                 
+
                   </IconButton>
                 }
               >
@@ -208,7 +208,7 @@ useEffect(async () => {
                     style: { color: "#007982" },
                   }}
                   inputProps={{
-                    maxlength: CHARACTER_LIMIT
+                    maxLength: CHARACTER_LIMIT
                   }}
                    InputProps={{
                      classes: {
@@ -259,12 +259,12 @@ useEffect(async () => {
                 <Button
                  // onClick={handleSubmit}
                   className={classes.buttonHelp}
-                  onClick={handleClickOpen} 
+                onClick={handleClickOpen}
                   variant="contained"
                   color="primary"
                   type="submit"
                   style={{ border: '2px solid' }}
-                
+
                 >
                   Need help?
                 </Button>
@@ -294,7 +294,7 @@ If you bought your own device pleace contact us per Email: NaunetMon.com!
 
 
 
-       
+
               <div className={classes.footer}></div>
             </div>
           </Container>

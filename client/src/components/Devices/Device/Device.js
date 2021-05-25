@@ -70,16 +70,13 @@ const Device = (props) => { //props.deviceObject.deviceId
   //for styles
   const classes = useStyles();
 
- 
   const username = props.username
-
   console.log(props.username)
 
-
   const device = props.deviceObject
-console.log(device)
-//a hook 
- //const [device, setDevice] = useState();
+  console.log(device)
+  //a hook
+  //const [device, setDevice] = useState();
 
 
   //for dialogfeld
@@ -91,12 +88,11 @@ console.log(device)
 
   const handleClose = () => {
     setOpen(false);
-    
+
   };
   const handleClose1 = () => {
+    props.deviceDeleted();
     setOpen(false);
-    api.deleteDevice(device._id)
-    //history.push('/devices')
   };
 
   //for radio button FormControlLabel
@@ -106,13 +102,16 @@ console.log(device)
     setValue(event.target.value);
   };
 
+
+
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-         {device.isConnected ?  <CheckCircleOutlineIcon className={classes.checkIcon}/>: <NotInterestedIcon className={classes.noIcon}/>} 
-            
+            {device.isConnected ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />}
+
             <Button
               onClick={() => history.push({
                 pathname: "/welcome",
@@ -125,8 +124,8 @@ console.log(device)
              { device.deviceName }
 
             </Button>
-              <DeleteIcon className={classes.deleteIcon}  onClick={handleClickOpen} /> 
-            
+            <DeleteIcon className={classes.deleteIcon} onClick={handleClickOpen} />
+
             <Dialog
               className={classes.dialog}
               open={open}
@@ -143,10 +142,10 @@ console.log(device)
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose}  color="primary">
+                <Button onClick={handleClose} color="primary">
                   Disagree
                 </Button>
-                <Button onClick={handleClose1} color="primary" autoFocus>
+                <Button onClick={handleClose1} color="primary" autoFocus >
                   Agree
                 </Button>
               </DialogActions>
