@@ -8,13 +8,11 @@ import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
 import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
-import Water2 from "./components/Water/Water2.js";
+import Water from "./components/Water/Water.js";
 import Setting from "./components/Setting/Setting.js";
 import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
-import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
-import Test from "./components/Registration/Test.js";
 import Weekly from './components/History/Weekly/Weekly.js'
 import Monthly from './components/History/Monthly/Monthly.js'
 import Light from "./components/Lights/Light/Light";
@@ -56,13 +54,12 @@ function App() {
         <Navbar username={response.username} />
         <Route path="/welcome" component={Welcome}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" component={Water2}></Route>
+        <Route path="/water" component={Water}></Route>
         <Route path="/setting" component={Setting}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
         <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
         <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
-        <Route path="/test" component={Test}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
         <Route path="/light" component={Light}></Route>
