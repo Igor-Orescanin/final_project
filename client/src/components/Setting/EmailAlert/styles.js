@@ -38,7 +38,6 @@ export default makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
 
-
     root: {
         "&:hover $notchedOutline": {
             borderColor: "#007982",
@@ -54,8 +53,6 @@ export default makeStyles((theme) => ({
         borderColor: "#007982",
     },
 
-
-
     waterDiv: {
         display: "flex",
         flexDirection: "row",
@@ -70,14 +67,6 @@ export default makeStyles((theme) => ({
         margin: '20px 0',
         color: '#30D4DE'
     },
-  },
-
-  focused: {},
-  notchedOutline: {},
-
-  notchedOutline: {
-    borderColor: "#007982",
-  },
 
   waterDiv: {
     display: "flex",
