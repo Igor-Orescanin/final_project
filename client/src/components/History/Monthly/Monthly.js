@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 // material-ui
-import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
+import { Container, ThemeProvider, Typography, Paper, TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button"; //button
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -11,6 +11,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import * as api from "../../../api";
 import useStyles from "./styles.js";
 import ReactApexChart from 'react-apexcharts';
+
+//icon
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 
 function Monthly(props) {
@@ -91,7 +94,7 @@ function Monthly(props) {
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
-                                type='submit'>Weekly</Button>
+                                type='submit'>last 7 days</Button>
 
                             <Button
                                 //onClick={() => history.push("/monthly")}
@@ -100,22 +103,32 @@ function Monthly(props) {
                                 color="primary"
                                 type='submit'
                                 disabled='true'
-                            >Monthly</Button>
+                            >last 30 days</Button>
 
                         </div>
-                        <h3 className={classes.liveTime}>Monthly</h3>
+                        <Typography className={classes.liveTime}>last 30 days</Typography>
                         <div id="chart" className={classes.chart}>
                             <ReactApexChart options={options} series={series} type="line"  height={300} />
                         </div>
 
-                        <div className={classes.continerMonthlyDetail}>
-                            <h4>Water report of the Month</h4>
-                            <div className={classes.monthlyDetail}>
-                                <h6>Week Consumption: 35l/day</h6>
-                                <h6>Your Freshwater is by 30%</h6>
-                                <h6>Your Graywater is by 25%</h6>
-                            </div>
-                        </div>
+                        <ExpandMoreIcon
+              className={classes.iconButton}
+              fontSize="large"
+            ></ExpandMoreIcon>
+            <Typography className={classes.typographyInfo2}>
+              Water report of the week
+            </Typography>
+            <Paper className={classes.paper2}>
+              <Typography className={classes.typographyInfo}>
+                week consumption: {} 34l/day
+              </Typography>
+              <Typography className={classes.typographyInfo}>
+                your Freshwater is by 30{}%
+              </Typography>
+              <Typography className={classes.typographyInfo}>
+                your Graywater is by 25{}%
+              </Typography>
+            </Paper>
 
                         <div className={classes.footer}></div>
                     </div>

@@ -57,8 +57,9 @@ const AddDevice = (props) => {
   const classes = useStyles();
 
 
-  const userId = props.userId
-  console.log(userId)
+   const userId = props.userId
+    console.log(userId)
+
 
   //const username = props.location.state.username
 
@@ -108,38 +109,38 @@ const AddDevice = (props) => {
 
 
     api.asignDevice(formData)
-      .then((res) => {
 
-        console.log(res)
+    .then((res)=>{
 
-
-        if (res.data.message === "Device is already assigned") {
-          setDeviceExist(res.data.message)
+      console.log(res)
 
 
-
-        } else if (res.data.message === "Device not found") {
-          setDeviceExist(res.data.message)
+       if(res.data.message === "Device is already assigned"){
+       setDeviceExist(res.data.message)
 
 
 
-        } else {
-          // history.push('/devices')
-          history.push({
-            pathname: "/devices",
-
-          })
-        }
+      } else if(res.data.message === "Device not found"){
+       setDeviceExist(res.data.message)
 
 
 
-      }).catch((error) => {
-        if (error) {
-          setDeviceExist('register a Device!')
-          setErrors('error')
-        }
-        console.log(error);
-      });
+      }else{
+       // history.push('/devices')
+         history.push({
+           pathname: "/devices",
+
+         })
+       }
+
+
+
+    }).catch((error) => {
+      if(error){ setDeviceExist('register a Device!')
+        setErrors('error')}
+      console.log(error);
+    });
+
 
 
   };
@@ -164,22 +165,24 @@ const AddDevice = (props) => {
               }
               {deviceExist.length < 1 ? (
                 <div></div>
-              ) :
+
+              ):
                 <Alert
-                  severity="error"
-                  action={
-                    <IconButton
-                      aria-label="close"
-                      color="inherit"
-                      size="small"
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
 
-                    >
+                  >
 
-                    </IconButton>
-                  }
-                >
-                  {deviceExist}
-                </Alert>
+                  </IconButton>
+                }
+              >
+               {deviceExist}
+              </Alert>
+
               }
 
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -202,7 +205,7 @@ const AddDevice = (props) => {
                     style: { color: "#007982" },
                   }}
                   inputProps={{
-                    maxlength: CHARACTER_LIMIT
+                    maxLength: CHARACTER_LIMIT
                   }}
                   InputProps={{
                     classes: {
@@ -249,18 +252,20 @@ const AddDevice = (props) => {
                 >
                   Register
                 </Button>
-              </form>
-              <Button
-                // onClick={handleSubmit}
-                className={classes.buttonHelp}
-                onClick={handleClickOpen}
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ border: '2px solid' }}
 
-              >
-                Need help?
+                </form>
+                <Button
+                 // onClick={handleSubmit}
+                  className={classes.buttonHelp}
+                onClick={handleClickOpen}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ border: '2px solid' }}
+
+                >
+                  Need help?
+
                 </Button>
               <Dialog
                 className={classes.dialog}
@@ -285,8 +290,6 @@ const AddDevice = (props) => {
                 </Button>
                 </DialogActions>
               </Dialog>
-
-
 
 
               <div className={classes.footer}></div>

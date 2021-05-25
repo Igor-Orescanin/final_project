@@ -9,6 +9,7 @@ import Welcome from "./components/Welcome/Welcome.js";
 import NavbarSec from "./components/Nav/NavbarSec";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
+import Water2 from "./components/Water/Water2.js";
 import Setting from "./components/Setting/Setting.js";
 import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
@@ -38,19 +39,18 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
-
-
 function App() {
 
 
   const [response, setResponse] = useState({});
 
-  /*   const fetchUser = (user) => {
+
+    const fetchUser = (user) => {
       setResponse(user)
       console.log(response)
     }
   
-    if (response._id) { */
+    if (response._id) {
 
   return (
     <Router>
@@ -79,8 +79,11 @@ function App() {
 
       </div>
     </Router>
-  );
-  /*  }
+
+  );  
+
+
+    }
  
  
    return (
@@ -90,7 +93,8 @@ function App() {
          <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
        </div>
      </Router>
-   ); */
+   ); 
+
 }
 
 export default App;
