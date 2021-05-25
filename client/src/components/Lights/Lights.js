@@ -61,20 +61,14 @@ const Lights = (props) => {
   const userId = props.userId
 
   //a hook
-  const [allDevices, setAllDevices] = useState([]);
+  const [allLights, setAllLights] = useState([]);
 
   // to get the data for databace
   useEffect(async () => {
-    const { data } = await api.fetchDevices(userId);
+   // const { data } = await api.fetchLights(deviceId);    // Igor or Maritza 
 
-    setAllDevices(data);
+   // setAllLights(data);
 
-
-
-
-    // console.log(data);
-    // console.log(data[1].deviceId);
-    // console.log(data[1].deviceName);  
   }, []);
 
   return (
@@ -89,24 +83,27 @@ const Lights = (props) => {
           </div>
           <div className={classes.paper}>
 
-            {!allDevices.length ? (
+            {!allLights.length ? (
               <CircularProgress />
             ) : (
-              allDevices.map((dev) => (
-                 <Light   deviceObject={dev} username={username} />
+              allLights.map((light) => (
+              <Light   lightObject={light} /> // Igor because Mari is not sure
+           // <Light   deviceObject={dev} username={username} />
               ))
             )}
 
+            {/* here will be array of light objects */}
+
             <Button
               onClick={() =>      history.push({
-                pathname: "/adddevice",
-                state: {userId : userId, username: username}
+                pathname: "/addlight",
+                state: {userId : userId, username: username}   // ?? Igor
                })}
               className={classes.addbutton}
               variant="contained"
               color="primary"
             >
-              Add new Devices
+              Add new Lights
             </Button>
           </div>
           <div className={classes.footer}></div>
