@@ -16,11 +16,12 @@ export default makeStyles((theme) => ({
     height: "65vh",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
-  
+
   typography: {
     marginTop: "64px",
+    fontFamily: ("Roboto", "sans-serif"),
     color: "#007982",
     fontSize: "24px",
     fontWeight: "bold",
@@ -30,6 +31,8 @@ export default makeStyles((theme) => ({
     marginTop: "20px",
     backgroundColor: "#007982",
     alignContent: "center",
+    height: "46px",
+    width: "46px",
   },
 
   form: {
@@ -47,6 +50,7 @@ export default makeStyles((theme) => ({
       bordercolor: "#007982",
     },
   },
+
   focused: {},
   notchedOutline: {},
 
@@ -58,7 +62,7 @@ export default makeStyles((theme) => ({
     marginTop: "20px",
     bordercolor: "#007982",
     width: "212px",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
 
   link: {
@@ -73,15 +77,16 @@ export default makeStyles((theme) => ({
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
     padding: 0,
-    backgroundColor: "#0C9EB5",
     color: "white",
-    width: "80px",
+    width: "100px",
     height: "38px",
     borderRadius: "20px",
     fontSize: "15px",
     fontWeight: "400",
     borderColor: "#008CA7",
     border: "solid",
+    borderWidth: "2px",
+    paddingTop: "2px",
   },
 
   //for the Image on the bottom
@@ -95,5 +100,5 @@ export default makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   },
-}));
 
+}));

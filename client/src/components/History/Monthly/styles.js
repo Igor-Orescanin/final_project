@@ -67,7 +67,10 @@ export default makeStyles((theme) => ({
         backgroundColor: "#0C9EB5",
         color: 'white',
         width: '110px',
-        paddingTop:'3px',
+        paddingTop:'2px',
+        border: "solid",
+        borderWidth: "2px",
+        borderColor: "#008CA7",
         height: '38px',
         borderRadius: '5px',
         fontSize: '15px',
@@ -76,6 +79,12 @@ export default makeStyles((theme) => ({
         marginRight: '20px',
         textTransform: "none",
     },
+
+
+    disabled:{
+        borderColor: "#d4d4d4",
+    },
+
 
     liveTime: {
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
@@ -128,9 +137,6 @@ export default makeStyles((theme) => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     },
-
-
-
 
 
 }))

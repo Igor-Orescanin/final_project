@@ -4,7 +4,7 @@ import image from "../../image/welcome3_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
-    // backgroundColor:'red',
+
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -12,9 +12,6 @@ export default makeStyles((theme) => ({
   },
 
   paper: {
-    // height:'65vh',
-    //  backgroundColor:'yellow',
-    // marginTop:'80px',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -24,17 +21,6 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     marginLeft: "-90px",
-
-    // backgroundColor:'green',
-  },
-
-
-  button: {
-    bordercolor: "#008CA7",
-    marginTop: "34px",
-    textTransform: "none",
-    marginRight: "10px",
-    marginLeft: "10px",
   },
 
   addbutton: {
@@ -43,6 +29,9 @@ export default makeStyles((theme) => ({
     textTransform: "none",
     marginRight: "10px",
     marginLeft: "10px",
+    paddingTop:'8px',
+    border: "solid",
+    borderWidth: "2px",
   },
 
   typography: {

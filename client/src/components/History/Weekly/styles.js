@@ -70,14 +70,21 @@ export default makeStyles((theme) => ({
         backgroundColor: "#0C9EB5",
         color: 'white',
         width: '110px',
-        paddingTop:'3px',
+        paddingTop:'2px',
         height: '38px',
         borderRadius: '5px',
+        border: "solid",
+        borderWidth: "2px",
+        borderColor: "#008CA7",
         fontSize: '15px',
         marginTop: '10px',
         marginLeft: '20px',
         marginRight: '20px',
         textTransform: "none",
+    },
+    
+    disabled:{
+        borderColor: "#d4d4d4",
     },
 
     liveTime: {

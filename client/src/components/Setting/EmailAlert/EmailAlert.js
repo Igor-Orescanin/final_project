@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from "./styles.js";
-import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
+import { Container,   ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { borders } from '@material-ui/system';
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -21,6 +21,8 @@ const theme = createMuiTheme({
   },
 });
 
+// style
+import { StylesProvider } from "@material-ui/core/styles";
 
 function EmailAlert() {
 
@@ -37,9 +39,7 @@ function EmailAlert() {
     };
 
     return (
-        <div>
-
-
+      <div>
             <ThemeProvider theme={theme}>
                 <Container className={classes.container} >
 
@@ -53,7 +53,6 @@ function EmailAlert() {
                         Fresh Water
 
                 <FormControl variant="outlined" className={classes.formControl}>
-
 
                             <InputLabel id="demo-simple-select-outlined-label">Water in %</InputLabel>
                             <Select
@@ -83,6 +82,7 @@ function EmailAlert() {
 
                     <Typography className={classes.waterDiv} variant="h5" component="h5">
                         Gray Water
+
 
                 <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Water in %</InputLabel>

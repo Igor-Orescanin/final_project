@@ -7,11 +7,11 @@ import * as api from "../../api";
 //import ShowDevices from "./Device/ShowDevices.js";
 import Device from "./Device/Device.js";
 
-// styles to use the connection
-import useStyles from "./styles";
-
 // css
 import "../../App.css";
+
+// styles to use the connection
+import useStyles from "./styles";
 
 // material-ui
 import {
@@ -42,11 +42,10 @@ const theme = createMuiTheme({
   },
 });
 
+//__________________________________________________________start
 const Devices = (props) => {
-  //for routes
-  const { history } = props;
 
-  //for styles
+  const { history } = props;
   const classes = useStyles();
 
   const username = props.username
@@ -76,7 +75,6 @@ const Devices = (props) => {
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {/* <div className={classes.paper}> */}
           <div className={classes.top}>
             <Typography className={classes.typography}>connected</Typography>
             <Typography className={classes.typography}>your devices</Typography>

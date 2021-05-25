@@ -49,6 +49,16 @@ const theme = createMuiTheme({
       contrastText: "#0C9EB5",
     },
   },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "#30D4DE",
+        borderStyle: "solid",
+      }
+    }
+  }
 });
 
 const Device = (props) => { //props.deviceObject.deviceId

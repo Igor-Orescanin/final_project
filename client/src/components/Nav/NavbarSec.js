@@ -16,7 +16,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 
 
-//--------------------------------------start
+//__________________________________________________________start
 
 
 const NavbarSec = (props) => {
@@ -38,9 +38,7 @@ const NavbarSec = (props) => {
       <div className={classes.secondaryNav}>
 
         <Typography
-          variant="h6"
-          component="h6"
-          className={`${classes.typo} ${classes.hand}`}
+          className={`${classes.typo} ${classes.nameOfUser}`}
         >
           Hello {username} 
         </Typography>
@@ -71,7 +69,7 @@ const NavbarSec = (props) => {
           onClick={() => history.push("/weekly")}
         >
           <AssessmentIcon className={classes.iconSec} />
-          <Typography variant="h6" component="h6" className={classes.typoSec}>
+          <Typography className={classes.charts}>
             Charts
           </Typography>
         </IconButton>}
@@ -80,7 +78,7 @@ const NavbarSec = (props) => {
           className={classes.iconButtonSec}
           onClick={() => history.push("/logout")}
         >
-          <Typography variant="h6" component="h6" className={classes.typo2}>
+          <Typography className={classes.logOut}>
             Log Out
           </Typography>
         </IconButton>

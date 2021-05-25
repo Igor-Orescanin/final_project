@@ -31,6 +31,8 @@ export default makeStyles((theme) => ({
     marginTop: "20px",
     backgroundColor: "#007982",
     alignContent: "center",
+    height: "46px",
+    width: "46px",
   },
 
   form: {
@@ -48,6 +50,7 @@ export default makeStyles((theme) => ({
       bordercolor: "#007982",
     },
   },
+
   focused: {},
   notchedOutline: {},
 
@@ -62,17 +65,11 @@ export default makeStyles((theme) => ({
     backgroundColor: "white",
   },
 
-  link: {
-    paddingTop: "20px",
-    paddingBottom: "20px",
-    color: "#007982",
-  },
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
     padding: 0,
     marginTop: "30px",
-    backgroundColor: "#0C9EB5",
     color: "white",
     width: "106px",
     height: "38px",
@@ -80,6 +77,8 @@ export default makeStyles((theme) => ({
     fontSize: "15px",
     borderColor: "#008CA7",
     border: "solid",
+    borderWidth: "2px",
+    paddingTop: "2px",
   },
   error:{
     marginTop: '4px',
