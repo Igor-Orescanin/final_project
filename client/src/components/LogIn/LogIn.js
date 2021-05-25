@@ -7,6 +7,9 @@ import { StylesProvider } from "@material-ui/core/styles";
 //axios
 import * as api from "../../api";
 
+// css
+import "../../App.css";
+
 // styles to use the connection
 import useStyles from "./styles";
 
@@ -21,11 +24,9 @@ import {
   TextField,
   IconButton,
 } from "@material-ui/core";
+
 // alert
 import Alert from "@material-ui/lab/Alert";
-
-// css
-import "../../App.css";
 
 // history for the routes
 import { useHistory } from "react-router-dom";
@@ -97,13 +98,11 @@ const LogIn = (props) => {
           <div className={classes.paper}>
             <Typography
               className={classes.typography}
-              component="h1"
-              variant="h5"
             >
               Log-In
             </Typography>
 
-            <Avatar className={classes.avatar} />
+            <Avatar className={classes.avatar}/>
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
 
 

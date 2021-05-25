@@ -1,12 +1,10 @@
 // react
 import React, { useState, useEffect } from "react";
-import { StylesProvider } from "@material-ui/core/styles";
+
 
 //axios';
 import * as api from "../../api";
 
-//connection
-import Navbar from "../Nav/Navbar.js";
 
 //import { useHistory } from "react-router-dom";
 
@@ -47,6 +45,16 @@ const theme = createMuiTheme({
       contrastText: "#fff",
     },
   },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "#30D4DE",
+        borderStyle: "solid",
+      }
+    }
+  }
 });
 
 const AddDevice = (props) => {
@@ -148,7 +156,7 @@ const AddDevice = (props) => {
 
   return (
     <>
-      <StylesProvider injectFirst>
+   
         <ThemeProvider theme={theme}>
 
           <Container className={classes.container}>
@@ -267,6 +275,7 @@ const AddDevice = (props) => {
                   Need help?
 
                 </Button>
+
               <Dialog
                 className={classes.dialog}
                 open={open}
@@ -282,6 +291,7 @@ const AddDevice = (props) => {
                     Your can choose your own Device Name.
                     If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
                     If you bought your own device pleace contact us per Email: NaunetMon.com!
+
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -296,7 +306,7 @@ const AddDevice = (props) => {
             </div>
           </Container>
         </ThemeProvider>
-      </StylesProvider>
+  
     </>
   );
 

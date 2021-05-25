@@ -10,8 +10,6 @@ import {
   TextField,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button"; //button
-//change color as a theme
-import { createMuiTheme } from "@material-ui/core/styles";
 
 import * as api from "../../../api";
 import useStyles from "./styles.js";
@@ -19,6 +17,28 @@ import ReactApexChart from "react-apexcharts";
 
 //icon
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+//change color as a theme
+import { createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#18B0C3",
+      main: "##fff",
+      dark: "#008CA7",
+      contrastText: "#0C9EB5",
+    },
+  },
+});
+
+
 
 function Weekly(props) {
   const { history } = props;
@@ -89,12 +109,13 @@ function Weekly(props) {
   return (
     <>
       <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
             <div className={classes.buttons}>
               <Button
                 //onClick={() => history.push("/weekly")}
-                className={classes.button}
+                className={`${classes.button} ${classes.disabled}`}
                 variant="contained"
                 color="primary"
                 disabled="true"
@@ -145,6 +166,7 @@ function Weekly(props) {
             <div className={classes.footer}></div>
           </div>
         </Container>
+        </ThemeProvider>
       </StylesProvider>
     </>
   );
