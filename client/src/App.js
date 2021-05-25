@@ -6,14 +6,12 @@ import React, { useState, useEffect } from "react";
 import LogIn from "./components/LogIn/LogIn.js";
 import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
-import NavbarSec from "./components/Nav/NavbarSec";
+import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
-import Water from "./components/Water/Water.js";
 import Water2 from "./components/Water/Water2.js";
 import Setting from "./components/Setting/Setting.js";
 import AddDevice from "./components/AddDevice/AddDevice.js";
 import Devices from "./components/Devices/Devices.js";
-import RegDevice from "./components/RegDevice/RegDevice.js";
 import Graph from "./Graph.js";
 import Device from "./components/Devices/Device/Device.js";
 import Test from "./components/Registration/Test.js";
@@ -55,14 +53,13 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <NavbarSec username={response.username} />
+        <Navbar username={response.username} />
         <Route path="/welcome" component={Welcome}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" component={Water}></Route>
+        <Route path="/water" component={Water2}></Route>
         <Route path="/setting" component={Setting}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
         <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
-        <Route path="/regdevice" component={RegDevice}></Route>
         <Route path="/graph" component={Graph}></Route>
         <Route path="/device" component={Device}></Route>
         <Route path="/test" component={Test}></Route>

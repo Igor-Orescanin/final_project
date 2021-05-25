@@ -19,7 +19,7 @@ import AssessmentIcon from "@material-ui/icons/Assessment";
 //__________________________________________________________start
 
 
-const NavbarSec = (props) => {
+const Navbar = (props) => {
   const history = useHistory();
   const classes = useStyles();
   const location = useLocation();
@@ -87,4 +87,4 @@ const NavbarSec = (props) => {
   );
 };
 
-export default NavbarSec;
+export default Navbar;
