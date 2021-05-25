@@ -31,20 +31,5 @@ module.exports = {
 }
 
 
-// const mailOption = {
-//   from: process.env.EMAIL,
-//   to: "maritzaochoar@gmail.com",
-//   subject: "testing",
-//   text: "water level low"
-// };
 
-// transporter.sendMail(mailOption, (error, info) => {
-//   if (error) {
-//     console.log(error);
-//     callback(false);
-//   } else {
-//     console.log(info);
-//     callback(true)
-//   }
-// });
 

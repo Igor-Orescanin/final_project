@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const _ = require('lodash');
+const nodemailer = require('nodemailer');
+
 
 exports.addUser = async (req, res, next) => {
   try {
@@ -122,4 +125,90 @@ exports.loginUser = (req, res) => {
     });
 }
 
+
+// FORGOT PASSWORD ENDPOINT
+exports.forgotPassword = (req, res) => {
+
+  const { email } = req.body;
+
+  User.findOne({ email }, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({ error: "Email does not exist" })
+    }
+
+
+    const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY, { expiresIn: '20m' });
+
+    const data = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: 'Reset password link',
+      html: `
+            <h2>Please click on given link to reset your password</h2>
+            <p>${process.env.CLIENT_URL}/resetpassword/${token}</p>
+          `
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+      }
+    })
+
+
+    return user.updateOne({ resetLink: token }, function (err, success) {
+      if (err) {
+        return res.status(400).json({ error: "reset password link error" });
+      } else {
+        transporter.sendMail(data, (error, info) => {
+          if (error) {
+            console.log(error);
+            return res.json({ error: err.message })
+            // callback(false);
+          }
+          return res.json({ message: "Email has been sent, follow the instructions" });
+          // callback(true);
+        })
+      }
+    })
+
+  })
+}
+
+
+
+exports.resetPassword = (req, res) => {
+  const { resetLink, newPass } = req.body;
+  if (resetLink) {
+    jwt.verify(resetLink, process.env.RESET_PASSWORD_KEY, function (error, decodedData) {
+      if (error) {
+        return res.status(401).json({ error: "Incorrect token or it is expired" })
+      }
+      User.findOne({ resetLink }, (err, user) => {
+        if (err || !user) {
+          return res.status(400).json({ error: "User with this token does not exist" })
+        }
+
+        const obj = {
+          password: newPass
+        }
+
+        user = _.extend(user, obj);
+
+        user.save((err, result) => {
+          if (err) {
+            return res.status(400).json({ error: "reset password error" });
+          } else {
+            return res.status(200).json({ message: "Your password has been changed" })
+          }
+        })
+
+      })
+    })
+  } else {
+    return res.status(401).json({ error: "Authentication error" })
+  }
+}
 
