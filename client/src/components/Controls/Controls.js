@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import * as api from "../../api";
 
 //connection to components
-import Navbar from "../Nav/Navbar.js";
+import Navbar from "../Nav/NavbarSec.js";
 //import ShowDevices from "./Device/ShowDevices.js";
 import Control from "./Control/Control.js";
 

@@ -9,6 +9,8 @@ import { Container,   ThemeProvider, Typography, TextField, Paper, Grid } from "
 import Button from "@material-ui/core/Button";
 import { borders } from '@material-ui/system';
 import { createMuiTheme } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core/styles";
+
 
 const theme = createMuiTheme({
   palette: {
@@ -22,7 +24,7 @@ const theme = createMuiTheme({
 });
 
 // style
-import { StylesProvider } from "@material-ui/core/styles";
+
 
 function EmailAlert() {
 
