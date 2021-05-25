@@ -68,7 +68,8 @@ const AddDevice = (props) => {
    const userId = props.userId
     console.log(userId)
 
-   //const username = props.location.state.username
+
+  //const username = props.location.state.username
 
   //a hook
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ const AddDevice = (props) => {
     userId: userId,
   });
 
-//console.log(userId)
+  //console.log(userId)
 
   const [deviceExist, setDeviceExist] = useState('');
 
@@ -94,15 +95,15 @@ const AddDevice = (props) => {
 
   };
 
-//a hook
-const [allDevices, setAllDevices] = useState([]);
+  //a hook
+  const [allDevices, setAllDevices] = useState([]);
 
-// to get the data for databace
-useEffect(async () => {
-  const { data } = await api.fetchDevices(userId);
+  // to get the data for databace
+  useEffect(async () => {
+    const { data } = await api.fetchDevices(userId);
 
-  setAllDevices(data);
-}, []);
+    setAllDevices(data);
+  }, []);
 
 
   //lengh of character
@@ -111,11 +112,12 @@ useEffect(async () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-// console.log(userId)
- console.log(formData)
+    // console.log(userId)
+    console.log(formData)
 
 
     api.asignDevice(formData)
+
     .then((res)=>{
 
       console.log(res)
@@ -148,6 +150,7 @@ useEffect(async () => {
     });
 
 
+
   };
 
 
@@ -159,17 +162,18 @@ useEffect(async () => {
           <Container className={classes.container}>
             <div className={classes.paper}>
 
-            {allDevices.length < 1 ?
+              {allDevices.length < 1 ?
                 <Typography className={classes.typography}>
-                   You don't have any devices registered in this system!
+                  You don't have any devices registered in this system!
               </Typography>
-              :
-              <Typography className={classes.typography}>
-                 Register a new device in this system!
+                :
+                <Typography className={classes.typography}>
+                  Register a new device in this system!
               </Typography>
               }
-              {deviceExist.length < 1 ?(
+              {deviceExist.length < 1 ? (
                 <div></div>
+
               ):
                 <Alert
               severity="error"
@@ -186,6 +190,7 @@ useEffect(async () => {
               >
                {deviceExist}
               </Alert>
+
               }
 
               <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -210,13 +215,13 @@ useEffect(async () => {
                   inputProps={{
                     maxLength: CHARACTER_LIMIT
                   }}
-                   InputProps={{
-                     classes: {
-                       root: classes.root,
-                       focused: classes.focused,
-                       notchedOutline: classes.notchedOutline,
-                     },
-                   }}
+                  InputProps={{
+                    classes: {
+                      root: classes.root,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
                 />
 
                 <TextField
@@ -237,13 +242,13 @@ useEffect(async () => {
                   InputLabelProps={{
                     style: { color: "#007982" },
                   }}
-                   InputProps={{
-                     classes: {
-                       root: classes.root,
-                       focused: classes.focused,
-                       notchedOutline: classes.notchedOutline,
-                     },
-                   }}
+                  InputProps={{
+                    classes: {
+                      root: classes.root,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
                 />
 
                 <Button
@@ -255,6 +260,7 @@ useEffect(async () => {
                 >
                   Register
                 </Button>
+
                 </form>
                 <Button
                  // onClick={handleSubmit}
@@ -267,32 +273,33 @@ useEffect(async () => {
 
                 >
                   Need help?
+
                 </Button>
-                <Dialog
-              className={classes.dialog}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"What need I to do here?"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                Your can choose your own Device Name.
-If you bought a Naunet Device you can find the Id of the bottom of your Device 'the Device Id'.
-If you bought your own device pleace contact us per Email: NaunetMon.com!
+
+              <Dialog
+                className={classes.dialog}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"What need I to do here?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Your can choose your own Device Name.
+                    If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
+                    If you bought your own device pleace contact us per Email: NaunetMon.com!
+
                 </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                  Close
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary" autoFocus>
+                    Close
                 </Button>
-              </DialogActions>
-            </Dialog>
-
-
+                </DialogActions>
+              </Dialog>
 
 
               <div className={classes.footer}></div>

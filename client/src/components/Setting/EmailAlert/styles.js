@@ -3,39 +3,72 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from "../../../image/charts_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
-  container: {
-    //backgroundColor: 'orange',
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
-    color: "#0C9EB5",
-    height: "60vh",
-  },
 
-  heading: {
-    marginBottom: "30px",
-  },
-
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-
-  selectDiv: {
-    height: "50px",
-  },
-
-  root: {
-    "&:hover $notchedOutline": {
-      bordercolor: "#007982",
+    container: {
+        //backgroundColor: 'orange',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+        color: "#0C9EB5",
+        height: '65vh',
     },
-    "&$focused $notchedOutline": {
-      bordercolor: "#007982",
+
+    heading: {
+        marginBottom: '30px',
+        fontWeight: '900',
+        fontSize: '100%',
+        color: '#007982'
+    },
+
+    headingSec: {
+        fontWeight: '700',
+        fontSize: '12px',
+        color: '#007982',
+        marginRight: '-130px'
+    },
+
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+        marginLeft: '40px'
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+
+
+    root: {
+        "&:hover $notchedOutline": {
+            borderColor: "#007982",
+        },
+        "&$focused $notchedOutline": {
+            borderColor: "#007982",
+        },
+    },
+    focused: {},
+    notchedOutline: {},
+
+    notchedOutline: {
+        borderColor: "#007982",
+    },
+
+
+
+    waterDiv: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: '15px',
+        fontWeight: '700',
+    },
+
+    notification: {
+        fontWeight: '300',
+        margin: '20px 0',
+        color: '#30D4DE'
     },
   },
 
