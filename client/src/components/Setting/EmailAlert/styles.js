@@ -70,7 +70,6 @@ export default makeStyles((theme) => ({
         margin: '20px 0',
         color: '#30D4DE'
     },
-  },
 
   focused: {},
   notchedOutline: {},
