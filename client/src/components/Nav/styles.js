@@ -19,9 +19,8 @@ export default makeStyles((theme) => ({
   fixed: {
     position: "fixed",
     zIndex: "1",
-
-
   },
+
   //div with name and settingIcon
   secondaryNav: {
     borderBottom: "2px solid #0C9EB5",
@@ -40,28 +39,31 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+
   // nice backgroud hover for the icons
   iconButtonSec: {
     display: "flex",
     justifyContent: "space-between",
     padding: "12px, 0px",
   },
+
   // cursor that you can't touch
-  hand: {
+  nameOfUser: {
     padding: "12px",
     cursor: "default",
+    paddingTop:'15px',
   },
+
   //icon
   icon: {
     marginLeft: "25px",
     marginRight: "25px",
     //color:'#00A2AC',
   },
+
   //icon chart icon
   iconSec: {
-    marginLeft: "25px",
-
-  
+    marginLeft: "25px",  
   },
 
   //typography on name
@@ -74,19 +76,22 @@ export default makeStyles((theme) => ({
   },
 
   //typography on Logout
-  typo2: {
+  logOut: {
     marginLeft: "3px",
     marginRight: "25px",
     fontSize: "15px",
     fontWeight: 700,
     color: "#ffffff",
+    paddingTop:'3px',
   },
 
   //typography on chart
-  typoSec: {
+  charts: {
     marginRight: "25px",
     fontSize: "15px",
     fontWeight: 700,
     color: "#ffffff",
+    paddingTop:'3px'
   },
+
 }));
