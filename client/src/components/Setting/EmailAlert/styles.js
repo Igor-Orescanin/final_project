@@ -12,40 +12,47 @@ export default makeStyles((theme) => ({
         alignItems: "center",
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         color: "#0C9EB5",
-        height: '60vh',
+        height: '65vh',
     },
 
     heading: {
-        marginBottom: '30px'
+        marginBottom: '30px',
+        fontWeight: '900',
+        fontSize: '100%',
+        color: '#007982'
+    },
+
+    headingSec: {
+        fontWeight: '700',
+        fontSize: '12px',
+        color: '#007982',
+        marginRight: '-130px'
     },
 
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+        marginLeft: '40px'
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
 
-    selectDiv: {
-        height: '50px'
+
+    root: {
+        "&:hover $notchedOutline": {
+            borderColor: "#007982",
+        },
+        "&$focused $notchedOutline": {
+            borderColor: "#007982",
+        },
     },
+    focused: {},
+    notchedOutline: {},
 
-
-    /*  root: {
-         "&:hover $notchedOutline": {
-             bordercolor: "#007982",
-         },
-         "&$focused $notchedOutline": {
-             bordercolor: "#007982",
-         },
-     },
-     focused: {},
-     notchedOutline: {},
- 
-     notchedOutline: {
-         bordercolor: "#007982",
-     }, */
+    notchedOutline: {
+        borderColor: "#007982",
+    },
 
 
 
@@ -54,6 +61,14 @@ export default makeStyles((theme) => ({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        fontSize: '15px',
+        fontWeight: '700',
+    },
+
+    notification: {
+        fontWeight: '300',
+        margin: '20px 0',
+        color: '#30D4DE'
     },
 
 
