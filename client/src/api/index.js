@@ -27,3 +27,6 @@ export const getUser = (id) => axios.get(`${url}/users/${id}`)
 export const getWeek = () => axios.get(`${url}/waterFlow/week`)
 
 export const getMonth = () => axios.get(`${url}/waterFlow/month`)
+
+export const updateEmailAlert = () => axios.get(`${url}/emailAlert/freshWater`)
+
