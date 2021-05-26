@@ -52,7 +52,6 @@ export default makeStyles((theme) => ({
 
   inputField: {
     marginTop: "20px",
-    bordercolor: "#007982",
     width: "212px",
     backgroundColor: "white",
   },
