@@ -26,13 +26,16 @@ import Controls from "./components/Controls/Controls.js"
 //socket
 import io from 'socket.io-client';
 
-
 // css
 import "./App.css";
 
 
 //react-router-dom
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+//socket
+const ENDPOINT = "http://localhost:3005";
+const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
 
 
 function App() {
@@ -52,7 +55,11 @@ function App() {
     }
 
 
+
     if (response._id) { 
+
+
+      socket.emit('user_connect', response._id)
 
   return (
     <Router>
@@ -75,15 +82,15 @@ function App() {
         <Route path="/addcontrol" component={AddControl}></Route>
         {/* <Route path="/control" component={Control}></Route> */}
         <Route path="/controls" component={Controls}></Route>
-
-        <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route>
-
-         {/* {device.hasLights ? 
-          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device._id} />}></Route>
+ 
+        {/* <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route> */}
+    
+      {device.hasLight ? 
+          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber}  />}></Route>
         :
-          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device._id} />}></Route>
-        }  */}
+          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber}  />}></Route>
+        }  
 
       </div>
     </Router>

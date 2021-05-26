@@ -68,12 +68,73 @@ exports.updateDevice = async (req, res, next) => {
 
 };
 
-
 exports.deleteDevice = async (req, res, next) => {
   try {
     const device = await Device.findByIdAndDelete(req.params.id);
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.addLightButton = async (req, res, next) =>{
+  try {
+    const device = await Device.findByIdAndUpdate(req.params.id, {hasLight: true}, {
+      new: true,
+    });
+    if (!device){
+      throw new createError.NotFound();
+    } else {
+      const newButton = {
+        name: req.body.name,
+        gpio: req.body.gpio
+      }
+      device.lightsButton.push(newButton)
+      await device.save();
+    }
+    res.status(200).send(device);
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.addControlButton = async (req, res, next) =>{
+  try {
+    const device = await Device.findByIdAndUpdate(req.params.id, {hasControl: true}, {
+      new: true,
+    });
+    if (!device){
+      throw new createError.NotFound();
+    } else {
+      const newButton = {
+        name: req.body.name,
+        gpio: req.body.gpio
+      }
+      device.controlsButton.push(newButton)
+      await device.save();
+    }
+    res.status(200).send(device);
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getLightButtons = async (req, res, next) =>{
+  try {
+    const lightButtons = await Device.findById(req.params.id," lightsButton ").exec() ;
+    if (!lightButtons) throw new createError.NotFound();
+    res.status(200).send(lightButtons);
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getControlButtons = async (req, res, next) =>{
+  try {
+    const controlButtons = await Device.findById(req.params.id," controlsButton ").exec() ;
+    if (!controlButtons) throw new createError.NotFound();
+    res.status(200).send(controlButtons);
   } catch (e) {
     next(e);
   }

@@ -22,8 +22,45 @@ const DeviceSchema = new mongoose.Schema({
   },
   userId: {
     type: mongoose.ObjectId
-  }
+  },
+  hasLight:{
+    type: Boolean,
+    default: false
+  },
+  hasControl:{
+    type: Boolean,
+    default: false
+  },
+  lightsButton:[lightsButtonSchema],
 
+  controlsButton:[controlsButtonSchema],
+
+})
+
+const lightsButtonSchema = new mongoose.Schema({
+  name:{
+    type: String,
+  },
+  gpio:{
+    type: Number,
+  },
+  status:{
+    type: Number,
+    default: 1,
+  }
+})
+
+const controlsButtonSchema = new mongoose.Schema({
+  name:{
+    type: String,
+  },
+  gpio:{
+    type: Number,
+  },
+  status:{
+    type: Number,
+    default: 1,
+  }
 })
 
 module.exports = mongoose.model('Device', DeviceSchema)

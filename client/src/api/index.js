@@ -10,7 +10,7 @@ export const fetchDevices =(id) => axios.get(`${url}/devices/${id}`);
 //get light
 export const fetchLights =(id) => axios.get(`${url}/devices/${id}/lights`);
 // add new light
-export const addLight = (id, data) => axios.post(`${url}/devices/${id}/addLight`, data);
+export const addLight = (id, data) => axios.post(`${url}/devices/${id}/lights`, data);
 
 
 //add new device
