@@ -67,10 +67,8 @@ const Light = (props) => {
     const classes = useStyles();
 
 
-    const username = props.username
-
-    console.log(props.username)
-
+    const device = props.device
+    console.log(props.device)
 
     const light = props.lightObject    // Marika is not sure if light or device
     console.log(light)
@@ -90,6 +88,7 @@ const Light = (props) => {
 
     };
     const handleClose1 = () => {
+        props.lightDeleted();
         setOpen(false);
         // api.deleteLight(light._id)      // Mari is not sure if light or device
     };
@@ -101,8 +100,14 @@ const Light = (props) => {
         setValue(event.target.value);
     };
 
-    const lightHandler = () => {
-
+    const lightHandler = () =>{
+        if(light === true){
+            console.log('light off')
+        //    light.set(false)
+        }else{  
+            light.set(true)
+            console.log('light on')
+        }
     }
 
     return (

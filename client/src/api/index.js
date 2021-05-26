@@ -7,6 +7,12 @@ const url = 'http://localhost:3005'
 //get device
 export const fetchDevices =(id) => axios.get(`${url}/devices/${id}`);
 
+//get light
+export const fetchLights =(id) => axios.get(`${url}/lights/${id}`);
+// add new light
+//export const asignDevice = (data) => axios.post(`${url}/users/${data.userId}/assignLight/${data.gpio}`, data);
+
+
 //add new device
 //export const addDevice = (newDevice) => axios.device(url, newDevice);
 export const asignDevice = (data) => axios.post(`${url}/users/${data.userId}/assignDevice/${data.serialNumber}`, data);

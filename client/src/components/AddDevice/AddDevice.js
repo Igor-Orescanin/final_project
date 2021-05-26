@@ -1,7 +1,6 @@
 // react
 import React, { useState, useEffect } from "react";
 
-
 //axios';
 import * as api from "../../api";
 
@@ -12,7 +11,6 @@ import * as api from "../../api";
 import "../../App.css";
 
 // material-ui
-
 import {
   Container,
   ThemeProvider,
@@ -84,7 +82,7 @@ const AddDevice = (props) => {
 
   const [errors, setErrors] = useState('');
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

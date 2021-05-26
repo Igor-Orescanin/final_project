@@ -12,7 +12,9 @@ const {
   getUser,
   updateUser,
   deleteUser,
-  loginUser
+  loginUser,
+  forgotPassword,
+  resetPassword
 } = require("../controllers/usersController");
 
 
@@ -30,10 +32,14 @@ router
   .post(loginUser)
 
 router
+  .put("/forgot-password", forgotPassword)
+  .put("/reset-password", resetPassword)
+
+router
   .route("/:id")
   .get(getUser)   //use only for postman
   .delete(auth, deleteUser)  //use only for postman
-  .put(updateUser);
+  .put(updateUser)
 
 
 // ROUTE FOR ASSIGN DEVICE TO A USER
