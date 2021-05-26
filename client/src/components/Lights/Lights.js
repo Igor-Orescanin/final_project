@@ -54,20 +54,22 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-
-  const username = props.username
-  const userId = props.userId
+  const device = props.device
 
   //a hook
   const [allLights, setAllLights] = useState([]);
 
   // to get the data for databace
-  useEffect(async () => {
-   // const { data } = await api.fetchLights(deviceId);    // Igor or Maritza 
-
-   // setAllLights(data);
-
+  useEffect(() => {
+    getLights();
   }, []);
+
+  const getLights = async () => {
+    const { data } = await api.fetchLights(device);
+    setAllLights(data);
+  }
+
+
 
   return (
     <>
@@ -95,7 +97,7 @@ const Lights = (props) => {
             <Button
               onClick={() =>      history.push({
                 pathname: "/addlight",
-                state: {userId : userId, username: username}   // ?? Igor
+                // state: {userId : userId, username: username}   // ?? Igor
                })}
               className={classes.addbutton}
               variant="contained"

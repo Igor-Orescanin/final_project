@@ -39,13 +39,19 @@ function App() {
 
 
   const [response, setResponse] = useState({});
-
-
      const fetchUser = (user) => {
       setResponse(user)
       console.log(response)
     }
   
+
+  const [device, setDevice] = useState({}); 
+     const fetchDevice = (device) => {
+      setDevice(device)
+      console.log(device)
+    }
+
+
     if (response._id) { 
 
   return (
@@ -57,21 +63,27 @@ function App() {
         <Route path="/water" component={Water}></Route>
         <Route path="/setting" component={Setting}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
-        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} />}></Route>
-        <Route path="/device" component={Device}></Route>
+        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice}/>}></Route>
+        {/* <Route path="/device" component={Device}></Route> */}
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
-        <Route path="/light" component={Light}></Route>
+        {/* <Route path="/light" component={Light}></Route> */}
         <Route path="/emailalert" component={EmailAlert}></Route> 
-        <Route path="/lights" component={Lights}></Route>
-        <Route path="/addlight" component={AddLight}></Route>
+        <Route path="/lights" component={Lights}></Route> 
+        <Route path="/addlight" component={AddLight}></Route> 
         <Route path="/addcontrol" component={AddControl}></Route>
-        <Route path="/control" component={Control}></Route>
+        {/* <Route path="/control" component={Control}></Route> */}
         <Route path="/controls" component={Controls}></Route>
 
+        {/* {device.hasLights ? 
+          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device._id} />}></Route>
+        :
+          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device._id} />}></Route>
+        } */}
 
       </div>
     </Router>
+    
 
   );  
 

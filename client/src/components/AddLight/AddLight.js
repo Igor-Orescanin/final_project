@@ -1,108 +1,292 @@
-import React from 'react';
-import useStyles from './Styles';
-import { StylesProvider } from "@material-ui/core/styles";
+// react
+import React, { useState, useEffect } from "react";
+
+//axios';
+import * as api from "../../api";
+
+// material-ui
+import {
+  Container,
+  ThemeProvider,
+  Paper,
+  IconButton,
+  Typography,
+  TextField,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
+
+// alert
+import Alert from "@material-ui/lab/Alert";
+
+//styles
+import useStyles from "./Styles";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
-import { Container, ThemeProvider, Paper, Typography, TextField } from '@material-ui/core';
-import Button from "@material-ui/core/Button";
-
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: "#18B0C3",
-            main: "#0C9EB5",
-            dark: "#008CA7",
-            contrastText: "#fff",
-        },
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
     },
+  },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "#30D4DE",
+        borderStyle: "solid",
+      },
+    },
+  },
 });
 
-function AddLight(props) {
+const AddLight = (props) => {
+  const classes = useStyles();
+  const { history } = props;
 
-    const classes = useStyles();
+  //lengh of character
+  const CHARACTER_LIMIT = 10;
 
+  const deviceId = props.serialNumber;
+  console.log(deviceId);
 
-    return (
-        <>
-            <ThemeProvider theme={theme}>
-                <Container className={classes.container}>
+  const [formData, setFormData] = useState({
+    lightName: "",
+    gpio: "",
+    serialNumber: deviceId,
+  });
 
-                    <Typography className={classes.heading} variant="p" component="p">
-                        You don't have any Lights <br /> registered in the System </Typography>
+  const [lightExist, setLightExist] = useState("");
 
-                    <Paper className={classes.gpioheading}>
-                        Choose a proper GPIO pin
-                    </Paper>
+  const [errors, setErros] = useState("");
 
-                    <Paper className={classes.gpiocontainer}>
-                        <p>17</p>
-                        <p>20</p>
-                        <p>23</p>
-                        <p>27</p>
+  const [open, setOpen] = useState(false);
 
-                    </Paper>
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-                    <Typography className={classes.form} variant="p" component="p"> Name
-                    <form className={classes.formField} noValidate autoComplete="off">
-                            <TextField id="outlined-basic" label="" variant="outlined" margin="dense" />
-                        </form>
-                    </Typography>
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-                    <Typography className={classes.form} variant="p" component="p"> GPIO
-                    <form className={classes.formField} noValidate autoComplete="off">
-                            <TextField
-                                id="outlined-basic"
-                                variant="outlined"
-                                margin="dense"
-                            />
-                        </form>
-                    </Typography>
+  //a hook
+  const [allLights, setAllLights] = useState([]);
 
+  // to get the data for databace
+  useEffect(async () => {
+    // const { data } = await api.fetchLights(deviseId);
+    // setAllLights(data);
+  }, []);
 
-                    {/* 
-                <StylesProvider injectFirst>
-                    <ThemeProvider theme={theme}>
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-                        <TextField
+    api
+      .asignDevice(formData)
 
-                            className={`${classes.inputField} `}
-                            variant="outlined"
-                            required
-                            id="email"
-                            name="email"
-                            size="small"
-                            InputLabelProps={{
-                                style: { color: "#007982" },
-                            }}
-                            InputProps={{
-                                classes: {
-                                    root: classes.root,
-                                    focused: classes.focused,
-                                    notchedOutline: classes.notchedOutline,
-                                },
-                            }}
-                        />
+      .then((res) => {
+        console.log(res);
 
-                    </ThemeProvider>
-                </StylesProvider> */}
+        if (res.data.message === "Gpio is already assigned") {
+          //   setLightExist(res.data.message);
+        } else if (res.data.message === "Gpio not found") {
+          //   setLightExist(res.data.message);
+        } else {
+          history.push({
+            pathname: "/lichts",
+          });
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          //   setLichtExist("register a Light!");
+          //   setErrors("error");
+        }
+        console.log(error);
+      });
+  };
 
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <Container className={classes.container}>
+          {allLights.length < 1 ? (
+            <Typography className={classes.typography}>
+              You don't have any Lights registered in this system!
+            </Typography>
+          ) : (
+            <Typography className={classes.typography}>
+              Register a new Light in this system!
+            </Typography>
+          )}
+          {lightExist.length < 1 ? (
+            <div></div>
+          ) : (
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                ></IconButton>
+              }
+            >
+              {lightExist}
+            </Alert>
+          )}
 
-                    <Button
-                        //onClick={() => history.push("/")}
-                        className={classes.button}
-                        variant="contained"
-                        color="primary"
-                        type='submit'
-                    >Save</Button>
+          <form  className={classes.form} onSubmit={handleSubmit}>
+          <Paper className={classes.gpioheading}>
+          <Typography className={classes.typographyInfo1}>
+          Choose a proper GPIO pin
+            </Typography>
+          </Paper>  
+          <Paper className={classes.paper2}>
+            <Typography className={classes.typographyInfo}>
+              17
+            </Typography>
+            <Typography className={classes.typographyInfo}>
+              20
+            </Typography>
+            <Typography className={classes.typographyInfo}>
+              23
+            </Typography>
+            <Typography className={classes.typographyInfo}>
+             27
+            </Typography>
+          </Paper>
+              <div className={classes.group}> 
+          <Typography className={classes.typography1}>
+          Name
+          </Typography>
+          <TextField
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      lightName: e.target.value,
+                    })
+                  }
+                  className={classes.inputField}
+                  required
+                  id="lightName"
+                  variant="outlined"
+                  name="lightName"
+                  type="text"
+                  size="small"
+                  inputProps={{
+                    maxLength: CHARACTER_LIMIT
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#007982" },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.root,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                </div>
+                <div className={classes.group}> 
+  <Typography className={classes.typography1}>
+           GPIO
+          </Typography>
+                <TextField
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      gpio: e.target.value
+                    })
+                  }
+                  className={classes.inputField}
+                  required
+                  id="gpio"
+                  variant="outlined"
+                  name="gpio"
+                  type="text"
+                  size="small"
+                  InputLabelProps={{
+                    style: { color: "#007982" },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.root,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+</div>
 
-                    <div className={classes.footer}></div>
-                </Container>
+          </form>
+          <div>
+            <Button
+              onClick={handleSubmit}
+              className={classes.buttonHelp}
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{ border: "2px solid" }}
+            >
+              Save
+            </Button>
+         
 
-            </ThemeProvider>
-        </>
-    )
-}
+          <Button
+            // onClick={handleSubmit}
+            className={classes.buttonHelp}
+            onClick={handleClickOpen}
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ border: "2px solid" }}
+          >
+            Need help?
+          </Button>
+          </div>
+          <Dialog
+            className={classes.dialog}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"What need I to do here?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Your can choose your own Light Name. If you bought a NaunetMon
+                Device you can find the Gpio of the bottom of your Device 'the
+                Gpio'. If you bought your own device pleace contact us per
+                Email: NaunetMon.com!
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary" autoFocus>
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
 
-export default AddLight
+          <div className={classes.footer}></div>
+        </Container>
+      </ThemeProvider>
+    </>
+  );
+};
+
+export default AddLight;
