@@ -8,6 +8,9 @@ import LightOn from '../../../image/light_off.svg';
 // axios
 import * as api from "../../../api";
 
+//socket
+import socket from 'socket.io-client';
+
 import { useHistory } from "react-router-dom";
 
 //styles to use the connection
@@ -67,9 +70,6 @@ const Light = (props) => {
     const classes = useStyles();
 
 
-    const device = props.device
-    console.log(props.device)
-
     const light = props.lightObject    // Marika is not sure if light or device
     console.log(light)
     //a hook 
@@ -90,24 +90,16 @@ const Light = (props) => {
     const handleClose1 = () => {
         props.lightDeleted();
         setOpen(false);
-        // api.deleteLight(light._id)      // Mari is not sure if light or device
+        // api.deleteLight(light._id)      
     };
 
     //for radio button FormControlLabel
     const [value, setValue] = useState('');
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+   
 
-    const lightHandler = () =>{
-        if(light === true){
-            console.log('light off')
-        //    light.set(false)
-        }else{  
-            light.set(true)
-            console.log('light on')
-        }
+    const lightHandler = (e) =>{
+        socket.emit("switchStatus", {gpio: e.target.value}) 
     }
 
     return (
@@ -121,9 +113,7 @@ const Light = (props) => {
                         <img width='25' height='25' src={LightOff}></img>
 
                         <Button
-                            onClick={() => lightHandler()}
-
-
+                            onClick={lightHandler}
                             className={classes.button}
                             variant="contained"
                             color="primary"

@@ -61,7 +61,7 @@ const AddLight = (props) => {
   console.log(deviceId);
 
   const [formData, setFormData] = useState({
-    lightName: "",
+    name: "",
     gpio: "",
     serialNumber: deviceId,
   });
@@ -93,8 +93,8 @@ const AddLight = (props) => {
     e.preventDefault();
 
     api
-      .asignDevice(formData)
-
+      .addLight(deviceId, formData)
+    
       .then((res) => {
         console.log(res);
 
@@ -121,7 +121,7 @@ const AddLight = (props) => {
     <>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {allLights.length < 1 ? (
+          {deviceId.hasLights ? (
             <Typography className={classes.typography}>
               You don't have any Lights registered in this system!
             </Typography>
@@ -130,7 +130,7 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-          {lightExist.length < 1 ? (
+          {deviceId.hasLights ? (
             <div></div>
           ) : (
             <Alert

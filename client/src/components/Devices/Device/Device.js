@@ -75,6 +75,7 @@ const Device = (props) => { //props.deviceObject.deviceId
 
   const device = props.deviceObject
   console.log(device)
+ 
   //a hook
   //const [device, setDevice] = useState();
 
@@ -102,7 +103,15 @@ const Device = (props) => { //props.deviceObject.deviceId
     setValue(event.target.value);
   };
 
+ const sentToApp =()=>{
+    props.fetchDevice()
+     history.push({
+       pathname: "/welcome",
+       state: device
+     })
 
+
+ }
 
 
   return (
@@ -113,10 +122,7 @@ const Device = (props) => { //props.deviceObject.deviceId
             {device.isConnected ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />}
 
             <Button
-              onClick={() => history.push({
-                pathname: "/welcome",
-                state: {userId :device.userId ,username:username}
-              })}
+              onClick={sentToApp}
               className={classes.button}
              variant="contained"
               color="primary"

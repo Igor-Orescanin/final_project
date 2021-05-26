@@ -8,9 +8,9 @@ const url = 'http://localhost:3005'
 export const fetchDevices =(id) => axios.get(`${url}/devices/${id}`);
 
 //get light
-export const fetchLights =(id) => axios.get(`${url}/lights/${id}`);
+export const fetchLights =(id) => axios.get(`${url}/devices/${id}/lights`);
 // add new light
-//export const asignDevice = (data) => axios.post(`${url}/users/${data.userId}/assignLight/${data.gpio}`, data);
+export const addLight = (id, data) => axios.post(`${url}/devices/${id}/addLight`, data);
 
 
 //add new device
