@@ -1,5 +1,5 @@
 // react
-import React from "react";
+import React,{useEffect} from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -33,6 +33,17 @@ const theme = createMuiTheme({
 const Welcome = (props) => {
   const history = useHistory();
   const classes = useStyles();
+
+  // const device = props.deviceObject
+  // console.log(device)  
+//should be the same 
+
+
+  const device = props.device;
+  console.log(device);
+
+
+
   
   return (
     <>

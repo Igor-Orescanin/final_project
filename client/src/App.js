@@ -58,7 +58,8 @@ function App() {
     <Router>
       <div className="app">
         <Navbar username={response.username} />
-        <Route path="/welcome" component={Welcome}></Route>
+        {/* <Route path="/welcome" component={Welcome}></Route> */}
+        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" component={Water}></Route>
         <Route path="/setting" component={Setting}></Route>
@@ -69,17 +70,20 @@ function App() {
         <Route path="/monthly" component={Monthly}></Route>
         {/* <Route path="/light" component={Light}></Route> */}
         <Route path="/emailalert" component={EmailAlert}></Route> 
-        <Route path="/lights" component={Lights}></Route> 
-        <Route path="/addlight" component={AddLight}></Route> 
+        {/* <Route path="/lights" component={Lights}></Route>  */}
+        {/* <Route path="/addlight" component={AddLight}></Route>  */}
         <Route path="/addcontrol" component={AddControl}></Route>
         {/* <Route path="/control" component={Control}></Route> */}
         <Route path="/controls" component={Controls}></Route>
 
-        {/* {device.hasLights ? 
+        <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route>
+
+         {/* {device.hasLights ? 
           <Route path="/lights" render={(props) => <Lights {...props} deviceId={device._id} />}></Route>
         :
           <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device._id} />}></Route>
-        } */}
+        }  */}
 
       </div>
     </Router>
