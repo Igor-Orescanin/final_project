@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import useStyles from "./styles.js";
 import { Container,   ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import * as api from "../../../api/index";
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -22,19 +23,40 @@ const theme = createMuiTheme({
 });
 
 
-function EmailAlert() {
+function EmailAlert(props) {
+
+    // useEffect(() => {
+
+    // }, []);
+
+    const device = props.device;
+    console.log(device._id);
+    const deviceId = device._id;
+
 
     const classes = useStyles();
-    const [freshWater, setFreshWater] = useState('');
-    const [grayWater, setGrayWater] = useState('');
+    const [freshWater, setFreshWater] = useState('20');
+    const [grayWater, setGrayWater] = useState('80');
+
+    // console.log(freshWater, grayWater);
 
     const handleChangeFresh = (event) => {
         setFreshWater(event.target.value);
+
     };
 
     const handleChangeGray = (event) => {
         setGrayWater(event.target.value);
+
     };
+
+    const callApi = () => {
+        console.log(freshWater, grayWater);
+        api.emailAlert(deviceId, { freshWater: freshWater, grayWater: grayWater }).then((res) => {
+            console.log(res);
+        })
+
+    }
 
     return (
       <div>
@@ -112,7 +134,7 @@ function EmailAlert() {
                         Notification goes to your Email</Typography>
 
                     <Button
-                        //onClick={() => history.push("/")}
+                        onClick={callApi}
                         className={classes.button}
                         variant="contained"
                         color="primary"
