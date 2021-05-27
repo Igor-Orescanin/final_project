@@ -47,7 +47,7 @@ function EmailAlert(props) {
 
     const callApi = () => {
         console.log(cleanAlertThreshold, wasteAlertThreshold);
-        api.emailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
+        api.updateEmailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
     }
