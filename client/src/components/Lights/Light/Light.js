@@ -114,10 +114,10 @@ const Light = (props) => {
             <ThemeProvider theme={theme}>
                 <Container className={classes.container}>
                     <div className={classes.groupButton}>
-                         {light.status ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />} 
+                         {light.status ? <img width='25' height='25' src={LightOff}></img> :<img width='25' height='25' src={LightOn}></img> } 
 
 
-                        <img width='25' height='25' src={LightOff}></img>
+                        {/*  */}
 
                         <Button
                             onClick={lightHandler}

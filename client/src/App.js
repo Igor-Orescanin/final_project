@@ -58,8 +58,6 @@ function App() {
   
   if (response._id) {
 
-
-
       socket.emit('user_connect', response._id)
 
   return (
@@ -83,17 +81,11 @@ function App() {
         <Route path="/addcontrol" component={AddControl}></Route>
         {/* <Route path="/control" component={Control}></Route> */}
         <Route path="/controls" component={Controls}></Route>
-
+       
  
-        {/* <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route> */}
-    
-      {device.hasLight ? 
-          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber}  />}></Route>
-
-        :
-          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber}  />}></Route>
-        }  
+        <Route path="/lights" render={(props) => <Lights {...props} device={device}  />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} device={device}  />}></Route>
+        
 
       </div>
     </Router>
