@@ -9,7 +9,9 @@ import LightOn from '../../../image/light_off.svg';
 import * as api from "../../../api";
 
 //socket
-import socket from 'socket.io-client';
+import io from 'socket.io-client';
+
+
 
 import { useHistory } from "react-router-dom";
 
@@ -59,6 +61,11 @@ const theme = createMuiTheme({
     },
 });
 
+
+//socket
+const ENDPOINT = "http://localhost:3005";
+const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
+
 const Light = (props) => {
     // props.deviceObject.deviceId
     //for routes
@@ -88,7 +95,7 @@ const Light = (props) => {
 
     };
     const handleClose1 = () => {
-        props.lightDeleted();
+       // props.lightDeleted();
         setOpen(false);
         // api.deleteLight(light._id)      
     };
@@ -107,7 +114,7 @@ const Light = (props) => {
             <ThemeProvider theme={theme}>
                 <Container className={classes.container}>
                     <div className={classes.groupButton}>
-                        {/*  {light.status ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />} */}
+                         {light.status ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />} 
 
 
                         <img width='25' height='25' src={LightOff}></img>
@@ -117,10 +124,9 @@ const Light = (props) => {
                             className={classes.button}
                             variant="contained"
                             color="primary"
-                        //  value={light.gpio}
+                            value={light.gpio}
                         >
-                            Light 1
-                          {/*    {light.name}   Igor and GPIO */}
+                          {light.name}
 
                         </Button>
                         <DeleteIcon className={classes.deleteIcon} onClick={handleClickOpen} />

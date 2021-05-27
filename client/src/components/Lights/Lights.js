@@ -4,6 +4,11 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
+//socket
+import io from 'socket.io-client';
+
+
+
 //import ShowDevices from "./Device/ShowDevices.js";
 import Light from "./Light/Light.js";
 
@@ -47,6 +52,10 @@ const theme = createMuiTheme({
   },
 });
 
+//socket
+const ENDPOINT = "http://localhost:3005";
+const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
+
 const Lights = (props) => {
   //for routes
   const { history } = props;
@@ -54,18 +63,32 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const device = props.device
+  const deviceId = props.deviceId
 
   //a hook
   const [allLights, setAllLights] = useState([]);
 
+  //socket
+  socket.on("gpioStatus", status=>{
+    console.log("incomming status", status)
+    let index = allLights.findIndex(obj=>obj.gpio === status.gpio)
+    if(allLights[index])
+    allLights[index].status = status.status
+    console.log()
+    setAllLights(allLights)
+    console.log(allLights)
+  })
+
   // to get the data for databace
   useEffect(() => {
     getLights();
+    return()=>{
+      socket.disconnect()
+    }
   }, []);
 
   const getLights = async () => {
-    const { data } = await api.fetchLights(device.serialNumber);
+    const { data } = await api.fetchLights(deviceId);
     setAllLights(data);
   }
 
@@ -87,17 +110,13 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-              <Light   lightObject={light} /> // Igor because Mari is not sure
-           // <Light   deviceObject={dev} username={username} />
+              <Light   lightObject={light} /> 
               ))
             )}
-
-            {/* here will be array of light objects */}
 
             <Button
               onClick={() =>      history.push({
                 pathname: "/addlight",
-                // state: {userId : userId, username: username}   // ?? Igor
                })}
               className={classes.addbutton}
               variant="contained"
