@@ -4,33 +4,30 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from "./styles.js";
-import { Container,   ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
+import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+
 import * as api from "../../../api/index";
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#18B0C3",
-      main: "#0C9EB5",
-      dark: "#008CA7",
-      contrastText: "#fff",
+    palette: {
+        primary: {
+            light: "#18B0C3",
+            main: "#0C9EB5",
+            dark: "#008CA7",
+            contrastText: "#fff",
+        },
     },
-  },
 });
 
 
 function EmailAlert(props) {
 
-    // useEffect(() => {
-
-    // }, []);
 
     const device = props.device;
-    console.log(device._id);
     const deviceId = device._id;
 
 
@@ -42,12 +39,10 @@ function EmailAlert(props) {
 
     const handleChangeFresh = (event) => {
         setCleanAlertThreshold(event.target.value);
-
     };
 
     const handleChangeGray = (event) => {
         setWasteAlertThreshold(event.target.value);
-
     };
 
     const callApi = () => {
@@ -55,11 +50,10 @@ function EmailAlert(props) {
         api.emailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
-
     }
 
     return (
-      <div>
+        <div>
             <ThemeProvider theme={theme}>
                 <Container className={classes.container} >
 

@@ -74,9 +74,10 @@ const socket = io("http://localhost:3005", {
   transports: ["websocket", "polling"],
 });
 
-const Water2 = (props) => {
+const Water = (props) => {
   const { history } = props;
   const classes = useStyles();
+  console.log(props);
 
   //waterLevel
   const [waterLevelClean, setWaterLevelClean] = useState([]);
@@ -293,7 +294,11 @@ const Water2 = (props) => {
 
 
           <Button
-            onClick={() => history.push("/emailalert")}
+           // onClick={() => history.push("/emailalert")}
+            onClick={() =>      history.push({
+                pathname: "/emailalert",
+              
+               })}
             className={classes.button}
             variant="contained"
             color="primary"
@@ -354,4 +359,4 @@ const Water2 = (props) => {
   );
 };
 
-export default Water2;
+export default Water;
