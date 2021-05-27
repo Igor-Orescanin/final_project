@@ -1,5 +1,32 @@
 const mongoose = require('mongoose');
 
+const lightsButtonSchema = new mongoose.Schema({
+  name:{
+    type: String,
+  },
+  gpio:{
+    type: Number,
+  },
+  status:{
+    type: Number,
+    default: 1,
+  }
+})
+
+const controlsButtonSchema = new mongoose.Schema({
+  name:{
+    type: String,
+  },
+  gpio:{
+    type: Number,
+  },
+  status:{
+    type: Number,
+    default: 1,
+  }
+})
+
+
 const DeviceSchema = new mongoose.Schema({
   deviceName: {
     type: String,
@@ -35,32 +62,6 @@ const DeviceSchema = new mongoose.Schema({
 
   controlsButton:[controlsButtonSchema],
 
-})
-
-const lightsButtonSchema = new mongoose.Schema({
-  name:{
-    type: String,
-  },
-  gpio:{
-    type: Number,
-  },
-  status:{
-    type: Number,
-    default: 1,
-  }
-})
-
-const controlsButtonSchema = new mongoose.Schema({
-  name:{
-    type: String,
-  },
-  gpio:{
-    type: Number,
-  },
-  status:{
-    type: Number,
-    default: 1,
-  }
 })
 
 module.exports = mongoose.model('Device', DeviceSchema)
