@@ -40,18 +40,18 @@ function App() {
 
   const [response, setResponse] = useState({});
      const fetchUser = (user) => {
-      setResponse(user)
-      console.log(response)
-    }
+    setResponse(user)
+    console.log(response)
+  }
 
 
   const [device, setDevice] = useState({});
-     const fetchDevice = (device) => {
-      setDevice(device)
-      console.log(device)
-    }
+  const fetchDevice = (device) => {
+    setDevice(device)
+    console.log(device)
+  }
 
-
+  
   if (response._id) {
 
   return (
