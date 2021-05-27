@@ -3,66 +3,57 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from '../../image/welcome3_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
-  
-  container:{
-   // backgroundColor:'red',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    height:'65vh',
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "65vh",
   },
 
   paper: {
-   // height:'65vh',
-  //  backgroundColor:'yellow',
-     display: 'flex',
-     flexDirection: 'column',
-    alignItems: 'center',
-  
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 
-  top:{
-    display:'flex',
-    flexDirection:'row',
-    marginLeft:'-90px',
-   
-   // backgroundColor:'green',
-   
+  top: {
+    display: "flex",
+    flexDirection: "row",
+    marginLeft: "-90px",
   },
 
-
-  button:{
+  button: {
     bordercolor: "#008CA7",
-    marginTop:'34px',
+    marginTop: "34px",
     textTransform: "none",
-    marginRight:'10px',
-    marginLeft:'10px',
+    marginRight: "10px",
+    marginLeft: "10px",
   },
 
-  addbutton:{
+  addbutton: {
     borderColor: "#008CA7",
-    marginTop:'20px',
+    marginTop: "20px",
     textTransform: "none",
-    marginRight:'10px',
-    marginLeft:'10px',
+    marginRight: "10px",
+    marginLeft: "10px",
+    paddingTop: "8px",
+    paddingBottom: "6px",
   },
-
 
   typography: {
-   
-    fontFamily: ('Roboto', 'sans-serif'),
+    fontFamily: ("Roboto", "sans-serif"),
     color: "#008CA7",
-    fontSize: '12px',
-    fontWeight: 'bold',
-    paddingTop:'30px',
-    paddingRight:'10px'
+    fontSize: "12px",
+    fontWeight: "bold",
+    paddingTop: "30px",
+    paddingRight: "10px",
   },
-  root:{
-  '$.MuiTypography-h6':{
-    fontSize: '12px',
-    fontWeight: 'bold',
+  root: {
+    "$.MuiTypography-h6": {
+      fontSize: "12px",
+      fontWeight: "bold",
+    },
   },
-},
 
   footer: {
     zIndex: "-1",
@@ -71,10 +62,8 @@ export default makeStyles((theme) => ({
     height: "250px",
     //height:'170px',
     width: "100vw",
-    //backgroundColor: "Blue",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   },
-
-}))
+}));

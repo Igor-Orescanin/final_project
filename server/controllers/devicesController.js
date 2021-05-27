@@ -104,7 +104,7 @@ exports.addLightButton = async (req, res, next) =>{
 
 exports.addControlButton = async (req, res, next) =>{
   try {
-    const device = await Device.findByIdAndUpdate(req.params.id, {hasControl: true}, {
+    const device = await Device.findOneAndUpdate({serialNumber:req.params.id},{hasControl: true}, {
       new: true,
     });
     if (!device){
