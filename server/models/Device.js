@@ -10,10 +10,10 @@ const DeviceSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  cleanWaterLevelAlertThreshold: {
+  cleanAlertThreshold: {
     type: Number
   },
-  wasteWaterLevelAlertThreshold: {
+  wasteAlertThreshold: {
     type: Number
   },
   isConnected: {

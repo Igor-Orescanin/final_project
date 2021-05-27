@@ -16,12 +16,12 @@ exports.addDevice = async (req, res, next) => {
         message: "Device exists"
       });
     }
-  
+
     const deviceCreate = new Device({
       deviceName: req.body.deviceName,
       serialNumber: req.body.serialNumber,
-      cleanWaterLevelAlertThreshold: req.body.cleanWaterLevelAlertThreshold,
-      wasteWaterLevelAlertThreshold: req.body.wasteWaterLevelAlertThreshold
+      cleanAlertThreshold: req.body.cleanAlertThreshold,
+      wasteAlertThreshold: req.body.wasteAlertThreshold
     });
 
     await deviceCreate.save();
