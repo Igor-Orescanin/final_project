@@ -153,6 +153,7 @@ io.on('connection', (socket) => {
     });
 
   });
+})
 
   const gracefulShutdown = () => {
     process.exit(0);
