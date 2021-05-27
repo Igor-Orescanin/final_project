@@ -43,20 +43,21 @@ function App() {
 
   const [response, setResponse] = useState({});
      const fetchUser = (user) => {
-      setResponse(user)
-      console.log(response)
-    }
+    setResponse(user)
+    console.log(response)
+  }
+
+
+  const [device, setDevice] = useState({});
+  const fetchDevice = (device) => {
+    setDevice(device)
+    console.log(device)
+  }
+
+
   
+  if (response._id) {
 
-  const [device, setDevice] = useState({}); 
-     const fetchDevice = (device) => {
-      setDevice(device)
-      console.log(device)
-    }
-
-
-
-    if (response._id) { 
 
 
       socket.emit('user_connect', response._id)
@@ -76,32 +77,34 @@ function App() {
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
         {/* <Route path="/light" component={Light}></Route> */}
-        <Route path="/emailalert" component={EmailAlert}></Route> 
+        <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>
         {/* <Route path="/lights" component={Lights}></Route>  */}
         {/* <Route path="/addlight" component={AddLight}></Route>  */}
         <Route path="/addcontrol" component={AddControl}></Route>
         {/* <Route path="/control" component={Control}></Route> */}
         <Route path="/controls" component={Controls}></Route>
+
  
         {/* <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
         <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route> */}
     
       {device.hasLight ? 
           <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber}  />}></Route>
+
         :
           <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber}  />}></Route>
         }  
 
       </div>
     </Router>
-    
 
-  );  
+
+  );
 
 
     }
- 
- 
+
+
    return (
      <Router>
        <div className="app">
@@ -109,7 +112,7 @@ function App() {
          <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
        </div>
      </Router>
-   );  
+   );
 
 }
 
