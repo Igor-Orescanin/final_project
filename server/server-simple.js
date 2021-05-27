@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
 
   let serialNumber;
 
-  socket.on('device_connected', () => {
+  socket.on('device_connected', (deviceId) => {
     logger.log('Device connected');
 
     socket.on('sensorData', async (sensorReading) => {
@@ -115,44 +115,72 @@ io.on('connection', (socket) => {
         //console.log(err);
       }
     })
-  });
-
-  socket.on("disconnect", async () => {
-    try {
-      const rpiDisconnected = await Device.findOneAndUpdate({ serialNumber }, { isConnected: false }, { new: true });
-      console.log(rpiDisconnected.isConnected);
-    } catch (err) {
-      //console.log(err);
+    //_____________________________________________________Buttons______________________
+    socket.join(deviceId)
+    //console.log(data);
+    //FINDING THE DEVICE WITH SERIAL NUMBER
+    const device = Device.findOne({ serialNumber: deviceId }).exec();
+    // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    if (device.hasLight) {
+      const { lightsButton } = device;
+      // WILL ONLY THIS DEVICE RECIEVE OR OTHERS TO? ←←←←←←←←←←←
+      //    INITIAL STATUS FROM DATABASE
+      socket.to(deviceId).emit('buttons', lightsButton);
+      // THIS MIGHT NOT BE NECESSARY BECAUSE I CAN NOT SAVE GPIO OBJECT PROPERLY IN DATABASE
+      socket.on('buttonInitilization', async (buttonInitilization) => {
+        //console.log(buttonInitilization)
+        await Device.findOneAndUpdate({ serialNumber: deviceId }, { "lightsButton": buttonInitilization }, { new: true }).then(res => socket.emit('check', res)).catch(err => console.log(err))
+      })
     }
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    socket.on('rpiStatus', (data) => {
+      console.log("Incomming message from Device ", data)
+      Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true }).then(res => {
+        socket.to(device.userId).emit('gpioStatus', data)
+      }).catch(err => {
+        console.log(err)
+        socket.to(device.userId).emit("error", error)
+      })
+    });
+
+    socket.on("disconnect", async () => {
+      try {
+        const rpiDisconnected = await Device.findOneAndUpdate({ serialNumber }, { isConnected: false }, { new: true });
+        console.log(rpiDisconnected.isConnected);
+      } catch (err) {
+        //console.log(err);
+      }
+    });
+
+  });
+})
+
+  const gracefulShutdown = () => {
+    process.exit(0);
+  };
+
+
+  /** ERROR HANDLING */
+  app.use(function (req, res, next) {
+    const error = new Error("Looks like something broke...");
+    error.status = 400;
+    next(error);
   });
 
-});
-
-const gracefulShutdown = () => {
-  process.exit(0);
-};
-
-
-/** ERROR HANDLING */
-app.use(function (req, res, next) {
-  const error = new Error("Looks like something broke...");
-  error.status = 400;
-  next(error);
-});
-
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500).send({
-    error: {
-      message: err.message
-    }
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500).send({
+      error: {
+        message: err.message
+      }
+    });
   });
-});
 
 
-// Graceful shutdown
-process.once('SIGTERM', gracefulShutdown);
-process.once('SIGINT', gracefulShutdown);
+  // Graceful shutdown
+  process.once('SIGTERM', gracefulShutdown);
+  process.once('SIGINT', gracefulShutdown);
 
-server.listen(port, () => {
-  logger.log(`Server is listening on port ${port}`);
-});
+  server.listen(port, () => {
+    logger.log(`Server is listening on port ${port}`);
+  });
+
