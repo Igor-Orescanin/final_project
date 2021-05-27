@@ -50,8 +50,8 @@ const Devices = (props) => {
 
   const username = props.username
   const userId = props.userId
- 
-  
+
+
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
