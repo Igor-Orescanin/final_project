@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -6,7 +6,8 @@ import Select from '@material-ui/core/Select';
 import useStyles from "./styles.js";
 import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import * as api from "../../../api";
+
+import * as api from "../../../api/index";
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -25,26 +26,28 @@ const theme = createMuiTheme({
 
 function EmailAlert(props) {
 
+
     const device = props.device;
     const deviceId = device._id;
 
+
     const classes = useStyles();
-    const [freshWater, setFreshWater] = useState('');
-    const [grayWater, setGrayWater] = useState('');
+    const [cleanAlertThreshold, setCleanAlertThreshold] = useState('20');
+    const [wasteAlertThreshold, setWasteAlertThreshold] = useState('80');
+
+    // console.log(freshWater, grayWater);
 
     const handleChangeFresh = (event) => {
-        setFreshWater(event.target.value);
-
+        setCleanAlertThreshold(event.target.value);
     };
 
     const handleChangeGray = (event) => {
-        setGrayWater(event.target.value);
-
+        setWasteAlertThreshold(event.target.value);
     };
 
     const callApi = () => {
-        console.log(freshWater, grayWater);
-        api.updateEmailAlert(deviceId, { freshWater: freshWater, grayWater: grayWater }).then((res) => {
+        console.log(cleanAlertThreshold, wasteAlertThreshold);
+        api.emailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
     }
@@ -69,7 +72,7 @@ function EmailAlert(props) {
                             <Select
                                 labelId="demo-simple-select-outlined-label"
                                 id="demo-simple-select-outlined"
-                                value={freshWater}
+                                value={cleanAlertThreshold}
                                 onChange={handleChangeFresh}
                                 label="freshWater"
                                 InputProps={{
@@ -100,7 +103,7 @@ function EmailAlert(props) {
                             <Select
                                 labelId="demo-simple-select-outlined-label"
                                 id="demo-simple-select-outlined"
-                                value={grayWater}
+                                value={wasteAlertThreshold}
                                 onChange={handleChangeGray}
                                 label="grayWater"
                                 InputProps={{

@@ -51,6 +51,7 @@ const Devices = (props) => {
   const username = props.username
   const userId = props.userId
 
+
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
@@ -70,6 +71,10 @@ const Devices = (props) => {
     getDevices();
   }
 
+
+  const fetchDevice = props.fetchDevice
+
+
   return (
     <>
 
@@ -86,7 +91,7 @@ const Devices = (props) => {
             ) : (
                 allDevices.map((dev, index) => (
 
-                  <Device key={index} deviceObject={dev} username={username} deviceDeleted={() => deviceDeleteHandler(dev._id)} />
+                  <Device key={index} deviceObject={dev} username={username} deviceDeleted={() => deviceDeleteHandler(dev._id)} fetchDevice={() => fetchDevice(dev)} />
               ))
             )}
 

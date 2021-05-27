@@ -39,7 +39,7 @@ function App() {
 
 
   const [response, setResponse] = useState({});
-  const fetchUser = (user) => {
+     const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
@@ -51,53 +51,58 @@ function App() {
     console.log(device)
   }
 
+  
   if (response._id) {
-
-    return (
-      <Router>
-        <div className="app">
-          <Navbar username={response.username} />
-          <Route path="/welcome" component={Welcome}></Route>
-          <Route path="/logout" component={LogOut}></Route>
-          <Route path="/water" component={Water}></Route>
-          <Route path="/setting" component={Setting}></Route>
-          <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
-          <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} />}></Route>
-          <Route path="/device" component={Device}></Route>
-          <Route path="/weekly" component={Weekly}></Route>
-          <Route path="/monthly" component={Monthly}></Route>
-          <Route path="/light" component={Light}></Route>
-          <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>
-          <Route path="/lights" component={Lights}></Route>
-          <Route path="/addlight" component={AddLight}></Route>
-          <Route path="/addcontrol" component={AddControl}></Route>
-          <Route path="/control" component={Control}></Route>
-          <Route path="/controls" component={Controls}></Route>
-
-          {/* {device.hasLights ? 
-          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device._id} />}></Route>
-        :
-          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device._id} />}></Route>
-        } */}
-
-        </div>
-      </Router>
-
-
-    );
-
-
-  }
-
 
   return (
     <Router>
       <div className="app">
-        <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
-        <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
+        <Navbar username={response.username} />
+        {/* <Route path="/welcome" component={Welcome}></Route> */}
+        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} />}></Route>
+        <Route path="/logout" component={LogOut}></Route>
+        <Route path="/water" component={Water}></Route>
+        <Route path="/setting" component={Setting}></Route>
+        <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
+        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice}/>}></Route>
+        {/* <Route path="/device" component={Device}></Route> */}
+        <Route path="/weekly" component={Weekly}></Route>
+        <Route path="/monthly" component={Monthly}></Route>
+        {/* <Route path="/light" component={Light}></Route> */}
+        <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>
+        {/* <Route path="/lights" component={Lights}></Route>  */}
+        {/* <Route path="/addlight" component={AddLight}></Route>  */}
+        <Route path="/addcontrol" component={AddControl}></Route>
+        {/* <Route path="/control" component={Control}></Route> */}
+        <Route path="/controls" component={Controls}></Route>
+
+        <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route>
+
+        {/* {device.hasLights ?
+          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device._id} />}></Route>
+        :
+          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device._id} />}></Route>
+        }  */}
+
       </div>
     </Router>
+
+
   );
+
+
+    }
+
+
+   return (
+     <Router>
+       <div className="app">
+         <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
+         <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
+       </div>
+     </Router>
+   );
 
 }
 
