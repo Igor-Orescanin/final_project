@@ -25,21 +25,29 @@ const theme = createMuiTheme({
 
 function EmailAlert(props) {
 
+    const device = props.device;
+    const deviceId = device._id;
+
     const classes = useStyles();
     const [freshWater, setFreshWater] = useState('');
     const [grayWater, setGrayWater] = useState('');
 
-    const deviceId = props.deviceId
-
     const handleChangeFresh = (event) => {
         setFreshWater(event.target.value);
-        api.updateEmailAlert(deviceId, { cleanWaterLevelThreshold: freshWater })
+
     };
 
     const handleChangeGray = (event) => {
         setGrayWater(event.target.value);
-        api.updateEmailAlert(deviceId, { grayWaterLevelThreshold: grayWater })
+
     };
+
+    const callApi = () => {
+        console.log(freshWater, grayWater);
+        api.updateEmailAlert(deviceId, { freshWater: freshWater, grayWater: grayWater }).then((res) => {
+            console.log(res);
+        })
+    }
 
     return (
         <div>
@@ -117,9 +125,7 @@ function EmailAlert(props) {
                         Notification goes to your Email</Typography>
 
                     <Button
-                        onClick={() => ({
-                            state: { freshWater, grayWater }
-                        })}
+                        onClick={callApi}
                         className={classes.button}
                         variant="contained"
                         color="primary"
