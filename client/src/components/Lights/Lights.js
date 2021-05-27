@@ -63,10 +63,10 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const deviceId = props.deviceId
+  const device = props.device
 
   //a hook
-  const [allLights, setAllLights] = useState([]);
+  const [allLights, setAllLights] = useState("");
 
   //socket
   socket.on("gpioStatus", status=>{
@@ -88,8 +88,9 @@ const Lights = (props) => {
   }, []);
 
   const getLights = async () => {
-    const { data } = await api.fetchLights(deviceId);
+    const { data } = await api.fetchLights(device.serialNumber);
     setAllLights(data);
+    console.log(data[0].lightsButton)
   }
 
 
@@ -109,7 +110,7 @@ const Lights = (props) => {
             {!allLights.length ? (
               <CircularProgress />
             ) : (
-              allLights.map((light) => (
+              allLights[0].lightsButton.map((light) => (
               <Light   lightObject={light} /> 
               ))
             )}

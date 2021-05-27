@@ -79,24 +79,27 @@ exports.deleteDevice = async (req, res, next) => {
 };
 
 exports.addLightButton = async (req, res, next) =>{
-  try {
-    const device = await Device.findByIdAndUpdate(req.params.id, {hasLight: true}, {
-      new: true,
-    });
-    if (!device){
-      throw new createError.NotFound();
-    } else {
-      const newButton = {
-        name: req.body.name,
-        gpio: req.body.gpio
-      }
-      device.lightsButton.push(newButton)
-      await device.save();
-    }
-    res.status(200).send(device);
-  } catch (e) {
-    next(e);
-  }
+  console.log(req.body)
+  console.log(req.params.id)
+  // const device = Device.find({serialNumber:req.params.id}).then(response =>res.send(response))
+ try {
+   const device = await Device.findOneAndUpdate({serialNumber:req.params.id}, {hasLight: true}, {
+     new: true,
+   });
+   if (!device){
+     throw new createError.NotFound();
+   } else {
+     const newButton = {
+       name: req.body.name,
+       gpio: req.body.gpio
+     }
+     device.lightsButton.push(newButton)
+     await device.save();
+   }
+   res.status(200).send(device);
+ } catch (e) {
+   next(e);
+ }
 };
 
 exports.addControlButton = async (req, res, next) =>{
@@ -122,7 +125,7 @@ exports.addControlButton = async (req, res, next) =>{
 
 exports.getLightButtons = async (req, res, next) =>{
   try {
-    const lightButtons = await Device.findById(req.params.id," lightsButton ").exec() ;
+    const lightButtons = await Device.find({serialNumber:req.params.id},"lightsButton").exec() ;
     if (!lightButtons) throw new createError.NotFound();
     res.status(200).send(lightButtons);
   } catch (e) {
@@ -132,7 +135,7 @@ exports.getLightButtons = async (req, res, next) =>{
 
 exports.getControlButtons = async (req, res, next) =>{
   try {
-    const controlButtons = await Device.findById(req.params.id," controlsButton ").exec() ;
+    const controlButtons = await Device.find({serialNumber:req.params.id},"controlsButton").exec() ;
     if (!controlButtons) throw new createError.NotFound();
     res.status(200).send(controlButtons);
   } catch (e) {
