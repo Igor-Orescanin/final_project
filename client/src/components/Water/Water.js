@@ -42,6 +42,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+import Navbar from '../Nav/Navbar';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -79,6 +81,8 @@ const Water = (props) => {
   const classes = useStyles();
   console.log(props);
 
+  const username = props.username;
+
   //waterLevel
   const [waterLevelClean, setWaterLevelClean] = useState([]);
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
@@ -96,7 +100,7 @@ const Water = (props) => {
 
   const handleClose = () => {
     setOpen(false);
-    
+
   };
 
 
@@ -192,9 +196,9 @@ const Water = (props) => {
             name: {
              // offsetY: 20,
               color: "#008CA7",
-           
+
             },},
-     
+
       },
     },
     fill: {
@@ -240,18 +244,18 @@ const Water = (props) => {
         hollow: {
           size: "70%",
         },
-       
+
         dataLabels: {
             name: {
              // offsetY: 20,
               color: "#008CA7",
-           
+
             },},
       },
     },
 
     labels: ["Greywater"],
-  
+
 
     fill: {
         opacity: 1.5,
@@ -272,12 +276,12 @@ const Water = (props) => {
 
   return (
     <>
-
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
         <Typography className={classes.typography}>Realtime Data</Typography>
           <div >
-         
+
             <ReactApexChart
               options={options}
               series={waterLevelClean}
@@ -297,7 +301,7 @@ const Water = (props) => {
            // onClick={() => history.push("/emailalert")}
             onClick={() =>      history.push({
                 pathname: "/emailalert",
-              
+
                })}
             className={classes.button}
             variant="contained"
@@ -339,11 +343,11 @@ const Water = (props) => {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                Your Freshwater is low 
+                Your Freshwater is low
                 </DialogContentText>
                  <DialogContentText id="alert-dialog-description">
-                Your Greywater is high 
-                </DialogContentText> 
+                Your Greywater is high
+                </DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary" autoFocus>

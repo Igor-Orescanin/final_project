@@ -13,6 +13,7 @@ import "../../App.css";
 // styles to use the connection
 import useStyles from "./styles";
 
+import Navbar from '../Nav/Navbar';
 // material-ui
 import {
   Container,
@@ -51,7 +52,7 @@ const Devices = (props) => {
   const username = props.username
   const userId = props.userId
 
-
+  console.log(props);
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
@@ -71,13 +72,12 @@ const Devices = (props) => {
     getDevices();
   }
 
-
   const fetchDevice = props.fetchDevice
 
-
   return (
-    <>
 
+    <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
@@ -110,7 +110,9 @@ const Devices = (props) => {
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
+
     </>
+
   );
 };
 

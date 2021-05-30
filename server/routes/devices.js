@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const auth = require('../middleware/auth');
+
 const {
   addDevice,
   getDevices,
@@ -17,24 +19,24 @@ const {
 
 router
   .route("/")
-  .get(getDevices)
-  .post(addDevice) //use only for postman
+  .get(auth, getDevices)
+  .post(auth, addDevice) //use only for postman
 
 router
   .route("/:id/lights")
-  .get(getLightButtons)
-  .post(addLightButton)
+  .get(auth, getLightButtons)
+  .post(auth, addLightButton)
 
 router
   .route("/:id/controls")
-  .get(getControlButtons)
-  .post(addControlButton)
+  .get(auth, getControlButtons)
+  .post(auth, addControlButton)
 
 router
   .route("/:id")
-  .get(getDevice)
-  .put(updateDevice)   // update the thresold level
-  .delete(deleteDevice) 
+  .get(auth, getDevice)
+  .put(auth, updateDevice)   // update the thresold level
+  .delete(auth, deleteDevice)
 
 
 

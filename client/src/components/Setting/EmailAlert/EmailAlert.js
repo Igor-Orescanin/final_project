@@ -8,6 +8,7 @@ import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@m
 import Button from "@material-ui/core/Button";
 
 import * as api from "../../../api/index";
+import Navbar from '../../Nav/Navbar';
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -54,6 +55,7 @@ function EmailAlert(props) {
 
     return (
         <div>
+            <Navbar username={props.username}> </Navbar>
             <ThemeProvider theme={theme}>
                 <Container className={classes.container} >
 

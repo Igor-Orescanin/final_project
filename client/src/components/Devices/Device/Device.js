@@ -71,11 +71,10 @@ const Device = (props) => { //props.deviceObject.deviceId
   const classes = useStyles();
 
   const username = props.username
-  console.log(props.username)
 
   const device = props.deviceObject
   console.log(device)
- 
+
   //a hook
   //const [device, setDevice] = useState();
 
@@ -109,7 +108,6 @@ const Device = (props) => { //props.deviceObject.deviceId
        pathname: "/welcome",
        state: device
      })
-
 
  }
 

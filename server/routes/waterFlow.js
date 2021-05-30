@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const auth = require('../middleware/auth');
+
 const {
     getWeekWaterFlow,
     getMonthWaterFlow,
@@ -12,22 +14,22 @@ const {
 
 router
   .route("/week")
-  .get(getWeekWaterFlow)   
+  .get(auth, getWeekWaterFlow)
 
 
 router
   .route("/month")
-  .get(getMonthWaterFlow)
+  .get(auth, getMonthWaterFlow)
 
 
 router
   .route("/year")
-  .get(getYearWaterFlow)
+  .get(auth, getYearWaterFlow)
 
 
 router
-  .route("/minutes")        //to check my database 
-  .get(getMinWaterFlow)
+  .route("/minutes")        //to check my database
+  .get(auth, getMinWaterFlow)
 
 module.exports = router;
 
