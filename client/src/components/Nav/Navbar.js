@@ -26,8 +26,6 @@ const Navbar = (props) => {
 
   const username = props.username;
 
-  // const usernameCapitalize = username.charAt(0).toUpperCase() + username.slice(1);
-
   const isChart = location.pathname.includes('water');
 
   const isFixed = location.pathname.includes('water') || location.pathname.includes('weekly') || location.pathname.includes('monthly');
@@ -36,9 +34,8 @@ const Navbar = (props) => {
     e.preventDefault();
     localStorage.setItem("token", undefined);
     history.push({
-      pathname: "/"
+      pathname: "/Logout"
     })
-
 
   }
 

@@ -42,6 +42,7 @@ const Welcome = (props) => {
 
 
   const device = props.device;
+  console.log(device);
 
   return (
     <>
@@ -49,6 +50,7 @@ const Welcome = (props) => {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
+
           <Button
             variant="contained"
             className={classes.button}
@@ -77,6 +79,11 @@ const Welcome = (props) => {
           </Button>
 
           <div className={classes.footer}></div>
+
+        </Container>
+
+        <Container className={classes.container}>
+
         </Container>
       </ThemeProvider>
     </>

@@ -73,6 +73,7 @@ const Devices = (props) => {
   }
 
   const fetchDevice = props.fetchDevice
+  console.log(fetchDevice);
 
   return (
 

@@ -46,7 +46,6 @@ function App() {
     setResponse(user)
   }
 
-  console.log();
 
   const [device, setDevice] = useState({});
   const fetchDevice = (device) => {
@@ -64,7 +63,7 @@ function App() {
 
         <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" component={Water}></Route>
+        <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} />}></Route>
         <Route path="/setting" render={(props) => <Setting {...props} username={response.username} />}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} username={response.username} />}></Route>
         <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>

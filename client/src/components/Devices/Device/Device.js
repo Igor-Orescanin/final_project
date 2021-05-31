@@ -73,7 +73,7 @@ const Device = (props) => { //props.deviceObject.deviceId
   const username = props.username
 
   const device = props.deviceObject
-  console.log(device)
+  console.log(device._id);
 
   //a hook
   //const [device, setDevice] = useState();
@@ -103,10 +103,10 @@ const Device = (props) => { //props.deviceObject.deviceId
   };
 
  const sentToApp =()=>{
-    props.fetchDevice()
+   props.fetchDevice(device)
      history.push({
        pathname: "/welcome",
-       state: device
+
      })
 
  }

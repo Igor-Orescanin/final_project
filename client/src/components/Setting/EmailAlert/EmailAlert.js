@@ -30,7 +30,7 @@ function EmailAlert(props) {
 
     const device = props.device;
     const deviceId = device._id;
-
+    console.log(deviceId);
 
     const classes = useStyles();
     const [cleanAlertThreshold, setCleanAlertThreshold] = useState('20');
