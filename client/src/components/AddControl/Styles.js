@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
 
-import image from "../../image/background_mobile.svg";
+import image from "../../image/water_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
@@ -9,91 +8,101 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    color: '#30D4DE',
-    fontFamily: ("Roboto", "sans-serif"),
-    height: '60vh',
   },
 
-  heading: {
-    fontSize: '20px',
-    fontWeight: '900',
-    marginBottom: '30px',
-    color: '#007A8B'
+  paper2: {
+    zIndex: "-2",
+    paddingTop: "27px",
+    paddingBottom: "20px",
+    borderColor: "#30D4DE",
+    border: "solid",
+    borderWidth: "1px",
+    textAlign: "center",
+    marginTop: "-17px",
+    width: "232px",
+  },
+
+  typography1: {
+    fontSize: "15px",
+    fontFamily: ("Roboto", "sans-serif"),
+    paddingTop: "17px",
+    paddingLeft: "15px",
+    paddingRight: "25px",
+    color: "#008CA7",
+  },
+
+  typography: {
+    marginTop: "30px",
+    marginLeft: "40px",
+    marginRight: "40px",
+    fontFamily: ("Roboto", "sans-serif"),
+    color: "#007982",
+    fontSize: "18px",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  typographyInfo: {
+    fontSize: "12px",
+    fontFamily: ("Roboto", "sans-serif"),
+    paddingLeft: "37px",
+    paddingRight: "37px",
+  },
+
+  typographyInfo1: {
+    fontSize: "12px",
+    fontFamily: ("Roboto", "sans-serif"),
+    textAlign: "center",
+  },
+
+  form: {
+    marginTop: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 
   gpioheading: {
-    backgroundColor: '#0C9EB5',
-    fontFamily: ("Roboto", "sans-serif"),
-    padding: '8px',
-    color: 'white',
-    borderRadius: '5px'
+    marginTop: "15px",
+    backgroundColor: "#0C9EB5",
+    paddingTop: "10px",
+    padding: "8px",
+    color: "white",
+    borderRadius: "5px",
+    width: "192px",
   },
 
-  gpiocontainer: {
-    fontFamily: ("Roboto", "sans-serif"),
-    color: '008CA7',
-    border: '2px solid #008CA7',
-    padding: '20px 120px',
-    marginTop: '-20px',
-    zIndex: '-2',
-    borderRadius: '5px'
-  },
-
-
-
-
-  form: {
-    marginTop: "5px",
+  group: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: 'center',
-    fontFamily: ("Roboto", "sans-serif"),
-    color: '#0C9EB5',
-    width: '230px'
+    justifyContent: "center",
   },
 
-  formField: {
-    marginLeft: '30px',
-   
-  },
-  
-  root: {
-    "&:hover $notchedOutline": {
-      bordercolor: "#007982",
-    },
-    "&$focused $notchedOutline": {
-      bordercolor: "#007982",
-    },
-  },
-  focused: {},
-  notchedOutline: {},
-
-  notchedOutline: {
-    bordercolor: "#007982",
-  },
   inputField: {
     marginTop: "20px",
-    bordercolor: "#007982",
-    width: "212px",
-    backgroundColor: "white"
+    width: "154px",
+    backgroundColor: "white",
   },
 
-
-
-
-  button: {
-    fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
+  buttonHelp: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
     padding: 0,
+    borderColor: "#0C9EB5",
+    color: "#0C9EB5",
+    width: "106px",
+    height: "32px",
+    paddingTop: "2px",
+    borderRadius: "4px",
+    fontSize: "15px",
+    marginTop: "30px",
+    marginLeft: "10px",
+    marginRight: "10px",
     backgroundColor: "white",
-    color: '#0C9EB5',
-    width: '115px',
-    height: '38px',
-    border: '1px solid #0C9EB5',
-    borderRadius: '10px',
-    fontSize: '15px',
-    marginTop: '20px',
-
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#0C9EB5",
+      color: "white",
+    },
   },
 
   //for the Image on the bottom
@@ -101,7 +110,7 @@ export default makeStyles((theme) => ({
     zIndex: "-1",
     position: "fixed",
     bottom: "0px",
-    height: "190px",
+    height: "250px",
     width: "100vw",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
