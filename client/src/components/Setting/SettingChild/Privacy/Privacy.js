@@ -2,6 +2,8 @@ import React from 'react';
 import useStyles from "./Styles.js";
 import { Container, ThemeProvider, Typography, } from "@material-ui/core";
 
+import Navbar from '../../../Nav/Navbar.js';
+
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
@@ -15,12 +17,13 @@ const theme = createMuiTheme({
     },
 });
 
-function Privacy() {
+function Privacy(props) {
 
     const classes = useStyles();
 
     return (
         <>
+         <Navbar username={props.username}> </Navbar>
             <ThemeProvider theme={theme}>
                 <Container className={classes.container} >
 

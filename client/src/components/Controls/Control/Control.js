@@ -77,10 +77,11 @@ const Control = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleClose1 = () => {
-    props.controlDeleted();
+   // props.controlDeleted();
     setOpen(false);
-    api.deleteControl(control._id);
+   // api.deleteControl(control._id);
   };
 
   //for radio button FormControlLabel

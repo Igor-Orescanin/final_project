@@ -1,52 +1,30 @@
 import { makeStyles } from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
 
 import image from '../../image/charts_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 
     container: {
-        //backgroundColor: 'red',
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
-    },
+        height: "65vh",
+      },
 
-    paper: {
-        //backgroundColor: 'green',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    buttons: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        margin: '10px',
-        height: '55vh',
-        marginTop: '40px'
-    },
-
-    button: {
-        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-        padding: 0,
-        backgroundColor: "#0C9EB5",
-        color: 'white',
-        width: '160px',
-        height: '50px',
-        borderRadius: '10px',
-        fontSize: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-    },
-
-
-
+   
+  button: {
+    margin: "10px",
+    width: "150px",
+    borderRadius: "7px",
+    borderColor: "#008CA7",
+    border: "solid",
+    fontSize: "18px",
+    borderWidth: "2px",
+    textTransform: "none",
+    paddingTop: "12px",
+    paddingBottom: "10px"
+  },
 
     //for the Image on the bottom
     footer: {

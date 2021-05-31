@@ -81,10 +81,6 @@ const Welcome = (props) => {
           <div className={classes.footer}></div>
 
         </Container>
-
-        <Container className={classes.container}>
-
-        </Container>
       </ThemeProvider>
     </>
   );
