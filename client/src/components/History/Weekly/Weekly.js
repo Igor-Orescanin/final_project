@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+
+import Navbar from '../../Nav/Navbar.js';
+
 // material-ui
 import {
   Container,
@@ -108,6 +111,7 @@ function Weekly(props) {
 
   return (
     <>
+    <Navbar username={props.username}> </Navbar>
       <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>

@@ -8,6 +8,7 @@ import * as api from "../../api";
 import io from "socket.io-client";
 
 import Control from "./Control/Control.js";
+import Navbar from '../Nav/Navbar.js';
 
 // styles to use the connection
 import useStyles from "./Styles";
@@ -58,7 +59,7 @@ const Controls = (props) => {
   const device = props.device;
 
   //a hook
-  const [allControls, setAllControls] = useState([]);
+  const [allControls, setAllControls] = useState("");
 
   //socket
   socket.on("gpioStatus", (status) => {
@@ -86,6 +87,7 @@ const Controls = (props) => {
 
   return (
     <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
