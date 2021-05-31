@@ -35,32 +35,31 @@ function Light(props) {
             <StylesProvider injectFirst>
 
                 <Container className={classes.container} >
-                    <h1 className={classes.heading}>Setting</h1>
                     <div className={classes.paper}>
 
                         <div className={classes.buttons}>
                             <Button
-                                onClick={() => history.push("/emailalert")}
+                                onClick={() => history.push("/conditions")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
-                                type='submit'>Water</Button>
+                                type='submit'>Conditions</Button>
 
                             <Button
-                                onClick={() => history.push("/light")}
+                                onClick={() => history.push("/privacy")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Light</Button>
+                            >Privacy</Button>
 
                             <Button
-                                onClick={() => history.push("/devices")}
+                                onClick={() => history.push("/impressum")}
                                 className={classes.button}
                                 variant="contained"
                                 color="primary"
                                 type='submit'
-                            >Devices</Button>
+                            >Impressum</Button>
 
                         </div>
 
