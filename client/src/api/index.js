@@ -77,3 +77,11 @@ export const updateEmailAlert = (id, data) => axios.put(`${url}/devices/${id}`, 
 });
 
 export const logout = (data) => axios.get(`${url}/users/logout`, data)
+
+export const deleteLight = (id) => axios.delete(`${url}/devices/${id}/lights`);
+
+//control
+export const fetchControls =(id) => axios.get(`${url}/devices/${id}/controls`);
+export const addControl = (id, data) => axios.post(`${url}/devices/${id}/controls`, data);
+export const deleteControl = (id) => axios.delete(`${url}/devices/${id}/controls`);
+

@@ -27,10 +27,8 @@ const theme = createMuiTheme({
 
 function EmailAlert(props) {
 
-
-    const device = props.device;
+    const {device} = props ;
     const deviceId = device._id;
-    console.log(deviceId);
 
     const classes = useStyles();
     const [cleanAlertThreshold, setCleanAlertThreshold] = useState('20');
@@ -46,12 +44,15 @@ function EmailAlert(props) {
         setWasteAlertThreshold(event.target.value);
     };
 
+
     const callApi = () => {
         console.log(cleanAlertThreshold, wasteAlertThreshold);
         api.updateEmailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
     }
+
+
 
     return (
         <div>

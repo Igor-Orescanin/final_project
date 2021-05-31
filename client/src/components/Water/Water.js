@@ -94,6 +94,7 @@ const Water = (props) => {
   let waterLevel = 0;
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
+  const alert = props.alert;
 
   const [open, setOpen] = React.useState(false); // need false for start
 
@@ -101,9 +102,10 @@ const Water = (props) => {
     setOpen(true);
   };
 
+
+
   const handleClose = () => {
     setOpen(false);
-
   };
 
 
@@ -203,31 +205,32 @@ const Water = (props) => {
           size: "70%",
         },
         dataLabels: {
-            name: {
-             // offsetY: 20,
-              color: "#008CA7",
+          name: {
+            // offsetY: 20,
+            color: "#008CA7",
 
-            },},
+          },
+        },
 
       },
     },
     fill: {
-        opacity: 1.5,
-        colors: ["#30D4DE"],
-        type: "gradient",
-        gradient: {
-          gradientToColors: ["#30D4DE"],
-          shadeIntensity: 1,
-          opacityFrom: 1,
-          opacityTo: 2,
-          stops: [0, 50, 100],
-          inverseColors: false,
-        },
+      opacity: 1.5,
+      colors: ["#30D4DE"],
+      type: "gradient",
+      gradient: {
+        gradientToColors: ["#30D4DE"],
+        shadeIntensity: 1,
+        opacityFrom: 1,
+        opacityTo: 2,
+        stops: [0, 50, 100],
+        inverseColors: false,
       },
-      labels: ["Freshwater"],
+    },
+    labels: ["Freshwater"],
 
   };
-//_____ 2. chart
+  //_____ 2. chart
 
   const options2 = {
     chart: {
@@ -256,11 +259,12 @@ const Water = (props) => {
         },
 
         dataLabels: {
-            name: {
-             // offsetY: 20,
-              color: "#008CA7",
+          name: {
+            // offsetY: 20,
+            color: "#008CA7",
 
-            },},
+          },
+        },
       },
     },
 
@@ -268,18 +272,18 @@ const Water = (props) => {
 
 
     fill: {
-        opacity: 1.5,
-        colors: ["#77A783"],
-        type: "gradient",
-        gradient: {
-          gradientToColors: ["#77A783"],
-          shadeIntensity: 1,
-          opacityFrom: 1,
-          opacityTo: 2,
-          stops: [0, 50, 100],
-          inverseColors: false,
-        },
+      opacity: 1.5,
+      colors: ["#77A783"],
+      type: "gradient",
+      gradient: {
+        gradientToColors: ["#77A783"],
+        shadeIntensity: 1,
+        opacityFrom: 1,
+        opacityTo: 2,
+        stops: [0, 50, 100],
+        inverseColors: false,
       },
+    },
   };
 
 
@@ -381,7 +385,7 @@ const Water = (props) => {
             </> :
             <div>Device is Disconnected</div>}
 
-
+            <div className={classes.footer}></div>
 
         </Container>
 

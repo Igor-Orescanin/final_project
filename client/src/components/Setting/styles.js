@@ -13,20 +13,12 @@ export default makeStyles((theme) => ({
         alignItems: "center",
     },
 
-    heading: {
-        color: "#0C9EB5",
-        marginTop: '10px',
-        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-    },
-
     paper: {
         //backgroundColor: 'green',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-
-
     },
 
     buttons: {
@@ -35,7 +27,8 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-around',
         alignItems: 'center',
         margin: '10px',
-        height: '45vh',
+        height: '55vh',
+        marginTop: '40px'
     },
 
     button: {
@@ -43,10 +36,10 @@ export default makeStyles((theme) => ({
         padding: 0,
         backgroundColor: "#0C9EB5",
         color: 'white',
-        width: '140px',
-        height: '38px',
+        width: '160px',
+        height: '50px',
         borderRadius: '10px',
-        fontSize: '15px',
+        fontSize: '20px',
         marginTop: '20px',
         marginLeft: '20px',
         marginRight: '20px',
