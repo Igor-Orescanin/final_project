@@ -91,12 +91,13 @@ const Water = (props) => {
   //waterLevel
   const [waterLevelClean, setWaterLevelClean] = useState([]);
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
-  let waterLevel = 0;
+
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
-  const alert = props.alert;
+
 
   const [open, setOpen] = React.useState(false); // need false for start
+  const [alertLevel, setAlertLevel] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -126,7 +127,7 @@ const Water = (props) => {
   // this useEffect is from the water.js
 
   useEffect(() => {
-    if (isConnected) {
+
       socket.on("sensorReading", (sensorObject) => {
 
         if (sensorObject.label === "CLEAN") {
@@ -137,7 +138,8 @@ const Water = (props) => {
           console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
           if (sensorObject.levelPercentage <= cleanAlertThreshold) {
-            setOpen(true);
+            //setOpen(true);
+            setAlertLevel(true);
           }
           //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
           //setWaterLevelClean([sensorPercent]);
@@ -150,6 +152,8 @@ const Water = (props) => {
         //console.log(waterLevelCleanPercentage.levelPercentage)
         console.log(sensorObject);
         let sensorPercent = sensorObject.levelPercentage;
+
+
         setChart([
           {
             name: "water Level",
@@ -168,7 +172,7 @@ const Water = (props) => {
           //options = [...options, options.series ]
 
       });
-    }
+
 
   }, []); // runs only once  ,,, run when the Graph component mount
 
@@ -208,7 +212,6 @@ const Water = (props) => {
           name: {
             // offsetY: 20,
             color: "#008CA7",
-
           },
         },
 
@@ -295,7 +298,6 @@ const Water = (props) => {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
-          {(isConnected) ?
             <>
               <Typography className={classes.typography}>Realtime Data</Typography>
 
@@ -338,7 +340,7 @@ const Water = (props) => {
               </Typography>
               <Paper className={classes.paper2}>
                 <Typography className={classes.typographyInfo}>
-                  {/* {(waterLevelClean < cleanAlertThreshold ? console.log("color red") : console.log("color blue"))} */}
+                {(alertLevel ? console.log(alertLevel) : null)}
                   Your Freshwater is by {waterLevelClean}%
                 </Typography>
                 <Typography className={classes.typographyInfo}>
@@ -382,8 +384,7 @@ const Water = (props) => {
               </DialogActions>
             </Dialog>
               {/* {classes.footer}> */}
-            </> :
-            <div>Device is Disconnected</div>}
+          </>
 
             <div className={classes.footer}></div>
 

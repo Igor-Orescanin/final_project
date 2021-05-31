@@ -89,9 +89,9 @@ const Registration = (props) => {
           setError(null);
           setSuccess(res.data.msg);
           formik.resetForm();
-          history.push({
-            pathname: "/",
-          })
+          // history.push({
+          //   pathname: "/",
+          // })
         }
       })
       .catch((error) => {

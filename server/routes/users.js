@@ -25,7 +25,7 @@ const {
 router
   .route("/")
   .get(auth, getUsers)   //use only for postman
-  .post(auth, validateUser(), addUser);
+  .post(validateUser(), addUser);
 
 router
   .route("/login")
