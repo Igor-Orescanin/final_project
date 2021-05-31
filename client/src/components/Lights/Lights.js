@@ -8,6 +8,7 @@ import * as api from "../../api";
 import io from "socket.io-client";
 
 import Light from "./Light/Light.js";
+import Navbar from '../Nav/Navbar';
 
 // styles to use the connection
 import useStyles from "./Styles";
@@ -99,6 +100,7 @@ const Lights = (props) => {
 
   return (
     <>
+       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>

@@ -1,6 +1,8 @@
 // react
 import React, { useState, useEffect } from "react";
 
+import Navbar from '../Nav/Navbar';
+
 //axios';
 import * as api from "../../api";
 
@@ -106,6 +108,7 @@ function AddControl(props) {
 
   return (
     <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {device.hasControl ? (
