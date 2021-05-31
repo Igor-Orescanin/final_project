@@ -42,6 +42,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+import Navbar from '../Nav/Navbar';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -77,7 +79,14 @@ const socket = io("http://localhost:3005", {
 const Water = (props) => {
   const { history } = props;
   const classes = useStyles();
-  console.log(props);
+
+
+  const username = props.username;
+  const isConnected = props.device.isConnected;
+  console.log(isConnected);
+
+  const cleanAlertThreshold = props.device.cleanAlertThreshold;
+  const wasteAlertThreshold = props.device.wasteAlertThreshold;
 
   //waterLevel
   const [waterLevelClean, setWaterLevelClean] = useState([]);
@@ -87,23 +96,17 @@ const Water = (props) => {
   const [loading, setLoading] = useState(false);
   const alert = props.alert;
 
+  const [open, setOpen] = React.useState(false); // need false for start
 
-  const [open, setOpen] = useState(false); // need false for start
-  /* if (alert.cleanAlertThreshold <= waterLevelClean[0]) {
+  const handleClickOpen = () => {
     setOpen(true);
-    console.log('Happy nounet with journey');
-  }; */
-  /* const handleClickOpen = () => {
-  
-    } */
+  };
+
 
 
   const handleClose = () => {
     setOpen(false);
   };
-
-  console.log(waterLevelClean);
-  console.log(alert);
 
 
 
@@ -123,41 +126,50 @@ const Water = (props) => {
   // this useEffect is from the water.js
 
   useEffect(() => {
-    socket.on("sensorReading", (sensorObject) => {
-      if (sensorObject.label === "CLEAN") {
-        //var waterLevelCleanPercentage = sensorObject.levelPercentage;
-        setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
-        //setLoading(false)
-        console.log(waterLevelClean);
+    if (isConnected) {
+      socket.on("sensorReading", (sensorObject) => {
 
-        //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-        //setWaterLevelClean([sensorPercent]);
-      } else {
-        setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
-        //var waterLevelGreyPercentage = sensorObject.levelPercentage;
-        setLoading(false);
-        //console.log(waterLevelGreyPercentage)
-      }
-      //console.log(waterLevelCleanPercentage.levelPercentage)
-      console.log(sensorObject);
-      let sensorPercent = sensorObject.levelPercentage;
-      setChart([
-        {
-          name: "water Level",
-          data: [sensorPercent],
-        },
-        {
-          name: "Volts",
-          data: [waterLevelGrey],
-        },
-      ]);
-      // max sensor value = 1024
-      // pre = (current *100)/1024
-      // 500 === (500 * 100) /1024 ==> 48,.....%
+        if (sensorObject.label === "CLEAN") {
 
-      //options.chart.updateSeries(options.series);
-      //options = [...options, options.series ]
-    });
+          //var waterLevelCleanPercentage = sensorObject.levelPercentage;
+          setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
+          //setLoading(false)
+          console.log(sensorObject.levelPercentage, cleanAlertThreshold);
+
+          if (sensorObject.levelPercentage <= cleanAlertThreshold) {
+            setOpen(true);
+          }
+          //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
+          //setWaterLevelClean([sensorPercent]);
+        } else {
+          setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
+          //var waterLevelGreyPercentage = sensorObject.levelPercentage;
+          setLoading(false);
+          //console.log(waterLevelGreyPercentage)
+        }
+        //console.log(waterLevelCleanPercentage.levelPercentage)
+        console.log(sensorObject);
+        let sensorPercent = sensorObject.levelPercentage;
+        setChart([
+          {
+            name: "water Level",
+            data: [sensorPercent],
+          },
+          {
+            name: "Volts",
+            data: [waterLevelGrey],
+          },
+        ]);
+          // max sensor value = 1024
+          // pre = (current *100)/1024
+          // 500 === (500 * 100) /1024 ==> 48,.....%
+
+          //options.chart.updateSeries(options.series);
+          //options = [...options, options.series ]
+
+      });
+    }
+
   }, []); // runs only once  ,,, run when the Graph component mount
 
   if (loading) {
@@ -278,89 +290,107 @@ const Water = (props) => {
 
   return (
     <>
+      <Navbar username={props.username}> </Navbar>
 
       <ThemeProvider theme={theme}>
+
         <Container className={classes.container}>
-          <Typography className={classes.typography}>Realtime Data</Typography>
-          <div >
+          {(isConnected) ?
+            <>
+              <Typography className={classes.typography}>Realtime Data</Typography>
 
-            <ReactApexChart
-              options={options}
-              series={waterLevelClean}
-              type="radialBar"
-              height={250}
-            />
-            <ReactApexChart
-              options={options2}
-              series={waterLevelGrey}
-              type="radialBar"
-              height={250}
-            />
-          </div>
+              <div >
+                <ReactApexChart
+                  options={options}
+                  series={waterLevelClean}
+                  type="radialBar"
+                  height={250}
+                />
+                <ReactApexChart
+                  options={options2}
+                  series={waterLevelGrey}
+                  type="radialBar"
+                  height={250}
+                />
+              </div>
 
 
-          <Button
-            // onClick={() => history.push("/emailalert")}
-            onClick={() => history.push({
-              pathname: "/emailalert",
+              <Button
+                // onClick={() => history.push("/emailalert")}
+                onClick={() => history.push({
+                pathname: "/emailalert",
 
-            })}
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            Modify Alert
-          </Button>
+                })}
+                className={classes.button}
+                variant="contained"
+                color="primary"
+              >
+                Modify Alert
+              </Button>
 
-          <ExpandMoreIcon
-            className={classes.iconButton}
-            fontSize="large"
-          ></ExpandMoreIcon>
+              <ExpandMoreIcon
+                className={classes.iconButton}
+                fontSize="large"
+              ></ExpandMoreIcon>
 
-          <Typography className={classes.typographyInfo1}>
-            Information
-          </Typography>
-          <Paper className={classes.paper2}>
-            <Typography className={classes.typographyInfo}>
-              your Freshwaer is by {waterLevelClean}%
-            </Typography>
-            <Typography className={classes.typographyInfo}>
-              your Greywater is by {waterLevelGrey}%
-            </Typography>
-            <Typography className={classes.typographyInfo2}>
-              all is good for you!
-            </Typography>
-          </Paper>
+              <Typography className={classes.typographyInfo1}>
+                Information
+              </Typography>
+              <Paper className={classes.paper2}>
+                <Typography className={classes.typographyInfo}>
+                  {/* {(waterLevelClean < cleanAlertThreshold ? console.log("color red") : console.log("color blue"))} */}
+                  Your Freshwater is by {waterLevelClean}%
+                </Typography>
+                <Typography className={classes.typographyInfo}>
+                  Your Greywater is by {waterLevelGrey}%
+                </Typography>
+                <Typography className={classes.typographyInfo2}>
+                  All is good for you!
+                </Typography>
+              </Paper>
 
-          <Dialog
-            className={classes.dialog}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
-              {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
-              {"!!!Alert!!!"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Your Freshwater is low
-                </DialogContentText>
-              <DialogContentText id="alert-dialog-description">
-                Your Greywater is high
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary" autoFocus>
-                Close
-                </Button>
-            </DialogActions>
-          </Dialog>
+              <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
+                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
+                {"!!!Alert!!!"}
+              </DialogTitle>
+              <DialogContent>
 
-          <div className={classes.footer}></div>
+                  <div>
+                    <DialogContentText id="alert-dialog-description">
+                      Your Freshwater is low
+                      </DialogContentText>
+                  </div>
+                  <div>
+                    <DialogContentText id="alert-dialog-description">
+                      Your Greywater is high
+                      </DialogContentText>
+                  </div>
+
+
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                    Close
+                    </Button>
+              </DialogActions>
+            </Dialog>
+              {/* {classes.footer}> */}
+            </> :
+            <div>Device is Disconnected</div>}
+
+            <div className={classes.footer}></div>
+
         </Container>
+
       </ThemeProvider>
+
     </>
   );
 };
