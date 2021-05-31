@@ -71,7 +71,7 @@ function App() {
         <Route path="/monthly" component={Monthly}></Route>
 
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
-        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} />}></Route>
+        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} fetchDevice={fetchDevice} />}></Route>
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>  
  
         <Route path="/lights" render={(props) => <Lights {...props} device={device} />}></Route>
@@ -83,12 +83,6 @@ function App() {
         <Route path="/conditions" component={Conditions}></Route>
         <Route path="/impressum" component={Impressum}></Route>
         <Route path="/privacy" component={Privacy}></Route>
-
-     /*   {device.hasLight ?
-          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
-          :
-          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route>
-        }*/
 
       </div>
     </Router>
