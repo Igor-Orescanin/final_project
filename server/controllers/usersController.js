@@ -106,7 +106,7 @@ exports.loginUser = (req, res) => {
             },
             process.env.JWT_KEY,
             {
-              expiresIn: '1h'
+              expiresIn: '2h'
             }
           );
 
@@ -211,4 +211,5 @@ exports.resetPassword = (req, res) => {
     return res.status(401).json({ error: "Authentication error" })
   }
 }
+
 

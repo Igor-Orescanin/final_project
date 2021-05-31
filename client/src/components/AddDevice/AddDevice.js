@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 //axios';
 import * as api from "../../api";
 
+import Navbar from '../Nav/Navbar';
 
 //import { useHistory } from "react-router-dom";
 
@@ -154,7 +155,7 @@ const AddDevice = (props) => {
 
   return (
     <>
-   
+      <Navbar username={props.username}> </Navbar>
         <ThemeProvider theme={theme}>
 
           <Container className={classes.container}>
@@ -304,7 +305,7 @@ const AddDevice = (props) => {
             </div>
           </Container>
         </ThemeProvider>
-  
+
     </>
   );
 

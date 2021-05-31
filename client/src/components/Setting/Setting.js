@@ -13,9 +13,7 @@ import '../../App.css';
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-
-
-
+import Navbar from '../Nav/Navbar';
 
 // material-ui
 import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
@@ -32,6 +30,7 @@ function Light(props) {
 
     return (
         <>
+            <Navbar username={props.username}> </Navbar>
             <StylesProvider injectFirst>
 
                 <Container className={classes.container} >
