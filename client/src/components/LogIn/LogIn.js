@@ -13,6 +13,7 @@ import "../../App.css";
 // styles to use the connection
 import useStyles from "./styles";
 
+
 //styles
 import {
   Container,
@@ -81,7 +82,8 @@ const LogIn = (props) => {
           localStorage.setItem("token", response.data.token);
           console.log(response.data)
           fetchUser(response.data)
-             history.push({
+
+          history.push({
                pathname: "/devices",
              })
         }

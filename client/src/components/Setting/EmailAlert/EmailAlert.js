@@ -8,6 +8,7 @@ import { Container, ThemeProvider, Typography, TextField, Paper, Grid } from "@m
 import Button from "@material-ui/core/Button";
 
 import * as api from "../../../api/index";
+import Navbar from '../../Nav/Navbar';
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -26,10 +27,8 @@ const theme = createMuiTheme({
 
 function EmailAlert(props) {
 
-
-    const {device, alertThreshold} = props ;
+    const {device} = props ;
     const deviceId = device._id;
-   
 
     const classes = useStyles();
     const [cleanAlertThreshold, setCleanAlertThreshold] = useState('20');
@@ -46,19 +45,18 @@ function EmailAlert(props) {
     };
 
 
-
     const callApi = () => {
         console.log(cleanAlertThreshold, wasteAlertThreshold);
         api.updateEmailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
-        alertThreshold({ cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold })
     }
 
 
 
     return (
         <div>
+            <Navbar username={props.username}> </Navbar>
             <ThemeProvider theme={theme}>
                 <Container className={classes.container} >
 

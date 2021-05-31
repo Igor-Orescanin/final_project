@@ -25,6 +25,7 @@ import {
   Button,
   Avatar,
   TextField,
+  Link,
 } from "@material-ui/core";
 
 //change color as a theme
@@ -73,7 +74,6 @@ const Registration = (props) => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
-
   const onSubmit = async (values) => {
     const { confirmPassword, ...data } = values;
 
@@ -90,7 +90,7 @@ const Registration = (props) => {
           setSuccess(res.data.msg);
           formik.resetForm();
           history.push({
-            pathname: "/adddevice",
+            pathname: "/",
           })
         }
       })
@@ -99,24 +99,7 @@ const Registration = (props) => {
       });
   }
 
-  // OLD SOLUTION
-  //   const response = await axios.post("http://localhost:3005/users", values).catch((err) => {
-  //     if (err && err.response) {
-  //       console.log("Error:", err);
-  //       console.log("Error response:", err.response);
-  //       setError(err.response.data.msg);
-  //       setSuccess(null);
-  //       formik.resetForm();
-  //     }
 
-  //   });
-  //   if (response && response.data) {
-  //     console.log(response.data);
-  //     setError(null);
-  //     setSuccess(response.data.msg);
-  //     formik.resetForm();
-  //   }
-  // };
 
 
   const formik = useFormik({
@@ -162,7 +145,7 @@ const Registration = (props) => {
                   style: { color: "#007982" },
                 }}
                 inputProps={{
-                  maxlength: CHARACTER_LIMIT
+                  maxLength: CHARACTER_LIMIT
                 }}
                 InputProps={{
                   classes: {
@@ -197,7 +180,7 @@ const Registration = (props) => {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
-              />  
+              />
               {/*  message "Mail Exist" from backend usersController.js */}
               {!success && <div className={classes.error}> {error ? error : ""}</div>}
 
@@ -256,7 +239,7 @@ const Registration = (props) => {
               {/*  message "Thanks for registering" from backend usersController.js */}
               {!error && <div> {success ? success : ""}</div>}
 
-            
+
 
               <Button
                 className={classes.button}
@@ -267,13 +250,30 @@ const Registration = (props) => {
               >
                 Register
               </Button>
+
+              <Link
+                className={classes.link}
+                onClick={() => history.push("/")}
+                variant="body2"
+              >
+                Go back
+                </Link>
             </form>
           </div>
 
           <div className={classes.footer}></div>
+          <div>
+
+          </div>
+
+
+
         </Container>
+
       </ThemeProvider>
+
     </StylesProvider>
+
   );
 };
 

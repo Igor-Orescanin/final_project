@@ -32,7 +32,7 @@ import io from "socket.io-client";
 import "./App.css";
 
 //react-router-dom
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 
 //socket
@@ -50,52 +50,45 @@ function App() {
 
   const [device, setDevice] = useState({});
   const fetchDevice = (device) => {
-    setDevice(device);
-    console.log(device);
-  };
+    setDevice(device)
+    console.log(device)
+  }
+  console.log("deviceId", device._id);
+  console.log("userId", response._id);
 
-  if (response._id) {
-
-    socket.emit("user_connect", response._id);
+  socket.emit('user_connect', response._id)
 
   return (
-    <Router>
+    <Switch>
       <div className="app">
-        <Navbar username={response.username} />
-        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} />}></Route>
-
+        <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
+        <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
+        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" component={Water}></Route> 
-        <Route path="/setting" component={Setting}></Route>
+        <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} />}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
+        <Route path="/setting" render={(props) => <Setting {...props} username={response.username} />}></Route>
 
-        <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
-        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} fetchDevice={fetchDevice} />}></Route>
-        <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>  
- 
-        <Route path="/lights" render={(props) => <Lights {...props} device={device} />}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} />}></Route>
-        
-        <Route path="/controls" render={(props) => <Controls {...props} device={device} />}></Route>
-        <Route path="/addcontrols" render={(props) => <AddControl {...props} device={device} />}></Route>
+        <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} username={response.username} />}></Route>
+        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>
+        <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} username={response.username} />}></Route>
+
+        <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username}/>}></Route>
+
+        <Route path="/controls" render={(props) => <Controls {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/addcontrols" render={(props) => <AddControl {...props} device={device} username={response.username}/>}></Route>
 
         <Route path="/conditions" component={Conditions}></Route>
         <Route path="/impressum" component={Impressum}></Route>
         <Route path="/privacy" component={Privacy}></Route>
 
       </div>
-    </Router>
+    </Switch>
+
   );
- }  
-      return (
-       <Router>
-         <div className="app">
-        <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />} ></Route>
-        <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />} ></Route>
-      </div>
-    </Router>
-  );
+
 }
 
 export default App;
