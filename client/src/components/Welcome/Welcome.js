@@ -63,7 +63,7 @@ const Welcome = (props) => {
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() => history.push("/lights")}
+            onClick={() => history.push(device.hasLight ? "/lights" : "/addlight")}
           >
             Light
           </Button>
@@ -72,7 +72,7 @@ const Welcome = (props) => {
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() => history.push("/controls")}
+            onClick={() =>  history.push(device.hasControl ? "/controls" : "/addcontrol")}
           >
             USB Devices
           </Button>

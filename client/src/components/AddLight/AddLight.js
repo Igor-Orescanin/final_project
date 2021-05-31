@@ -57,13 +57,12 @@ const AddLight = (props) => {
   //lengh of character
   const CHARACTER_LIMIT = 10;
 
-  const deviceId = props.serialNumber;
-  console.log(deviceId);
+  const device = props.device;
+  console.log(device);
 
   const [formData, setFormData] = useState({
     name: "",
     gpio: "",
-    serialNumber: deviceId,
   });
 
   const [lightExist, setLightExist] = useState("");
@@ -92,21 +91,19 @@ const AddLight = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    api
-      .addLight(deviceId, formData)
-    
+    api.addLight(device.serialNumber, formData)
       .then((res) => {
         console.log(res);
 
-        if (res.data.message === "Gpio is already assigned") {
-          //   setLightExist(res.data.message);
-        } else if (res.data.message === "Gpio not found") {
-          //   setLightExist(res.data.message);
-        } else {
-          history.push({
-            pathname: "/lichts",
-          });
-        }
+        // if (res.data.message === "Gpio is already assigned") {
+        //   //   setLightExist(res.data.message);
+        // } else if (res.data.message === "Gpio not found") {
+        //   //   setLightExist(res.data.message);
+        // } else {
+           history.push({
+             pathname: "/lights",
+           });
+        
       })
       .catch((error) => {
         if (error) {
@@ -121,7 +118,7 @@ const AddLight = (props) => {
     <>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {deviceId.hasLights ? (
+          {device.hasLight ? (
             <Typography className={classes.typography}>
               You don't have any Lights registered in this system!
             </Typography>
@@ -130,7 +127,7 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-          {deviceId.hasLights ? (
+          {device.hasLight ? (
             <div></div>
           ) : (
             <Alert
@@ -175,14 +172,14 @@ const AddLight = (props) => {
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      lightName: e.target.value,
+                      name: e.target.value,
                     })
                   }
                   className={classes.inputField}
                   required
-                  id="lightName"
+                  id="name"
                   variant="outlined"
-                  name="lightName"
+                  name="name"
                   type="text"
                   size="small"
                   inputProps={{
