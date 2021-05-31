@@ -22,6 +22,9 @@ import AddLight from "./components/AddLight/AddLight.js";
 import AddControl from "./components/AddControl/AddControl.js";
 import Control from "./components/Controls/Control/Control.js";
 import Controls from "./components/Controls/Controls.js"
+import Conditions from "./components/Setting/SettingChild/Conditions/Conditions.js";
+import Impressum from "./components/Setting/SettingChild/Impressum/Impressum.js";
+import Privacy from "./components/Setting/SettingChild/Privacy/Privacy.js";
 
 //socket
 import io from 'socket.io-client';
@@ -33,28 +36,24 @@ import "./App.css";
 //react-router-dom
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+
 //socket
 const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
-
+const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
 
 function App() {
 
-
   const [response, setResponse] = useState({});
-     const fetchUser = (user) => {
+  const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
-
 
   const [device, setDevice] = useState({});
   const fetchDevice = (device) => {
     setDevice(device)
     console.log(device)
   }
-
-
   
   if (response._id) {
 
@@ -66,14 +65,15 @@ function App() {
         <Navbar username={response.username} />
         <Route path="/welcome" render={(props) => <Welcome {...props} device={device} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" component={Water}></Route>
+        <Route path="/water" component={Water}></Route> 
         <Route path="/setting" component={Setting}></Route>
         <Route path="/weekly" component={Weekly}></Route>
         <Route path="/monthly" component={Monthly}></Route>
         <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} />}></Route>
-        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice}/>}></Route>
+        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} />}></Route>
         {/* <Route path="/device" component={Device}></Route> */}
         {/* <Route path="/light" component={Light}></Route> */}
+
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} />}></Route>
         {/* <Route path="/control" component={Control}></Route> */}
        
@@ -85,6 +85,26 @@ function App() {
         <Route path="/controls" render={(props) => <Controls {...props} device={device} />}></Route>
         <Route path="/addcontrols" render={(props) => <AddControl {...props} device={device} />}></Route>
 
+        <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device}/>}></Route>
+        {/* <Route path="/lights" component={Lights}></Route>  */}
+        {/* <Route path="/addlight" component={AddLight}></Route>  */}
+        <Route path="/addcontrol" component={AddControl}></Route>
+        {/* <Route path="/control" component={Control}></Route> */}
+        <Route path="/controls" component={Controls}></Route>
+        <Route path="/conditions" component={Conditions}></Route>
+        <Route path="/impressum" component={Impressum}></Route>
+        <Route path="/privacy" component={Privacy}></Route>
+
+
+        {/* <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route> */}
+
+        {device.hasLight ?
+          <Route path="/lights" render={(props) => <Lights {...props} deviceId={device.serialNumber} />}></Route>
+
+          :
+          <Route path="/addlight" render={(props) => <AddLight {...props} deviceId={device.serialNumber} />}></Route>
+        }
 
       </div>
     </Router>
@@ -92,18 +112,18 @@ function App() {
 
   );
 
-
-    }
-
-
-   return (
-     <Router>
-       <div className="app">
-         <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
-         <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
-       </div>
-     </Router>
-   );
+ 
+      }
+  
+  
+      return (
+       <Router>
+         <div className="app">
+           <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
+           <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
+         </div>
+       </Router>
+     ); 
 
 }
 

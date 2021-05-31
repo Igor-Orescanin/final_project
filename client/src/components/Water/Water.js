@@ -85,21 +85,25 @@ const Water = (props) => {
   let waterLevel = 0;
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
+  const alert = props.alert;
 
 
-
-  const [open, setOpen] = React.useState(true); // need false for start
-
-  const handleClickOpen = () => {
+  const [open, setOpen] = useState(false); // need false for start
+  /* if (alert.cleanAlertThreshold <= waterLevelClean[0]) {
     setOpen(true);
-  };
+    console.log('Happy nounet with journey');
+  }; */
+  /* const handleClickOpen = () => {
+  
+    } */
+
 
   const handleClose = () => {
     setOpen(false);
-    
   };
 
-
+  console.log(waterLevelClean);
+  console.log(alert);
 
 
 
@@ -189,31 +193,32 @@ const Water = (props) => {
           size: "70%",
         },
         dataLabels: {
-            name: {
-             // offsetY: 20,
-              color: "#008CA7",
-           
-            },},
-     
+          name: {
+            // offsetY: 20,
+            color: "#008CA7",
+
+          },
+        },
+
       },
     },
     fill: {
-        opacity: 1.5,
-        colors: ["#30D4DE"],
-        type: "gradient",
-        gradient: {
-          gradientToColors: ["#30D4DE"],
-          shadeIntensity: 1,
-          opacityFrom: 1,
-          opacityTo: 2,
-          stops: [0, 50, 100],
-          inverseColors: false,
-        },
+      opacity: 1.5,
+      colors: ["#30D4DE"],
+      type: "gradient",
+      gradient: {
+        gradientToColors: ["#30D4DE"],
+        shadeIntensity: 1,
+        opacityFrom: 1,
+        opacityTo: 2,
+        stops: [0, 50, 100],
+        inverseColors: false,
       },
-      labels: ["Freshwater"],
+    },
+    labels: ["Freshwater"],
 
   };
-//_____ 2. chart
+  //_____ 2. chart
 
   const options2 = {
     chart: {
@@ -240,32 +245,33 @@ const Water = (props) => {
         hollow: {
           size: "70%",
         },
-       
+
         dataLabels: {
-            name: {
-             // offsetY: 20,
-              color: "#008CA7",
-           
-            },},
+          name: {
+            // offsetY: 20,
+            color: "#008CA7",
+
+          },
+        },
       },
     },
 
     labels: ["Greywater"],
-  
+
 
     fill: {
-        opacity: 1.5,
-        colors: ["#77A783"],
-        type: "gradient",
-        gradient: {
-          gradientToColors: ["#77A783"],
-          shadeIntensity: 1,
-          opacityFrom: 1,
-          opacityTo: 2,
-          stops: [0, 50, 100],
-          inverseColors: false,
-        },
+      opacity: 1.5,
+      colors: ["#77A783"],
+      type: "gradient",
+      gradient: {
+        gradientToColors: ["#77A783"],
+        shadeIntensity: 1,
+        opacityFrom: 1,
+        opacityTo: 2,
+        stops: [0, 50, 100],
+        inverseColors: false,
       },
+    },
   };
 
 
@@ -275,9 +281,9 @@ const Water = (props) => {
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-        <Typography className={classes.typography}>Realtime Data</Typography>
+          <Typography className={classes.typography}>Realtime Data</Typography>
           <div >
-         
+
             <ReactApexChart
               options={options}
               series={waterLevelClean}
@@ -294,11 +300,11 @@ const Water = (props) => {
 
 
           <Button
-           // onClick={() => history.push("/emailalert")}
-            onClick={() =>      history.push({
-                pathname: "/emailalert",
-              
-               })}
+            // onClick={() => history.push("/emailalert")}
+            onClick={() => history.push({
+              pathname: "/emailalert",
+
+            })}
             className={classes.button}
             variant="contained"
             color="primary"
@@ -327,30 +333,30 @@ const Water = (props) => {
           </Paper>
 
           <Dialog
-              className={classes.dialog}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title"  className={classes.alertTitle}>
-                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
-                {"!!!Alert!!!"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                Your Freshwater is low 
+            className={classes.dialog}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
+              {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
+              {"!!!Alert!!!"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Your Freshwater is low
                 </DialogContentText>
-                 <DialogContentText id="alert-dialog-description">
-                Your Greywater is high 
-                </DialogContentText> 
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                  Close
+              <DialogContentText id="alert-dialog-description">
+                Your Greywater is high
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary" autoFocus>
+                Close
                 </Button>
-              </DialogActions>
-            </Dialog>
+            </DialogActions>
+          </Dialog>
 
           <div className={classes.footer}></div>
         </Container>
