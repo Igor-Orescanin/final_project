@@ -8,10 +8,6 @@ import LightOn from '../../../image/light_off.svg';
 // axios
 import * as api from "../../../api";
 
-//socket
-import io from 'socket.io-client';
-
-
 
 import { useHistory } from "react-router-dom";
 
@@ -62,9 +58,7 @@ const theme = createMuiTheme({
 });
 
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
+
 
 const Light = (props) => {
     // props.deviceObject.deviceId
@@ -77,8 +71,12 @@ const Light = (props) => {
     const classes = useStyles();
 
 
-    const light = props.lightObject    // Marika is not sure if light or device
+    const light = props.lightObject   // Marika is not sure if light or device
     console.log(light)
+
+    const socket = props.socket
+
+    const deviceSerialNumber = props.deviceSerialNumber
     //a hook 
     // const [light, setLight] = useState();
 
@@ -103,10 +101,8 @@ const Light = (props) => {
     //for radio button FormControlLabel
     const [value, setValue] = useState('');
 
-   
-
     const lightHandler = (e) =>{
-        socket.emit("switchStatus", {gpio: e.target.value}) 
+        socket.emit("switchStatusLight", {gpio: light.gpio, deviceSerialNumber: deviceSerialNumber, forButtons:"Light"}) 
     }
 
     return (
@@ -126,7 +122,7 @@ const Light = (props) => {
                             color="primary"
                             value={light.gpio}
                         >
-                          {light.name}
+                          {light.name},{light.gpio}
 
                         </Button>
                         <DeleteIcon className={classes.deleteIcon} onClick={handleClickOpen} />

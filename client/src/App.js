@@ -23,9 +23,6 @@ import AddControl from "./components/AddControl/AddControl.js";
 import Control from "./components/Controls/Control/Control.js";
 import Controls from "./components/Controls/Controls.js"
 
-//socket
-import io from 'socket.io-client';
-
 // css
 import "./App.css";
 
@@ -33,16 +30,12 @@ import "./App.css";
 //react-router-dom
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
-
 
 function App() {
 
 
   const [response, setResponse] = useState({});
-     const fetchUser = (user) => {
+    const fetchUser = (user) => {
     setResponse(user)
     console.log(response)
   }
@@ -58,7 +51,7 @@ function App() {
   
   if (response._id) {
 
-      socket.emit('user_connect', response._id)
+      
 
   return (
     <Router>

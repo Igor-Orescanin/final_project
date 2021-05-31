@@ -2,12 +2,9 @@
 import React, { useState, useEffect } from "react";
 
 //axios
-import * as api from "../../api";
+import * as api from "../../api";//socket
 
-//socket
 import io from 'socket.io-client';
-
-
 
 //import ShowDevices from "./Device/ShowDevices.js";
 import Light from "./Light/Light.js";
@@ -51,7 +48,6 @@ const theme = createMuiTheme({
     },
   },
 });
-
 //socket
 const ENDPOINT = "http://localhost:3005";
 const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
@@ -63,12 +59,13 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const device = props.device
+  const {device} = props
 
   //a hook
   const [allLights, setAllLights] = useState("");
 
   //socket
+ 
   socket.on("gpioStatus", status=>{
     console.log("incomming status", status)
     let index = allLights.findIndex(obj=>obj.gpio === status.gpio)
@@ -81,10 +78,9 @@ const Lights = (props) => {
 
   // to get the data for databace
   useEffect(() => {
+    socket.emit('user_connect', device.userId)
     getLights();
-    return()=>{
-      socket.disconnect()
-    }
+   
   }, []);
 
   const getLights = async () => {
@@ -111,7 +107,7 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights[0].lightsButton.map((light) => (
-              <Light   lightObject={light} /> 
+              <Light   lightObject={light} deviceSerialNumber={device._id} socket={socket} /> 
               ))
             )}
 
