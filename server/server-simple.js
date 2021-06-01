@@ -69,8 +69,7 @@ io.on('connection', (socket) => {
   let serialNumber;
 
   socket.on('device_connected', (deviceId) => {
-    logger.log('Device connected');
-
+    logger.log('Device connected')
     socket.on('sensorData', async (sensorReading) => {
       try {
         // logger.log(`Received sensor readings`);
