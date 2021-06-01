@@ -79,12 +79,14 @@ const options = {
         toolbar: {
             show: false,
         },
+        
     },
     dataLabels: {
-        enabled: false
+        enabled: false,
     },
+    colors: ["#008CA7"],
     stroke: {
-        curve: 'smooth'
+        curve: 'smooth',
     },
     xaxis: {
         //type: 'datetime',
