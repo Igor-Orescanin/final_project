@@ -80,7 +80,6 @@ const Lights = (props) => {
   useEffect(() => {
     socket.emit('user_connect', device.userId)
     getLights();
-   
   }, []);
 
   const getLights = async () => {
@@ -107,7 +106,7 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights[0].lightsButton.map((light) => (
-              <Light   lightObject={light} deviceSerialNumber={device._id} socket={socket} /> 
+              <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} /> 
               ))
             )}
 

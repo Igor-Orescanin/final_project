@@ -76,7 +76,7 @@ const Light = (props) => {
 
     const socket = props.socket
 
-    const deviceSerialNumber = props.deviceSerialNumber
+    const device_id = props.device_id
     //a hook 
     // const [light, setLight] = useState();
 
@@ -102,7 +102,7 @@ const Light = (props) => {
     const [value, setValue] = useState('');
 
     const lightHandler = (e) =>{
-        socket.emit("switchStatusLight", {gpio: light.gpio, deviceSerialNumber: deviceSerialNumber, forButtons:"Light"}) 
+        socket.emit("switchStatusLight", {gpio: light.gpio, device_id: device_id, forButtons:"Light"}) 
     }
 
     return (

@@ -122,8 +122,9 @@ io.on('connect', (socket) => {
    
     //console.log(data);
     //FINDING THE DEVICE WITH SERIAL NUMBER
-    const device = await Device.findOne({ serialNumber: deviceId }).exec();
-    console.log(device.lightsButton)
+    
+        const device = await Device.findOne({ serialNumber: deviceId }).exec();
+    console.log(device)
     // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     if (device.hasLight) {
 
@@ -142,19 +143,17 @@ io.on('connect', (socket) => {
     }
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     
-    
     socket.on('rpiStatusLight', (data) => {
       console.log("Incomming message from Device ", data)
       Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true }).then(res => {
-        socket.to(device.userId).emit('gpioStatus', data)
-        socket.emit('gpioStatus', data)
+        socket.to(device.userId).emit('gpioStatus', data)     // ???????????????????
+        socket.emit('gpioStatus', data)   // ???????????????????
         console.log(device.userId,'userid')
 
       }).catch(err => {
         console.log(err)
         socket.to(device.userId).emit("error", error)
       })
-     
     });
 
 
@@ -217,10 +216,10 @@ socket.on('user_connect', userId =>{
 //   socket.to("ID5000").emit('gpioStatus', data)
 // })
 socket.on('switchStatusLight', (data)=>{
-  console.log('incomming Order drom User',data)
+  console.log('incomming Order from User',data)
   let {gpio} = data;
-  let {deviceSerialNumber} = data
-  Device.findById(deviceSerialNumber).then(res => res.lightsButton.forEach(button => {
+  let {device_id} = data
+  Device.findById(device_id).then(res => res.lightsButton.forEach(button => {
     console.log(button.gpio)
         if(button.gpio === parseInt(gpio)){
           socket.to(res.serialNumber).emit("switchStatus", {button: button, forButtons: data.forButtons})
