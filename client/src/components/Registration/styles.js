@@ -66,7 +66,7 @@ export default makeStyles((theme) => ({
   },
 
   dialog:{
-   justifyContent:'center'
+   justifyContent:'center',
    },
 
 link:{

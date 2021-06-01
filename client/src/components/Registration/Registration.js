@@ -29,6 +29,8 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
+  DialogContentText,
+  DialogContent,
 } from "@material-ui/core";
 
 //change color as a theme
@@ -45,6 +47,11 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiDialogContent:{
+      root:{
+        textAlign:'center',
+      },
+    },
     MuiDialog: {
       paper: {
         borderWidth: 2,
@@ -292,6 +299,11 @@ const Registration = (props) => {
                 <DialogTitle id="alert-dialog-title">
                   {!error && <div> {success ? success : ""}</div>}
                 </DialogTitle>
+                <DialogContent>
+                <DialogContentText>
+                  Pleace verify your email.
+                </DialogContentText>
+                </DialogContent>
                 <DialogActions className={classes.dialog}>
                   <Button onClick={handleClose} color="primary" autoFocus>
                     OK
