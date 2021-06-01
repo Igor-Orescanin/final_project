@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // style
 import { StylesProvider } from "@material-ui/core/styles";
@@ -63,6 +63,22 @@ const LogIn = (props) => {
   const [open, setOpen] = React.useState(true);
   const fetchUser = props.fetchUser;
 
+  const userId = props.userId
+  const fetchDevice = props.fetchDevice
+  const [allDevices, setAllDevices] = useState([]);
+
+  // to get the data for databace
+  useEffect(() => {
+    getDevices();
+  }, []);
+
+
+
+  const getDevices = async () => {
+    const { data } = await api.fetchDevices(userId);
+    setAllDevices(data);
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -82,10 +98,17 @@ const LogIn = (props) => {
           localStorage.setItem("token", response.data.token);
           console.log(response.data)
           fetchUser(response.data)
-
-          history.push({
-               pathname: "/devices",
-             })
+          console.log(allDevices)
+          if(!allDevices.length ){
+            console.log(allDevices)
+            history.push({
+             pathname: "/adddevice",
+            })
+          }else{
+            history.push({
+             pathname: "/devices",
+            })
+          }
         }
       })
       .catch((err) => {

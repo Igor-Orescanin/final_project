@@ -26,6 +26,9 @@ import {
   Avatar,
   TextField,
   Link,
+  Dialog,
+  DialogActions,
+  DialogTitle,
 } from "@material-ui/core";
 
 //change color as a theme
@@ -39,6 +42,16 @@ const theme = createMuiTheme({
       main: "#0C9EB5",
       dark: "#008CA7",
       contrastText: "#fff",
+    },
+  },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        borderWidth: 2,
+        borderRadius: 4,
+        borderColor: "#007982",
+        borderStyle: "solid",
+      },
     },
   },
 });
@@ -67,7 +80,7 @@ const validationSchema = yup.object({
 //__________________________________________________________start
 
 const Registration = (props) => {
-  const fetchUser = props.fetchUser
+  const fetchUser = props.fetchUser;
   const classes = useStyles();
   const { history } = props;
 
@@ -85,8 +98,9 @@ const Registration = (props) => {
           setError(res.data.msg);
           setSuccess(null);
         } else if (res.data.msg === "Thanks for registering") {
-          fetchUser(res.data.user)
+          fetchUser(res.data.user);
           setError(null);
+          setOpen(true);
           setSuccess(res.data.msg);
           formik.resetForm();
           // history.push({
@@ -97,37 +111,45 @@ const Registration = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }
-
-
-
+  };
 
   const formik = useFormik({
-    initialValues: { username: "", email: "", password: "", confirmPassword: "", },
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
     validateOnBlur: true,
     onSubmit,
     validationSchema: validationSchema,
   });
 
-   //lengh of character
-   const CHARACTER_LIMIT = 15;
+  //lengh of character
+  const CHARACTER_LIMIT = 15;
+
+  const [open, setOpen] = useState(false);
+
+  //  const handleClickOpen = () => {
+  //    setOpen(true);
+  //  };
+
+  const handleClose = () => {
+    history.push({
+      pathname: "/",
+    });
+  };
 
   return (
-
     <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
-            <Typography
-              className={classes.typography}
-            >
-              Registration
-            </Typography>
+            <Typography className={classes.typography}>Registration</Typography>
 
             <Avatar className={classes.avatar} />
 
             <form className={classes.form} onSubmit={formik.handleSubmit}>
-
               <TextField
                 value={formik.values.username}
                 onChange={formik.handleChange}
@@ -139,13 +161,19 @@ const Registration = (props) => {
                 label="User Name"
                 name="username"
                 size="small"
-                error={formik.touched.username && Boolean(formik.errors.username)}
-                helperText={formik.touched.username && formik.errors.username ? formik.errors.username : ""}
+                error={
+                  formik.touched.username && Boolean(formik.errors.username)
+                }
+                helperText={
+                  formik.touched.username && formik.errors.username
+                    ? formik.errors.username
+                    : ""
+                }
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 inputProps={{
-                  maxLength: CHARACTER_LIMIT
+                  maxLength: CHARACTER_LIMIT,
                 }}
                 InputProps={{
                   classes: {
@@ -155,7 +183,6 @@ const Registration = (props) => {
                   },
                 }}
               />
-
 
               <TextField
                 value={formik.values.email}
@@ -169,7 +196,11 @@ const Registration = (props) => {
                 name="email"
                 size="small"
                 error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ""}
+                helperText={
+                  formik.touched.email && formik.errors.email
+                    ? formik.errors.email
+                    : ""
+                }
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -182,7 +213,9 @@ const Registration = (props) => {
                 }}
               />
               {/*  message "Mail Exist" from backend usersController.js */}
-              {!success && <div className={classes.error}> {error ? error : ""}</div>}
+              {!success && (
+                <div className={classes.error}> {error ? error : ""}</div>
+              )}
 
               <TextField
                 value={formik.values.password}
@@ -196,8 +229,14 @@ const Registration = (props) => {
                 name="password"
                 type="password"
                 size="small"
-                error={formik.touched.password && Boolean(formik.errors.password)}
-                helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ""}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={
+                  formik.touched.password && formik.errors.password
+                    ? formik.errors.password
+                    : ""
+                }
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -222,8 +261,16 @@ const Registration = (props) => {
                 name="confirmPassword"
                 type="password"
                 size="small"
-                error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-                helperText={formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : ""}
+                error={
+                  formik.touched.confirmPassword &&
+                  Boolean(formik.errors.confirmPassword)
+                }
+                helperText={
+                  formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword
+                    ? formik.errors.confirmPassword
+                    : ""
+                }
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -236,10 +283,24 @@ const Registration = (props) => {
                 }}
               />
 
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {!error && <div> {success ? success : ""}</div>}
+                </DialogTitle>
+                <DialogActions className={classes.dialog}>
+                  <Button onClick={handleClose} color="primary" autoFocus>
+                    OK
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
               {/*  message "Thanks for registering" from backend usersController.js */}
-              {!error && <div> {success ? success : ""}</div>}
-
-
+              {/* {!error && <div> {success ? success : ""}</div>} */}
 
               <Button
                 className={classes.button}
@@ -257,23 +318,15 @@ const Registration = (props) => {
                 variant="body2"
               >
                 Go back
-                </Link>
+              </Link>
             </form>
           </div>
 
           <div className={classes.footer}></div>
-          <div>
-
-          </div>
-
-
-
+          <div></div>
         </Container>
-
       </ThemeProvider>
-
     </StylesProvider>
-
   );
 };
 

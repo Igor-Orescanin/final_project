@@ -2,7 +2,7 @@
 import React, { useState} from "react";
 
 import ControlOff from "../../../image/light_off.svg";
-import ControlOn from "../../../image/light_off.svg";
+import ControlOn from "../../../image/light_on.svg";
 
 // axios
 import * as api from "../../../api";

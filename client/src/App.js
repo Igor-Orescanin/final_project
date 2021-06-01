@@ -61,7 +61,7 @@ function App() {
   return (
     <Switch>
       <div className="app">
-        <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} />}></Route>
+        <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} userId={response._id} fetchDevice={fetchDevice} device={device}/>}></Route>
         <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
         <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
