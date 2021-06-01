@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from "../../image/water2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
- 
+
     container: {
         display: "flex",
         flexDirection: "column",
@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
         fontWeight: "bold",
         marginTop: "120px",
       },
-    
+
       typographyInfo1:{
         zIndex: "-2",
         marginRight:'140px',
@@ -39,12 +39,19 @@ export default makeStyles((theme) => ({
         fontSize: "12px",
         fontFamily: ('Roboto', 'sans-serif'),
       },
-    
+
       typographyInfo:{
         fontSize: "12px",
         fontFamily: ('Roboto', 'sans-serif'),
         paddingLeft:'37px',
         paddingRight:'37px',
+      },
+      typographyInfoRed:{
+        fontSize: "12px",
+        fontFamily: ('Roboto', 'sans-serif'),
+        paddingLeft:'37px',
+        paddingRight:'37px',
+        color: "#960524",
       },
       typographyInfo2:{
         fontSize: "15px",
@@ -54,7 +61,7 @@ export default makeStyles((theme) => ({
         paddingRight:'37px',
         color: "#008CA7",
       },
-    
+
       iconButton:{
         color:'#008CA7',
         marginTop:'20px',
@@ -71,14 +78,14 @@ export default makeStyles((theme) => ({
         paddingTop: "9px",
         paddingBottom: "7px",
       },
- 
+
       alertTitle:{
         color:'red',
         textAlign:'center',
       },
- 
- 
- 
+
+
+
     footer: {
     zIndex: "-1",
     position: "fixed",

@@ -73,7 +73,6 @@ const Devices = (props) => {
   }
 
   const fetchDevice = props.fetchDevice
-  console.log(fetchDevice);
 
   return (
 
@@ -82,8 +81,8 @@ const Devices = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your devices</Typography>
+            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Your devices</Typography>
           </div>
           <div className={classes.paper}>
 
