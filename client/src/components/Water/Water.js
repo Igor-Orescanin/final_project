@@ -219,7 +219,7 @@ const Water = (props) => {
       // colors: ["#30D4DE"],
       type: "gradient",
       gradient: {
-        gradientToColors: (waterLevelClean <= cleanAlertThreshold ? ["#9c1335"] : ["#30D4DE"]),
+        gradientToColors: (waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? ["#9c1335"] : ["#30D4DE"]),
         shadeIntensity: 1,
         opacityFrom: 1,
         opacityTo: 2,
@@ -261,7 +261,7 @@ const Water = (props) => {
         dataLabels: {
           name: {
             // offsetY: 20,
-            color: (waterLevelGrey >= wasteAlertThreshold ? "#9c1335" : "#008CA7"),
+            color: (waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? "#9c1335" : "#008CA7"),
 
           },
         },
