@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
         console.log(rpiConnected.isConnected);
 
         if (sensorReading.label === "CLEAN") {
-          if (sensorReading.levelPercentage <= device.cleanAlertThreshold) {
+          if (sensorReading.levelPercentage <= device.cleanAlertThreshold && device.cleanAlertThreshold != 0) {
             let message = `ALERT Clean water level tank is lower than ${device.cleanAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {
@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
           }
 
         } else if (sensorReading.label === "WASTE") {
-          if (sensorReading.levelPercentage >= device.wasteAlertThreshold) {
+          if (sensorReading.levelPercentage >= device.wasteAlertThreshold && device.wasteAlertThreshold != 0) {
             let message = `ALERT Grey water level tank is higher than ${device.wasteAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {

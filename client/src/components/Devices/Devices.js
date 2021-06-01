@@ -56,6 +56,7 @@ const Devices = (props) => {
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
+  console.log(allDevices);
   // to get the data for databace
   useEffect(() => {
     getDevices();
