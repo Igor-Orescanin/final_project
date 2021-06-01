@@ -307,6 +307,13 @@ const Water = (props) => {
                   type="radialBar"
                   height={250}
                 />
+
+              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+
+                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
+
+              </Typography>
+
                 <ReactApexChart
                   options={options2}
                   series={waterLevelGrey}
@@ -338,6 +345,7 @@ const Water = (props) => {
                 Information
               </Typography>
               <Paper className={classes.paper2}>
+
               <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
                 {/* <Typography className={classes.typographyInfo} > */}
                   Your Freshwater is by {waterLevelClean}%
@@ -383,7 +391,7 @@ const Water = (props) => {
                     </Button>
               </DialogActions>
             </Dialog>
-              {/* {classes.footer}> */}
+
           </>
 
             <div className={classes.footer}></div>
