@@ -30,11 +30,12 @@ function EmailAlert(props) {
     const {device} = props ;
     const deviceId = device._id;
 
-    const classes = useStyles();
-    const [cleanAlertThreshold, setCleanAlertThreshold] = useState('20');
-    const [wasteAlertThreshold, setWasteAlertThreshold] = useState('80');
+    let cleanAlertThresholdProps = props.device.cleanAlertThreshold;
+    let wasteAlertThresholdProps = props.device.wasteAlertThreshold
 
-    // console.log(freshWater, grayWater);
+    const classes = useStyles();
+    let [cleanAlertThreshold, setCleanAlertThreshold] = useState(cleanAlertThresholdProps);
+    const [wasteAlertThreshold, setWasteAlertThreshold] = useState(wasteAlertThresholdProps);
 
     const handleChangeFresh = (event) => {
         setCleanAlertThreshold(event.target.value);
@@ -47,6 +48,7 @@ function EmailAlert(props) {
 
     const callApi = () => {
         console.log(cleanAlertThreshold, wasteAlertThreshold);
+
         api.updateEmailAlert(deviceId, { cleanAlertThreshold: cleanAlertThreshold, wasteAlertThreshold: wasteAlertThreshold }).then((res) => {
             console.log(res);
         })
@@ -86,7 +88,7 @@ function EmailAlert(props) {
                                     },
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value={0}>
                                     <em>None</em>
                                 </MenuItem>
                                 <MenuItem value={10}>10%</MenuItem>
@@ -117,7 +119,7 @@ function EmailAlert(props) {
                                     },
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value={0}>
                                     <em>None</em>
                                 </MenuItem>
                                 <MenuItem value={50}>50%</MenuItem>
@@ -128,7 +130,8 @@ function EmailAlert(props) {
                     </Typography>
 
                     <Typography className={classes.notification} variant="h6" component="h6">
-                        Notification goes to your Email</Typography>
+                        {cleanAlertThreshold === 0 && wasteAlertThreshold === 0 ? "Email alert disable" : "Notification goes to your Email"}
+                    </Typography>
 
                     <Button
                         onClick={callApi}
