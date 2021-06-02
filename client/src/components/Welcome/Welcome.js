@@ -73,7 +73,7 @@ const Welcome = (props) => {
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() =>  history.push(device.hasControl ? "/controls" : "/addcontrol")}
+            onClick={() =>  history.push(device.hasControl ? "/devices" : "/adddevice")}
           >
             USB Devices
           </Button>

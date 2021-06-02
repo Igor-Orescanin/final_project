@@ -70,15 +70,15 @@ function App() {
         <Route path="/monthly" component={Monthly}></Route>
         <Route path="/setting" render={(props) => <Setting {...props} username={response.username} />}></Route>
 
-        <Route path="/adddevice" render={(props) => <AddDevice {...props} userId={response._id} username={response.username} />}></Route>
-        <Route path="/devices" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>
+        <Route path="/addhub" render={(props) => <AddDevice {...props} userId={response._id} username={response.username} />}></Route>
+        <Route path="/hubs" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} username={response.username} />}></Route>
 
         <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username}/>}></Route>
         <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username}/>}></Route>
 
-        <Route path="/controls" render={(props) => <Controls {...props} device={device} username={response.username}/>}></Route>
-        <Route path="/addcontrols" render={(props) => <AddControl {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username}/>}></Route>
 
         <Route path="/conditions" component={Conditions}></Route>
         <Route path="/impressum" component={Impressum}></Route>

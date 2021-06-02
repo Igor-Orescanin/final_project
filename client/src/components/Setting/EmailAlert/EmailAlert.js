@@ -84,10 +84,12 @@ function EmailAlert(props) {
 
   const handleChangeFresh = (event) => {
     setCleanAlertThreshold(event.target.value);
+    console.log(cleanAlertThreshold)
   };
 
   const handleChangeGray = (event) => {
     setWasteAlertThreshold(event.target.value);
+    console.log(wasteAlertThreshold)
   };
 
   const callApi = () => {
@@ -103,6 +105,8 @@ function EmailAlert(props) {
       });
       history.push({
         pathname: "/water",
+        state: { cleanAlertThreshold: cleanAlertThreshold,
+        wasteAlertThreshold: wasteAlertThreshold,}
       })
   };
 
