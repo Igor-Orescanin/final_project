@@ -25,6 +25,8 @@ import * as api from "../../../api/index";
 
 import Navbar from "../../Nav/Navbar";
 
+import { useLocation } from "react-router-dom";
+
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
 
@@ -68,17 +70,29 @@ const theme = createMuiTheme({
 
 function EmailAlert(props) {
   const { history } = props;
+
   const { device } = props;
+
+  const location = useLocation();
+
   const deviceId = device._id;
 
-  let cleanAlertThresholdProps = props.device.cleanAlertThreshold;
-  let wasteAlertThresholdProps = props.device.wasteAlertThreshold;
+  let cleanAlertThresholdProps;
+  let wasteAlertThresholdProps;
+
+  if (location.state != undefined) {
+    cleanAlertThresholdProps = props.location.state.cleanAlertThreshold;
+    wasteAlertThresholdProps = props.location.state.wasteAlertThreshold;
+  } else {
+    cleanAlertThresholdProps = props.device.cleanAlertThreshold;
+    wasteAlertThresholdProps = props.device.wasteAlertThreshold;
+  }
 
   const classes = useStyles();
   let [cleanAlertThreshold, setCleanAlertThreshold] = useState(
     cleanAlertThresholdProps
   );
-  const [wasteAlertThreshold, setWasteAlertThreshold] = useState(
+  let [wasteAlertThreshold, setWasteAlertThreshold] = useState(
     wasteAlertThresholdProps
   );
 
@@ -103,11 +117,13 @@ function EmailAlert(props) {
       .then((res) => {
         console.log(res);
       });
-      history.push({
-        pathname: "/water",
-        state: { cleanAlertThreshold: cleanAlertThreshold,
-        wasteAlertThreshold: wasteAlertThreshold,}
-      })
+    history.push({
+      pathname: "/water",
+      state: {
+        cleanAlertThreshold,
+        wasteAlertThreshold,
+      }
+    })
   };
 
   const [open, setOpen] = useState(false);

@@ -43,6 +43,8 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 import Navbar from '../Nav/Navbar';
 
+import { useLocation } from "react-router-dom";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -79,15 +81,26 @@ const Water = (props) => {
   const { history } = props;
   const classes = useStyles();
 
+  const location = useLocation();
 
   const username = props.username;
 
-  let cleanAlertThreshold = props.device.cleanAlertThreshold;
-  let wasteAlertThreshold = props.device.wasteAlertThreshold;
+  let cleanAlertThreshold;
+  let wasteAlertThreshold;
 
-  //waterLevel
+  if (location.state != undefined) {
+    cleanAlertThreshold = props.location.state.cleanAlertThreshold;
+    wasteAlertThreshold = props.location.state.wasteAlertThreshold;
+  } else {
+    cleanAlertThreshold = props.device.cleanAlertThreshold;
+    wasteAlertThreshold = props.device.wasteAlertThreshold;
+  }
+
+  console.log(location.state === undefined)
+
   const [waterLevelClean, setWaterLevelClean] = useState([]);
   const [waterLevelGrey, setWaterLevelGrey] = useState([]);
+
 
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
@@ -127,6 +140,7 @@ const Water = (props) => {
 
           //var waterLevelCleanPercentage = sensorObject.levelPercentage;
           setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
+
           //setLoading(false)
           console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
@@ -140,7 +154,7 @@ const Water = (props) => {
           setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
           //var waterLevelGreyPercentage = sensorObject.levelPercentage;
           setLoading(false);
-    
+
           //console.log(waterLevelGreyPercentage)
         }
         //console.log(waterLevelCleanPercentage.levelPercentage)
@@ -219,7 +233,7 @@ const Water = (props) => {
       // colors: ["#30D4DE"],
       type: "gradient",
       gradient: {
-        gradientToColors: (waterLevelClean <= cleanAlertThreshold ? ["#9c1335"] : ["#30D4DE"]),
+        gradientToColors: (waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? ["#9c1335"] : ["#30D4DE"]),
         shadeIntensity: 1,
         opacityFrom: 1,
         opacityTo: 2,
@@ -261,7 +275,7 @@ const Water = (props) => {
         dataLabels: {
           name: {
             // offsetY: 20,
-            color: (waterLevelGrey >= wasteAlertThreshold ? "#9c1335" : "#008CA7"),
+            color: (waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? "#9c1335" : "#008CA7"),
 
           },
         },
@@ -327,7 +341,10 @@ const Water = (props) => {
                 // onClick={() => history.push("/emailalert")}
                 onClick={() => history.push({
                 pathname: "/emailalert",
-
+                  state: {
+                    cleanAlertThreshold,
+                    wasteAlertThreshold,
+                  }
                 })}
                 className={classes.button}
                 variant="contained"
@@ -371,7 +388,7 @@ const Water = (props) => {
 
 
 
-               <Dialog 
+            <Dialog
               className={classes.dialog}
               open={open}
               onClose={handleClose}
@@ -392,8 +409,8 @@ const Water = (props) => {
                     <DialogContentText id="alert-dialog-description">
                       {(waterLevelGrey <= wasteAlertThreshold? `Your Greywater is higer ${wasteAlertThreshold}%` : null)}
                       </DialogContentText>
-                  </div>: null)}              
-                 
+                </div> : null)}
+
 
 
               </DialogContent>
@@ -402,7 +419,7 @@ const Water = (props) => {
                     Close
                     </Button>
               </DialogActions>
-            </Dialog> 
+            </Dialog>
 
           </>
 
