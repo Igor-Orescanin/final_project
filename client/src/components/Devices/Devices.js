@@ -98,7 +98,7 @@ const Devices = (props) => {
 
             <Button
               onClick={() =>      history.push({
-                pathname: "/adddevice",
+                pathname: "/addhub",
                 state: {userId : userId, username: username}
                })}
               className={classes.addbutton}

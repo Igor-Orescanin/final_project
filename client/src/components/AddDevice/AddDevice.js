@@ -288,8 +288,8 @@ const AddDevice = (props) => {
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
                     Your can choose your own Device Name.
-                    If you bought a NaunetMon Device you can find the Id of the bottom of your Device 'the Device Id'.
-                    If you bought your own device pleace contact us per Email: NaunetMon.com!
+                    If you bought a <strong>Naunet</strong> Device you can find the Id of the bottom of your Device 'the Device Id'.
+                    If you bought your own device pleace contact us per Email: <strong>Naunet.com</strong>!
 
                 </DialogContentText>
                 </DialogContent>

@@ -28,7 +28,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Grid,
 } from "@material-ui/core";
 
 // icon
@@ -93,7 +92,7 @@ const Water = (props) => {
   //console.log(waterLevelGrey);
   const [loading, setLoading] = useState(false);
 
-  const [open, setOpen] = React.useState(false); // need false for start
+  const [open, setOpen] = useState(false); // need false for start
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -132,7 +131,7 @@ const Water = (props) => {
           console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
           if (sensorObject.levelPercentage <= cleanAlertThreshold) {
-            //setOpen(true);
+           setOpen(true);
           }
 
           //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
@@ -141,6 +140,7 @@ const Water = (props) => {
           setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
           //var waterLevelGreyPercentage = sensorObject.levelPercentage;
           setLoading(false);
+    
           //console.log(waterLevelGreyPercentage)
         }
         //console.log(waterLevelCleanPercentage.levelPercentage)
@@ -308,11 +308,11 @@ const Water = (props) => {
                   height={250}
                 />
 
-              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+              {/* <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
 
                 {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
 
-              </Typography>
+              </Typography> */}
 
                 <ReactApexChart
                   options={options2}
@@ -359,7 +359,19 @@ const Water = (props) => {
                 </Typography>
               </Paper>
 
-              <Dialog
+
+
+        {/* <Typography> className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+
+                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
+
+             </Typography>  */}
+
+
+
+
+
+               <Dialog 
               className={classes.dialog}
               open={open}
               onClose={handleClose}
@@ -371,17 +383,17 @@ const Water = (props) => {
                 {"!!!Alert!!!"}
               </DialogTitle>
               <DialogContent>
-
-                  <div>
+{(waterLevelClean <= cleanAlertThreshold ?   <div>
                     <DialogContentText id="alert-dialog-description">
-                      Your Freshwater is low
+                    {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
                       </DialogContentText>
-                  </div>
-                  <div>
+                  </div>: null)}
+  {(waterLevelGrey >= wasteAlertThreshold? <div>
                     <DialogContentText id="alert-dialog-description">
-                      Your Greywater is high
+                      {(waterLevelGrey <= wasteAlertThreshold? `Your Greywater is higer ${wasteAlertThreshold}%` : null)}
                       </DialogContentText>
-                  </div>
+                  </div>: null)}              
+                 
 
 
               </DialogContent>
@@ -390,7 +402,7 @@ const Water = (props) => {
                     Close
                     </Button>
               </DialogActions>
-            </Dialog>
+            </Dialog> 
 
           </>
 
