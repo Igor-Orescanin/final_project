@@ -101,6 +101,9 @@ function EmailAlert(props) {
       .then((res) => {
         console.log(res);
       });
+      history.push({
+        pathname: "/water",
+      })
   };
 
   const [open, setOpen] = useState(false);
@@ -203,10 +206,7 @@ function EmailAlert(props) {
           <div>
             <Button
               className={classes.button}
-              onClick={callApi,
-                () =>      history.push({
-                    pathname: "/water",
-                   })}
+              onClick={callApi}
               variant="contained"
               color="primary"
               type="submit"
