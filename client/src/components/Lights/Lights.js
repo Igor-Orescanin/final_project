@@ -105,7 +105,7 @@ const Lights = (props) => {
         <Container className={classes.container}>
           <div className={classes.top}>
             <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your devices</Typography>
+            <Typography className={classes.typography}>your Lights</Typography>
           </div>
           <div className={classes.paper}>
             {!allLights.length ? (
