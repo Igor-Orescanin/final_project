@@ -111,7 +111,7 @@ const AddLight = (props) => {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.hasLight ? (
+          {!device.hasLight ? (
             <Typography className={classes.typography}>
               You don't have any Lights registered in this system!
             </Typography>
@@ -120,7 +120,7 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-          {device.hasLight ? (
+          {/* {device.hasLight ? (
             <div></div>
           ) : (
             <Alert
@@ -135,7 +135,7 @@ const AddLight = (props) => {
             >
               {lightExist}
             </Alert>
-          )}
+          )} */}
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
