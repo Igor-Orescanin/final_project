@@ -85,11 +85,11 @@ const LogIn = (props) => {
             console.log(response)
              if(!response.data.length){
               history.push({
-                pathname: "/adddevice",
+                pathname: "/addhub",
                  });
              }else{
               history.push({
-               pathname: "/devices",
+               pathname: "/hubs",
                });
            }
           }
