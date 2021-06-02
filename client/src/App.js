@@ -66,23 +66,23 @@ function App() {
         <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} />}></Route>
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} />}></Route>
-        <Route path="/weekly" component={Weekly}></Route>
-        <Route path="/monthly" component={Monthly}></Route>
+        <Route path="/weekly" render={(props) => <Weekly {...props} device={device} username={response.username} />}></Route>
+        <Route path="/monthly" render={(props) => <Monthly {...props} device={device} username={response.username} />}></Route>
         <Route path="/setting" render={(props) => <Setting {...props} username={response.username} />}></Route>
 
         <Route path="/addhub" render={(props) => <AddDevice {...props} userId={response._id} username={response.username} />}></Route>
         <Route path="/hubs" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} username={response.username} />}></Route>
 
-        <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username}/>}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username} />}></Route>
 
-        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username}/>}></Route>
-        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username}/>}></Route>
+        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username} />}></Route>
+        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} />}></Route>
 
-        <Route path="/conditions" component={Conditions}></Route>
-        <Route path="/impressum" component={Impressum}></Route>
-        <Route path="/privacy" component={Privacy}></Route>
+        <Route path="/conditions" render={(props) => <Conditions {...props} device={device} username={response.username} />}></Route>
+        <Route path="/impressum" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
+        <Route path="/privacy" render={(props) => <Privacy {...props} device={device} username={response.username} />}></Route>
 
       </div>
     </Switch>

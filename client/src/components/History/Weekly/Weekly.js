@@ -204,7 +204,7 @@ const options = {
             </Typography>
             <Paper className={classes.paper2}>
               <Typography className={classes.typographyInfo}>
-                average consumption: {} 34l/day
+                average consumption: {} 27l/day
               </Typography>
               <Typography className={classes.typographyInfo}>
                 your Fresh water is by 30{}%
