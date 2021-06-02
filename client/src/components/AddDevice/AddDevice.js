@@ -122,12 +122,12 @@ const AddDevice = (props) => {
       console.log(res)
 
 
-       if(res.data.message === "Device is already assigned"){
+       if(res.data.message === "Hub is already assigned"){
        setDeviceExist(res.data.message)
 
 
 
-      } else if(res.data.message === "Device not found"){
+      } else if(res.data.message === "Hub not found"){
        setDeviceExist(res.data.message)
 
 
@@ -135,7 +135,7 @@ const AddDevice = (props) => {
       }else{
        // history.push('/devices')
          history.push({
-           pathname: "/devices",
+           pathname: "/hubs",
 
          })
        }
@@ -163,11 +163,11 @@ const AddDevice = (props) => {
 
               {allDevices.length < 1 ?
                 <Typography className={classes.typography}>
-                  You don't have any devices registered in this system!
+                  You don't have any Hubs registered in this system!
               </Typography>
                 :
                 <Typography className={classes.typography}>
-                  Register a new device in this system!
+                  Register a new Hub in this system!
               </Typography>
               }
               {deviceExist.length < 1 ? (
@@ -203,7 +203,7 @@ const AddDevice = (props) => {
                   className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
                   id="deviceName"
-                  label="Device Name"
+                  label="Hub Name"
                   variant="outlined"
                   name="deviceName"
                   type="text"
@@ -233,7 +233,7 @@ const AddDevice = (props) => {
                   className={`${classes.inputField} ${classes.myInputLabel}`}
                   required
                   id="serialNumber"
-                  label="Device Id"
+                  label="Hub Id"
                   variant="outlined"
                   name="serialNumber"
                   type="text"
@@ -287,9 +287,9 @@ const AddDevice = (props) => {
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
-                    Your can choose your own Device Name.
-                    If you bought a <strong>Naunet</strong> Device you can find the Id of the bottom of your Device 'the Device Id'.
-                    If you bought your own device pleace contact us per Email: <strong>Naunet.com</strong>!
+                    Your can choose your own Hub Name.
+                    If you bought a <strong>Naunet</strong> Hub you can find the Id of the bottom of your Hub 'the Hub Id'.
+                    If you bought your own Hub pleace contact us per Email: <strong>Naunet.com</strong>!
 
                 </DialogContentText>
                 </DialogContent>

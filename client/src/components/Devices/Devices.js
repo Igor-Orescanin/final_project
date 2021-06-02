@@ -83,7 +83,7 @@ const Devices = (props) => {
         <Container className={classes.container}>
           <div className={classes.top}>
             <Typography className={classes.typography}>Connected</Typography>
-            <Typography className={classes.typography}>Your devices</Typography>
+            <Typography className={classes.typography}>Your Hubs</Typography>
           </div>
           <div className={classes.paper}>
 
@@ -105,7 +105,7 @@ const Devices = (props) => {
               variant="contained"
               color="primary"
             >
-              Add new Devices
+              Add new Hubs
             </Button>
           </div>
           <div className={classes.footer}></div>
