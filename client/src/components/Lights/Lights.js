@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from "react";
 
 //axios
-import * as api from "../../api";//socket
+import * as api from "../../api";
 
-import io from 'socket.io-client';
+//socket
+import io from "socket.io-client";
 
-//import ShowDevices from "./Device/ShowDevices.js";
 import Light from "./Light/Light.js";
+import Navbar from '../Nav/Navbar';
 
 // styles to use the connection
 import useStyles from "./Styles";
@@ -21,11 +22,6 @@ import {
   Typography,
   ThemeProvider,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   CircularProgress,
 } from "@material-ui/core";
 
@@ -48,9 +44,10 @@ const theme = createMuiTheme({
     },
   },
 });
+
 //socket
 const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT,{ transports: ["websocket","polling"] });
+const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
 
 const Lights = (props) => {
   //for routes
@@ -59,61 +56,76 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const {device} = props
+  const device = props.device;
 
   //a hook
   const [allLights, setAllLights] = useState("");
 
   //socket
- 
-  socket.on("gpioStatus", status=>{
-    console.log("incomming status", status)
-    let index = allLights.findIndex(obj=>obj.gpio === status.gpio)
-    if(allLights[index])
-    allLights[index].status = status.status
-    console.log()
-    setAllLights(allLights)
-    console.log(allLights)
-  })
+  socket.on("gpioStatus", (status) => {
+    console.log("incomming status", status);
+    let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
+    if (allLights[index]) allLights[index].status = status.status;
+    console.log();
+    setAllLights(allLights);
+    console.log(allLights);
+  });
 
   // to get the data for databace
   useEffect(() => {
-    socket.emit('user_connect', device.userId)
     getLights();
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
     setAllLights(data);
-    console.log(data[0].lightsButton)
-  }
+    console.log(data[0].lightsButton);
+  };
+
+
+  // const lightDeleteHandler = async (_id) => {
+  //   console.log(_id);
+  //   await api.deleteLight(_id);
+  //   getLights();
+  // } maybe for the delete but not sure
+
+
+  const fetchDevice = props.fetchDevice
+
 
 
 
   return (
     <>
-
+       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {/* <div className={classes.paper}> */}
           <div className={classes.top}>
             <Typography className={classes.typography}>connected</Typography>
             <Typography className={classes.typography}>your devices</Typography>
           </div>
           <div className={classes.paper}>
-
             {!allLights.length ? (
               <CircularProgress />
             ) : (
               allLights[0].lightsButton.map((light) => (
-              <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} /> 
+                <Light lightObject={light} 
+                // // key={light._id}  lightDeleted={() => lightDeleteHandler(light._id)} fetchLight={() => fetchLight(light._id)
+                // } maybe for delete but not working
+                
+                />
               ))
             )}
 
             <Button
-              onClick={() =>      history.push({
-                pathname: "/addlight",
-               })}
+              onClick={() =>
+                history.push({
+                  pathname: "/addlight",
+                })
+              }
               className={classes.addbutton}
               variant="contained"
               color="primary"

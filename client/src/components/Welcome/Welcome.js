@@ -14,6 +14,8 @@ import { useHistory } from "react-router-dom";
 // css
 import "../../App.css";
 
+import Navbar from '../Nav/Navbar';
+
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
@@ -35,21 +37,20 @@ const Welcome = (props) => {
   const classes = useStyles();
 
   // const device = props.deviceObject
-  // console.log(device)  
-//should be the same 
+  // console.log(device)
+//should be the same
 
 
   const device = props.device;
   console.log(device);
 
-
-
-  
   return (
     <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
+
           <Button
             variant="contained"
             className={classes.button}
@@ -72,12 +73,13 @@ const Welcome = (props) => {
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() =>  history.push(device.hasControl ? "/controls" : "/addcontrol")}
+            onClick={() =>  history.push(device.hasControl ? "/devices" : "/adddevice")}
           >
             USB Devices
           </Button>
 
           <div className={classes.footer}></div>
+
         </Container>
       </ThemeProvider>
     </>

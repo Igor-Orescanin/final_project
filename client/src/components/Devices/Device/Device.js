@@ -71,11 +71,10 @@ const Device = (props) => { //props.deviceObject.deviceId
   const classes = useStyles();
 
   const username = props.username
-  console.log(props.username)
 
   const device = props.deviceObject
-  console.log(device)
- 
+  const serialNumber = props.serialNumber;
+
   //a hook
   //const [device, setDevice] = useState();
 
@@ -104,12 +103,11 @@ const Device = (props) => { //props.deviceObject.deviceId
   };
 
  const sentToApp =()=>{
-    props.fetchDevice()
+   props.fetchDevice(device)
      history.push({
        pathname: "/welcome",
-       state: device
-     })
 
+     })
 
  }
 
@@ -120,12 +118,16 @@ const Device = (props) => { //props.deviceObject.deviceId
         <Container className={classes.container}>
           <div className={classes.groupButton}>
             {device.isConnected ? <CheckCircleOutlineIcon className={classes.checkIcon} /> : <NotInterestedIcon className={classes.noIcon} />}
-
+            {console.log(device.serialNumber)}
             <Button
               onClick={sentToApp}
               className={classes.button}
              variant="contained"
               color="primary"
+
+
+              disabled={device.serialNumber === "ac:67:5d:62:ec:e7" ? null : "true"}
+
             >
              { device.deviceName }
 

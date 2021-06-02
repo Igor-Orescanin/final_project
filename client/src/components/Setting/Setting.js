@@ -1,78 +1,85 @@
-
 // react
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 
 //styles to use the connection
 import useStyles from "./styles";
 
-//css
-import '../../App.css';
+// material-ui styles
+import { Container, Button, ThemeProvider } from "@material-ui/core";
+// import { StylesProvider } from "@material-ui/core/styles";
 
-
-import { StylesProvider } from "@material-ui/core/styles";
+// to connect the routes
 import { useHistory } from "react-router-dom";
 
+//css
+import "../../App.css";
 
-
-
+import Navbar from "../Nav/Navbar";
 
 // material-ui
-import { Container, ThemeProvider, Typography, TextField } from "@material-ui/core";
-import Button from "@material-ui/core/Button"; //button
+
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
+    },
+  },
+});
 
 function Light(props) {
+  const classes = useStyles();
 
-    const classes = useStyles();
+  const { history } = props;
 
-    const { history } = props;
+  return (
+    <>
+      <Navbar username={props.username}> </Navbar>
+      <ThemeProvider theme={theme}>
 
-    return (
-        <>
-            <StylesProvider injectFirst>
+        <Container className={classes.container}>
+      
+                <Button
+                onClick={() => history.push("/conditions")}
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Conditions
+              </Button>
 
-                <Container className={classes.container} >
-                    <h1 className={classes.heading}>Setting</h1>
-                    <div className={classes.paper}>
+              <Button
+                onClick={() => history.push("/privacy")}
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Privacy
+              </Button>
 
-                        <div className={classes.buttons}>
-                            <Button
-                                onClick={() => history.push("/emailalert")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'>Water</Button>
+              <Button
+                onClick={() => history.push("/impressum")}
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Impressum
+              </Button>
 
-                            <Button
-                                onClick={() => history.push("/light")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'
-                            >Light</Button>
-
-                            <Button
-                                onClick={() => history.push("/devices")}
-                                className={classes.button}
-                                variant="contained"
-                                color="primary"
-                                type='submit'
-                            >Devices</Button>
-
-                        </div>
-
-
-                        <div className={classes.footer}></div>
-                    </div>
-                </Container>
-
-
-            </StylesProvider>
-        </>
-    )
+            <div className={classes.footer}></div>
+     
+        </Container>
+      </ThemeProvider>
+    </>
+  );
 }
 
-export default Light
+export default Light;

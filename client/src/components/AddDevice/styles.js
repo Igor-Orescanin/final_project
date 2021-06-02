@@ -83,11 +83,11 @@ export default makeStyles((theme) => ({
     borderRadius: "4px",
     fontSize: "15px",
     marginTop: "30px",
-    backgroundColor:'white',
+    backgroundColor: "white",
     textTransform: "none",
-    '&:hover': {
-      backgroundColor: '#0C9EB5',
-      color:'white',
+    "&:hover": {
+      backgroundColor: "#0C9EB5",
+      color: "white",
     },
   },
 

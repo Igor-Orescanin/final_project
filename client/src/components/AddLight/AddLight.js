@@ -1,6 +1,8 @@
 // react
 import React, { useState, useEffect } from "react";
 
+import Navbar from '../Nav/Navbar';
+
 //axios';
 import * as api from "../../api";
 
@@ -79,20 +81,11 @@ const AddLight = (props) => {
     setOpen(false);
   };
 
-  //a hook
-  const [allLights, setAllLights] = useState([]);
-
-  // to get the data for databace
-  useEffect(async () => {
-    // const { data } = await api.fetchLights(deviseId);
-    // setAllLights(data);
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     api.addLight(device.serialNumber, formData)
-      .then((res) => {
+    .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -100,10 +93,9 @@ const AddLight = (props) => {
         // } else if (res.data.message === "Gpio not found") {
         //   //   setLightExist(res.data.message);
         // } else {
-           history.push({
-             pathname: "/lights",
-           });
-        
+        history.push({
+          pathname: "/lights",
+        });
       })
       .catch((error) => {
         if (error) {
@@ -116,6 +108,7 @@ const AddLight = (props) => {
 
   return (
     <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           {device.hasLight ? (
@@ -143,91 +136,77 @@ const AddLight = (props) => {
               {lightExist}
             </Alert>
           )}
-
-          <form  className={classes.form} onSubmit={handleSubmit}>
-          <Paper className={classes.gpioheading}>
-          <Typography className={classes.typographyInfo1}>
-          Choose a proper GPIO pin
-            </Typography>
-          </Paper>  
-          <Paper className={classes.paper2}>
-            <Typography className={classes.typographyInfo}>
-              17
-            </Typography>
-            <Typography className={classes.typographyInfo}>
-              20
-            </Typography>
-            <Typography className={classes.typographyInfo}>
-              23
-            </Typography>
-            <Typography className={classes.typographyInfo}>
-             27
-            </Typography>
-          </Paper>
-              <div className={classes.group}> 
-          <Typography className={classes.typography1}>
-          Name
-          </Typography>
-          <TextField
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      name: e.target.value,
-                    })
-                  }
-                  className={classes.inputField}
-                  required
-                  id="name"
-                  variant="outlined"
-                  name="name"
-                  type="text"
-                  size="small"
-                  inputProps={{
-                    maxLength: CHARACTER_LIMIT
-                  }}
-                  InputLabelProps={{
-                    style: { color: "#007982" },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.root,
-                      focused: classes.focused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
-                </div>
-                <div className={classes.group}> 
-  <Typography className={classes.typography1}>
-           GPIO
-          </Typography>
-                <TextField
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      gpio: e.target.value
-                    })
-                  }
-                  className={classes.inputField}
-                  required
-                  id="gpio"
-                  variant="outlined"
-                  name="gpio"
-                  type="text"
-                  size="small"
-                  InputLabelProps={{
-                    style: { color: "#007982" },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.root,
-                      focused: classes.focused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
-</div>
-
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Paper className={classes.gpioheading}>
+              <Typography className={classes.typographyInfo1}>
+                Choose a proper GPIO pin
+              </Typography>
+            </Paper>
+            <Paper className={classes.paper2}>
+              <Typography className={classes.typographyInfo}>17</Typography>
+              <Typography className={classes.typographyInfo}>20</Typography>
+              <Typography className={classes.typographyInfo}>23</Typography>
+              <Typography className={classes.typographyInfo}>27</Typography>
+            </Paper>
+            <div className={classes.group}>
+              <Typography className={classes.typography1}>Name</Typography>
+              <TextField
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    name: e.target.value,
+                  })
+                }
+                className={classes.inputField}
+                required
+                id="name"
+                variant="outlined"
+                name="name"
+                type="text"
+                size="small"
+                inputProps={{
+                  maxLength: CHARACTER_LIMIT,
+                }}
+                InputLabelProps={{
+                  style: { color: "#007982" },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+            </div>
+            <div className={classes.group}>
+              <Typography className={classes.typography1}>GPIO</Typography>
+              <TextField
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    gpio: e.target.value,
+                  })
+                }
+                className={classes.inputField}
+                required
+                id="gpio"
+                variant="outlined"
+                name="gpio"
+                type="text"
+                size="small"
+                InputLabelProps={{
+                  style: { color: "#007982" },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+            </div>
           </form>
           <div>
             <Button
@@ -240,19 +219,16 @@ const AddLight = (props) => {
             >
               Save
             </Button>
-         
-
-          <Button
-            // onClick={handleSubmit}
-            className={classes.buttonHelp}
-            onClick={handleClickOpen}
-            variant="contained"
-            color="primary"
-            type="submit"
-            style={{ border: "2px solid" }}
-          >
-            Need help?
-          </Button>
+            <Button
+              className={classes.buttonHelp}
+              onClick={handleClickOpen}
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{ border: "2px solid" }}
+            >
+              Need help?
+            </Button>
           </div>
           <Dialog
             className={classes.dialog}
@@ -278,7 +254,6 @@ const AddLight = (props) => {
               </Button>
             </DialogActions>
           </Dialog>
-
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>

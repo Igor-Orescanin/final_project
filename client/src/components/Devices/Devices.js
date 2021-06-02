@@ -13,6 +13,7 @@ import "../../App.css";
 // styles to use the connection
 import useStyles from "./styles";
 
+import Navbar from '../Nav/Navbar';
 // material-ui
 import {
   Container,
@@ -51,10 +52,11 @@ const Devices = (props) => {
   const username = props.username
   const userId = props.userId
 
-
+  console.log(props);
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
+  console.log(allDevices);
   // to get the data for databace
   useEffect(() => {
     getDevices();
@@ -71,18 +73,17 @@ const Devices = (props) => {
     getDevices();
   }
 
-
   const fetchDevice = props.fetchDevice
 
-
   return (
-    <>
 
+    <>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your devices</Typography>
+            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Your devices</Typography>
           </div>
           <div className={classes.paper}>
 
@@ -97,7 +98,7 @@ const Devices = (props) => {
 
             <Button
               onClick={() =>      history.push({
-                pathname: "/adddevice",
+                pathname: "/addhub",
                 state: {userId : userId, username: username}
                })}
               className={classes.addbutton}
@@ -110,7 +111,9 @@ const Devices = (props) => {
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
+
     </>
+
   );
 };
 

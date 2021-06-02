@@ -38,10 +38,12 @@ const DeviceSchema = new mongoose.Schema({
     unique: true
   },
   cleanAlertThreshold: {
-    type: Number
+    type: Number,
+    default: 20
   },
   wasteAlertThreshold: {
-    type: Number
+    type: Number,
+    default: 80
   },
   isConnected: {
     type: Boolean,

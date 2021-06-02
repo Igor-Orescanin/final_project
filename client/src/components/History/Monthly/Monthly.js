@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+
+import Navbar from '../../Nav/Navbar.js';
+
 // material-ui
 import {
   Container,
@@ -61,7 +64,56 @@ function Monthly(props) {
       });
   }, []);
 
-  const series = [
+
+  const series = [{
+    name: 'Water',
+    data: [7, 40, 28, 51, 42, 70, 90, 75]
+}]
+const options = {
+    title: {
+        text: 'Liter'
+    },
+    chart: {
+        height: 350,
+        type: 'area',
+        toolbar: {
+            show: false,
+        },
+        
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    colors: ["#008CA7"],
+    stroke: {
+        curve: 'smooth',
+    },
+    xaxis: {
+        //type: 'datetime',
+        categories: ['1', '4', '8', '12', '16', '24', '27', '30'],
+        /* title: {
+            text: 'Monthly',
+        }, */
+
+        /* categories: ["2018-09-19T00:00:00.000Z", "2018-09-20T01:30:00.000Z", "2018-09-21T02:30:00.000Z", "2018-09-22T03:30:00.000Z", "2018-09-23T04:30:00.000Z", "2018-09-24T05:30:00.000Z", "2018-09-25T06:30:00.000Z"] */
+    },
+    tooltip: {
+        x: {
+            format: 'dd/MM/yy HH:mm'
+        },
+    },
+    yaxis: {
+        /* title: {
+            text: 'Liter'
+        }, */
+        min: 0,
+        max: 100
+    },
+
+}
+
+
+ /*  const series = [
     {
       name: "Water",
       data: waterData,
@@ -102,10 +154,11 @@ function Monthly(props) {
       min: 0,
       max: Math.max(...waterData),
     },
-  };
+  }; */
 
   return (
     <>
+    <Navbar username={props.username}> </Navbar>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Container className={classes.container}>

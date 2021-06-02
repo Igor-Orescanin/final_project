@@ -4,8 +4,11 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-//import ShowDevices from "./Device/ShowDevices.js";
+//socket
+import io from "socket.io-client";
+
 import Control from "./Control/Control.js";
+import Navbar from '../Nav/Navbar.js';
 
 // styles to use the connection
 import useStyles from "./Styles";
@@ -19,11 +22,6 @@ import {
   Typography,
   ThemeProvider,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   CircularProgress,
 } from "@material-ui/core";
 
@@ -47,6 +45,10 @@ const theme = createMuiTheme({
   },
 });
 
+//socket
+const ENDPOINT = "http://localhost:3005";
+const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
+
 const Controls = (props) => {
   //for routes
   const { history } = props;
@@ -54,54 +56,64 @@ const Controls = (props) => {
   //for styles
   const classes = useStyles();
 
-
-  const username = props.username
-  const userId = props.userId
+  const device = props.device;
 
   //a hook
-  const [allLights, setAllLights] = useState([]);
+  const [allControls, setAllControls] = useState("");
+
+  //socket
+  socket.on("gpioStatus", (status) => {
+    console.log("incomming status", status);
+    let index = allControls.findIndex((obj) => obj.gpio === status.gpio);
+    if (allControls[index]) allControls[index].status = status.status;
+    console.log();
+    setAllControls(allControls);
+    console.log(allControls);
+  });
 
   // to get the data for databace
-  useEffect(async () => {
-   // const { data } = await api.fetchLights(deviceId);    // Igor or Maritza 
-
-   // setAllLights(data);
-
+  useEffect(() => {
+    getControls();
+    return () => {
+      socket.disconnect();
+    };
   }, []);
+
+  const getControls = async () => {
+    const { data } = await api.fetchControls(device.serialNumber);
+    setAllControls(data);
+    console.log(data[0].controlsButton);
+  };
 
   return (
     <>
-
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {/* <div className={classes.paper}> */}
           <div className={classes.top}>
             <Typography className={classes.typography}>connected</Typography>
             <Typography className={classes.typography}>your devices</Typography>
           </div>
           <div className={classes.paper}>
-
-            {!allLights.length ? (
+            {!allControls.length ? (
               <CircularProgress />
             ) : (
-              allLights.map((light) => (
-              <Control  lightObject={light} /> // Igor because Mari is not sure
-           // <Light   deviceObject={dev} username={username} />
+              allControls[0].controlsButton.map((control) => (
+                <Control controlObject={control} />
               ))
             )}
 
-            {/* here will be array of light objects */}
-
             <Button
-              onClick={() =>      history.push({
-                pathname: "/addlight",
-                state: {userId : userId, username: username}   // ?? Igor
-               })}
+              onClick={() =>
+                history.push({
+                  pathname: "/addcontrol",
+                })
+              }
               className={classes.addbutton}
               variant="contained"
               color="primary"
             >
-              Add new Lights
+              Add new Controls
             </Button>
           </div>
           <div className={classes.footer}></div>

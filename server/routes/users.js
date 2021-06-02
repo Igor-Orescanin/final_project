@@ -24,12 +24,13 @@ const {
 
 router
   .route("/")
-  .get(getUsers)   //use only for postman
-  .post(validateUser(), addUser );
+  .get(auth, getUsers)   //use only for postman
+  .post(validateUser(), addUser);
 
 router
   .route("/login")
   .post(loginUser)
+
 
 router
   .put("/forgot-password", forgotPassword)
@@ -37,14 +38,14 @@ router
 
 router
   .route("/:id")
-  .get(getUser)   //use only for postman
+  .get(auth, getUser)   //use only for postman
   .delete(auth, deleteUser)  //use only for postman
-  .put(updateUser)
+  .put(auth, updateUser)
 
 
 // ROUTE FOR ASSIGN DEVICE TO A USER
 router
   .route("/:userId/assignDevice/:serialNumber")
-  .post(assignDevice)
+  .post(auth, assignDevice)
 
 module.exports = router;

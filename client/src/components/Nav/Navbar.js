@@ -24,33 +24,41 @@ const Navbar = (props) => {
   const classes = useStyles();
   const location = useLocation();
 
-
   const username = props.username;
-  
+
   const isChart = location.pathname.includes('water');
 
   const isFixed = location.pathname.includes('water') || location.pathname.includes('weekly') || location.pathname.includes('monthly');
 
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.setItem("token", undefined);
+    history.push({
+      pathname: "/Logout"
+    })
+
+  }
 
   return (
+
     <Container
-    className={isFixed ?`${classes.navContainer}  ${classes.fixed}`:`${classes.navContainer}`}>
+      className={isFixed ? `${classes.navContainer}  ${classes.fixed}` : `${classes.navContainer}`}>
       <div className={classes.secondaryNav}>
 
         <Typography
           className={`${classes.typo} ${classes.nameOfUser}`}
         >
-          Hello {username} 
+          Hello {username}
         </Typography>
-       
+
 
         <IconButton
           className={classes.iconButton}
-          onClick={() =>   history.push({
+          onClick={() => history.push({
             pathname: "/setting",
-            state: {userId : props.userId, user: props.username},
+            state: { userId: props.userId, user: props.username },
           })
-        }
+          }
         >
           <SettingsIcon className={classes.icon} />
         </IconButton>
@@ -59,7 +67,7 @@ const Navbar = (props) => {
       <div className={classes.primaryNav}>
         <IconButton
           className={`${classes.iconButtonSec} ${classes.iconHome}`}
-          onClick={() => history.push("/devices")}
+          onClick={() => history.push("/hubs")}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>
@@ -71,19 +79,20 @@ const Navbar = (props) => {
           <AssessmentIcon className={classes.iconSec} />
           <Typography className={classes.charts}>
             Charts
-          </Typography>
+            </Typography>
         </IconButton>}
 
         <IconButton
           className={classes.iconButtonSec}
-          onClick={() => history.push("/logout")}
+          onClick={logout}
         >
           <Typography className={classes.logOut}>
             Log Out
-          </Typography>
+            </Typography>
         </IconButton>
       </div>
     </Container>
+
   );
 };
 
