@@ -200,7 +200,7 @@ const options = {
               fontSize="large"
             ></ExpandMoreIcon>
             <Typography className={classes.typographyInfo2}>
-              Water report of the week
+              Water report of 7 days
             </Typography>
             <Paper className={classes.paper2}>
               <Typography className={classes.typographyInfo}>

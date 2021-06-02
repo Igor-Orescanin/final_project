@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
 
       iconButton:{
         color:'#008CA7',
-        marginTop:'-30px',
+        marginTop:'-18px',
       }, 
       typographyInfo:{
         fontSize: "12px",

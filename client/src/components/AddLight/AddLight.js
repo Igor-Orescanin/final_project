@@ -211,11 +211,10 @@ const AddLight = (props) => {
           <div>
             <Button
               onClick={handleSubmit}
-              className={classes.buttonHelp}
+              className={classes.button}
               variant="contained"
               color="primary"
               type="submit"
-              style={{ border: "2px solid" }}
             >
               Save
             </Button>
