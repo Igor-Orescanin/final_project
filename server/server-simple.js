@@ -182,4 +182,3 @@ io.on('connection', (socket) => {
   server.listen(port, () => {
     logger.log(`Server is listening on port ${port}`);
   });
-
