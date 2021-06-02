@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // style
 import { StylesProvider } from "@material-ui/core/styles";
@@ -12,7 +12,6 @@ import "../../App.css";
 
 // styles to use the connection
 import useStyles from "./styles";
-
 
 //styles
 import {
@@ -63,29 +62,39 @@ const LogIn = (props) => {
   const [open, setOpen] = React.useState(true);
   const fetchUser = props.fetchUser;
 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-
   // handleSubmit on imputfield
   const handleSubmit = (e) => {
     e.preventDefault();
-    api
-      .loginUser(formData)
-      .then((response) => {
+    api.loginUser(formData)
+    .then((response) => {
         if (!response.data.auth) {
           console.log(response.data);
           setLoginStatus("Wrong password or email");
-          handleClickOpen()
+          handleClickOpen();
         } else {
           localStorage.setItem("token", response.data.token);
-          console.log(response.data)
-          fetchUser(response.data)
-
-          history.push({
-               pathname: "/devices",
-             })
+          console.log(response.data);
+          fetchUser(response.data);
+        //  console.log(allDevices);
+          api.fetchDevices(response.data._id).then((response) =>{
+            console.log(response)
+             if(!response.data.length){
+              history.push({
+                pathname: "/addhub",
+                 });
+             }else{
+              history.push({
+               pathname: "/hubs",
+               });
+           }
+          }
+          )
+      
         }
       })
       .catch((err) => {
@@ -98,38 +107,29 @@ const LogIn = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
-            <Typography
-              className={classes.typography}
-            >
-              Log-In
-            </Typography>
+            <Typography className={classes.typography}>Log-In</Typography>
 
-            <Avatar className={classes.avatar}/>
+            <Avatar className={classes.avatar} />
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
-
-
-              {loginStatus.length < 1 ?(
+              {loginStatus.length < 1 ? (
                 <div></div>
-              ):
-              <Alert
-              severity="error"
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                  >
-
-                  </IconButton>
-                }
-              >
-                {loginStatus}
-              </Alert>
-
-              }
+              ) : (
+                <Alert
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    ></IconButton>
+                  }
+                >
+                  {loginStatus}
+                </Alert>
+              )}
               <TextField
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -158,7 +158,7 @@ const LogIn = (props) => {
                 }
                 className={`${classes.inputField} ${classes.myInputLabel}`}
                 required
-                type='password'
+                type="password"
                 id="password"
                 label="Password"
                 variant="outlined"

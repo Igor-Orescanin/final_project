@@ -65,6 +65,13 @@ export default makeStyles((theme) => ({
     backgroundColor: "white",
   },
 
+  dialog:{
+   justifyContent:'center',
+   },
+
+link:{
+  marginTop:'10px',
+},
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),

@@ -56,6 +56,7 @@ const Devices = (props) => {
   //a hook
   const [allDevices, setAllDevices] = useState([]);
 
+  console.log(allDevices);
   // to get the data for databace
   useEffect(() => {
     getDevices();
@@ -97,7 +98,7 @@ const Devices = (props) => {
 
             <Button
               onClick={() =>      history.push({
-                pathname: "/adddevice",
+                pathname: "/addhub",
                 state: {userId : userId, username: username}
                })}
               className={classes.addbutton}

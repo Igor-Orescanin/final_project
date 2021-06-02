@@ -94,7 +94,7 @@ function AddControl(props) {
         //   //   setLightExist(res.data.message);
         // } else {
         history.push({
-          pathname: "/controls",
+          pathname: "/devices",
         });
       })
       .catch((error) => {

@@ -67,7 +67,7 @@ const Navbar = (props) => {
       <div className={classes.primaryNav}>
         <IconButton
           className={`${classes.iconButtonSec} ${classes.iconHome}`}
-          onClick={() => history.push("/devices")}
+          onClick={() => history.push("/hubs")}
         >
           <HomeIcon className={`${classes.icon}`}></HomeIcon>
         </IconButton>

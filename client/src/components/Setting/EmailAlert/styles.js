@@ -3,101 +3,141 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from "../../../image/charts_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
+  container: {
+    //  backgroundColor:'red',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+    color: "#0C9EB5",
+    height: "65vh",
+  },
 
-    container: {
-        //backgroundColor: 'orange',
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-        color: "#0C9EB5",
-        height: '65vh',
-    },
+  paper: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-    heading: {
-        marginBottom: '30px',
-        fontWeight: '900',
-        fontSize: '100%',
-        color: '#007982'
-    },
+  heading: {
+    marginBottom: "30px",
+    fontWeight: "900",
+    fontSize: "15px",
+    color: "#007982",
+  },
 
-    headingSec: {
-        fontWeight: '700',
-        fontSize: '12px',
-        color: '#007982',
-        marginRight: '-130px'
-    },
+  headingSec: {
+    fontWeight: "700",
+    fontSize: "12px",
+    color: "#007982",
+    marginRight: "-140px",
+    paddingBottom:'8px',
+    marginBottom:'-20px'
+  },
+  button: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+    borderColor: "#008CA7",
+    textTransform: "none",
+    marginLeft: "10px",
+    paddingTop: "2px",
+    padding: "24px",
+    paddingBottom: "0px",
+    border: "solid",
+    borderWidth: "2px",
+    marginRight:"10px",
+  },
+  input: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
 
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-        marginLeft: '40px'
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
+  },
+  test:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center", 
+  },
 
-    root: {
-        "&:hover $notchedOutline": {
-            borderColor: "#007982",
-        },
-        "&$focused $notchedOutline": {
-            borderColor: "#007982",
-        },
-    },
-    focused: {},
-    notchedOutline: {},
+  typo:{
+    fontSize: '15px',
+    fontWeight: '400',
+    paddingRight:'22px',
+  },
 
-    notchedOutline: {
-        borderColor: "#007982",
-    },
+   name:{
+    height: '80px',
+    marginTop: '22px',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+   },
 
-    waterDiv: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        fontSize: '15px',
-        fontWeight: '700',
-    },
+   formControl: {
+      marginRight: '20px',
+      marginTop:'20px',
+   },
+   
+  typo2:{
+    fontSize: '14px',
+    padding:'0px'
+  },
 
-    notification: {
-        fontWeight: '300',
-        margin: '20px 0',
-        color: '#30D4DE'
-    },
+   root: {
+       "&:hover $notchedOutline": {
+           borderColor: "#007982",
+       },
+       "&$focused $notchedOutline": {
+           borderColor: "#007982",
+       },
+   },
+   
+   focused: {},
+   notchedOutline: {},
 
-    waterDiv: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-    },
+   notchedOutline: {
+       borderColor: "#007982",
+   },
 
-    button: {
-        fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
-        padding: 0,
-        backgroundColor: "white",
-        color: "#0C9EB5",
-        width: "115px",
-        height: "38px",
-        border: "1px solid #0C9EB5",
-        borderRadius: "10px",
-        fontSize: "15px",
-        marginTop: "20px",
-    },
+  notification: {
+    fontWeight: "300",
+    margin: "20px 0 30px 0",
+    color: "#30D4DE",
+    fontSize: "15px",
+  },
 
-    //for the Image on the bottom
-    footer: {
-        zIndex: "-1",
-        position: "fixed",
-        bottom: "0px",
-        left: "0px",
-        height: "250px",
-        width: "100vw",
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+  buttonHelp: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+    padding: 0,
+    borderColor: "#0C9EB5",
+    color: "#0C9EB5",
+    width: "106px",
+    height: "32px",
+    paddingTop: "2px",
+    borderRadius: "4px",
+    fontSize: "15px",
+    marginLeft:"10px",
+    backgroundColor: "white",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#0C9EB5",
+      color: "white",
     },
+  },
+
+  //for the Image on the bottom
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    left: "0px",
+    height: "250px",
+    width: "100vw",
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  },
 }));

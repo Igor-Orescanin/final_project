@@ -57,6 +57,7 @@ const LogOut = (props) => {
                 </Typography>
 
                 <Button
+                  className={classes.button}
                   onClick={() => history.push("/")}
                   className={classes.button}
                   variant="contained"
