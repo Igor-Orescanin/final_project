@@ -69,7 +69,7 @@ const {device, socket} = props;
             className={classes.button}
             color="primary"
             onClick={() =>
-              history.push(device.hasLight ? "/lights" : "/addlight")
+              history.push(device.lightsButton.length > 0 ? "/lights" : "/addlight")
             }
           >
             Light
@@ -80,7 +80,7 @@ const {device, socket} = props;
             className={classes.button}
             color="primary"
             onClick={() =>
-              history.push(device.hasControl ? "/devices" : "/adddevice")
+              history.push(device.controlsButton.length > 0 ? "/devices" : "/adddevice")
             }
           >
             Devices

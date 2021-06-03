@@ -4,8 +4,6 @@ import React, { useState} from "react";
 import LightOff from "../../../image/light_off.svg";
 import LightOn from "../../../image/light_on.svg";
 
-// axios
-import * as api from "../../../api";
 
 import { useHistory } from "react-router-dom";
 

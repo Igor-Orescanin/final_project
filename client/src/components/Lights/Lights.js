@@ -57,20 +57,19 @@ const Lights = (props) => {
   //a hook
   const [allLights, setAllLights] = useState([]);
 
-
-  socket.on("gpioStatusLight", (status) => {
-    console.log("incomming status", status);
+  //socket
+  socket.on("gpioStatusLight", status => {
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
     if (allLights[index])
     allLights[index].status = status.status;
     setAllLights(allLights);
-
   });
 
   // to get the data for databace
   useEffect(() => {
     getLights();
-  }, []);
+    socket.off("gpioStatusLight");
+  }, [allLights]);
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
