@@ -42,8 +42,16 @@ function Conditions(props) {
           <Typography className={classes.typo}>
           1. The following general terms and conditions for services apply to the use of the Naunet app.
           </Typography>
+          <br />
+          <Typography className={classes.typo}>
+          2. Naunet only offers its services to consumers.
+          </Typography>
+          <br />
+          <Typography className={classes.typo}>
+          3. These standard terms and conditions for services shall also apply to all future legal relationships between Naunet and the Costumer. Any terms and conditions of the Costumers shall apply only upon express prior written agreement. 
+          </Typography>
           </div>
-
+        
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>

@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from '../Nav/Navbar';
 
@@ -111,7 +111,7 @@ function AddControl(props) {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.hasControl ? (
+          {device.controlsButton.length < 1 ? (
             <Typography className={classes.typography}>
               You don't have any Devices registered in this system!
             </Typography>
@@ -120,7 +120,7 @@ function AddControl(props) {
               Register a new Device in this system!
             </Typography>
           )}
-          {device.hasControl ? (
+          {/* {device.hasControl ? (
             <div></div>
           ) : (
             <Alert
@@ -135,7 +135,7 @@ function AddControl(props) {
             >
               {controlExist}
             </Alert>
-          )}
+          )} */}
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
