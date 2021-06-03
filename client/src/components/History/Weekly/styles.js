@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
 
       iconButton:{
         color:'#008CA7',
-        marginTop:'-30px',
+        marginTop:'-18px',
       }, 
       typographyInfo:{
         fontSize: "12px",
@@ -44,7 +44,7 @@ export default makeStyles((theme) => ({
         paddingRight:'37px',
       },
       typographyInfo2:{
-          marginTop:'10px',
+        marginTop:'10px',
         zIndex: "-2",
         fontSize: "15px",
         fontFamily: ('Roboto', 'sans-serif'),

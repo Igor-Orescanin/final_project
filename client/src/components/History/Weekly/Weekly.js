@@ -200,17 +200,17 @@ const options = {
               fontSize="large"
             ></ExpandMoreIcon>
             <Typography className={classes.typographyInfo2}>
-              Water report of the week
+              Water report of 7 days
             </Typography>
             <Paper className={classes.paper2}>
               <Typography className={classes.typographyInfo}>
-                week consumption: {} 34l/day
+                average consumption: {} 27l/day
               </Typography>
               <Typography className={classes.typographyInfo}>
-                your Freshwater is by 30{}%
+                your Fresh water is by 30{}%
               </Typography>
               <Typography className={classes.typographyInfo}>
-                your Graywater is by 25{}%
+                your Waste water is by 25{}%
               </Typography>
             </Paper>
 

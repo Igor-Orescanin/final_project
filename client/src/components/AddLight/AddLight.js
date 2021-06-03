@@ -111,7 +111,7 @@ const AddLight = (props) => {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.hasLight ? (
+          {!device.hasLight ? (
             <Typography className={classes.typography}>
               You don't have any Lights registered in this system!
             </Typography>
@@ -120,7 +120,7 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-          {device.hasLight ? (
+          {/* {device.hasLight ? (
             <div></div>
           ) : (
             <Alert
@@ -135,7 +135,7 @@ const AddLight = (props) => {
             >
               {lightExist}
             </Alert>
-          )}
+          )} */}
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
@@ -211,11 +211,10 @@ const AddLight = (props) => {
           <div>
             <Button
               onClick={handleSubmit}
-              className={classes.buttonHelp}
+              className={classes.button}
               variant="contained"
               color="primary"
               type="submit"
-              style={{ border: "2px solid" }}
             >
               Save
             </Button>
@@ -242,10 +241,10 @@ const AddLight = (props) => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Light Name. If you bought a NaunetMon
-                Device you can find the Gpio of the bottom of your Device 'the
-                Gpio'. If you bought your own device pleace contact us per
-                Email: NaunetMon.com!
+                Your can choose your own Light Name. If you bought a <strong>Naunet </strong> 
+                Hub you can find the Gpio of the bottom of your Hub 'the
+                Gpio'. If you bought your own Hub pleace contact us per
+                Email: <strong>Naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>

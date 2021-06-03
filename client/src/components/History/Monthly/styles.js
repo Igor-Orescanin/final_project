@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import zIndex from "@material-ui/core/styles/zIndex";
 
-import image from '../../../image/charts_bg_mobile.svg';
+import image from '../../../image/water_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 
@@ -18,10 +18,9 @@ export default makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
 
-    paper2:{
+    paper2:{      
         zIndex: "-2",
         paddingTop:'20px',
         paddingBottom:'20px',
@@ -33,7 +32,7 @@ export default makeStyles((theme) => ({
       },
       iconButton:{
         color:'#008CA7',
-        marginTop:'20px',
+        marginTop:'-18px',
       }, 
       typographyInfo:{
         fontSize: "12px",
@@ -42,7 +41,7 @@ export default makeStyles((theme) => ({
         paddingRight:'37px',
       },
       typographyInfo2:{
-        marginTop:'40px',
+        marginTop:'10px',
         zIndex: "-2",
         fontSize: "15px",
         fontFamily: ('Roboto', 'sans-serif'),
@@ -131,7 +130,7 @@ export default makeStyles((theme) => ({
         zIndex: "-1",
         position: "fixed",
         bottom: "0px",
-        height: "200px",
+        height: "250px",
         width: "100vw",
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",

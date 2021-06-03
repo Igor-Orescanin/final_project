@@ -1,5 +1,5 @@
 // react
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 // css
 import "../../App.css";
 
-import Navbar from '../Nav/Navbar';
+import Navbar from "../Nav/Navbar";
 
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -35,7 +35,6 @@ const theme = createMuiTheme({
 //socket
 
 
-
 //Welcome-page
 const Welcome = (props) => {
   const history = useHistory();
@@ -43,24 +42,19 @@ const Welcome = (props) => {
 
   // const device = props.deviceObject
   // console.log(device)
+
 //should be the same
 const {device, socket} = props;
 
  socket.emit('user_connect', device.userId)
-
-
   
   console.log(device);
   
-  
-
   return (
     <>
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
-
         <Container className={classes.container}>
-
           <Button
             variant="contained"
             className={classes.button}
@@ -74,7 +68,9 @@ const {device, socket} = props;
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() => history.push(device.hasLight ? "/lights" : "/addlight")}
+            onClick={() =>
+              history.push(device.hasLight ? "/lights" : "/addlight")
+            }
           >
             Light
           </Button>
@@ -83,13 +79,14 @@ const {device, socket} = props;
             variant="contained"
             className={classes.button}
             color="primary"
-            onClick={() =>  history.push(device.hasControl ? "/devices" : "/adddevice")}
+            onClick={() =>
+              history.push(device.hasControl ? "/devices" : "/adddevice")
+            }
           >
             Devices
           </Button>
 
           <div className={classes.footer}></div>
-
         </Container>
       </ThemeProvider>
     </>

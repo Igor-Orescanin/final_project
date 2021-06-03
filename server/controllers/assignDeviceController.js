@@ -11,10 +11,10 @@ exports.assignDevice = async (req, res, next) => {
     
     const device = await Device.findOne({ serialNumber }).exec();
      if (!device) {
-      return res.json({ message:'Device not found'});
+      return res.json({ message:'Hub not found'});
      }
     if (device.userId) {
-     return res.json({ message:'Device is already assigned'});
+     return res.json({ message:'Hub is already assigned'});
     }
     await Device.findByIdAndUpdate(device._id, { userId, deviceName}, {
       new: true,
