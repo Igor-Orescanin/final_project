@@ -70,14 +70,15 @@ io.on('connection', (socket) => {
 
   socket.on('device_connected', async(deviceId) => {
     socket.join(deviceId)
+    console.log("Esto es el dispositivo", deviceId)
     logger.log('Device connected')
     console.log(deviceId,'DeviceId is')
     const rpiConnected = await Device.findOneAndUpdate({ serialNumber: deviceId }, { isConnected: true }, { new: true });
         console.log(rpiConnected.isConnected);
     socket.on('sensorData', async (sensorReading) => {
       try {
-        //logger.log(`Received sensor readings`);
-         //logger.log(JSON.stringify(sensorReading));
+        logger.log(`Received sensor readings`);
+         logger.log(JSON.stringify(sensorReading));
         serialNumber = sensorReading.serialNumber
 
         //--------------------- EMAIL ALERT -----------------------------------------------
@@ -85,7 +86,7 @@ io.on('connection', (socket) => {
         const user = await User.findOne({ _id: device.userId }).exec();
         const email = user.email;
 
-        
+
 
         if (sensorReading.label === "CLEAN") {
           if (sensorReading.levelPercentage <= device.cleanAlertThreshold && device.cleanAlertThreshold != 0) {
@@ -118,7 +119,7 @@ io.on('connection', (socket) => {
       }
     })
     //_____________________________________________________Buttons______________________
-    
+
     //console.log(data);
     //FINDING THE DEVICE WITH SERIAL NUMBER
     const device = await Device.findOne({ serialNumber: deviceId }).exec();
@@ -127,13 +128,13 @@ io.on('connection', (socket) => {
       const { lightsButton } = device;
       //    INITIAL STATUS FROM DATABASE
       socket.to(device.userId.toString()).emit('buttons', lightsButton);
-    } 
+    }
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     socket.on('rpiStatusLight', (data) => {
       console.log("Incomming message from Device ", data)
       Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true }).then(res => {
-        console.log(data.forButtons)
-        socket.to(device.userId.toString()).emit('gpioStatus' + data.forButtons, data)
+        console.log(data,'jkgdccjasg')
+        socket.to(device.userId.toString()).emit('gpioStatus' + data.forButtons, (data))
       }).catch(err => {
         console.log(err)
         socket.to(device.userId).emit("error", error)
@@ -180,11 +181,11 @@ io.on('connection', (socket) => {
       console.log(button.gpio)
           if(button.gpio === parseInt(gpio)){
             socket.to(res.serialNumber).emit("switchStatus", {button: button, forButtons: data.forButtons})
-            
+
           }
     }))
   })
-  
+
   socket.on('switchStatusControl', (data)=>{
     console.log('incomming Order drom User',data)
     let {gpio} = data;
@@ -197,13 +198,13 @@ io.on('connection', (socket) => {
           }
     }))
   })
-  
-  
-  
+
+
+
   socket.on('disconnect', ()=>{
     console.log(`User ${userId} disconnected now`)
   })
-  
+
   })
 
 })

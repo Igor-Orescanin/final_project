@@ -77,7 +77,15 @@ export const logout = (data) => axios.get(`${url}/users/logout`, data)
 export const deleteLight = (id) => axios.delete(`${url}/devices/${id}/lights`);
 
 //control
-export const fetchControls =(id) => axios.get(`${url}/devices/${id}/controls`);
-export const addControl = (id, data) => axios.post(`${url}/devices/${id}/controls`, data);
+export const fetchControls =(id) => axios.get(`${url}/devices/${id}/controls`, {
+    headers: {
+        "x-access-token": localStorage.getItem('token')
+    }
+});
+export const addControl = (id, data) => axios.post(`${url}/devices/${id}/controls`, data, {
+    headers: {
+        "x-access-token": localStorage.getItem('token')
+    }
+});
 export const deleteControl = (id) => axios.delete(`${url}/devices/${id}/controls`);
 

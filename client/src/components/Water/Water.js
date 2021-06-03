@@ -155,6 +155,9 @@ const Water = (props) => {
           //var waterLevelGreyPercentage = sensorObject.levelPercentage;
           setLoading(false);
 
+          if (sensorObject.levelPercentage >= wasteAlertThreshold && wasteAlertThreshold != 0) {
+            setOpen(true);
+          }
           //console.log(waterLevelGreyPercentage)
         }
         //console.log(waterLevelCleanPercentage.levelPercentage)
@@ -221,7 +224,7 @@ const Water = (props) => {
         dataLabels: {
           name: {
             // offsetY: 20,
-            color: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? "#008CA7" : "#9c1335"),
+            color: (cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? "#008CA7" : "#9c1335"),
           },
         },
 
@@ -229,11 +232,11 @@ const Water = (props) => {
     },
     fill: {
       opacity: 1.5,
-      colors: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
+      colors: (cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
       // colors: ["#30D4DE"],
       type: "gradient",
       gradient: {
-        gradientToColors: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
+        gradientToColors: (cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
         shadeIntensity: 1,
         opacityFrom: 1,
         opacityTo: 2,
@@ -363,12 +366,12 @@ const Water = (props) => {
               </Typography>
               <Paper className={classes.paper2}>
 
-              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+              <Typography className={(cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)} >
                 {/* <Typography className={classes.typographyInfo} > */}
                   Your Fresh water is by {waterLevelClean}%
                 </Typography>
 
-              <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)}>
+              <Typography className={(wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)}>
                   Your Waste water is by {waterLevelGrey}%
                 </Typography>
                 <Typography className={classes.typographyInfo2}>
@@ -384,10 +387,6 @@ const Water = (props) => {
 
              </Typography>  */}
 
-
-
-
-
             <Dialog
               className={classes.dialog}
               open={open}
@@ -400,15 +399,15 @@ const Water = (props) => {
                 {"!!!Alert!!!"}
               </DialogTitle>
               <DialogContent>
-{(waterLevelClean <= cleanAlertThreshold ?   <div>
+                {(waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? <div>
                     <DialogContentText id="alert-dialog-description">
-                    {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-                      </DialogContentText>
+                    {(waterLevelClean <= cleanAlertThreshold ? `Your Fresh water is under ${cleanAlertThreshold}%` : null)}
+                  </DialogContentText>
                   </div>: null)}
-  {(waterLevelGrey >= wasteAlertThreshold? <div>
+                {(waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? < div >
                     <DialogContentText id="alert-dialog-description">
-                      {(waterLevelGrey <= wasteAlertThreshold? `Your Greywater is higer ${wasteAlertThreshold}%` : null)}
-                      </DialogContentText>
+                    {(waterLevelGrey >= wasteAlertThreshold ? `Your Waste water is higher ${wasteAlertThreshold}%` : null)}
+                  </DialogContentText>
                 </div> : null)}
 
 
