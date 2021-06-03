@@ -84,6 +84,23 @@ export default makeStyles((theme) => ({
     backgroundColor: "white",
   },
 
+  button: {
+    fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
+    borderColor: "#008CA7",
+    textTransform: "none",
+    width: "106px",
+    height: "32px",
+    marginLeft: "10px",
+    paddingTop: "2px",
+    borderRadius: "4px",
+    //padding: "24px",
+    paddingBottom: "0px",
+    border: "solid",
+    borderWidth: "2px",
+    marginRight:"10px",
+    marginTop: "30px",
+  },
+  
   buttonHelp: {
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
     padding: 0,

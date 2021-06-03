@@ -143,7 +143,7 @@ const AddDevice = (props) => {
 
 
     }).catch((error) => {
-      if(error){ setDeviceExist('register a Device!')
+      if(error){ setDeviceExist('register a Hub!')
         setErrors('error')}
       console.log(error);
     });
