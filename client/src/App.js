@@ -25,8 +25,7 @@ import Conditions from "./components/Setting/SettingChild/Conditions/Conditions.
 import Impressum from "./components/Setting/SettingChild/Impressum/Impressum.js";
 import Privacy from "./components/Setting/SettingChild/Privacy/Privacy.js";
 
-//socket
-import io from "socket.io-client";
+
 
 // css
 import "./App.css";
@@ -34,10 +33,10 @@ import "./App.css";
 //react-router-dom
 import { Route, Switch } from "react-router-dom";
 
-
 //socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
+import io from "socket.io-client";
+
+
 
 function App() {
 
@@ -56,14 +55,16 @@ function App() {
   console.log("deviceId", device._id);
   console.log("userId", response._id);
 
-  socket.emit('user_connect', response._id)
+  const ENDPOINT = "http://localhost:3005";
+  const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
+
 
   return (
     <Switch>
       <div className="app">
         <Route path="/" exact render={(props) => <LogIn {...props} fetchUser={fetchUser} userId={response._id} />}></Route>
         <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
-        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} />}></Route>
+        <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} socket={socket}/>}></Route>
         <Route path="/logout" component={LogOut}></Route>
         <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} />}></Route>
         <Route path="/weekly" render={(props) => <Weekly {...props} device={device} username={response.username} />}></Route>
@@ -74,14 +75,14 @@ function App() {
         <Route path="/hubs" render={(props) => <Devices {...props} userId={response._id} username={response.username} fetchDevice={fetchDevice} user={response} />}></Route>
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} username={response.username} />}></Route>
 
-        <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username} />}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username} />}></Route>
+        <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username} socket={socket}/>}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username} socket={socket}/>}></Route>
 
-        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username} />}></Route>
-        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} />}></Route>
+        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username} socket={socket}/>}></Route>
+        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username}/>}></Route>
 
         <Route path="/conditions" render={(props) => <Conditions {...props} device={device} username={response.username} />}></Route>
-        <Route path="/impressum" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
+        <Route path="/imprint" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
         <Route path="/privacy" render={(props) => <Privacy {...props} device={device} username={response.username} />}></Route>
 
       </div>
