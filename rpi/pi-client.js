@@ -10,7 +10,7 @@ const { logger } = require('../server/utils');
 const getSensor = (readingInterval) => Promise.resolve(new FakeSensor(readingInterval));
 const getWaterflowSensor = () => Promise.resolve(new FakeWaterFlowSensor());
 
-var socket = require('socket.io-client')('http://igr.local:3005/')
+var socket = require('socket.io-client')('http://localhost:3005/')
 socket.on('connect', function () {
   console.log("connected");
   socket.emit("device_connected", callMac())
@@ -18,7 +18,7 @@ socket.on('connect', function () {
 
 async function main() {
   try {
-    
+
     const READING_INTERVAL = 2000;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
     const waterflowSensor = await getWaterflowSensor();
