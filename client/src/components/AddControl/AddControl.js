@@ -113,11 +113,11 @@ function AddControl(props) {
         <Container className={classes.container}>
           {device.hasControl ? (
             <Typography className={classes.typography}>
-              You don't have any Controls registered in this system!
+              You don't have any Devices registered in this system!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
-              Register a new Control in this system!
+              Register a new Device in this system!
             </Typography>
           )}
           {device.hasControl ? (
@@ -211,11 +211,10 @@ function AddControl(props) {
           <div>
             <Button
               onClick={handleSubmit}
-              className={classes.buttonHelp}
+              className={classes.button}
               variant="contained"
               color="primary"
               type="submit"
-              style={{ border: "2px solid" }}
             >
               Save
             </Button>
@@ -242,10 +241,10 @@ function AddControl(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Control Name. If you bought a NaunetMon
-                Device you can find the Gpio of the bottom of your Device 'the
-                Gpio'. If you bought your own device pleace contact us per
-                Email: NaunetMon.com!
+                Your can choose your own Device Name. If you bought a <strong>Naunet </strong>
+                Hub you can find the Gpio of the bottom of your Hub 'the
+                Gpio'. If you bought your own Hub pleace contact us per
+                Email:<strong> Naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
