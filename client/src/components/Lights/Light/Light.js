@@ -7,9 +7,6 @@ import LightOn from "../../../image/light_on.svg";
 // axios
 import * as api from "../../../api";
 
-//socket
-import io from "socket.io-client";
-
 import { useHistory } from "react-router-dom";
 
 //styles to use the connection
@@ -52,10 +49,6 @@ const theme = createMuiTheme({
   },
 });
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
-
 const Light = (props) => {
   const history = useHistory();
 
@@ -63,7 +56,8 @@ const Light = (props) => {
   const classes = useStyles();
 
   const light = props.lightObject;
-  console.log(light);
+
+  const {socket, device_id} = props
   //a hook
   // const [light, setLight] = useState();
 
@@ -87,7 +81,7 @@ const Light = (props) => {
   //const [value, setValue] = useState('');
 
   const lightHandler = (e) => {
-    socket.emit("switchStatus", { gpio: e.target.value });
+    socket.emit("switchStatusLight", {gpio: light.gpio, device_id: device_id, forButtons:"Light"});
   };
 
   return (

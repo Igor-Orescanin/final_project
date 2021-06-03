@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-//socket
-import io from "socket.io-client";
+
 
 import Light from "./Light/Light.js";
 import Navbar from '../Nav/Navbar';
@@ -45,9 +44,6 @@ const theme = createMuiTheme({
   },
 });
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
 
 const Lights = (props) => {
   //for routes
@@ -56,47 +52,30 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const device = props.device;
-
+  const {device, socket} = props;
+  
   //a hook
-  const [allLights, setAllLights] = useState("");
+  const [allLights, setAllLights] = useState([]);
 
-  //socket
-  socket.on("gpioStatus", (status) => {
+
+  socket.on("gpioStatusLight", (status) => {
     console.log("incomming status", status);
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) allLights[index].status = status.status;
-    console.log();
+    if (allLights[index]) 
+    allLights[index].status = status.status;
     setAllLights(allLights);
-    console.log(allLights);
+    
   });
 
   // to get the data for databace
   useEffect(() => {
     getLights();
-    return () => {
-      socket.disconnect();
-    };
   }, []);
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
-    setAllLights(data);
-    console.log(data[0].lightsButton);
+    setAllLights(data[0].lightsButton);
   };
-
-
-  // const lightDeleteHandler = async (_id) => {
-  //   console.log(_id);
-  //   await api.deleteLight(_id);
-  //   getLights();
-  // } maybe for the delete but not sure
-
-
-  const fetchDevice = props.fetchDevice
-
-
-
 
   return (
     <>
@@ -111,12 +90,8 @@ const Lights = (props) => {
             {!allLights.length ? (
               <CircularProgress />
             ) : (
-              allLights[0].lightsButton.map((light) => (
-                <Light lightObject={light} 
-                // // key={light._id}  lightDeleted={() => lightDeleteHandler(light._id)} fetchLight={() => fetchLight(light._id)
-                // } maybe for delete but not working
-                
-                />
+              allLights.map((light) => (
+                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
               ))
             )}
 

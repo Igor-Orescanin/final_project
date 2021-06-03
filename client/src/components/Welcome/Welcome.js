@@ -19,6 +19,9 @@ import Navbar from '../Nav/Navbar';
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+//socket
+import io from "socket.io-client";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -29,6 +32,8 @@ const theme = createMuiTheme({
     },
   },
 });
+//socket
+
 
 
 //Welcome-page
@@ -39,10 +44,15 @@ const Welcome = (props) => {
   // const device = props.deviceObject
   // console.log(device)
 //should be the same
+const {device, socket} = props;
+
+ socket.emit('user_connect', device.userId)
 
 
-  const device = props.device;
+  
   console.log(device);
+  
+  
 
   return (
     <>
@@ -75,7 +85,7 @@ const Welcome = (props) => {
             color="primary"
             onClick={() =>  history.push(device.hasControl ? "/devices" : "/adddevice")}
           >
-            USB Devices
+            Devices
           </Button>
 
           <div className={classes.footer}></div>
