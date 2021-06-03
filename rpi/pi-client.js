@@ -10,13 +10,15 @@ const { logger } = require('../server/utils');
 const getSensor = (readingInterval) => Promise.resolve(new FakeSensor(readingInterval));
 const getWaterflowSensor = () => Promise.resolve(new FakeWaterFlowSensor());
 
+var socket = require('socket.io-client')('http://igr.local:3005/')
+socket.on('connect', function () {
+  console.log("connected");
+  socket.emit("device_connected", callMac())
+});
+
 async function main() {
   try {
-    const clientId = `sensor-${uuidv4()}`;
-    const url = `http://localhost:3005/?clientId=${clientId}`
-    const socket = io(url, {
-      transports: ['websocket', 'polling']
-    });
+    
     const READING_INTERVAL = 2000;  // half a second
     const sensor = await getSensor(READING_INTERVAL);
     const waterflowSensor = await getWaterflowSensor();
