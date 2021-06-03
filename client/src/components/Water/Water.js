@@ -144,7 +144,7 @@ const Water = (props) => {
           //setLoading(false)
           console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
-          if (sensorObject.levelPercentage <= cleanAlertThreshold) {
+          if (sensorObject.levelPercentage <= cleanAlertThreshold && cleanAlertThreshold != 0) {
            setOpen(true);
           }
 
@@ -221,7 +221,7 @@ const Water = (props) => {
         dataLabels: {
           name: {
             // offsetY: 20,
-            color: (waterLevelClean <= cleanAlertThreshold ? "#9c1335" : "#008CA7"),
+            color: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? "#008CA7" : "#9c1335"),
           },
         },
 
@@ -229,11 +229,11 @@ const Water = (props) => {
     },
     fill: {
       opacity: 1.5,
-      colors: (waterLevelClean <= cleanAlertThreshold ? ["#9c1335"] : ["#30D4DE"]),
+      colors: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
       // colors: ["#30D4DE"],
       type: "gradient",
       gradient: {
-        gradientToColors: (waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? ["#9c1335"] : ["#30D4DE"]),
+        gradientToColors: (cleanAlertThreshold <= waterLevelClean || cleanAlertThreshold === 0 ? ["#30D4DE"] : ["#9c1335"]),
         shadeIntensity: 1,
         opacityFrom: 1,
         opacityTo: 2,
@@ -275,8 +275,8 @@ const Water = (props) => {
         dataLabels: {
           name: {
             // offsetY: 20,
-            color: (waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? "#9c1335" : "#008CA7"),
-
+            // color: (waterLevelGrey >= wasteAlertThreshold ? "#9c1335" : "#008CA7"),
+            color: (wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? "#008CA7" : "#9c1335"),
           },
         },
       },
@@ -287,11 +287,11 @@ const Water = (props) => {
 
     fill: {
       opacity: 1.5,
-      colors: (waterLevelGrey >= wasteAlertThreshold ? ["#9c1335"] : ["#77A783"]),
+      colors: (wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? ["#77A783"] : ["#9c1335"]),
       // colors: ["#77A783"],
       type: "gradient",
       gradient: {
-        gradientToColors: (waterLevelGrey >= wasteAlertThreshold ? ["#9c1335"] : ["#77A783"]),
+        gradientToColors: (wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? ["#77A783"] : ["#9c1335"]),
         // gradientToColors: ["#77A783"],
         shadeIntensity: 1,
         opacityFrom: 1,
