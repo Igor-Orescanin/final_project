@@ -5,7 +5,6 @@ import image from "../../../../image/charts_bg_mobile.svg";
 export default makeStyles((theme) => ({
 
     container: {
-        //backgroundColor: 'orange',
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -13,6 +12,13 @@ export default makeStyles((theme) => ({
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         //height: '65vh',
     },
+
+    heading2: {
+        fontWeight: "900",
+        fontSize: "16px",
+        color: "#30D4DE",
+        padding: "10px",
+      },
 
     paper: {
         marginLeft:'25px',
@@ -32,9 +38,16 @@ export default makeStyles((theme) => ({
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
-     fontSize: '100%'
+     fontSize: "15px",
 
     },
+    typo2: {
+        fontWeight: "300",
+        fontSize: "16px",
+      },
+      typo: {
+        fontSize: "15px",
+      },
 
     //for the Image on the bottom
     footer: {

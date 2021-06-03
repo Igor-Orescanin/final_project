@@ -13,9 +13,15 @@ export default makeStyles((theme) => ({
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
         //height: '65vh',
     },
+    paper: {
+        marginLeft:'25px',
+        marginRight:'25px',
+        marginBottom:'150px',
+        },
+      
 
     heading: {
-        marginTop: '30px',
+        marginTop: "120px",
         fontWeight: '900',
         fontSize: '30px',
         color: '#007982',
@@ -26,10 +32,23 @@ export default makeStyles((theme) => ({
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
-     fontSize: '100%'
+     fontSize: "15px",
 
     },
+    heading2: {
+        fontWeight: "900",
+        fontSize: "16px",
+        color: "#30D4DE",
+        padding: "10px",
+      },
 
+      typo2: {
+        fontWeight: "300",
+        fontSize: "16px",
+      },
+      typo: {
+        fontSize: "15px",
+      },
     //for the Image on the bottom
     footer: {
         zIndex: "1",

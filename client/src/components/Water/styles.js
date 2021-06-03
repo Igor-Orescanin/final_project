@@ -53,14 +53,6 @@ export default makeStyles((theme) => ({
         paddingRight:'37px',
         color: "#960524",
       },
-      typographyInfo2:{
-        fontSize: "15px",
-        fontFamily: ('Roboto', 'sans-serif'),
-        paddingTop:'17px',
-        paddingLeft:'37px',
-        paddingRight:'37px',
-        color: "#008CA7",
-      },
 
       iconButton:{
         color:'#008CA7',
