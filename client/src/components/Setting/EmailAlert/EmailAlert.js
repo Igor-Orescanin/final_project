@@ -151,8 +151,8 @@ function EmailAlert(props) {
 
             <div className={classes.input}>
               <div className={classes.name}>
-                <Typography className={classes.typo}>Freshwater</Typography>
-                <Typography className={classes.typo}>Greywater</Typography>
+                <Typography className={classes.typo}>Fresh water</Typography>
+                <Typography className={classes.typo}>Waste water</Typography>
               </div>
               <div className={classes.test}>
                 <FormControl variant="outlined" className={classes.formControl}>

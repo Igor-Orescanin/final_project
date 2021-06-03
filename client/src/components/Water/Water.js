@@ -241,7 +241,7 @@ const Water = (props) => {
         inverseColors: false,
       },
     },
-    labels: ["Freshwater"],
+    labels: ["Fresh water"],
 
   };
   //_____ 2. chart
@@ -282,7 +282,7 @@ const Water = (props) => {
       },
     },
 
-    labels: ["Greywater"],
+    labels: ["Waste water"],
 
 
     fill: {
@@ -365,11 +365,11 @@ const Water = (props) => {
 
               <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
                 {/* <Typography className={classes.typographyInfo} > */}
-                  Your Freshwater is by {waterLevelClean}%
+                  Your Fresh water is by {waterLevelClean}%
                 </Typography>
 
               <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)}>
-                  Your Greywater is by {waterLevelGrey}%
+                  Your Waste water is by {waterLevelGrey}%
                 </Typography>
                 <Typography className={classes.typographyInfo2}>
                   All is good for you!
