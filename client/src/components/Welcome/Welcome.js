@@ -19,6 +19,9 @@ import Navbar from "../Nav/Navbar";
 //change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
 
+//socket
+import io from "socket.io-client";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -29,6 +32,8 @@ const theme = createMuiTheme({
     },
   },
 });
+//socket
+
 
 //Welcome-page
 const Welcome = (props) => {
@@ -37,11 +42,14 @@ const Welcome = (props) => {
 
   // const device = props.deviceObject
   // console.log(device)
-  //should be the same
 
-  const device = props.device;
+//should be the same
+const {device, socket} = props;
+
+ socket.emit('user_connect', device.userId)
+  
   console.log(device);
-
+  
   return (
     <>
       <Navbar username={props.username}> </Navbar>
