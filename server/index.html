@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Socket test</h1>
+    <script>
+
+            var socket = io('http://localhost:3005/', {
+        // WARNING: in that case, there is no fallback to long-polling
+        transports: [ 'websocket' ] // or [ 'websocket', 'polling' ], which is the same thing
+
+
+      });
+
+      socket.on("connection", d => {
+        console.log(d)
+        
+       
+    })
+    socket.emit("user_connect", "60a516936f83e7889860f626")
+     socket.on("t", t=>{
+        console.log(t)
+    })
+
+    socket.on("gpioStatus", t=>{
+        console.log(t)
+        alert('jzgasd')
+    })
+    </script>
+
+</body>
+</html>
