@@ -48,7 +48,7 @@ const theme = createMuiTheme({
 const Lights = (props) => {
   //for routes
   const { history } = props;
-
+  console.log(props);
   //for styles
   const classes = useStyles();
 
@@ -77,6 +77,11 @@ const Lights = (props) => {
     setAllLights(data[0].lightsButton);
   };
 
+  const lightDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteLight(device.serialNumber, gpio);
+    getLights();
+  }
+
   return (
     <>
        <Navbar username={props.username}> </Navbar>
@@ -91,7 +96,9 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
+                console.log(light),
+
+                <Light key={light._id} lightObject={light} device_id={device._id} socket={socket} lightDeleted={() => lightDeletedHandler(device.serialNUmber, light.gpio)} />
               ))
             )}
 

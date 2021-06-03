@@ -74,7 +74,7 @@ export const updateEmailAlert = (id, data) => axios.put(`${url}/devices/${id}`, 
 
 export const logout = (data) => axios.get(`${url}/users/logout`, data)
 
-export const deleteLight = (id) => axios.delete(`${url}/devices/${serialNumber}/lights/${gpio}`, {
+export const deleteLight = (serialNumber, gpio) => axios.delete(`${url}/devices/${serialNumber}/lights/${gpio}`, {
     headers: {
         "x-access-token": localStorage.getItem('token')
     }

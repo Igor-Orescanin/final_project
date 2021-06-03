@@ -146,22 +146,16 @@ exports.getControlButtons = async (req, res, next) =>{
 exports.deleteLight = async (req, res, next) => {
   try {
     const device = await Device.findOne({ serialNumber: req.params.serialNumber }).exec();
-    console.log("device:", device);
-    console.log("gpio:", (req.params.gpio));
 
     const lightButtons = device.lightsButton
       .filter((lightButton) => lightButton.gpio !== Number(req.params.gpio))
       .map(({ gpio, name, status, _id }) => ({ gpio, name, status, _id }))
-
-    console.log("lightButtons:", lightButtons);
 
     const lightButtonsNew = [
       ...lightButtons,
     ];
 
     device.lightsButton = lightButtonsNew;
-
-    console.log("New", lightButtonsNew);
 
     await device.save();
     res.status(200).send(device);
