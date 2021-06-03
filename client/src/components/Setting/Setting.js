@@ -65,7 +65,7 @@ function Light(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/impressum")}
+                onClick={() => history.push("/imprint")}
                 className={classes.button}
                 variant="contained"
                 color="primary"

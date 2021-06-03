@@ -14,8 +14,14 @@ export default makeStyles((theme) => ({
         //height: '65vh',
     },
 
+    paper: {
+        marginLeft:'25px',
+        marginRight:'25px',
+        marginBottom:'150px',
+        },
+        
     heading: {
-        marginTop: '30px',
+        marginTop: '120px',
         fontWeight: '900',
         fontSize: '30px',
         color: '#007982',
