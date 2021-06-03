@@ -73,6 +73,8 @@ function AddControl(props) {
 
   const [open, setOpen] = useState(false);
 
+const [alert,setAlert] =useState(false)
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -83,6 +85,9 @@ function AddControl(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if( formData.name !== '' || formData.gpio !== ''){
+
 
     api.addControl(device.serialNumber, formData)
     .then((res) => {
@@ -104,6 +109,7 @@ function AddControl(props) {
         }
         console.log(error);
       });
+    }else{ setAlert(true) }
   };
 
   return (
@@ -120,9 +126,7 @@ function AddControl(props) {
               Register a new Device in this system!
             </Typography>
           )}
-          {/* {device.hasControl ? (
-            <div></div>
-          ) : (
+          {alert? 
             <Alert
               severity="error"
               action={
@@ -133,9 +137,9 @@ function AddControl(props) {
                 ></IconButton>
               }
             >
-              {controlExist}
-            </Alert>
-          )} */}
+              Name or GPIO is missing
+            </Alert> : <div></div>}
+        
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
@@ -241,10 +245,9 @@ function AddControl(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Device Name. If you bought a <strong>Naunet </strong>
-                Hub you can find the Gpio of the bottom of your Hub 'the
-                Gpio'. If you bought your own Hub pleace contact us per
-                Email:<strong> Naunet.com</strong>!
+              Your can choose your own Device Name. And choose a proper Gpio Nummer.
+                If you have any problems pleace contact us per
+                Email: <strong>Naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
