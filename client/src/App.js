@@ -81,7 +81,7 @@ function App() {
         <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} />}></Route>
 
         <Route path="/conditions" render={(props) => <Conditions {...props} device={device} username={response.username} />}></Route>
-        <Route path="/impressum" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
+        <Route path="/imprint" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
         <Route path="/privacy" render={(props) => <Privacy {...props} device={device} username={response.username} />}></Route>
 
       </div>
