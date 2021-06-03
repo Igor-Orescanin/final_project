@@ -47,7 +47,7 @@ async function main() {
     // }
     // const serialNumber = callMac();
 
-    socket.emit('device_connected');
+
 
     sensor.on('data', (sensorReading) => {
       logger.log(JSON.stringify(sensorReading));
