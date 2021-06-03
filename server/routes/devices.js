@@ -20,7 +20,7 @@ const {
 router
   .route("/")
   .get(auth, getDevices)
-  .post(auth, addDevice) //use only for postman
+  .post(addDevice) //use only for postman
 
 router
   .route("/:id/lights")
