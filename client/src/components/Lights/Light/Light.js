@@ -82,6 +82,7 @@ const Light = (props) => {
 
   const lightHandler = (e) => {
     socket.emit("switchStatusLight", {gpio: light.gpio, device_id: device_id, forButtons:"Light"});
+
   };
 
   return (

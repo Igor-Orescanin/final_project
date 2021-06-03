@@ -53,7 +53,7 @@ const Lights = (props) => {
   const classes = useStyles();
 
   const {device, socket} = props;
-  
+
   //a hook
   const [allLights, setAllLights] = useState([]);
 
@@ -61,10 +61,10 @@ const Lights = (props) => {
   socket.on("gpioStatusLight", (status) => {
     console.log("incomming status", status);
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) 
+    if (allLights[index])
     allLights[index].status = status.status;
     setAllLights(allLights);
-    
+
   });
 
   // to get the data for databace
