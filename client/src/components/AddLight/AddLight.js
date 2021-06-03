@@ -111,7 +111,7 @@ const AddLight = (props) => {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {!device.hasLight ? (
+          {device.lightsButton.length < 1 ? (
             <Typography className={classes.typography}>
               You don't have any Lights registered in this system!
             </Typography>

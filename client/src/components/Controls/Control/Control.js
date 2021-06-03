@@ -4,11 +4,6 @@ import React, { useState} from "react";
 import ControlOff from "../../../image/light_off.svg";
 import ControlOn from "../../../image/light_on.svg";
 
-// axios
-import * as api from "../../../api";
-
-//socket
-import io from "socket.io-client";
 
 import { useHistory } from "react-router-dom";
 
@@ -52,10 +47,6 @@ const theme = createMuiTheme({
   },
 });
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
-
 const Control = (props) => {
   const history = useHistory();
 
@@ -63,7 +54,8 @@ const Control = (props) => {
   const classes = useStyles();
 
   const control = props.controlObject;
-  console.log(control);
+  
+  const {socket, device_id} = props
   //a hook
   // const [control, setControl] = useState();
 
@@ -88,7 +80,7 @@ const Control = (props) => {
   //const [value, setValue] = useState('');
 
   const controlHandler = (e) => {
-    socket.emit("switchStatus", { gpio: e.target.value });
+    socket.emit("switchStatusControl", {gpio: control.gpio, device_id: device_id, forButtons:"Control"});
   };
 
   return (
