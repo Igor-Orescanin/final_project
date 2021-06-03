@@ -77,8 +77,8 @@ io.on('connection', (socket) => {
         console.log(rpiConnected.isConnected);
     socket.on('sensorData', async (sensorReading) => {
       try {
-        //logger.log(`Received sensor readings`);
-         //logger.log(JSON.stringify(sensorReading));
+        logger.log(`Received sensor readings`);
+         logger.log(JSON.stringify(sensorReading));
         serialNumber = sensorReading.serialNumber
 
         //--------------------- EMAIL ALERT -----------------------------------------------
@@ -133,8 +133,8 @@ io.on('connection', (socket) => {
     socket.on('rpiStatusLight', (data) => {
       console.log("Incomming message from Device ", data)
       Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true }).then(res => {
-        console.log(data.forButtons)
-        socket.to(device.userId.toString()).emit('gpioStatus' + data.forButtons, data)
+        console.log(data,'jkgdccjasg')
+        socket.to(device.userId.toString()).emit('gpioStatus' + data.forButtons, (data))
       }).catch(err => {
         console.log(err)
         socket.to(device.userId).emit("error", error)
