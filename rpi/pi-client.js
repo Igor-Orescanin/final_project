@@ -13,7 +13,7 @@ const getWaterflowSensor = () => Promise.resolve(new FakeWaterFlowSensor());
 var socket = require('socket.io-client')('http://localhost:3005/')
 socket.on('connect', function () {
   console.log("connected");
-  socket.emit("device_connected", callMac())
+  socket.emit("device_connected",'ac:67:5d:62:ec:e7')
 });
 
 async function main() {
@@ -47,7 +47,7 @@ async function main() {
     // }
     // const serialNumber = callMac();
 
-    socket.emit('device_connected');
+    
 
     sensor.on('data', (sensorReading) => {
       logger.log(JSON.stringify(sensorReading));
