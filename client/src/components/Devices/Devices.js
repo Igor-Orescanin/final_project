@@ -90,17 +90,17 @@ const Devices = (props) => {
             {!allDevices.length ? (
               <CircularProgress />
             ) : (
-                allDevices.map((dev, index) => (
+              allDevices.map((dev, index) => (
 
-                  <Device key={index} deviceObject={dev} username={username} deviceDeleted={() => deviceDeleteHandler(dev._id)} fetchDevice={() => fetchDevice(dev)} />
+                <Device key={index} deviceObject={dev} username={username} deviceDeleted={() => deviceDeleteHandler(dev._id)} fetchDevice={() => fetchDevice(dev)} />
               ))
             )}
 
             <Button
-              onClick={() =>      history.push({
+              onClick={() => history.push({
                 pathname: "/addhub",
-                state: {userId : userId, username: username}
-               })}
+                state: { userId: userId, username: username }
+              })}
               className={classes.addbutton}
               variant="contained"
               color="primary"

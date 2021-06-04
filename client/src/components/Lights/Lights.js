@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-
-
 import Light from "./Light/Light.js";
 import Navbar from '../Nav/Navbar';
 
@@ -44,23 +42,22 @@ const theme = createMuiTheme({
   },
 });
 
-
 const Lights = (props) => {
   //for routes
   const { history } = props;
-
+  console.log(props);
   //for styles
   const classes = useStyles();
 
   const {device, socket} = props;
-  
+
   //a hook
   const [allLights, setAllLights] = useState([]);
 
   //socket
   socket.on("gpioStatusLight", status => {
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) 
+    if (allLights[index])
     allLights[index].status = status.status;
     setAllLights(allLights);
   });
@@ -73,24 +70,32 @@ const Lights = (props) => {
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
+    //console.log((data.length));
     setAllLights(data[0].lightsButton);
   };
 
+  const lightDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteLight(device.serialNumber, gpio);
+    getLights();
+  }
+
   return (
     <>
-       <Navbar username={props.username}> </Navbar>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your Lights</Typography>
+            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Your Lights</Typography>
           </div>
           <div className={classes.paper}>
             {!allLights.length ? (
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
+
+                <Light key={light._id} lightObject={light} device_id={device._id} socket={socket} lightDeleted={() => lightDeletedHandler(device.serialNUmber, light.gpio)} />
+
               ))
             )}
 

@@ -5,7 +5,6 @@ import image from "../../../../image/charts_bg_mobile.svg";
 export default makeStyles((theme) => ({
 
     container: {
-        //backgroundColor: 'orange',
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -29,6 +28,7 @@ export default makeStyles((theme) => ({
     },
 
     conditions: {
+
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
@@ -50,6 +50,7 @@ export default makeStyles((theme) => ({
         fontSize: "15px",
       },
     //for the Image on the bottom
+
     footer: {
         zIndex: "1",
         position: "fixed",

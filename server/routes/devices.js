@@ -14,6 +14,7 @@ const {
   addControlButton,
   getLightButtons,
   getControlButtons,
+  deleteLight,
 } = require("../controllers/devicesController");
 
 
@@ -23,9 +24,15 @@ router
   .post(addDevice) //use only for postman
 
 router
+  .route("/:serialNumber/lights/:gpio")
+  .delete(auth, deleteLight)
+
+router
   .route("/:id/lights")
   .get(auth, getLightButtons)
   .post(auth, addLightButton)
+
+
 
 router
   .route("/:id/controls")

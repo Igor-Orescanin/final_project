@@ -11,7 +11,6 @@ import {
   Container,
   ThemeProvider,
   Paper,
-  IconButton,
   Typography,
   TextField,
   Button,
@@ -23,7 +22,7 @@ import {
 } from "@material-ui/core";
 
 // alert
-import Alert from "@material-ui/lab/Alert";
+//import Alert from "@material-ui/lab/Alert";
 
 //styles
 import useStyles from "./Styles";
@@ -67,10 +66,6 @@ const AddLight = (props) => {
     gpio: "",
   });
 
-  const [lightExist, setLightExist] = useState("");
-
-  const [errors, setErros] = useState("");
-
   const [open, setOpen] = useState(false);
 
   const [alert,setAlert] =useState(false)
@@ -91,7 +86,7 @@ const AddLight = (props) => {
     
 
     api.addLight(device.serialNumber, formData)
-    .then((res) => {
+      .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -122,7 +117,7 @@ const AddLight = (props) => {
         <Container className={classes.container}>
           {device.lightsButton.length < 1 ? (
             <Typography className={classes.typography}>
-              You don't have any Lights registered in this system!
+              You have not registered any Light in this system!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
@@ -171,13 +166,14 @@ const AddLight = (props) => {
                 name="name"
                 type="text"
                 size="small"
-                inputProps={{
-                  maxLength: CHARACTER_LIMIT,
-                }}
+                // inputProps={{      *** Its again defined in line 169 ***
+                //   maxLength: CHARACTER_LIMIT,
+                // }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
+                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,

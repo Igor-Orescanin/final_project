@@ -10,7 +10,6 @@ export default makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-        //height: '65vh',
     },
 
     heading2: {
@@ -21,11 +20,11 @@ export default makeStyles((theme) => ({
       },
 
     paper: {
-        marginLeft:'25px',
-        marginRight:'25px',
-        marginBottom:'150px',
-        },
-        
+        marginLeft: '25px',
+        marginRight: '25px',
+        marginBottom: '150px',
+    },
+
     heading: {
         marginTop: '120px',
         fontWeight: '900',
@@ -39,8 +38,8 @@ export default makeStyles((theme) => ({
      textAlign: 'justify',
      marginBottom: '150px',
      fontSize: "15px",
-
     },
+  
     typo2: {
         fontWeight: "300",
         fontSize: "16px",
@@ -49,7 +48,6 @@ export default makeStyles((theme) => ({
         fontSize: "15px",
       },
 
-    //for the Image on the bottom
     footer: {
         zIndex: "1",
         position: "fixed",

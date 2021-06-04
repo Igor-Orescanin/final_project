@@ -1,11 +1,10 @@
 // general
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 // background picture
 import image from "../../image/welcome2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
-
 
   container: {
     display: "flex",
@@ -33,9 +32,7 @@ export default makeStyles((theme) => ({
     position: "fixed",
     bottom: "0px",
     height: "230px",
-    //height:'170px',
     width: "100vw",
-    //backgroundColor: "Blue",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

@@ -52,7 +52,6 @@ export default makeStyles((theme) => ({
   },
 
   focused: {},
-  notchedOutline: {},
 
   notchedOutline: {
     bordercolor: "#007982",
@@ -100,5 +99,4 @@ export default makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   },
-
 }));

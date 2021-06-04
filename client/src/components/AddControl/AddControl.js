@@ -69,8 +69,6 @@ function AddControl(props) {
 
   const [controlExist, setControlExist] = useState("");
 
-  const [errors, setErros] = useState("");
-
   const [open, setOpen] = useState(false);
 
 const [alert,setAlert] =useState(false)
@@ -90,7 +88,7 @@ const [alert,setAlert] =useState(false)
 
 
     api.addControl(device.serialNumber, formData)
-    .then((res) => {
+      .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -119,7 +117,7 @@ const [alert,setAlert] =useState(false)
         <Container className={classes.container}>
           {device.controlsButton.length < 1 ? (
             <Typography className={classes.typography}>
-              You don't have any Devices registered in this system!
+              You have not registered any Device in this system yet!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
@@ -168,13 +166,14 @@ const [alert,setAlert] =useState(false)
                 name="name"
                 type="text"
                 size="small"
-                inputProps={{
-                  maxLength: CHARACTER_LIMIT,
-                }}
+                // inputProps={{    *** Its again defined in line 171 ***
+                //   maxLength: CHARACTER_LIMIT,
+                // }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
+                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,
