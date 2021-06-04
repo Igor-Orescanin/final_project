@@ -45,7 +45,6 @@ const theme = createMuiTheme({
 });
 
 const Light = (props) => {
-  // const history = useHistory();
 
   //for styles
   const classes = useStyles();
@@ -67,13 +66,12 @@ const Light = (props) => {
     setOpen(false);
   };
   const handleClose1 = () => {
-    // props.lightDeleted();
-    setOpen(false);
-    // api.deleteLight(light._id);
-  };
 
-  //for radio button FormControlLabel
-  //const [value, setValue] = useState('');
+    props.lightDeleted();
+    setOpen(false);
+    api.deleteLight(light._id);
+
+  };
 
   const lightHandler = (e) => {
     socket.emit("switchStatusLight", { gpio: light.gpio, device_id: device_id, forButtons: "Light" });

@@ -80,7 +80,7 @@ const socket = io("http://localhost:3005", {
 const Water = (props) => {
   const { history } = props;
   const classes = useStyles();
-
+  console.log(props);
   const location = useLocation();
 
   const username = props.username;

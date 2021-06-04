@@ -70,16 +70,19 @@ io.on('connection', (socket) => {
 
   socket.on('device_connected', async(deviceId) => {
     socket.join(deviceId)
-    console.log("Esto es el dispositivo", deviceId)
     logger.log('Device connected')
     console.log(deviceId,'DeviceId is')
+
+    let hasPreviousCleanWaterAlarm = false;
+    let hasPreviousWasteWaterAlarm = false;
+
     const rpiConnected = await Device.findOneAndUpdate({ serialNumber: deviceId }, { isConnected: true }, { new: true });
-        console.log(rpiConnected.isConnected);
+
+    console.log(rpiConnected.isConnected);
+
     socket.on('sensorData', async (sensorReading) => {
       try {
-        logger.log(`Received sensor readings`);
-         logger.log(JSON.stringify(sensorReading));
-        serialNumber = sensorReading.serialNumber
+        serialNumber = sensorReading.serialNumber;
 
         //--------------------- EMAIL ALERT -----------------------------------------------
         const device = await Device.findOne({ serialNumber: sensorReading.serialNumber }).exec();
@@ -87,9 +90,16 @@ io.on('connection', (socket) => {
         const email = user.email;
 
 
-
         if (sensorReading.label === "CLEAN") {
-          if (sensorReading.levelPercentage <= device.cleanAlertThreshold && device.cleanAlertThreshold != 0) {
+          const isInAlarmState = sensorReading.levelPercentage <= device.cleanAlertThreshold;
+          const shouldSendAlarmEmail = isInAlarmState && !hasPreviousCleanWaterAlarm;
+          const hasDeviceWantsEmails = device.cleanAlertThreshold !== 0;
+          const shouldSendEmail = hasDeviceWantsEmails && isInAlarmState && shouldSendAlarmEmail;
+
+          hasPreviousCleanWaterAlarm = isInAlarmState;
+
+          if (shouldSendEmail) {
+
             let message = `ALERT Clean water level tank is lower than ${device.cleanAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {
@@ -101,8 +111,17 @@ io.on('connection', (socket) => {
           }
 
         } else if (sensorReading.label === "WASTE") {
-          if (sensorReading.levelPercentage >= device.wasteAlertThreshold && device.wasteAlertThreshold != 0) {
-            let message = `ALERT Grey water level tank is higher than ${device.wasteAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
+
+          const isInAlarmState = sensorReading.levelPercentage <= device.wasteAlertThreshold;
+          const shouldSendAlarmEmail = isInAlarmState && !hasPreviousWasteWaterAlarm;
+          const hasDeviceWantsEmails = device.wasteAlertThreshold !== 0;
+          const shouldSendEmail = hasDeviceWantsEmails && isInAlarmState && shouldSendAlarmEmail;
+
+          hasPreviousWasteWaterAlarm = isInAlarmState;
+
+          if (shouldSendEmail) {
+
+            let message = `ALERT Waste water level tank is higher than ${device.wasteAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {
                 // resolve();
