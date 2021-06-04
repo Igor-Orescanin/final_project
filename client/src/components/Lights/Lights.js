@@ -48,19 +48,19 @@ const theme = createMuiTheme({
 const Lights = (props) => {
   //for routes
   const { history } = props;
-
+  console.log(props);
   //for styles
   const classes = useStyles();
 
   const {device, socket} = props;
-  
+
   //a hook
   const [allLights, setAllLights] = useState([]);
 
   //socket
   socket.on("gpioStatusLight", status => {
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) 
+    if (allLights[index])
     allLights[index].status = status.status;
     setAllLights(allLights);
   });
@@ -73,8 +73,14 @@ const Lights = (props) => {
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
+    //console.log((data.length));
     setAllLights(data[0].lightsButton);
   };
+
+  const lightDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteLight(device.serialNumber, gpio);
+    getLights();
+  }
 
   return (
     <>
@@ -90,7 +96,9 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
+                console.log(light),
+
+                <Light key={light._id} lightObject={light} device_id={device._id} socket={socket} lightDeleted={() => lightDeletedHandler(device.serialNUmber, light.gpio)} />
               ))
             )}
 
