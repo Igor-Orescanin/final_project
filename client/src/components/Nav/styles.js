@@ -51,7 +51,7 @@ export default makeStyles((theme) => ({
   nameOfUser: {
     padding: "12px",
     cursor: "default",
-    paddingTop:'15px',
+    paddingTop: '15px',
   },
 
   //icon
@@ -63,7 +63,7 @@ export default makeStyles((theme) => ({
 
   //icon chart icon
   iconSec: {
-    marginLeft: "25px",  
+    marginLeft: "25px",
   },
 
   //typography on name
@@ -82,7 +82,7 @@ export default makeStyles((theme) => ({
     fontSize: "15px",
     fontWeight: 700,
     color: "#ffffff",
-    paddingTop:'3px',
+    paddingTop: '3px',
   },
 
   //typography on chart
@@ -91,7 +91,7 @@ export default makeStyles((theme) => ({
     fontSize: "15px",
     fontWeight: 700,
     color: "#ffffff",
-    paddingTop:'3px'
+    paddingTop: '3px'
   },
 
 }));

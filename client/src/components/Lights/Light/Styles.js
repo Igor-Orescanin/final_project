@@ -8,25 +8,24 @@ export default makeStyles((theme) => ({
   },
 
   groupButton: {
-    marginTop:'15px',
+    marginTop: '15px',
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:'center',
+    justifyContent: 'center',
   },
 
-  deleteIcon:{
-    color:'#0C9EB5',
-    marginLeft:'5px'
+  deleteIcon: {
+    color: '#0C9EB5',
+    marginLeft: '5px'
   },
 
   button: {
-    minWidth:'120px',
+    minWidth: '120px',
     bordercolor: "#008CA7",
     textTransform: "none",
-    paddingTop:'6px',
-    padding:'4px',
-     marginLeft: "10px",
+    paddingTop: '6px',
+    padding: '4px',
+    marginLeft: "10px",
   },
-
 }));

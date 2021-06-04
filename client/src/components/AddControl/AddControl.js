@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from '../Nav/Navbar';
 
@@ -69,8 +69,6 @@ function AddControl(props) {
 
   const [controlExist, setControlExist] = useState("");
 
-  const [errors, setErros] = useState("");
-
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -85,7 +83,7 @@ function AddControl(props) {
     e.preventDefault();
 
     api.addControl(device.serialNumber, formData)
-    .then((res) => {
+      .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -113,7 +111,7 @@ function AddControl(props) {
         <Container className={classes.container}>
           {device.hasControl ? (
             <Typography className={classes.typography}>
-              You don't have any Devices registered in this system!
+              You have not registered any Device in this system yet!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
@@ -164,13 +162,14 @@ function AddControl(props) {
                 name="name"
                 type="text"
                 size="small"
-                inputProps={{
-                  maxLength: CHARACTER_LIMIT,
-                }}
+                // inputProps={{    *** Its again defined in line 171 ***
+                //   maxLength: CHARACTER_LIMIT,
+                // }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
+                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,
@@ -241,10 +240,10 @@ function AddControl(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Device Name. If you bought a <strong>Naunet </strong>
-                Hub you can find the Gpio of the bottom of your Hub 'the
-                Gpio'. If you bought your own Hub pleace contact us per
-                Email:<strong> Naunet.com</strong>!
+                You can choose your own Device Name. If you bought a <strong>Naunet </strong>
+                Hub, you can find the GPIO pin at the bottom of your Hub 'The
+                GPIO'. If you bought your own Hub please contact us per
+                Email:<strong> naunet@naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>

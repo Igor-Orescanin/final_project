@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from '../Nav/Navbar';
 
@@ -11,7 +11,6 @@ import {
   Container,
   ThemeProvider,
   Paper,
-  IconButton,
   Typography,
   TextField,
   Button,
@@ -23,7 +22,7 @@ import {
 } from "@material-ui/core";
 
 // alert
-import Alert from "@material-ui/lab/Alert";
+//import Alert from "@material-ui/lab/Alert";
 
 //styles
 import useStyles from "./Styles";
@@ -67,10 +66,6 @@ const AddLight = (props) => {
     gpio: "",
   });
 
-  const [lightExist, setLightExist] = useState("");
-
-  const [errors, setErros] = useState("");
-
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -85,7 +80,7 @@ const AddLight = (props) => {
     e.preventDefault();
 
     api.addLight(device.serialNumber, formData)
-    .then((res) => {
+      .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -113,7 +108,7 @@ const AddLight = (props) => {
         <Container className={classes.container}>
           {device.lightsButton.length < 1 ? (
             <Typography className={classes.typography}>
-              You don't have any Lights registered in this system!
+              You have not registered any Light in this system!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
@@ -164,13 +159,14 @@ const AddLight = (props) => {
                 name="name"
                 type="text"
                 size="small"
-                inputProps={{
-                  maxLength: CHARACTER_LIMIT,
-                }}
+                // inputProps={{      *** Its again defined in line 169 ***
+                //   maxLength: CHARACTER_LIMIT,
+                // }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
+                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,
@@ -241,10 +237,10 @@ const AddLight = (props) => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Light Name. If you bought a <strong>Naunet </strong> 
-                Hub you can find the Gpio of the bottom of your Hub 'the
-                Gpio'. If you bought your own Hub pleace contact us per
-                Email: <strong>Naunet.com</strong>!
+                You can choose your own Light Name. If you bought a <strong>Naunet </strong>
+                Hub you can find the GPIO Pin at the bottom of your Hub 'The
+                GPIO'. If you bought your own Hub please contact us per
+                Email: <strong>naunet@naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>

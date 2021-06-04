@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -9,7 +9,7 @@ import { Container, Button, ThemeProvider } from "@material-ui/core";
 // import { StylesProvider } from "@material-ui/core/styles";
 
 // to connect the routes
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 //css
 import "../../App.css";
@@ -45,7 +45,7 @@ function Light(props) {
         <Container className={classes.container}>
       
                 <Button
-                onClick={() => history.push("/conditions")}
+                onClick={() => history.push("/Conditions")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -55,7 +55,7 @@ function Light(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/privacy")}
+                onClick={() => history.push("/Privacy")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -65,7 +65,7 @@ function Light(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/imprint")}
+                onClick={() => history.push("/Imprint")}
                 className={classes.button}
                 variant="contained"
                 color="primary"

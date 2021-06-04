@@ -4,15 +4,14 @@ import image from '../../image/charts_bg_mobile.svg';
 
 export default makeStyles((theme) => ({
 
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-        height: "65vh",
-      },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "65vh",
+  },
 
-   
   button: {
     margin: "10px",
     width: "150px",
@@ -26,17 +25,16 @@ export default makeStyles((theme) => ({
     paddingBottom: "10px"
   },
 
-    //for the Image on the bottom
-    footer: {
-        zIndex: "-1",
-        position: "fixed",
-        bottom: "0px",
-        left: '0px',
-        height: "250px",
-        width: "100vw",
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-    },
+  footer: {
+    zIndex: "-1",
+    position: "fixed",
+    bottom: "0px",
+    left: '0px',
+    height: "250px",
+    width: "100vw",
+    backgroundImage: `url(${image})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  },
 
 }))

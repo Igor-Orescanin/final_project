@@ -51,7 +51,7 @@ const Controls = (props) => {
   //for styles
   const classes = useStyles();
 
-  const {device, socket} = props;
+  const { device, socket } = props;
 
   //a hook
   const [allControls, setAllControls] = useState([]);
@@ -60,8 +60,8 @@ const Controls = (props) => {
   socket.on("gpioStatusControl", status => {
     console.log("incomming status", status);
     let index = allControls.findIndex((obj) => obj.gpio === status.gpio);
-    if (allControls[index]) 
-    allControls[index].status = status.status;
+    if (allControls[index])
+      allControls[index].status = status.status;
     setAllControls(allControls);
   });
 

@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -20,7 +20,7 @@ import Navbar from "../Nav/Navbar";
 import { createMuiTheme } from "@material-ui/core/styles";
 
 //socket
-import io from "socket.io-client";
+//import io from "socket.io-client";
 
 const theme = createMuiTheme({
   palette: {
@@ -34,7 +34,6 @@ const theme = createMuiTheme({
 });
 //socket
 
-
 //Welcome-page
 const Welcome = (props) => {
   const history = useHistory();
@@ -43,13 +42,13 @@ const Welcome = (props) => {
   // const device = props.deviceObject
   // console.log(device)
 
-//should be the same
-const {device, socket} = props;
+  //should be the same
+  const { device, socket } = props;
 
- socket.emit('user_connect', device.userId)
-  
+  socket.emit('user_connect', device.userId)
+
   console.log(device);
-  
+
   return (
     <>
       <Navbar username={props.username}> </Navbar>
@@ -72,7 +71,7 @@ const {device, socket} = props;
               history.push(device.lightsButton.length > 0 ? "/lights" : "/addlight")
             }
           >
-            Light
+            Lights
           </Button>
 
           <Button

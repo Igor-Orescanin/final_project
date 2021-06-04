@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 import Navbar from '../../Nav/Navbar.js';
 
@@ -10,7 +10,7 @@ import {
   ThemeProvider,
   Typography,
   Paper,
-  TextField,
+  // TextField,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button"; //button
 
@@ -68,48 +68,48 @@ function Weekly(props) {
   const series = [{
     name: 'Water',
     data: [5, 23, 48, 57, 42, 57, 85]
-}]
-const options = {
+  }]
+  const options = {
     title: {
-        text: 'Liter'
+      text: 'Liter'
     },
     chart: {
-        height: 350,
-        type: 'area',
-        toolbar: {
-            show: false,
-        },
-    }, 
+      height: 350,
+      type: 'area',
+      toolbar: {
+        show: false,
+      },
+    },
     dataLabels: {
-        enabled: false
+      enabled: false
     },
     colors: ["#008CA7"],
     stroke: {
-        curve: 'smooth',
+      curve: 'smooth',
     },
     xaxis: {
-        //type: 'datetime',
-        categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        /* title: {
-            text: 'Monthly',
-        }, */
+      //type: 'datetime',
+      categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      /* title: {
+          text: 'Monthly',
+      }, */
 
-        /* categories: ["2018-09-19T00:00:00.000Z", "2018-09-20T01:30:00.000Z", "2018-09-21T02:30:00.000Z", "2018-09-22T03:30:00.000Z", "2018-09-23T04:30:00.000Z", "2018-09-24T05:30:00.000Z", "2018-09-25T06:30:00.000Z"] */
+      /* categories: ["2018-09-19T00:00:00.000Z", "2018-09-20T01:30:00.000Z", "2018-09-21T02:30:00.000Z", "2018-09-22T03:30:00.000Z", "2018-09-23T04:30:00.000Z", "2018-09-24T05:30:00.000Z", "2018-09-25T06:30:00.000Z"] */
     },
     tooltip: {
-        x: {
-            format: 'dd/MM/yy HH:mm'
-        },
+      x: {
+        format: 'dd/MM/yy HH:mm'
+      },
     },
     yaxis: {
-        /* title: {
-            text: 'Liter'
-        }, */
-        min: 0,
-        max: 100
+      /* title: {
+          text: 'Liter'
+      }, */
+      min: 0,
+      max: 100
     },
 
-}
+  }
 
 
   /* const series = [
@@ -158,65 +158,65 @@ const options = {
 
   return (
     <>
-    <Navbar username={props.username}> </Navbar>
+      <Navbar username={props.username}> </Navbar>
       <StylesProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <Container className={classes.container}>
-          <div className={classes.paper}>
-            <div className={classes.buttons}>
-              <Button
-                //onClick={() => history.push("/weekly")}
-                className={`${classes.button} ${classes.disabled}`}
-                variant="contained"
-                color="primary"
-                disabled="true"
-                type="submit"
-              >
-                last 7 Days
+        <ThemeProvider theme={theme}>
+          <Container className={classes.container}>
+            <div className={classes.paper}>
+              <div className={classes.buttons}>
+                <Button
+                  //onClick={() => history.push("/weekly")}
+                  className={`${classes.button} ${classes.disabled}`}
+                  variant="contained"
+                  color="primary"
+                  disabled="true"
+                  type="submit"
+                >
+                  last 7 Days
               </Button>
 
-              <Button
-                onClick={() => history.push("/monthly")}
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
-                last 30 Days
+                <Button
+                  onClick={() => history.push("/monthly")}
+                  className={classes.button}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
+                  last 30 Days
               </Button>
-            </div>
-            <Typography className={classes.liveTime}>last 7 days</Typography>
-            <div id="chart" className={classes.chart}>
-              <ReactApexChart
-                options={options}
-                series={series}
-                type="line"
-                height={350}
-              />
-            </div>
+              </div>
+              <Typography className={classes.liveTime}>last 7 days</Typography>
+              <div id="chart" className={classes.chart}>
+                <ReactApexChart
+                  options={options}
+                  series={series}
+                  type="line"
+                  height={350}
+                />
+              </div>
 
-            <ExpandMoreIcon
-              className={classes.iconButton}
-              fontSize="large"
-            ></ExpandMoreIcon>
-            <Typography className={classes.typographyInfo2}>
-              Water report of 7 days
+              <ExpandMoreIcon
+                className={classes.iconButton}
+                fontSize="large"
+              ></ExpandMoreIcon>
+              <Typography className={classes.typographyInfo2}>
+                Water report of 7 days
             </Typography>
-            <Paper className={classes.paper2}>
-              <Typography className={classes.typographyInfo}>
-                average consumption: {} 27l/day
+              <Paper className={classes.paper2}>
+                <Typography className={classes.typographyInfo}>
+                  average consumption: { } 27l/day
               </Typography>
-              <Typography className={classes.typographyInfo}>
-                your Fresh water is by 30{}%
+                <Typography className={classes.typographyInfo}>
+                  your Fresh water is by 30{ }%
               </Typography>
-              <Typography className={classes.typographyInfo}>
-                your Waste water is by 25{}%
+                <Typography className={classes.typographyInfo}>
+                  your Waste water is by 25{ }%
               </Typography>
-            </Paper>
+              </Paper>
 
-            <div className={classes.footer}></div>
-          </div>
-        </Container>
+              <div className={classes.footer}></div>
+            </div>
+          </Container>
         </ThemeProvider>
       </StylesProvider>
     </>

@@ -4,7 +4,6 @@ import image from "../../image/welcome3_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
-
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -29,7 +28,7 @@ export default makeStyles((theme) => ({
     textTransform: "none",
     marginRight: "10px",
     marginLeft: "10px",
-    paddingTop:'8px',
+    paddingTop: '8px',
     border: "solid",
     borderWidth: "2px",
   },
@@ -54,9 +53,7 @@ export default makeStyles((theme) => ({
     position: "fixed",
     bottom: "0px",
     height: "250px",
-    //height:'170px',
     width: "100vw",
-    //backgroundColor: "Blue",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
