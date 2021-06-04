@@ -73,6 +73,7 @@ const Lights = (props) => {
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
+    //console.log((data.length));
     setAllLights(data[0].lightsButton);
   };
 
