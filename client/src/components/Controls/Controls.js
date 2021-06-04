@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-//socket
-import io from "socket.io-client";
 
 import Control from "./Control/Control.js";
 import Navbar from '../Nav/Navbar.js';
@@ -45,9 +43,6 @@ const theme = createMuiTheme({
   },
 });
 
-//socket
-const ENDPOINT = "http://localhost:3005";
-const socket = io(ENDPOINT, { transports: ["websocket", "polling"] });
 
 const Controls = (props) => {
   //for routes
@@ -56,33 +51,29 @@ const Controls = (props) => {
   //for styles
   const classes = useStyles();
 
-  const device = props.device;
+  const {device, socket} = props;
 
   //a hook
-  const [allControls, setAllControls] = useState("");
+  const [allControls, setAllControls] = useState([]);
 
   //socket
-  socket.on("gpioStatus", (status) => {
+  socket.on("gpioStatusControl", status => {
     console.log("incomming status", status);
     let index = allControls.findIndex((obj) => obj.gpio === status.gpio);
-    if (allControls[index]) allControls[index].status = status.status;
-    console.log();
+    if (allControls[index]) 
+    allControls[index].status = status.status;
     setAllControls(allControls);
-    console.log(allControls);
   });
 
   // to get the data for databace
   useEffect(() => {
     getControls();
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+    socket.off("gpioStatusControl");
+  }, [allControls]);
 
   const getControls = async () => {
     const { data } = await api.fetchControls(device.serialNumber);
-    setAllControls(data);
-    console.log(data[0].controlsButton);
+    setAllControls(data[0].controlsButton);
   };
 
   return (
@@ -98,15 +89,15 @@ const Controls = (props) => {
             {!allControls.length ? (
               <CircularProgress />
             ) : (
-              allControls[0].controlsButton.map((control) => (
-                <Control controlObject={control} />
+              allControls.map((control) => (
+                <Control key={control._id} device_id={device._id} controlObject={control} socket={socket} />
               ))
             )}
 
             <Button
               onClick={() =>
                 history.push({
-                  pathname: "/addcontrol",
+                  pathname: "/adddevice",
                 })
               }
               className={classes.addbutton}
