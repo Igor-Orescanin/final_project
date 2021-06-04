@@ -42,7 +42,7 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Represented by: <br />{" "}
+              Represented by: <br />
             </Typography>
             <Typography className={classes.typo}>
               Igor Oreščanin, <br />
@@ -77,7 +77,7 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Dispute settlement
+              Dispute settlement:
               <br />
             </Typography>
             <Typography className={classes.typo}>

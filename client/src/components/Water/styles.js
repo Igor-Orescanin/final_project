@@ -31,6 +31,7 @@ export default makeStyles((theme) => ({
     marginTop: "120px",
   },
 
+
   typographyInfo1: {
     zIndex: "-2",
     marginRight: '140px',
@@ -40,20 +41,20 @@ export default makeStyles((theme) => ({
     fontFamily: ('Roboto', 'sans-serif'),
   },
 
-  typographyInfo: {
+  typographyInfo:{
     fontSize: "12px",
     fontFamily: ('Roboto', 'sans-serif'),
-    paddingLeft: '37px',
-    paddingRight: '37px',
-  },
-
-  typographyInfoRed: {
-    fontSize: "12px",
-    fontFamily: ('Roboto', 'sans-serif'),
-    paddingLeft: '37px',
-    paddingRight: '37px',
-    color: "#960524",
-  },
+    paddingLeft:'37px',
+    paddingRight:'37px',
+   },
+  
+   typographyInfoRed:{
+     fontSize: "12px",
+     fontFamily: ('Roboto', 'sans-serif'),
+     paddingLeft:'37px',
+     paddingRight:'37px',
+     color: "#960524",
+    },
 
   iconButton: {
     color: '#008CA7',

@@ -370,10 +370,9 @@ const Water = (props) => {
                 </Typography>
 
               <Typography className={(wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)}>
-                Your Waste water is by {waterLevelGrey}%
+                  Your Waste water is by {waterLevelGrey}%
                 </Typography>
-            </Paper>
-
+              </Paper>
 
 
             {/* <Typography> className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >

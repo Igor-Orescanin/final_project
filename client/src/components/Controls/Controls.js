@@ -104,7 +104,7 @@ const Controls = (props) => {
               variant="contained"
               color="primary"
             >
-              Add new Controls
+              Add new Devices
             </Button>
           </div>
           <div className={classes.footer}></div>
