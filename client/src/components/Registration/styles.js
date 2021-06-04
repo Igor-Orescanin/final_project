@@ -64,13 +64,13 @@ export default makeStyles((theme) => ({
     backgroundColor: "white",
   },
 
-  dialog:{
-   justifyContent:'center',
-   },
+  dialog: {
+    justifyContent: 'center',
+  },
 
-link:{
-  marginTop:'10px',
-},
+  link: {
+    marginTop: '10px',
+  },
 
   button: {
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
@@ -86,13 +86,14 @@ link:{
     borderWidth: "2px",
     paddingTop: "2px",
   },
-  error:{
+
+  error: {
     marginTop: '4px',
-    color:'#f44336;',
+    color: '#f44336;',
     fontFamily: ("Roboto", "sans-serif"),
     fontSize: "0.75rem",
   },
-  // image
+
   footer: {
     zIndex: "-1",
     position: "fixed",

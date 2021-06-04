@@ -99,5 +99,4 @@ export default makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   },
-
 }));

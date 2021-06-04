@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-
-
 import Light from "./Light/Light.js";
 import Navbar from '../Nav/Navbar';
 
@@ -44,7 +42,6 @@ const theme = createMuiTheme({
   },
 });
 
-
 const Lights = (props) => {
   //for routes
   const { history } = props;
@@ -52,16 +49,16 @@ const Lights = (props) => {
   //for styles
   const classes = useStyles();
 
-  const {device, socket} = props;
-  
+  const { device, socket } = props;
+
   //a hook
   const [allLights, setAllLights] = useState([]);
 
   //socket
   socket.on("gpioStatusLight", status => {
     let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) 
-    allLights[index].status = status.status;
+    if (allLights[index])
+      allLights[index].status = status.status;
     setAllLights(allLights);
   });
 
@@ -78,19 +75,19 @@ const Lights = (props) => {
 
   return (
     <>
-       <Navbar username={props.username}> </Navbar>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your Lights</Typography>
+            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Your Lights</Typography>
           </div>
           <div className={classes.paper}>
             {!allLights.length ? (
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
+                <Light key={light._id} lightObject={light} device_id={device._id} socket={socket} />
               ))
             )}
 

@@ -59,7 +59,7 @@ const LogIn = (props) => {
   const classes = useStyles();
 
   //alert
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const fetchUser = props.fetchUser;
 
 
@@ -71,7 +71,7 @@ const LogIn = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     api.loginUser(formData)
-    .then((response) => {
+      .then((response) => {
         if (!response.data.auth) {
           console.log(response.data);
           setLoginStatus("Wrong password or email");
@@ -80,21 +80,21 @@ const LogIn = (props) => {
           localStorage.setItem("token", response.data.token);
           console.log(response.data);
           fetchUser(response.data);
-        //  console.log(allDevices);
-          api.fetchDevices(response.data._id).then((response) =>{
+          //  console.log(allDevices);
+          api.fetchDevices(response.data._id).then((response) => {
             console.log(response)
-             if(!response.data.length){
+            if (!response.data.length) {
               history.push({
                 pathname: "/addhub",
-                 });
-             }else{
+              });
+            } else {
               history.push({
-               pathname: "/hubs",
-               });
-           }
+                pathname: "/hubs",
+              });
+            }
           }
           )
-      
+
         }
       })
       .catch((err) => {

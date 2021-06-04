@@ -56,7 +56,7 @@ function Privacy(props) {
             </Typography>
             <Typography className={classes.typo}>
               Phone: +49 (0)40 00000000 <br />
-              E-Mail: Naunet.@com <br />
+              E-Mail: naunet@naunet.com <br />
             </Typography>
             <br />
             <Typography className={classes.typo2}>

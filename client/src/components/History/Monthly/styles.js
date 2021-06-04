@@ -13,51 +13,52 @@ export default makeStyles((theme) => ({
     },
 
     paper: {
-        //backgroundColor: 'green',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
     },
 
-    paper2:{      
+    paper2: {
         zIndex: "-2",
-        paddingTop:'20px',
-        paddingBottom:'20px',
-        marginBottom:'120px',
-        borderColor:'#30D4DE',
-        border:'solid',
-        borderWidth:'1px',
-        textAlign:'center',
-      },
-      iconButton:{
-        color:'#008CA7',
-        marginTop:'-18px',
-      }, 
-      typographyInfo:{
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        marginBottom: '120px',
+        borderColor: '#30D4DE',
+        border: 'solid',
+        borderWidth: '1px',
+        textAlign: 'center',
+    },
+
+    iconButton: {
+        color: '#008CA7',
+        marginTop: '-18px',
+    },
+
+    typographyInfo: {
         fontSize: "12px",
         fontFamily: ('Roboto', 'sans-serif'),
-        paddingLeft:'37px',
-        paddingRight:'37px',
-      },
-      typographyInfo2:{
-        marginTop:'10px',
+        paddingLeft: '37px',
+        paddingRight: '37px',
+    },
+
+    typographyInfo2: {
+        marginTop: '10px',
         zIndex: "-2",
         fontSize: "15px",
         fontFamily: ('Roboto', 'sans-serif'),
-        paddingTop:'17px',
-        paddingLeft:'37px',
-        paddingRight:'37px',
+        paddingTop: '17px',
+        paddingLeft: '37px',
+        paddingRight: '37px',
         color: "#008CA7",
-        fontWeight: 'bold',        
-        
-      },
+        fontWeight: 'bold',
+    },
     buttons: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         margin: '10px',
-        marginTop:'120px'
+        marginTop: '120px'
     },
 
     button: {
@@ -66,7 +67,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "#0C9EB5",
         color: 'white',
         width: '110px',
-        paddingTop:'2px',
+        paddingTop: '2px',
         border: "solid",
         borderWidth: "2px",
         borderColor: "#008CA7",
@@ -79,15 +80,13 @@ export default makeStyles((theme) => ({
         textTransform: "none",
     },
 
-
-    disabled:{
+    disabled: {
         borderColor: "#d4d4d4",
     },
 
-
     liveTime: {
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
-        color:'#008CA7',
+        color: '#008CA7',
         fontSize: '12px',
         marginTop: '10px',
     },
@@ -121,11 +120,8 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
-
     },
 
-
-    //for the Image on the bottom
     footer: {
         zIndex: "-1",
         position: "fixed",
@@ -136,6 +132,4 @@ export default makeStyles((theme) => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     },
-
-
 }))

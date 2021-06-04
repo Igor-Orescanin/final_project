@@ -4,7 +4,6 @@ import React from "react";
 // style
 import { StylesProvider } from "@material-ui/core/styles";
 
-
 //styles to use the connection
 import useStyles from "./styles";
 
@@ -12,13 +11,10 @@ import useStyles from "./styles";
 import '../../App.css';
 
 // material-ui
-import { Container,Typography,Button,ThemeProvider } from "@material-ui/core";
-
+import { Container, Typography, Button, ThemeProvider } from "@material-ui/core";
 
 // change color as a theme
 import { createMuiTheme } from "@material-ui/core/styles";
-
-
 
 // theme
 const theme = createMuiTheme({
@@ -32,45 +28,40 @@ const theme = createMuiTheme({
   },
 });
 
-
-
-
-
 const LogOut = (props) => {
-    const { history } = props;
-    const classes = useStyles();
+  const { history } = props;
+  const classes = useStyles();
 
-    return (
-      <>
+  return (
+    <>
 
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <Container className={classes.container}>
-              <div className={classes.top}></div>
-              <div className={classes.paper}>
-                <Typography
-                  className={classes.typography}
-                  component="h1"
-                  variant="h5"
-                >
-                  Have a nice Day and see you again on Naunet
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Container className={classes.container}>
+            <div className={classes.top}></div>
+            <div className={classes.paper}>
+              <Typography
+                className={classes.typography}
+                component="h1"
+                variant="h5"
+              >
+                Have a nice Day and see you soon on Naunet
                 </Typography>
 
-                <Button
-                  className={classes.button}
-                  onClick={() => history.push("/")}
-                  className={classes.button}
-                  variant="contained"
-                  color="primary"
-                >
-                  Login again
+              <Button
+                className={classes.button}
+                onClick={() => history.push("/")}
+                variant="contained"
+                color="primary"
+              >
+                Login again
           </Button>
-              </div>
-              <div className={classes.footer}></div>
-            </Container>
-          </ThemeProvider>
-        </StylesProvider>
-      </>
+            </div>
+            <div className={classes.footer}></div>
+          </Container>
+        </ThemeProvider>
+      </StylesProvider>
+    </>
   );
 };
 

@@ -45,7 +45,7 @@ function Light(props) {
         <Container className={classes.container}>
       
                 <Button
-                onClick={() => history.push("/conditions")}
+                onClick={() => history.push("/Conditions")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -55,7 +55,7 @@ function Light(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/privacy")}
+                onClick={() => history.push("/Privacy")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -65,7 +65,7 @@ function Light(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/imprint")}
+                onClick={() => history.push("/Imprint")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
