@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
+//import zIndex from "@material-ui/core/styles/zIndex";
 
 import image from '../../../image/water_bg_mobile.svg';
 

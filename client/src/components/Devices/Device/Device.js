@@ -1,8 +1,8 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // axios
-import * as api from "../../../api";
+//import * as api from "../../../api";
 
 import { useHistory } from "react-router-dom";
 

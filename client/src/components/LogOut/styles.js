@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 import image from "../../image/background_mobile.svg";
-import image2 from "../../image/welcome3_bg_mobile.svg";
+//import image2 from "../../image/welcome3_bg_mobile.svg";
 
 export default makeStyles((
   

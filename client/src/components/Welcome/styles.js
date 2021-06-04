@@ -1,5 +1,5 @@
 // general
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 // background picture
 import image from "../../image/welcome2_bg_mobile.svg";

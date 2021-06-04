@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // style
 import { StylesProvider } from "@material-ui/core/styles";

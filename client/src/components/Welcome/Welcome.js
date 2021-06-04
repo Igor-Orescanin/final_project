@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
 
 // useStyles to use the connection
 import useStyles from "./styles";
@@ -20,7 +20,7 @@ import Navbar from "../Nav/Navbar";
 import { createMuiTheme } from "@material-ui/core/styles";
 
 //socket
-import io from "socket.io-client";
+//import io from "socket.io-client";
 
 const theme = createMuiTheme({
   palette: {

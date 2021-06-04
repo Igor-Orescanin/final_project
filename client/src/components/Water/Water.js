@@ -8,7 +8,7 @@ import ReactApexChart from "react-apexcharts";
 import io from "socket.io-client";
 
 //axios
-import * as api from "../../api";
+//import * as api from "../../api";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -33,7 +33,7 @@ import {
 // icon
 import WarningIcon from '@material-ui/icons/Warning';
 
-import { StylesProvider } from "@material-ui/core/styles";
+//import { StylesProvider } from "@material-ui/core/styles";
 
 //icon
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";

@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from '../Nav/Navbar';
 
@@ -11,7 +11,7 @@ import {
   Container,
   ThemeProvider,
   Paper,
-  IconButton,
+  //IconButton,
   Typography,
   TextField,
   Button,
@@ -23,7 +23,7 @@ import {
 } from "@material-ui/core";
 
 // alert
-import Alert from "@material-ui/lab/Alert";
+//import Alert from "@material-ui/lab/Alert";
 
 //styles
 import useStyles from "./Styles";

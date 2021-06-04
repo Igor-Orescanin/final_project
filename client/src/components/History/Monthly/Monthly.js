@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StylesProvider } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 import Navbar from '../../Nav/Navbar.js';
 
@@ -10,7 +10,7 @@ import {
   ThemeProvider,
   Typography,
   Paper,
-  TextField,
+ // TextField,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button"; //button
 

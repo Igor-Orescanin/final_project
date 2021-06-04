@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -9,7 +9,7 @@ import { Container, Button, ThemeProvider } from "@material-ui/core";
 // import { StylesProvider } from "@material-ui/core/styles";
 
 // to connect the routes
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 //css
 import "../../App.css";
