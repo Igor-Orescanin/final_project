@@ -64,10 +64,6 @@ const Lights = (props) => {
     //console.log((data.length));
     setAllLights(data[0].lightsButton);
   };
-  const lightDeletedHandler = async (serialNumber, gpio) => {
-    await api.deleteLight(device.serialNumber, gpio);
-    getLights();
-  }
 
   const lightDeletedHandler = async (serialNumber, gpio) => {
     await api.deleteLight(device.serialNumber, gpio);
