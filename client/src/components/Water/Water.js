@@ -24,11 +24,6 @@ import {
   Button,
   Paper,
   IconButton,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
 } from "@material-ui/core";
 
 // alert
@@ -314,70 +309,48 @@ const Water = (props) => {
       <Navbar username={props.username}> </Navbar>
 
       <ThemeProvider theme={theme}>
-
         <Container className={classes.container}>
           <>
             <Typography className={classes.typography}>Realtime Data</Typography>
-
             <div >
-
-
-
-            <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-{(waterLevelClean <= cleanAlertThreshold ? <Alert
-className={classes.alertTop}
-severity="error"
-action={
-  <IconButton
-    aria-label="close"
-    color="inherit"
-    size="small"
-
-  >
-
-  </IconButton>
-}
->
-Fresh water is under {cleanAlertThreshold}%
+              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelClean <= cleanAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
+                  }
+                >
+                  Fresh water is under {cleanAlertThreshold}%
 </Alert> : null)}
-
-</Typography> 
-
-
-
-
-
+              </Typography>
               <ReactApexChart
                 options={options}
                 series={waterLevelClean}
                 type="radialBar"
                 height={250}
               />
-
-<Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-{(waterLevelGrey >= wasteAlertThreshold ? <Alert
-className={classes.alertTop}
-                severity="error"
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-
-                  >
-
-                  </IconButton>
-                }
-              >
-              Waste water is under {wasteAlertThreshold}%
-              </Alert>  : null)}
-
-</Typography>  
-
-
-
+              <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelGrey >= wasteAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
+                  }
+                >
+                  Waste water is under {wasteAlertThreshold}%
+              </Alert> : null)}
+              </Typography>
               <ReactApexChart
                 options={options2}
                 series={waterLevelGrey}
@@ -385,9 +358,6 @@ className={classes.alertTop}
                 height={250}
               />
             </div>
-
-
-  
             <Button
               // onClick={() => history.push("/emailalert")}
               onClick={() => history.push({
@@ -403,67 +373,25 @@ className={classes.alertTop}
             >
               Modify Alert
               </Button>
-
             <ExpandMoreIcon
               className={classes.iconButton}
               fontSize="large"
             ></ExpandMoreIcon>
-
             <Typography className={classes.typographyInfo1}>
               Information
               </Typography>
             <Paper className={classes.paper2}>
-
               <Typography className={(cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)} >
                 {/* <Typography className={classes.typographyInfo} > */}
                   Your Fresh water is by {waterLevelClean}%
                 </Typography>
-
               <Typography className={(wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)}>
                   Your Waste water is by {waterLevelGrey}%
                 </Typography>
-              </Paper>
-
-
-            
-
-            {/* <Dialog
-              className={classes.dialog}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
-                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
-                {"!!!Alert!!!"}
-              </DialogTitle>
-              <DialogContent>
-                {(waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold !== 0 ? <div>
-                  <DialogContentText id="alert-dialog-description">
-                    {(waterLevelClean <= cleanAlertThreshold ? `Your Fresh water is under ${cleanAlertThreshold}%` : null)}
-                  </DialogContentText>
-                </div> : null)}
-                {(waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold !== 0 ? < div >
-                  <DialogContentText id="alert-dialog-description">
-                    {(waterLevelGrey >= wasteAlertThreshold ? `Your Waste water is higher ${wasteAlertThreshold}%` : null)}
-                  </DialogContentText>
-                </div> : null)}
-
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                  Close
-                    </Button>
-              </DialogActions>
-            </Dialog> */}
-
+            </Paper>
           </>
-
           <div className={classes.footer}></div>
-
         </Container>
-
       </ThemeProvider>
 
     </>

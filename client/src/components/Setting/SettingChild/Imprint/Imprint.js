@@ -17,14 +17,12 @@ const theme = createMuiTheme({
   },
 });
 
-
-function Impressum(props) {
-
+function Imprint(props) {
   const classes = useStyles();
 
   return (
     <>
-      <Navbar username={props.username}> </Navbar>
+      <Navbar className={classes.navbar} username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <Typography className={classes.heading}>Imprint </Typography>
@@ -54,11 +52,11 @@ function Impressum(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Contakt: <br />
+              Contact: <br />
             </Typography>
             <Typography className={classes.typo}>
               Phone: +49 (0)40 00000000 <br />
-              E-Mail: naunet@naunet.com <br />
+              E-Mail: naunetmon@gmail.com <br />
             </Typography>
             <br />
             <Typography className={classes.typo2}>
@@ -94,5 +92,4 @@ function Impressum(props) {
   );
 }
 
-export default Impressum;
-
+export default Imprint;

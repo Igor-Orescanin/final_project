@@ -32,9 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-
 function Setting(props) {
-
   const classes = useStyles();
 
   const { history } = props;
@@ -45,9 +43,9 @@ function Setting(props) {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
-      
+
                 <Button
-                onClick={() => history.push("/Conditions")}
+                onClick={() => history.push("/conditions")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -57,7 +55,7 @@ function Setting(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/Privacy")}
+                onClick={() => history.push("/privacy")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -67,7 +65,7 @@ function Setting(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/Imprint")}
+                onClick={() => history.push("/imprint")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -77,7 +75,7 @@ function Setting(props) {
               </Button>
 
             <div className={classes.footer}></div>
-     
+
         </Container>
       </ThemeProvider>
     </>
