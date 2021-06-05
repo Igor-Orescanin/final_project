@@ -23,12 +23,16 @@ import {
   Typography,
   Button,
   Paper,
+  IconButton,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
+
+// alert
+import Alert from "@material-ui/lab/Alert";
 
 // icon
 import WarningIcon from '@material-ui/icons/Warning';
@@ -73,9 +77,9 @@ const theme = createMuiTheme({
 });
 //___________start coding
 // use/get the socket
-const socket = io("http://localhost:3005", {
-  transports: ["websocket", "polling"],
-});
+ const socket = io("http://localhost:3005", {
+   transports: ["websocket", "polling"],
+ });
 
 const Water = (props) => {
   const { history } = props;
@@ -316,6 +320,34 @@ const Water = (props) => {
             <Typography className={classes.typography}>Realtime Data</Typography>
 
             <div >
+
+
+
+            <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+
+{(waterLevelClean <= cleanAlertThreshold ? <Alert
+className={classes.alertTop}
+severity="error"
+action={
+  <IconButton
+    aria-label="close"
+    color="inherit"
+    size="small"
+
+  >
+
+  </IconButton>
+}
+>
+Fresh water is under {cleanAlertThreshold}%
+</Alert> : null)}
+
+</Typography> 
+
+
+
+
+
               <ReactApexChart
                 options={options}
                 series={waterLevelClean}
@@ -323,11 +355,28 @@ const Water = (props) => {
                 height={250}
               />
 
-              {/* <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+<Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
 
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
+{(waterLevelGrey >= wasteAlertThreshold ? <Alert
+className={classes.alertTop}
+                severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
 
-              </Typography> */}
+                  >
+
+                  </IconButton>
+                }
+              >
+              Waste water is under {wasteAlertThreshold}%
+              </Alert>  : null)}
+
+</Typography>  
+
+
 
               <ReactApexChart
                 options={options2}
@@ -338,6 +387,7 @@ const Water = (props) => {
             </div>
 
 
+  
             <Button
               // onClick={() => history.push("/emailalert")}
               onClick={() => history.push({
@@ -375,13 +425,9 @@ const Water = (props) => {
               </Paper>
 
 
-            {/* <Typography> className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+            
 
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-
-             </Typography>  */}
-
-            <Dialog
+            {/* <Dialog
               className={classes.dialog}
               open={open}
               onClose={handleClose}
@@ -410,7 +456,7 @@ const Water = (props) => {
                   Close
                     </Button>
               </DialogActions>
-            </Dialog>
+            </Dialog> */}
 
           </>
 

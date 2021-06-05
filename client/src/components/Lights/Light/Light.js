@@ -7,6 +7,12 @@ import LightOn from "../../../image/light_on.svg";
 //styles to use the connection
 import useStyles from "./Styles";
 
+import { useHistory } from "react-router-dom";
+
+//axios';
+//import * as api from "../../../api";
+
+
 //css
 import "../../../App.css";
 
@@ -45,6 +51,7 @@ const theme = createMuiTheme({
 });
 
 const Light = (props) => {
+  const history = useHistory();
 
   //for styles
   const classes = useStyles();
@@ -69,7 +76,7 @@ const Light = (props) => {
 
     props.lightDeleted();
     setOpen(false);
-    api.deleteLight(light._id);
+   // api.deleteLight(light._id);
 
   };
 
