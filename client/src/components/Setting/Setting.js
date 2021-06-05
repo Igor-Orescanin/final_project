@@ -45,7 +45,7 @@ function Setting(props) {
         <Container className={classes.container}>
 
                 <Button
-                onClick={() => history.push("/Conditions")}
+                onClick={() => history.push("/conditions")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -55,7 +55,7 @@ function Setting(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/Privacy")}
+                onClick={() => history.push("/privacy")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
@@ -65,7 +65,7 @@ function Setting(props) {
               </Button>
 
               <Button
-                onClick={() => history.push("/Imprint")}
+                onClick={() => history.push("/imprint")}
                 className={classes.button}
                 variant="contained"
                 color="primary"
