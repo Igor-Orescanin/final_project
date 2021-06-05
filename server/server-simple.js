@@ -118,6 +118,16 @@ io.on('connection', (socket) => {
         //console.log(err);
       }
     })
+
+    socket.on('waterFlowData', async (waterFlowReadings) => {
+      const waterReading = new WaterFlow({
+        waterFlowCounter: waterFlowReadings,
+        ts: new Date().toISOString()
+      })
+      await waterReading.save()
+      //logger.log(`Received water flow: ${clientId}`);
+      logger.log(JSON.stringify(waterFlowReadings));
+    })
     //_____________________________________________________Buttons______________________
 
     //console.log(data);
