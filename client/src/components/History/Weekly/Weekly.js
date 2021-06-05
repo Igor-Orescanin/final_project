@@ -67,7 +67,7 @@ function Weekly(props) {
 
   const series = [{
     name: 'Water',
-    data: [5, 23, 48, 57, 42, 57, 85]
+    data: [13, 6, 11, 19, 6, 17, 8]
   }]
   const options = {
     title: {
@@ -106,7 +106,7 @@ function Weekly(props) {
           text: 'Liter'
       }, */
       min: 0,
-      max: 100
+      max: 20
     },
 
   }
@@ -204,13 +204,13 @@ function Weekly(props) {
             </Typography>
               <Paper className={classes.paper2}>
                 <Typography className={classes.typographyInfo}>
-                  average consumption: { } 27l/day
+                  average consumption: { } 12l/day
               </Typography>
                 <Typography className={classes.typographyInfo}>
-                  your Fresh water is by 30{ }%
+                  your Fresh water is by 33{ }%
               </Typography>
                 <Typography className={classes.typographyInfo}>
-                  your Waste water is by 25{ }%
+                  your Waste water is by 64{ }%
               </Typography>
               </Paper>
 

@@ -32,7 +32,9 @@ const theme = createMuiTheme({
   },
 });
 
-function Setting (props) {
+
+function Setting(props) {
+
   const classes = useStyles();
 
   const { history } = props;
