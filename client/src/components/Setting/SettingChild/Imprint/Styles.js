@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from "../../../../image/charts_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
-  container: {
 
+  container: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

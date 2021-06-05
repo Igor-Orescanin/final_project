@@ -22,7 +22,7 @@ import AddControl from "./components/AddControl/AddControl.js";
 //import Control from "./components/Controls/Control/Control.js";
 import Controls from "./components/Controls/Controls.js";
 import Conditions from "./components/Setting/SettingChild/Conditions/Conditions.js";
-import Imprint from "./components/Setting/SettingChild/Impressum/Impressum.js";
+import Imprint from "./components/Setting/SettingChild/Imprint/Imprint.js";
 import Privacy from "./components/Setting/SettingChild/Privacy/Privacy.js";
 
 
