@@ -8,7 +8,7 @@ import ReactApexChart from "react-apexcharts";
 import io from "socket.io-client";
 
 //axios
-import * as api from "../../api";
+//import * as api from "../../api";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -32,7 +32,7 @@ import Alert from "@material-ui/lab/Alert";
 // icon
 import WarningIcon from '@material-ui/icons/Warning';
 
-import { StylesProvider } from "@material-ui/core/styles";
+//import { StylesProvider } from "@material-ui/core/styles";
 
 //icon
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -72,9 +72,9 @@ const theme = createMuiTheme({
 });
 //___________start coding
 // use/get the socket
-const socket = io("http://localhost:3005", {
-  transports: ["websocket", "polling"],
-});
+ const socket = io("http://localhost:3005", {
+   transports: ["websocket", "polling"],
+ });
 
 const Water = (props) => {
   const { history } = props;
@@ -87,7 +87,7 @@ const Water = (props) => {
   let cleanAlertThreshold;
   let wasteAlertThreshold;
 
-  if (location.state != undefined) {
+  if (location.state !== undefined) {
     cleanAlertThreshold = props.location.state.cleanAlertThreshold;
     wasteAlertThreshold = props.location.state.wasteAlertThreshold;
   } else {
@@ -133,55 +133,55 @@ const Water = (props) => {
 
   useEffect(() => {
 
-      socket.on("sensorReading", (sensorObject) => {
+    socket.on("sensorReading", (sensorObject) => {
 
-        if (sensorObject.label === "CLEAN") {
+      if (sensorObject.label === "CLEAN") {
 
-          //var waterLevelCleanPercentage = sensorObject.levelPercentage;
-          setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
+        //var waterLevelCleanPercentage = sensorObject.levelPercentage;
+        setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
 
-          //setLoading(false)
-          console.log(sensorObject.levelPercentage, cleanAlertThreshold);
+        //setLoading(false)
+        console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
-          if (sensorObject.levelPercentage <= cleanAlertThreshold && cleanAlertThreshold != 0) {
-           setOpen(true);
-          }
-
-          //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-          //setWaterLevelClean([sensorPercent]);
-        } else {
-          setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
-          //var waterLevelGreyPercentage = sensorObject.levelPercentage;
-          setLoading(false);
-
-          if (sensorObject.levelPercentage >= wasteAlertThreshold && wasteAlertThreshold != 0) {
-            setOpen(true);
-          }
-          //console.log(waterLevelGreyPercentage)
+        if (sensorObject.levelPercentage <= cleanAlertThreshold && cleanAlertThreshold !== 0) {
+          setOpen(true);
         }
-        //console.log(waterLevelCleanPercentage.levelPercentage)
-        //console.log(sensorObject);
-        let sensorPercent = sensorObject.levelPercentage;
+
+        //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
+        //setWaterLevelClean([sensorPercent]);
+      } else {
+        setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
+        //var waterLevelGreyPercentage = sensorObject.levelPercentage;
+        setLoading(false);
+
+        if (sensorObject.levelPercentage >= wasteAlertThreshold && wasteAlertThreshold !== 0) {
+          setOpen(true);
+        }
+        //console.log(waterLevelGreyPercentage)
+      }
+      //console.log(waterLevelCleanPercentage.levelPercentage)
+      //console.log(sensorObject);
+      let sensorPercent = sensorObject.levelPercentage;
 
 
-        setChart([
-          {
-            name: "water Level",
-            data: [sensorPercent],
-          },
-          {
-            name: "Volts",
-            data: [waterLevelGrey],
-          },
-        ]);
-          // max sensor value = 1024
-          // pre = (current *100)/1024
-          // 500 === (500 * 100) /1024 ==> 48,.....%
+      setChart([
+        {
+          name: "water Level",
+          data: [sensorPercent],
+        },
+        {
+          name: "Volts",
+          data: [waterLevelGrey],
+        },
+      ]);
+      // max sensor value = 1024
+      // pre = (current *100)/1024
+      // 500 === (500 * 100) /1024 ==> 48,.....%
 
-          //options.chart.updateSeries(options.series);
-          //options = [...options, options.series ]
+      //options.chart.updateSeries(options.series);
+      //options = [...options, options.series ]
 
-      });
+    });
 
 
   }, []); // runs only once  ,,, run when the Graph component mount
@@ -303,8 +303,6 @@ const Water = (props) => {
       },
     },
   };
-
-
 
   return (
     <>

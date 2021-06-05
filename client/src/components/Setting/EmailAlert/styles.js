@@ -96,7 +96,6 @@ export default makeStyles((theme) => ({
    },
    
    focused: {},
-   notchedOutline: {},
 
    notchedOutline: {
        borderColor: "#007982",

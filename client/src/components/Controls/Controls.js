@@ -47,11 +47,11 @@ const theme = createMuiTheme({
 const Controls = (props) => {
   //for routes
   const { history } = props;
-
+  console.log(props);
   //for styles
   const classes = useStyles();
 
-  const {device, socket} = props;
+  const { device, socket } = props;
 
   //a hook
   const [allControls, setAllControls] = useState([]);
@@ -60,8 +60,8 @@ const Controls = (props) => {
   socket.on("gpioStatusControl", status => {
     console.log("incomming status", status);
     let index = allControls.findIndex((obj) => obj.gpio === status.gpio);
-    if (allControls[index]) 
-    allControls[index].status = status.status;
+    if (allControls[index])
+      allControls[index].status = status.status;
     setAllControls(allControls);
   });
 
@@ -69,7 +69,7 @@ const Controls = (props) => {
   useEffect(() => {
     getControls();
     socket.off("gpioStatusControl");
-  }, [allControls]);
+  }, []);
 
   const getControls = async () => {
     const { data } = await api.fetchControls(device.serialNumber);
@@ -104,7 +104,7 @@ const Controls = (props) => {
               variant="contained"
               color="primary"
             >
-              Add new Controls
+              Add new Devices
             </Button>
           </div>
           <div className={classes.footer}></div>

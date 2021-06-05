@@ -25,6 +25,7 @@ export default makeStyles((theme) => ({
         padding: '10px',
     },
     conditions: {
+
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
@@ -44,6 +45,7 @@ export default makeStyles((theme) => ({
         fontSize: "15px",
     },
     //for the Image on the bottom
+
     footer: {
         zIndex: "1",
         position: "fixed",

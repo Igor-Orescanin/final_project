@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 //axios
 import * as api from "../../api";
 
-
-
 import Light from "./Light/Light.js";
 import Navbar from '../Nav/Navbar';
 
@@ -43,7 +41,6 @@ const theme = createMuiTheme({
     },
   },
 });
-
 
 const Lights = (props) => {
   //for routes
@@ -84,21 +81,21 @@ const Lights = (props) => {
 
   return (
     <>
-       <Navbar username={props.username}> </Navbar>
+      <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>connected</Typography>
-            <Typography className={classes.typography}>your Lights</Typography>
+            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Your Lights</Typography>
           </div>
           <div className={classes.paper}>
             {!allLights.length ? (
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                console.log(light),
 
                 <Light key={light._id} lightObject={light} device_id={device._id} socket={socket} lightDeleted={() => lightDeletedHandler(device.serialNUmber, light.gpio)} />
+
               ))
             )}
 

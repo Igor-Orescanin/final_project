@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import useStyles from "./Styles.js";
-import { Container, ThemeProvider, Typography, } from "@material-ui/core";
+import { Container, ThemeProvider, Typography } from "@material-ui/core";
 
-import Navbar from '../../../Nav/Navbar.js';
+import Navbar from "../../../Nav/Navbar.js";
 
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: "#18B0C3",
-            main: "#0C9EB5",
-            dark: "#008CA7",
-            contrastText: "#fff",
-        },
+  palette: {
+    primary: {
+      light: "#18B0C3",
+      main: "#0C9EB5",
+      dark: "#008CA7",
+      contrastText: "#fff",
     },
+  },
 });
 
 function Privacy(props) {
@@ -61,4 +61,4 @@ function Privacy(props) {
     )
 }
 
-export default Privacy
+export default Privacy;

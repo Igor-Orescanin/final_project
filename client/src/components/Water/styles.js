@@ -31,71 +31,50 @@ export default makeStyles((theme) => ({
         marginTop: "120px",
       },
 
-      typographyInfo1:{
-        zIndex: "-2",
-        marginRight:'140px',
-        marginTop:'50px',
-        color: "#008CA7",
-        fontSize: "12px",
-        fontFamily: ('Roboto', 'sans-serif'),
-      },
 
-      typographyInfo:{
-        fontSize: "12px",
-        fontFamily: ('Roboto', 'sans-serif'),
-        paddingLeft:'37px',
-        paddingRight:'37px',
-      },
-      typographyInfoRed:{
-        fontSize: "12px",
-        fontFamily: ('Roboto', 'sans-serif'),
-        paddingLeft:'37px',
-        paddingRight:'37px',
-        color: "#960524",
-      },
-      typographyInfo2:{
-        fontSize: "15px",
-        fontFamily: ('Roboto', 'sans-serif'),
-        paddingTop:'17px',
-        paddingLeft:'37px',
-        paddingRight:'37px',
-        color: "#008CA7",
-      },
+  typographyInfo1: {
+    zIndex: "-2",
+    marginRight: '140px',
+    marginTop: '50px',
+    color: "#008CA7",
+    fontSize: "12px",
+    fontFamily: ('Roboto', 'sans-serif'),
+  },
 
-      iconButton:{
-        color:'#008CA7',
-        marginTop:'20px',
-      },
+  typographyInfo:{
+    fontSize: "12px",
+    fontFamily: ('Roboto', 'sans-serif'),
+    paddingLeft:'37px',
+    paddingRight:'37px',
+   },
 
-      button: {
-        textAlign: "center",
-        fontSize: "15px",
-        borderColor: "#008CA7",
-        marginTop: "0px",
-        textTransform: "none",
-        paddingRight: "10px",
-        paddingLeft: "10px",
-        paddingTop: "9px",
-        paddingBottom: "7px",
-      },
+alertTop:{
+  marginTop:'10px',
+},
 
-      alertTitle:{
-        color:'red',
-        textAlign:'center',
-      },
+   typographyInfoRed:{
+     fontSize: "12px",
+     fontFamily: ('Roboto', 'sans-serif'),
+     paddingLeft:'37px',
+     paddingRight:'37px',
+     color: "#960524",
+    },
+
+  iconButton: {
+    color: '#008CA7',
+    marginTop: '20px',
+  },
 
   alertTop: {
     marginTop: '10px',
   },
 
-    footer: {
+  footer: {
     zIndex: "-1",
     position: "fixed",
     bottom: "0px",
     height: "300px",
-    //height:'170px',
     width: "100vw",
-    //backgroundColor: "Blue",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

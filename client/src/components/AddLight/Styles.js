@@ -96,7 +96,7 @@ export default makeStyles((theme) => ({
     paddingBottom: "0px",
     border: "solid",
     borderWidth: "2px",
-    marginRight:"10px",
+    marginRight: "10px",
     marginTop: "30px",
   },
 
