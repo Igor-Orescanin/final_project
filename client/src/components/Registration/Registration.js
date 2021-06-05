@@ -110,9 +110,9 @@ const Registration = (props) => {
           setOpen(true);
           setSuccess(res.data.msg);
           formik.resetForm();
-          // history.push({
-          //   pathname: "/",
-          // })
+          //  history.push({
+          //    pathname: "/",
+          //  })
         }
       })
       .catch((error) => {
@@ -137,9 +137,9 @@ const Registration = (props) => {
 
   const [open, setOpen] = useState(false);
 
-  //  const handleClickOpen = () => {
-  //    setOpen(true);
-  //  };
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
 
   const handleClose = () => {
     history.push({
@@ -301,7 +301,7 @@ const Registration = (props) => {
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText>
-                    Please verify your Email.
+                   Thanks for registration!
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions className={classes.dialog}>
@@ -315,6 +315,7 @@ const Registration = (props) => {
               {/* {!error && <div> {success ? success : ""}</div>} */}
 
               <Button
+              onClick={handleClickOpen}
                 className={classes.button}
                 type="submit"
                 disable={!formik.isValid}
