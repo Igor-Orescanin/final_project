@@ -4,6 +4,8 @@ import image from "../../image/water_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
+   // backgroundColor:'blue',
+   marginTop:'50px',
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -17,11 +19,12 @@ export default makeStyles((theme) => ({
   },
 
    name:{
-    height: '80px',
+  //backgroundColor:'blue',
+    height: '40px',
     marginTop: '22px',
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "center",
    },
 
    formControl: {
@@ -114,13 +117,24 @@ export default makeStyles((theme) => ({
   },
 
   typography: {
-    marginTop: "30px",
+   
     marginLeft: "40px",
     marginRight: "40px",
     fontFamily: ("Roboto", "sans-serif"),
     color: "#007982",
     fontSize: "18px",
-    fontWeight: "bold",
+   paddingTop:'2px',
+    textAlign: "center",
+  },
+
+  typography3: {
+   
+    marginLeft: "36px",
+    marginRight: "34px",
+    fontFamily: ("Roboto", "sans-serif"),
+    color: "#008CA7",
+    fontSize: "15px",
+   paddingTop:'2px',
     textAlign: "center",
   },
   typographyInfo: {
@@ -137,6 +151,7 @@ export default makeStyles((theme) => ({
   },
 
   form: {
+   // backgroundColor:'blue',
     marginTop: "10px",
     display: "flex",
     flexDirection: "column",
@@ -162,7 +177,7 @@ export default makeStyles((theme) => ({
 
   inputField: {
     marginTop: "20px",
-    width: "154px",
+    width: "90px",
     backgroundColor: "white",
   },
 

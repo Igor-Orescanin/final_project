@@ -1,7 +1,7 @@
 // react
 import React, { useState } from "react";
 
-import Navbar from '../Nav/Navbar';
+import Navbar from "../Nav/Navbar";
 
 //axios';
 import * as api from "../../api";
@@ -14,7 +14,6 @@ import {
   FormControl,
   Container,
   ThemeProvider,
-  Paper,
   IconButton,
   Typography,
   TextField,
@@ -68,7 +67,7 @@ const theme = createMuiTheme({
     },
     MuiInputBase: {
       root: {
-        minWidth: "73px",
+        minWidth: "90px",
         fontSize: "12px",
       },
     },
@@ -79,10 +78,10 @@ function AddControl(props) {
   const classes = useStyles();
   const { history } = props;
 
+  const location = useLocation();
+
   //lengh of character
   const CHARACTER_LIMIT = 10;
-
-  const location = useLocation();
 
   const device = props.device;
   console.log(device);
@@ -96,7 +95,7 @@ function AddControl(props) {
 
   const [open, setOpen] = useState(false);
 
-const [alert,setAlert] =useState(false)
+  const [alert, setAlert] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -109,30 +108,31 @@ const [alert,setAlert] =useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if( formData.name !== '' || formData.gpio !== ''){
+    if (formData.name !== "" && formData.gpio !== "") {
+      api
+        .addControl(device.serialNumber, formData)
+        .then((res) => {
+          console.log(res);
 
-
-    api.addControl(device.serialNumber, formData)
-      .then((res) => {
-        console.log(res);
-
-        // if (res.data.message === "Gpio is already assigned") {
-        //   //   setLightExist(res.data.message);
-        // } else if (res.data.message === "Gpio not found") {
-        //   //   setLightExist(res.data.message);
-        // } else {
-        history.push({
-          pathname: "/devices",
+          // if (res.data.message === "Gpio is already assigned") {
+          //   //   setLightExist(res.data.message);
+          // } else if (res.data.message === "Gpio not found") {
+          //   //   setLightExist(res.data.message);
+          // } else {
+          history.push({
+            pathname: "/devices",
+          });
+        })
+        .catch((error) => {
+          if (error) {
+            //   setLichtExist("register a Light!");
+            //   setErrors("error");
+          }
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        if (error) {
-          //   setLichtExist("register a Light!");
-          //   setErrors("error");
-        }
-        console.log(error);
-      });
-    }else{ setAlert(true) }
+    } else {
+      setAlert(true);
+    }
   };
 
   return (
@@ -149,7 +149,7 @@ const [alert,setAlert] =useState(false)
               Register a new Device in this system!
             </Typography>
           )}
-          {alert? 
+          {alert ? (
             <Alert
               severity="error"
               action={
@@ -161,11 +161,12 @@ const [alert,setAlert] =useState(false)
               }
             >
               Name or GPIO is missing
-            </Alert> : <div></div>}
+            </Alert>
+          ) : (
+            <div></div>
+          )}
 
-
-        
-            <form className={classes.form} onSubmit={handleSubmit}>
+          <form className={classes.form} onSubmit={handleSubmit}>
             <div className={classes.group}>
               <Typography className={classes.typography1}>Name</Typography>
               <TextField
@@ -182,14 +183,13 @@ const [alert,setAlert] =useState(false)
                 name="name"
                 type="text"
                 size="small"
-                // inputProps={{      *** Its again defined in line 169 ***
-                //   maxLength: CHARACTER_LIMIT,
-                // }}
+                inputProps={{
+                  maxLength: CHARACTER_LIMIT,
+                }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
-                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,
@@ -197,17 +197,13 @@ const [alert,setAlert] =useState(false)
                   },
                 }}
               />
- </div>
-</form>
+            </div>
+          </form>
 
-            <div className={classes.paper}>
-            <Typography className={classes.headingSec}>
-              Choose any % for an Alert
-            </Typography>
-
+          <div className={classes.paper}>
             <div className={classes.input}>
               <div className={classes.name}>
-                <Typography className={classes.typo}>Fresh water</Typography>
+                <Typography className={classes.typography3}>Gpio</Typography>
               </div>
               <div className={classes.test}>
                 <FormControl variant="outlined" className={classes.formControl}>
@@ -215,14 +211,14 @@ const [alert,setAlert] =useState(false)
                     className={classes.typo2}
                     id="demo-simple-select-outlined-label"
                   >
-                    Water %
+                    GPIO
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={''}
-                    onChange={''}
-                    label="Water1"
+                    value={""}
+                    onChange={""}
+                    label="Gpio"
                     InputProps={{
                       classes: {
                         root: classes.root,
@@ -239,16 +235,9 @@ const [alert,setAlert] =useState(false)
                     <MenuItem value={40}>40 </MenuItem>
                   </Select>
                 </FormControl>
-
-               
               </div>
             </div>
           </div>
-
-         
-
-
-
 
           <div>
             <Button
@@ -283,9 +272,9 @@ const [alert,setAlert] =useState(false)
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-              You can choose your own Device Name. And choose a proper GPIO Nummer.
-                If you have any problem please contact us per
-                Email: <strong>naunetmon@gmail.com</strong>!
+                You can choose your own Device Name. And choose a proper GPIO
+                Nummer. If you have any problem please contact us per Email:{" "}
+                <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
