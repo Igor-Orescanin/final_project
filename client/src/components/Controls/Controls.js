@@ -76,6 +76,11 @@ const Controls = (props) => {
     setAllControls(data[0].controlsButton);
   };
 
+  const controlDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteControl(device.serialNumber, gpio);
+    getControls();
+  }
+
   return (
     <>
       <Navbar username={props.username}> </Navbar>
@@ -90,7 +95,7 @@ const Controls = (props) => {
               <CircularProgress />
             ) : (
               allControls.map((control) => (
-                <Control key={control._id} device_id={device._id} controlObject={control} socket={socket} />
+                <Control key={control._id} device_id={device._id} controlObject={control} socket={socket} controlDeleted={() => controlDeletedHandler(device.serialNUmber, control.gpio)} />
               ))
             )}
 
