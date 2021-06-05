@@ -12,17 +12,17 @@ export default makeStyles((theme) => ({
         justifyItems: "center",
       },
 
-
- paper2:{
+  paper2: {
     zIndex: "-2",
-    paddingTop:'20px',
-    paddingBottom:'20px',
-    marginBottom:'120px',
-    borderColor:'#30D4DE',
-    border:'solid',
-    borderWidth:'1px',
-    textAlign:'center',
- },
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    marginBottom: '120px',
+    borderColor: '#30D4DE',
+    border: 'solid',
+    borderWidth: '1px',
+    textAlign: 'center',
+  },
+
       typography: {
         fontFamily: ("Roboto", "sans-serif"),
         color: "#008CA7",
@@ -84,7 +84,9 @@ export default makeStyles((theme) => ({
         textAlign:'center',
       },
 
-
+  alertTop: {
+    marginTop: '10px',
+  },
 
     footer: {
     zIndex: "-1",

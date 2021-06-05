@@ -26,175 +26,31 @@ function Conditions(props) {
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          <Typography className={classes.heading} variant="h1" component="h1">
+          <Typography className={classes.heading} >
             Terms & Conditions{" "}
           </Typography>
 
-          <Typography
-            className={classes.conditions}
-            variant="h6"
-            component="h6"
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            odit impedit deserunt neque ad provident ut modi eaque voluptatem
-            soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus
-            doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Quas assumenda dolores sequi eaque,
-            explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit
-            ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Delectus odit impedit deserunt neque ad provident
-            ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem
-            quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores
-            sequi eaque, explicabo quidem illum excepturi quam eligendi
-            quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore
-            sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid corrupti cum rem accusantium praesentium fugiat accusamus
-            ea. Asperiores quia distinctio repellat quas esse ratione ipsa
-            recusandae, temporibus repudiandae laudantium illo? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Delectus odit impedit
-            deserunt neque ad provident ut modi eaque voluptatem soluta, eum
-            maxime necessitatibus dolorem quis. Sed necessitatibus doloremque
-            reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quas assumenda dolores sequi eaque, explicabo
-            quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa
-            eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum
-            rem accusantium praesentium fugiat accusamus ea. Asperiores quia
-            distinctio repellat quas esse ratione ipsa recusandae, temporibus
-            repudiandae laudantium illo?{" "}
+          <Typography className={classes.heading2}>
+            Standard Terms and Conditions
           </Typography>
-
+          <br />
+          <div className={classes.paper}>
+            <Typography className={classes.typo2}>
+              § 1 Scope of Standard Terms and Conditions for Services
+          </Typography>
+            <br />
+            <Typography className={classes.typo}>
+              1. The following general terms and conditions for services apply to the use of the Naunet app.
+          </Typography>
+            <br />
+            <Typography className={classes.typo}>
+              2. Naunet only offers its services to consumers.
+          </Typography>
+            <br />
+            <Typography className={classes.typo}>
+              3. These standard terms and conditions for services shall also apply to all future legal relationships between Naunet and the Costumer. Any terms and conditions of the Costumers shall apply only upon express prior written agreement.
+          </Typography>
+          </div>
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>

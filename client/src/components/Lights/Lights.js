@@ -69,7 +69,7 @@ const Lights = (props) => {
   useEffect(() => {
     getLights();
     socket.off("gpioStatusLight");
-  }, [allLights]);
+  }, []);
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);

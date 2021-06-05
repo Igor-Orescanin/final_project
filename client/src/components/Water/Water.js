@@ -23,12 +23,11 @@ import {
   Typography,
   Button,
   Paper,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
+  IconButton,
 } from "@material-ui/core";
+
+// alert
+import Alert from "@material-ui/lab/Alert";
 
 // icon
 import WarningIcon from '@material-ui/icons/Warning';
@@ -312,120 +311,89 @@ const Water = (props) => {
       <Navbar username={props.username}> </Navbar>
 
       <ThemeProvider theme={theme}>
-
         <Container className={classes.container}>
-            <>
-              <Typography className={classes.typography}>Realtime Data</Typography>
-
-              <div >
-                <ReactApexChart
-                  options={options}
-                  series={waterLevelClean}
-                  type="radialBar"
-                  height={250}
-                />
-
-              {/* <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-
-              </Typography> */}
-
-                <ReactApexChart
-                  options={options2}
-                  series={waterLevelGrey}
-                  type="radialBar"
-                  height={250}
-                />
-              </div>
-
-
-              <Button
-                // onClick={() => history.push("/emailalert")}
-                onClick={() => history.push({
-                pathname: "/emailalert",
-                  state: {
-                    cleanAlertThreshold,
-                    wasteAlertThreshold,
+          <>
+            <Typography className={classes.typography}>Realtime Data</Typography>
+            <div >
+              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelClean <= cleanAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
                   }
-                })}
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
-                Modify Alert
-              </Button>
-
-              <ExpandMoreIcon
-                className={classes.iconButton}
-                fontSize="large"
-              ></ExpandMoreIcon>
-
-              <Typography className={classes.typographyInfo1}>
-                Information
+                >
+                  Fresh water is under {cleanAlertThreshold}%
+</Alert> : null)}
               </Typography>
-              <Paper className={classes.paper2}>
-
+              <ReactApexChart
+                options={options}
+                series={waterLevelClean}
+                type="radialBar"
+                height={250}
+              />
+              <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelGrey >= wasteAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
+                  }
+                >
+                  Waste water is under {wasteAlertThreshold}%
+              </Alert> : null)}
+              </Typography>
+              <ReactApexChart
+                options={options2}
+                series={waterLevelGrey}
+                type="radialBar"
+                height={250}
+              />
+            </div>
+            <Button
+              // onClick={() => history.push("/emailalert")}
+              onClick={() => history.push({
+                pathname: "/emailalert",
+                state: {
+                  cleanAlertThreshold,
+                  wasteAlertThreshold,
+                }
+              })}
+              className={classes.button}
+              variant="contained"
+              color="primary"
+            >
+              Modify Alert
+              </Button>
+            <ExpandMoreIcon
+              className={classes.iconButton}
+              fontSize="large"
+            ></ExpandMoreIcon>
+            <Typography className={classes.typographyInfo1}>
+              Information
+              </Typography>
+            <Paper className={classes.paper2}>
               <Typography className={(cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)} >
                 {/* <Typography className={classes.typographyInfo} > */}
                   Your Fresh water is by {waterLevelClean}%
                 </Typography>
-
               <Typography className={(wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)}>
                   Your Waste water is by {waterLevelGrey}%
                 </Typography>
-                <Typography className={classes.typographyInfo2}>
-                  All is good for you!
-                </Typography>
-              </Paper>
-
-
-
-        {/* <Typography> className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-
-             </Typography>  */}
-
-            <Dialog
-              className={classes.dialog}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
-                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
-                {"!!!Alert!!!"}
-              </DialogTitle>
-              <DialogContent>
-                {(waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? <div>
-                    <DialogContentText id="alert-dialog-description">
-                    {(waterLevelClean <= cleanAlertThreshold ? `Your Fresh water is under ${cleanAlertThreshold}%` : null)}
-                  </DialogContentText>
-                  </div>: null)}
-                {(waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? < div >
-                    <DialogContentText id="alert-dialog-description">
-                    {(waterLevelGrey >= wasteAlertThreshold ? `Your Waste water is higher ${wasteAlertThreshold}%` : null)}
-                  </DialogContentText>
-                </div> : null)}
-
-
-
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                    Close
-                    </Button>
-              </DialogActions>
-            </Dialog>
-
+            </Paper>
           </>
-
-            <div className={classes.footer}></div>
-
+          <div className={classes.footer}></div>
         </Container>
-
       </ThemeProvider>
 
     </>

@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Privacy(props) {
+function Impressum(props) {
   const classes = useStyles();
 
   return (
@@ -52,11 +52,11 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Contakt: <br />
+              Contact: <br />
             </Typography>
             <Typography className={classes.typo}>
               Phone: +49 (0)40 00000000 <br />
-              E-Mail: Naunet.@com <br />
+              E-Mail: naunetmon@gmail.com <br />
             </Typography>
             <br />
             <Typography className={classes.typo2}>
@@ -92,4 +92,4 @@ function Privacy(props) {
   );
 }
 
-export default Privacy;
+export default Impressum;

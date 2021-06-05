@@ -30,13 +30,33 @@ function Privacy(props) {
                     <Typography className={classes.heading} >
                         Privacy </Typography>
 
-                    <Typography className={classes.conditions} variant="h6" component="h6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus odit impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum rem accusantium praesentium fugiat accusamus ea. Asperiores quia distinctio repellat quas esse ratione ipsa recusandae, temporibus repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus odit impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum rem accusantium praesentium fugiat accusamus ea. Asperiores quia distinctio repellat quas esse ratione ipsa recusandae, temporibus repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus odit impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum rem accusantium praesentium fugiat accusamus ea. Asperiores quia distinctio repellat quas esse ratione ipsa recusandae, temporibus repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus odit impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid corrupti cum rem accusantium praesentium fugiat accusamus ea. Asperiores quia distinctio repellat quas esse ratione ipsa recusandae, temporibus repudiandae laudantium illo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus odit impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. impedit deserunt neque ad provident ut modi eaque voluptatem soluta, eum maxime necessitatibus dolorem quis. Sed necessitatibus doloremque reiciendis eligendi?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas assumenda dolores sequi eaque, explicabo quidem illum excepturi quam eligendi quibusdam. Nulla odit ipsa eveniet, laudantium a temporibus tempore sequi non. Lorem ipsum accusantium praesentium fugiat accusamus ea. Asperiores quia distinctio repellat quas esse ratione ipsa recusandae, temporibus repudiandae laudantium illo? </Typography>
-
-
+                    <Typography className={classes.heading2}>
+                        General information
+          </Typography>
+                    <br />
+                    <div className={classes.paper}>
+                        <Typography className={classes.typo}>
+                            The following information provides a simple overview of what
+                            happens to your personal data when you visit our website. Personal
+                            data are all data with which you can be personally identified.
+                            Detailed information on the subject of data protection can be
+                            found in our data protection declaration listed below this text.
+            </Typography>
+                        <br />
+                        <Typography className={classes.typo2}>
+                            Data collection on our app: <br />
+                        </Typography>
+                        <Typography className={classes.typo2}>
+                            Who is responsible for data collection on this app?
+            </Typography><br />
+                        <Typography className={classes.typo}>
+                            The data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this app.
+            </Typography><br />
+                    </div>
                     <div className={classes.footer}></div>
                 </Container>
             </ThemeProvider>
+
         </>
     )
 }

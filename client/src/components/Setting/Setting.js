@@ -32,7 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Light(props) {
+function Setting(props) {
   const classes = useStyles();
 
   const { history } = props;
@@ -43,7 +43,7 @@ function Light(props) {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
-      
+
                 <Button
                 onClick={() => history.push("/conditions")}
                 className={classes.button}
@@ -75,11 +75,11 @@ function Light(props) {
               </Button>
 
             <div className={classes.footer}></div>
-     
+
         </Container>
       </ThemeProvider>
     </>
   );
 }
 
-export default Light;
+export default Setting;
