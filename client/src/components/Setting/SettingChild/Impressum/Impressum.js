@@ -12,12 +12,14 @@ const theme = createMuiTheme({
       light: "#18B0C3",
       main: "#0C9EB5",
       dark: "#008CA7",
-      contrastText: "#fff",
+
     },
   },
 });
 
+
 function Impressum(props) {
+
   const classes = useStyles();
 
   return (
@@ -42,7 +44,7 @@ function Impressum(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Represented by: <br />{" "}
+              Represented by: <br />
             </Typography>
             <Typography className={classes.typo}>
               Igor Oreščanin, <br />
@@ -77,7 +79,7 @@ function Impressum(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Dispute settlement
+              Dispute settlement:
               <br />
             </Typography>
             <Typography className={classes.typo}>
@@ -93,3 +95,4 @@ function Impressum(props) {
 }
 
 export default Impressum;
+

@@ -11,6 +11,7 @@ import {
   Container,
   ThemeProvider,
   Paper,
+  IconButton,
   Typography,
   TextField,
   Button,
@@ -22,7 +23,7 @@ import {
 } from "@material-ui/core";
 
 // alert
-//import Alert from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 
 //styles
 import useStyles from "./Styles";
@@ -68,6 +69,8 @@ const AddLight = (props) => {
 
   const [open, setOpen] = useState(false);
 
+  const [alert,setAlert] =useState(false)
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -78,6 +81,10 @@ const AddLight = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if( formData.name !== '' || formData.gpio !== ''){
+
+    
 
     api.addLight(device.serialNumber, formData)
       .then((res) => {
@@ -99,6 +106,9 @@ const AddLight = (props) => {
         }
         console.log(error);
       });
+    }else{ setAlert(true)}
+
+
   };
 
   return (
@@ -115,9 +125,7 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-          {/* {device.hasLight ? (
-            <div></div>
-          ) : (
+         {alert? 
             <Alert
               severity="error"
               action={
@@ -128,9 +136,9 @@ const AddLight = (props) => {
                 ></IconButton>
               }
             >
-              {lightExist}
-            </Alert>
-          )} */}
+                 Name or GPIO is missing
+            </Alert>: <div></div>
+          } 
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
@@ -138,9 +146,9 @@ const AddLight = (props) => {
               </Typography>
             </Paper>
             <Paper className={classes.paper2}>
-              <Typography className={classes.typographyInfo}>17</Typography>
-              <Typography className={classes.typographyInfo}>20</Typography>
               <Typography className={classes.typographyInfo}>23</Typography>
+              <Typography className={classes.typographyInfo}>24</Typography>
+              <Typography className={classes.typographyInfo}>25</Typography>
               <Typography className={classes.typographyInfo}>27</Typography>
             </Paper>
             <div className={classes.group}>
@@ -237,10 +245,9 @@ const AddLight = (props) => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                You can choose your own Light Name. If you bought a <strong>Naunet </strong>
-                Hub you can find the GPIO Pin at the bottom of your Hub 'The
-                GPIO'. If you bought your own Hub please contact us per
-                Email: <strong>naunet@naunet.com</strong>!
+                Your can choose your own Light Name. And choose a proper Gpio Nummer.
+                If you have any problems pleace contact us per
+                Email: <strong>Naunet.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
