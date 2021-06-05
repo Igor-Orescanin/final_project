@@ -10,6 +10,88 @@ export default makeStyles((theme) => ({
     alignItems: "center",
   },
 
+  typo:{
+    fontSize: '15px',
+    fontWeight: '400',
+    paddingRight:'22px',
+  },
+
+   name:{
+    height: '80px',
+    marginTop: '22px',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+   },
+
+   formControl: {
+      marginRight: '20px',
+      marginTop:'20px',
+   },
+   
+  typo2:{
+    fontSize: '14px',
+    padding:'0px'
+  },
+
+   root: {
+       "&:hover $notchedOutline": {
+           borderColor: "#007982",
+       },
+       "&$focused $notchedOutline": {
+           borderColor: "#007982",
+       },
+   },
+   
+   focused: {},
+
+   notchedOutline: {
+       borderColor: "#007982",
+   },
+
+  notification: {
+    fontWeight: "300",
+    margin: "20px 0 30px 0",
+    color: "#30D4DE",
+    fontSize: "15px",
+  },
+
+  test:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center", 
+  },
+
+  input: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
+
+  paper: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  heading: {
+    marginBottom: "30px",
+    fontWeight: "900",
+    fontSize: "15px",
+    color: "#007982",
+  },
+
+  headingSec: {
+    fontWeight: "700",
+    fontSize: "12px",
+    color: "#007982",
+    marginRight: "-140px",
+    paddingBottom:'8px',
+    marginBottom:'-20px'
+  },
   paper2: {
     zIndex: "-2",
     paddingTop: "27px",

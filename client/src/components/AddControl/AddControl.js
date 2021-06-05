@@ -8,6 +8,10 @@ import * as api from "../../api";
 
 // material-ui
 import {
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
   Container,
   ThemeProvider,
   Paper,
@@ -21,6 +25,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
+
+import { useLocation } from "react-router-dom";
 
 // alert
 import Alert from "@material-ui/lab/Alert";
@@ -49,6 +55,23 @@ const theme = createMuiTheme({
         borderStyle: "solid",
       },
     },
+    MuiMenuItem: {
+      root: {
+        minHeight: "0px",
+        lineHeight: "15px",
+      },
+    },
+    MuiOutlinedInput: {
+      input: {
+        padding: "10px",
+      },
+    },
+    MuiInputBase: {
+      root: {
+        minWidth: "73px",
+        fontSize: "12px",
+      },
+    },
   },
 });
 
@@ -58,6 +81,8 @@ function AddControl(props) {
 
   //lengh of character
   const CHARACTER_LIMIT = 10;
+
+  const location = useLocation();
 
   const device = props.device;
   console.log(device);
@@ -137,19 +162,10 @@ const [alert,setAlert] =useState(false)
             >
               Name or GPIO is missing
             </Alert> : <div></div>}
+
+
         
-          <form className={classes.form} onSubmit={handleSubmit}>
-            <Paper className={classes.gpioheading}>
-              <Typography className={classes.typographyInfo1}>
-                Choose a proper GPIO pin
-              </Typography>
-            </Paper>
-            <Paper className={classes.paper2}>
-              <Typography className={classes.typographyInfo}>17</Typography>
-              <Typography className={classes.typographyInfo}>20</Typography>
-              <Typography className={classes.typographyInfo}>23</Typography>
-              <Typography className={classes.typographyInfo}>27</Typography>
-            </Paper>
+            <form className={classes.form} onSubmit={handleSubmit}>
             <div className={classes.group}>
               <Typography className={classes.typography1}>Name</Typography>
               <TextField
@@ -166,7 +182,7 @@ const [alert,setAlert] =useState(false)
                 name="name"
                 type="text"
                 size="small"
-                // inputProps={{    *** Its again defined in line 171 ***
+                // inputProps={{      *** Its again defined in line 169 ***
                 //   maxLength: CHARACTER_LIMIT,
                 // }}
                 InputLabelProps={{
@@ -181,36 +197,59 @@ const [alert,setAlert] =useState(false)
                   },
                 }}
               />
+ </div>
+</form>
+
+            <div className={classes.paper}>
+            <Typography className={classes.headingSec}>
+              Choose any % for an Alert
+            </Typography>
+
+            <div className={classes.input}>
+              <div className={classes.name}>
+                <Typography className={classes.typo}>Fresh water</Typography>
+              </div>
+              <div className={classes.test}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel
+                    className={classes.typo2}
+                    id="demo-simple-select-outlined-label"
+                  >
+                    Water %
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={''}
+                    onChange={''}
+                    label="Water1"
+                    InputProps={{
+                      classes: {
+                        root: classes.root,
+                        focused: classes.focused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  >
+                    <MenuItem value={0}>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>10 </MenuItem>
+                    <MenuItem value={25}>25 </MenuItem>
+                    <MenuItem value={40}>40 </MenuItem>
+                  </Select>
+                </FormControl>
+
+               
+              </div>
             </div>
-            <div className={classes.group}>
-              <Typography className={classes.typography1}>GPIO</Typography>
-              <TextField
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    gpio: e.target.value,
-                  })
-                }
-                className={classes.inputField}
-                required
-                id="gpio"
-                variant="outlined"
-                name="gpio"
-                type="text"
-                size="small"
-                InputLabelProps={{
-                  style: { color: "#007982" },
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
-              />
-            </div>
-          </form>
+          </div>
+
+         
+
+
+
+
           <div>
             <Button
               onClick={handleSubmit}
