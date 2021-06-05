@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Privacy(props) {
+function Impressum(props) {
   const classes = useStyles();
 
   return (
@@ -92,4 +92,4 @@ function Privacy(props) {
   );
 }
 
-export default Privacy;
+export default Impressum;

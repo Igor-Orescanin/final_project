@@ -32,7 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Light(props) {
+function Setting(props) {
   const classes = useStyles();
 
   const { history } = props;
@@ -82,4 +82,4 @@ function Light(props) {
   );
 }
 
-export default Light;
+export default Setting;

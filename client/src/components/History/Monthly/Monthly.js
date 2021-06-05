@@ -66,7 +66,7 @@ function Monthly(props) {
 
   const series = [{
     name: 'Water',
-    data: [7, 40, 28, 51, 42, 70, 90, 75]
+    data: [5, 17, 8, 19, 7, 17, 8, 15]
   }]
   const options = {
     title: {
@@ -106,7 +106,7 @@ function Monthly(props) {
           text: 'Liter'
       }, */
       min: 0,
-      max: 100
+      max: 20
     },
 
   }
@@ -203,13 +203,13 @@ function Monthly(props) {
               </Typography>
               <Paper className={classes.paper2}>
                 <Typography className={classes.typographyInfo}>
-                  average consumption: { } 29l/day
+                  average consumption: { } 9l/day
                 </Typography>
                 <Typography className={classes.typographyInfo}>
                   your Fresh water is by 30{ }%
                 </Typography>
                 <Typography className={classes.typographyInfo}>
-                  your Waste water is by 25{ }%
+                  your Waste water is by 45{ }%
                 </Typography>
               </Paper>
 

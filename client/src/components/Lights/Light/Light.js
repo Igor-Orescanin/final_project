@@ -1,5 +1,6 @@
 // react
 import React, { useState } from "react";
+import * as api from '../../../api'
 
 import LightOff from "../../../image/light_off.svg";
 import LightOn from "../../../image/light_on.svg";
