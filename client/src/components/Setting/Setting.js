@@ -32,7 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Light(props) {
+function Setting (props) {
   const classes = useStyles();
 
   const { history } = props;
@@ -71,7 +71,7 @@ function Light(props) {
                 color="primary"
                 type="submit"
               >
-                Impressum
+                Imprint
               </Button>
 
             <div className={classes.footer}></div>
@@ -82,4 +82,4 @@ function Light(props) {
   );
 }
 
-export default Light;
+export default Setting;

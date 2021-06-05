@@ -12,12 +12,12 @@ const theme = createMuiTheme({
       light: "#18B0C3",
       main: "#0C9EB5",
       dark: "#008CA7",
-      contrastText: "#fff",
+
     },
   },
 });
 
-function Privacy(props) {
+function Imprint(props) {
   const classes = useStyles();
 
   return (
@@ -92,4 +92,4 @@ function Privacy(props) {
   );
 }
 
-export default Privacy;
+export default Imprint;

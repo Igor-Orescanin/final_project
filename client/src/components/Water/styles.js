@@ -48,6 +48,10 @@ export default makeStyles((theme) => ({
     paddingRight:'37px',
    },
   
+alertTop:{
+  marginTop:'10px',
+},
+
    typographyInfoRed:{
      fontSize: "12px",
      fontFamily: ('Roboto', 'sans-serif'),

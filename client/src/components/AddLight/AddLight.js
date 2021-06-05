@@ -11,6 +11,7 @@ import {
   Container,
   ThemeProvider,
   Paper,
+  IconButton,
   Typography,
   TextField,
   Button,
@@ -22,7 +23,7 @@ import {
 } from "@material-ui/core";
 
 // alert
-//import Alert from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 
 //styles
 import useStyles from "./Styles";
