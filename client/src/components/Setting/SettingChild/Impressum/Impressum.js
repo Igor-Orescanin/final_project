@@ -17,9 +17,7 @@ const theme = createMuiTheme({
   },
 });
 
-
 function Impressum(props) {
-
   const classes = useStyles();
 
   return (
@@ -54,11 +52,11 @@ function Impressum(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Contakt: <br />
+              Contact: <br />
             </Typography>
             <Typography className={classes.typo}>
               Phone: +49 (0)40 00000000 <br />
-              E-Mail: naunet@naunet.com <br />
+              E-Mail: naunetmon@gmail.com <br />
             </Typography>
             <br />
             <Typography className={classes.typo2}>
@@ -95,4 +93,3 @@ function Impressum(props) {
 }
 
 export default Impressum;
-

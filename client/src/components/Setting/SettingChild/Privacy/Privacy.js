@@ -18,43 +18,47 @@ const theme = createMuiTheme({
 });
 
 function Privacy(props) {
-  const classes = useStyles();
 
-  return (
-    <>
-      <Navbar username={props.username}> </Navbar>
-      <ThemeProvider theme={theme}>
-        <Container className={classes.container}>
-          <Typography className={classes.heading}>Privacy </Typography>
+    const classes = useStyles();
 
-          <Typography className={classes.heading2}>
-            General information
+    return (
+        <>
+         <Navbar username={props.username}> </Navbar>
+            <ThemeProvider theme={theme}>
+                <Container className={classes.container} >
+
+                    <Typography className={classes.heading} >
+                        Privacy </Typography>
+
+                    <Typography className={classes.heading2}>
+                        General information
           </Typography>
-          <br />
-          <div className={classes.paper}>
-            <Typography className={classes.typo}>
-              The following information provides a simple overview of what
-              happens to your personal data when you visit our website. Personal
-              data are all data with which you can be personally identified.
-              Detailed information on the subject of data protection can be
-              found in our data protection declaration listed below this text.
+                    <br />
+                    <div className={classes.paper}>
+                        <Typography className={classes.typo}>
+                            The following information provides a simple overview of what
+                            happens to your personal data when you visit our website. Personal
+                            data are all data with which you can be personally identified.
+                            Detailed information on the subject of data protection can be
+                            found in our data protection declaration listed below this text.
             </Typography>
-            <br />
-            <Typography className={classes.typo2}>
-            Data collection on our app: <br />
-            </Typography>
-            <Typography className={classes.typo2}>
-            Who is responsible for data collection on this app?
+                        <br />
+                        <Typography className={classes.typo2}>
+                            Data collection on our app: <br />
+                        </Typography>
+                        <Typography className={classes.typo2}>
+                            Who is responsible for data collection on this app?
             </Typography><br />
-            <Typography className={classes.typo}>
-            The data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this app.
+                        <Typography className={classes.typo}>
+                            The data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this app.
             </Typography><br />
-          </div>
-          <div className={classes.footer}></div>
-        </Container>
-      </ThemeProvider>
-    </>
-  );
+                    </div>
+                    <div className={classes.footer}></div>
+                </Container>
+            </ThemeProvider>
+
+        </>
+    )
 }
 
 export default Privacy;

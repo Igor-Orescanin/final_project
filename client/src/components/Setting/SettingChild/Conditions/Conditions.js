@@ -26,32 +26,31 @@ function Conditions(props) {
 
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          <Typography className={classes.heading}>
-            Terms & Conditions
+          <Typography className={classes.heading} >
+            Terms & Conditions{" "}
           </Typography>
-        
+
           <Typography className={classes.heading2}>
-          Standard Terms and Conditions 
+            Standard Terms and Conditions
           </Typography>
           <br />
           <div className={classes.paper}>
-          <Typography className={classes.typo2}>
-          § 1 Scope of Standard Terms and Conditions for Services
+            <Typography className={classes.typo2}>
+              § 1 Scope of Standard Terms and Conditions for Services
           </Typography>
-          <br />
-          <Typography className={classes.typo}>
-          1. The following general terms and conditions for services apply to the use of the Naunet app.
+            <br />
+            <Typography className={classes.typo}>
+              1. The following general terms and conditions for services apply to the use of the Naunet app.
           </Typography>
-          <br />
-          <Typography className={classes.typo}>
-          2. Naunet only offers its services to consumers.
+            <br />
+            <Typography className={classes.typo}>
+              2. Naunet only offers its services to consumers.
           </Typography>
-          <br />
-          <Typography className={classes.typo}>
-          3. These standard terms and conditions for services shall also apply to all future legal relationships between Naunet and the Costumer. Any terms and conditions of the Costumers shall apply only upon express prior written agreement. 
+            <br />
+            <Typography className={classes.typo}>
+              3. These standard terms and conditions for services shall also apply to all future legal relationships between Naunet and the Costumer. Any terms and conditions of the Costumers shall apply only upon express prior written agreement.
           </Typography>
           </div>
-        
           <div className={classes.footer}></div>
         </Container>
       </ThemeProvider>
