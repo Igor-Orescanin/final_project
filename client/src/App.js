@@ -66,7 +66,7 @@ function App() {
         <Route path="/registration" render={(props) => <Registration {...props} fetchUser={fetchUser} />}></Route>
         <Route path="/welcome" render={(props) => <Welcome {...props} device={device} username={response.username} socket={socket}/>}></Route>
         <Route path="/logout" component={LogOut}></Route>
-        <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} />}></Route>
+        <Route path="/water" render={(props) => <Water {...props} device={device} username={response.username} socket={socket} />}></Route>
         <Route path="/weekly" render={(props) => <Weekly {...props} device={device} username={response.username} />}></Route>
         <Route path="/monthly" render={(props) => <Monthly {...props} device={device} username={response.username} />}></Route>
         <Route path="/setting" render={(props) => <Setting {...props} username={response.username} />}></Route>

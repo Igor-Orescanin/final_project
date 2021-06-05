@@ -70,11 +70,6 @@ const theme = createMuiTheme({
     }
   }
 });
-//___________start coding
-// use/get the socket
- const socket = io("http://localhost:3005", {
-   transports: ["websocket", "polling"],
- });
 
 const Water = (props) => {
   const { history } = props;
@@ -82,7 +77,7 @@ const Water = (props) => {
   console.log(props);
   const location = useLocation();
 
-  const username = props.username;
+  const {username, socket} = props;
 
   let cleanAlertThreshold;
   let wasteAlertThreshold;
