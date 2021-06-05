@@ -56,20 +56,10 @@ const Controls = (props) => {
   //a hook
   const [allControls, setAllControls] = useState([]);
 
-  //socket
-  socket.on("gpioStatusControl", status => {
-    console.log("incomming status", status);
-    let index = allControls.findIndex((obj) => obj.gpio === status.gpio);
-    if (allControls[index]) 
-    allControls[index].status = status.status;
-    setAllControls(allControls);
-  });
-
   // to get the data for databace
   useEffect(() => {
     getControls();
-    socket.off("gpioStatusControl");
-  }, [allControls]);
+  }, []);
 
   const getControls = async () => {
     const { data } = await api.fetchControls(device.serialNumber);

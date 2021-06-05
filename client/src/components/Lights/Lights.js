@@ -57,24 +57,19 @@ const Lights = (props) => {
   //a hook
   const [allLights, setAllLights] = useState([]);
 
-  //socket
-  socket.on("gpioStatusLight", status => {
-    let index = allLights.findIndex((obj) => obj.gpio === status.gpio);
-    if (allLights[index]) 
-    allLights[index].status = status.status;
-    setAllLights(allLights);
-  });
-
   // to get the data for databace
   useEffect(() => {
     getLights();
-    socket.off("gpioStatusLight");
-  }, [allLights]);
+  }, []);
 
   const getLights = async () => {
     const { data } = await api.fetchLights(device.serialNumber);
     setAllLights(data[0].lightsButton);
   };
+  const lightDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteLight(device.serialNumber, gpio);
+    getLights();
+  }
 
   return (
     <>
@@ -90,7 +85,7 @@ const Lights = (props) => {
               <CircularProgress />
             ) : (
               allLights.map((light) => (
-                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} />
+                <Light key={light._id}  lightObject={light} device_id={device._id} socket={socket} lightDeleted={() => lightDeletedHandler(device.serialNUmber, light.gpio)}/>
               ))
             )}
 

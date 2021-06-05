@@ -75,10 +75,17 @@ io.on('connection', (socket) => {
     console.log(deviceId,'DeviceId is')
     const rpiConnected = await Device.findOneAndUpdate({ serialNumber: deviceId }, { isConnected: true }, { new: true });
         console.log(rpiConnected.isConnected);
+        socket.emit("registerd", rpiConnected)
+        socket.emit("avalibleGPIO", "HAHA")
+        socket.on('freeGPIOs', async(possibleGPIOs) => {
+          console.log(possibleGPIOs)
+          await Device.findOneAndUpdate({ serialNumber: deviceId }, { freeButtons: possibleGPIOs }, { new: true })
+        })
+        
     socket.on('sensorData', async (sensorReading) => {
       try {
-        logger.log(`Received sensor readings`);
-         logger.log(JSON.stringify(sensorReading));
+        //logger.log(`Received sensor readings`);
+         //logger.log(JSON.stringify(sensorReading));
         serialNumber = sensorReading.serialNumber
 
         //--------------------- EMAIL ALERT -----------------------------------------------
@@ -126,47 +133,36 @@ io.on('connection', (socket) => {
       })
       await waterReading.save()
       //logger.log(`Received water flow: ${clientId}`);
-      logger.log(JSON.stringify(waterFlowReadings));
+      //logger.log(JSON.stringify(waterFlowReadings));
     })
     //_____________________________________________________Buttons______________________
-
-    //console.log(data);
+    
+      //console.log(data);
     //FINDING THE DEVICE WITH SERIAL NUMBER
     const device = await Device.findOne({ serialNumber: deviceId }).exec();
+    console.log(device)
     // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     if (device.hasLight) {
       const { lightsButton } = device;
       //    INITIAL STATUS FROM DATABASE
-      socket.to(device.userId.toString()).emit('buttons', lightsButton);
+      socket.to(deviceId.toString()).emit('buttons', lightsButton);
     }
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-    socket.on('rpiStatusLight', (data) => {
+    socket.on('rpiStatusLight', async(data) => {
       console.log("Incomming message from Device ", data)
-      Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true }).then(res => {
-        console.log(data,'jkgdccjasg')
-        socket.to(device.userId.toString()).emit('gpioStatus' + data.forButtons, (data))
-      }).catch(err => {
-        console.log(err)
-        socket.to(device.userId).emit("error", error)
-      })
-    });
-
+      await Device.findOneAndUpdate({ serialNumber:device.serialNumber, "lightsButton.gpio": data.gpio }, { "lightsButton.$.status": data.status }, { new: true });
+    })
     if (device.hasControl) {
       const { controlsButton } = device;
-      // WILL ONLY THIS DEVICE RECIEVE OR OTHERS TO? ←←←←←←←←←←←
       //    INITIAL STATUS FROM DATABASE
       socket.to(deviceId.toString()).emit('buttons', controlsButton);
     }
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑IF USER HAVE ADDED BUTTONS TO DEVICE DATABASE THEN WE WILL SEND BUTTONS DATA TO RPI  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-    socket.on('rpiStatusControl', (data) => {
+    socket.on('rpiStatusControl', async(data) => {
       console.log("Incomming message from Device ", data)
-      Device.findOneAndUpdate({ serialNumber:device.serialNumber, "controlsButton.gpio": data.gpio }, { "controlsButton.$.status": data.status }, { new: true }).then(res => {
-        socket.to(device.userId.toString()).emit('gpioStatus', data)
-      }).catch(err => {
-        console.log(err)
-        socket.to(device.userId).emit("error", error)
-      })
+      await Device.findOneAndUpdate({ serialNumber:device.serialNumber, "controlsButton.gpio": data.gpio }, { "controlsButton.$.status": data.status }, { new: true });
     });
+    
 
     socket.on("disconnect", async () => {
       try {

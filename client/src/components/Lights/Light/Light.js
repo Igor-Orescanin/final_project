@@ -4,6 +4,8 @@ import React, { useState} from "react";
 import LightOff from "../../../image/light_off.svg";
 import LightOn from "../../../image/light_on.svg";
 
+//axios
+import * as api from "../../../api";
 
 import { useHistory } from "react-router-dom";
 
@@ -57,7 +59,7 @@ const Light = (props) => {
 
   const {socket, device_id} = props
   //a hook
-  // const [light, setLight] = useState();
+  const [lightStatus, setLightStatus] = useState(light.status);
 
   //for dialogfeld
   const [open, setOpen] = useState(false);
@@ -70,9 +72,9 @@ const Light = (props) => {
     setOpen(false);
   };
   const handleClose1 = () => {
-   // props.lightDeleted();
+   props.lightDeleted();
     setOpen(false);
-   // api.deleteLight(light._id);
+   api.deleteLight(light._id);
   };
 
   //for radio button FormControlLabel
@@ -80,7 +82,11 @@ const Light = (props) => {
 
   const lightHandler = (e) => {
     socket.emit("switchStatusLight", {gpio: light.gpio, device_id: device_id, forButtons:"Light"});
-
+    if(lightStatus){
+      setLightStatus(0)
+    }else{
+      setLightStatus(1)
+    }
   };
 
   return (
@@ -88,7 +94,7 @@ const Light = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-            {light.status ? (
+            {lightStatus ? (
               <img width="25" height="25" src={LightOff}></img>
             ) : (
               <img width="25" height="25" src={LightOn}></img>
