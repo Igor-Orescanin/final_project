@@ -13,12 +13,10 @@ export default makeStyles((theme) => ({
         //height: '65vh',
     },
     paper: {
-        marginLeft:'25px',
-        marginRight:'25px',
-        marginBottom:'150px',
-        },
-      
-
+        marginLeft: '25px',
+        marginRight: '25px',
+        marginBottom: '150px',
+    },
     heading: {
         marginTop: "120px",
         fontWeight: '900',
@@ -26,29 +24,26 @@ export default makeStyles((theme) => ({
         color: '#007982',
         padding: '10px',
     },
-
     conditions: {
 
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
-     fontSize: "15px",
-
+        fontSize: "15px",
     },
     heading2: {
         fontWeight: "900",
         fontSize: "16px",
         color: "#30D4DE",
         padding: "10px",
-      },
-
-      typo2: {
+    },
+    typo2: {
         fontWeight: "300",
         fontSize: "16px",
-      },
-      typo: {
+    },
+    typo: {
         fontSize: "15px",
-      },
+    },
     //for the Image on the bottom
 
     footer: {
@@ -62,4 +57,5 @@ export default makeStyles((theme) => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     },
+
 }));

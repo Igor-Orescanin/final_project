@@ -11,20 +11,17 @@ export default makeStyles((theme) => ({
         alignItems: "center",
         fontFamily: ("Roboto", "Helvetica", "Arial", 'sans-serif'),
     },
-
     heading2: {
         fontWeight: "900",
         fontSize: "16px",
         color: "#30D4DE",
         padding: "10px",
-      },
-
+    },
     paper: {
         marginLeft: '25px',
         marginRight: '25px',
         marginBottom: '150px',
     },
-
     heading: {
         marginTop: '120px',
         fontWeight: '900',
@@ -32,22 +29,19 @@ export default makeStyles((theme) => ({
         color: '#007982',
         padding: '10px',
     },
-
     conditions: {
      margin: '0 30px',
      textAlign: 'justify',
      marginBottom: '150px',
-     fontSize: "15px",
+        fontSize: "15px",
     },
-  
     typo2: {
         fontWeight: "300",
         fontSize: "16px",
-      },
-      typo: {
+    },
+    typo: {
         fontSize: "15px",
-      },
-
+    },
     footer: {
         zIndex: "1",
         position: "fixed",

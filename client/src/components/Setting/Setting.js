@@ -32,9 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-
 function Setting(props) {
-
   const classes = useStyles();
 
   const { history } = props;
@@ -45,7 +43,7 @@ function Setting(props) {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
-      
+
                 <Button
                 onClick={() => history.push("/Conditions")}
                 className={classes.button}
@@ -77,7 +75,7 @@ function Setting(props) {
               </Button>
 
             <div className={classes.footer}></div>
-     
+
         </Container>
       </ThemeProvider>
     </>

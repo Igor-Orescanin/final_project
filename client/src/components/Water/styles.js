@@ -5,12 +5,12 @@ import image from "../../image/water2_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
 
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyItems: "center",
-  },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyItems: "center",
+      },
 
   paper2: {
     zIndex: "-2",
@@ -23,13 +23,13 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
   },
 
-  typography: {
-    fontFamily: ("Roboto", "sans-serif"),
-    color: "#008CA7",
-    fontSize: "12px",
-    fontWeight: "bold",
-    marginTop: "120px",
-  },
+      typography: {
+        fontFamily: ("Roboto", "sans-serif"),
+        color: "#008CA7",
+        fontSize: "12px",
+        fontWeight: "bold",
+        marginTop: "120px",
+      },
 
 
   typographyInfo1: {
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
     paddingLeft:'37px',
     paddingRight:'37px',
    },
-  
+
 alertTop:{
   marginTop:'10px',
 },
@@ -65,21 +65,8 @@ alertTop:{
     marginTop: '20px',
   },
 
-  button: {
-    textAlign: "center",
-    fontSize: "15px",
-    borderColor: "#008CA7",
-    marginTop: "0px",
-    textTransform: "none",
-    paddingRight: "10px",
-    paddingLeft: "10px",
-    paddingTop: "9px",
-    paddingBottom: "7px",
-  },
-
-  alertTitle: {
-    color: 'red',
-    textAlign: 'center',
+  alertTop: {
+    marginTop: '10px',
   },
 
   footer: {
