@@ -186,5 +186,3 @@ exports.deleteControl = async (req, res, next) => {
     next(e);
   }
 };
-
-
