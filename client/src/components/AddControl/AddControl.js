@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from '../Nav/Navbar';
 
@@ -69,9 +69,9 @@ function AddControl(props) {
 
   const [controlExist, setControlExist] = useState("");
 
-  const [errors, setErros] = useState("");
-
   const [open, setOpen] = useState(false);
+
+const [alert,setAlert] =useState(false)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -84,8 +84,11 @@ function AddControl(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if( formData.name !== '' || formData.gpio !== ''){
+
+
     api.addControl(device.serialNumber, formData)
-    .then((res) => {
+      .then((res) => {
         console.log(res);
 
         // if (res.data.message === "Gpio is already assigned") {
@@ -104,6 +107,7 @@ function AddControl(props) {
         }
         console.log(error);
       });
+    }else{ setAlert(true) }
   };
 
   return (
@@ -111,18 +115,16 @@ function AddControl(props) {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.hasControl ? (
+          {device.controlsButton.length < 1 ? (
             <Typography className={classes.typography}>
-              You don't have any Devices registered in this system!
+              You have not registered any Device in this system yet!
             </Typography>
           ) : (
             <Typography className={classes.typography}>
               Register a new Device in this system!
             </Typography>
           )}
-          {device.hasControl ? (
-            <div></div>
-          ) : (
+          {alert? 
             <Alert
               severity="error"
               action={
@@ -133,9 +135,9 @@ function AddControl(props) {
                 ></IconButton>
               }
             >
-              {controlExist}
-            </Alert>
-          )}
+              Name or GPIO is missing
+            </Alert> : <div></div>}
+        
           <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.gpioheading}>
               <Typography className={classes.typographyInfo1}>
@@ -164,13 +166,14 @@ function AddControl(props) {
                 name="name"
                 type="text"
                 size="small"
-                inputProps={{
-                  maxLength: CHARACTER_LIMIT,
-                }}
+                // inputProps={{    *** Its again defined in line 171 ***
+                //   maxLength: CHARACTER_LIMIT,
+                // }}
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
                 InputProps={{
+                  maxLength: CHARACTER_LIMIT,
                   classes: {
                     root: classes.root,
                     focused: classes.focused,
@@ -237,14 +240,13 @@ function AddControl(props) {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"What need I to do here?"}
+              {"What can I do here?"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose your own Device Name. If you bought a <strong>Naunet </strong>
-                Hub you can find the Gpio of the bottom of your Hub 'the
-                Gpio'. If you bought your own Hub pleace contact us per
-                Email:<strong> Naunet.com</strong>!
+              You can choose your own Device Name. And choose a proper GPIO Nummer.
+                If you have any problem please contact us per
+                Email: <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>

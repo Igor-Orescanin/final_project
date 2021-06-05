@@ -1,11 +1,10 @@
 // react
-import React, { useState} from "react";
+import React, { useState } from "react";
+import PowerIcon from '@material-ui/icons/Power';
+import PowerOffIcon from '@material-ui/icons/PowerOff';
 
-import ControlOff from "../../../image/light_off.svg";
-import ControlOn from "../../../image/light_on.svg";
-
-
-import { useHistory } from "react-router-dom";
+// import ControlOff from "../../../image/light_off.svg";
+// import ControlOn from "../../../image/light_on.svg";
 
 //styles to use the connection
 import useStyles from "./Styles";
@@ -48,14 +47,14 @@ const theme = createMuiTheme({
 });
 
 const Control = (props) => {
-  const history = useHistory();
+  //const history = useHistory();
 
   //for styles
   const classes = useStyles();
 
   const control = props.controlObject;
-  
-  const {socket, device_id} = props
+
+  const { socket, device_id } = props
   //a hook
   const [controlStatus, setControlStatus] = useState(control.status);
 
@@ -71,9 +70,9 @@ const Control = (props) => {
   };
 
   const handleClose1 = () => {
-   // props.controlDeleted();
+    props.controlDeleted();
     setOpen(false);
-   // api.deleteControl(control._id);
+    // api.deleteControl(control._id);
   };
 
   //for radio button FormControlLabel
@@ -88,16 +87,25 @@ const Control = (props) => {
     }
   };
 
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
             {control.status ? (
-              <img width="25" height="25" src={ControlOff}></img>
+              <div className={classes.powerOff}> <PowerOffIcon /></div>
+
             ) : (
-              <img width="25" height="25" src={ControlOn}></img>
+              <div className={classes.powerOn}> <PowerIcon /></div>
+
             )}
+
+
+
+            {/* <img width="25" height="25" src={ControlOff}></img> */}
+            {/* <img width="25" height="25" src={ControlOn}></img> */}
+
 
             <Button
               onClick={() => controlHandler()}
@@ -125,7 +133,7 @@ const Control = (props) => {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Control will be disappear and is not connected anymore!
+                  Control will disappear and it will be not connected anymore!
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

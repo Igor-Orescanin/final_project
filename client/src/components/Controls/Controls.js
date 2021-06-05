@@ -47,11 +47,11 @@ const theme = createMuiTheme({
 const Controls = (props) => {
   //for routes
   const { history } = props;
-
+  console.log(props);
   //for styles
   const classes = useStyles();
 
-  const {device, socket} = props;
+  const { device, socket } = props;
 
   //a hook
   const [allControls, setAllControls] = useState([]);
@@ -65,6 +65,11 @@ const Controls = (props) => {
     const { data } = await api.fetchControls(device.serialNumber);
     setAllControls(data[0].controlsButton);
   };
+
+  const controlDeletedHandler = async (serialNumber, gpio) => {
+    await api.deleteControl(device.serialNumber, gpio);
+    getControls();
+  }
 
   return (
     <>
@@ -80,7 +85,7 @@ const Controls = (props) => {
               <CircularProgress />
             ) : (
               allControls.map((control) => (
-                <Control key={control._id} device_id={device._id} controlObject={control} socket={socket} />
+                <Control key={control._id} device_id={device._id} controlObject={control} socket={socket} controlDeleted={() => controlDeletedHandler(device.serialNUmber, control.gpio)} />
               ))
             )}
 
@@ -94,7 +99,7 @@ const Controls = (props) => {
               variant="contained"
               color="primary"
             >
-              Add new Controls
+              Add new Devices
             </Button>
           </div>
           <div className={classes.footer}></div>

@@ -47,9 +47,9 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
-    MuiDialogContent:{
-      root:{
-        textAlign:'center',
+    MuiDialogContent: {
+      root: {
+        textAlign: 'center',
       },
     },
     MuiDialog: {
@@ -101,18 +101,18 @@ const Registration = (props) => {
       .addUser(values)
       .then((res) => {
         console.log(res);
-        if (res.data.msg === "Mail exists") {
+        if (res.data.msg === "Mail already exists") {
           setError(res.data.msg);
           setSuccess(null);
-        } else if (res.data.msg === "Thanks for registering") {
+        } else if (res.data.msg === "Thanks for registration") {
           fetchUser(res.data.user);
           setError(null);
           setOpen(true);
           setSuccess(res.data.msg);
           formik.resetForm();
-          // history.push({
-          //   pathname: "/",
-          // })
+          //  history.push({
+          //    pathname: "/",
+          //  })
         }
       })
       .catch((error) => {
@@ -137,9 +137,9 @@ const Registration = (props) => {
 
   const [open, setOpen] = useState(false);
 
-  //  const handleClickOpen = () => {
-  //    setOpen(true);
-  //  };
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
 
   const handleClose = () => {
     history.push({
@@ -274,7 +274,7 @@ const Registration = (props) => {
                 }
                 helperText={
                   formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword
+                    formik.errors.confirmPassword
                     ? formik.errors.confirmPassword
                     : ""
                 }
@@ -300,8 +300,8 @@ const Registration = (props) => {
                   {!error && <div> {success ? success : ""}</div>}
                 </DialogTitle>
                 <DialogContent>
-                <DialogContentText>
-                  Pleace verify your email.
+                  <DialogContentText>
+                   Thanks for registration!
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions className={classes.dialog}>
@@ -315,6 +315,7 @@ const Registration = (props) => {
               {/* {!error && <div> {success ? success : ""}</div>} */}
 
               <Button
+              onClick={handleClickOpen}
                 className={classes.button}
                 type="submit"
                 disable={!formik.isValid}

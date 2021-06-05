@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import useStyles from "./styles.js";
 
@@ -80,7 +80,7 @@ function EmailAlert(props) {
   let cleanAlertThresholdProps;
   let wasteAlertThresholdProps;
 
-  if (location.state != undefined) {
+  if (location.state !== undefined) {
     cleanAlertThresholdProps = props.location.state.cleanAlertThreshold;
     wasteAlertThresholdProps = props.location.state.wasteAlertThreshold;
   } else {
@@ -139,14 +139,15 @@ function EmailAlert(props) {
   return (
     <>
       <Navbar username={props.username}> </Navbar>
+
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
             <Typography className={classes.heading}>
-              Set Your own % for an Alert to your Email{" "}
+              Set your own % for an Alert to your Email{" "}
             </Typography>
             <Typography className={classes.headingSec}>
-              Choose the % for the Alert
+              Choose any % for an Alert
             </Typography>
 
             <div className={classes.input}>
@@ -254,11 +255,11 @@ function EmailAlert(props) {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"What need I to do here?"}
+              {"What can I do here?"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Your can choose a % when you will get an Email for your Alert!
+                Choose a % to get an Email for an Alert to get the level of your water tanks.
               </DialogContentText>
             </DialogContent>
             <DialogActions>

@@ -64,8 +64,8 @@ const AddDevice = (props) => {
   const classes = useStyles();
 
 
-   const userId = props.userId
-    console.log(userId)
+  const userId = props.userId
+  console.log(userId)
 
 
   //const username = props.location.state.username
@@ -117,36 +117,38 @@ const AddDevice = (props) => {
 
     api.asignDevice(formData)
 
-    .then((res)=>{
+      .then((res) => {
 
-      console.log(res)
-
-
-       if(res.data.message === "Hub is already assigned"){
-       setDeviceExist(res.data.message)
+        console.log(res)
 
 
-
-      } else if(res.data.message === "Hub not found"){
-       setDeviceExist(res.data.message)
+        if (res.data.message === "Hub is already assigned") {
+          setDeviceExist(res.data.message)
 
 
 
-      }else{
-       // history.push('/devices')
-         history.push({
-           pathname: "/hubs",
-
-         })
-       }
+        } else if (res.data.message === "Hub not found") {
+          setDeviceExist(res.data.message)
 
 
 
-    }).catch((error) => {
-      if(error){ setDeviceExist('register a Hub!')
-        setErrors('error')}
-      console.log(error);
-    });
+        } else {
+          // history.push('/devices')
+          history.push({
+            pathname: "/hubs",
+
+          })
+        }
+
+
+
+      }).catch((error) => {
+        if (error) {
+          setDeviceExist('Register a Hub!')
+          setErrors('error')
+        }
+        console.log(error);
+      });
 
 
 
@@ -156,26 +158,26 @@ const AddDevice = (props) => {
   return (
     <>
       <Navbar username={props.username}> </Navbar>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
 
-          <Container className={classes.container}>
-            <div className={classes.paper}>
+        <Container className={classes.container}>
+          <div className={classes.paper}>
 
-              {allDevices.length < 1 ?
-                <Typography className={classes.typography}>
-                  You don't have any Hubs registered in this system!
+            {allDevices.length < 1 ?
+              <Typography className={classes.typography}>
+                You have not registered any Hub in this system!
               </Typography>
-                :
-                <Typography className={classes.typography}>
-                  Register a new Hub in this system!
+              :
+              <Typography className={classes.typography}>
+                Register a new Hub in this system!
               </Typography>
-              }
-              {deviceExist.length < 1 ? (
-                <div></div>
+            }
+            {deviceExist.length < 1 ? (
+              <div></div>
 
-              ):
-                <Alert
-              severity="error"
+            ) :
+              <Alert
+                severity="error"
                 action={
                   <IconButton
                     aria-label="close"
@@ -187,124 +189,125 @@ const AddDevice = (props) => {
                   </IconButton>
                 }
               >
-               {deviceExist}
+                {deviceExist}
               </Alert>
 
-              }
+            }
 
-              <form className={classes.form} noValidate onSubmit={handleSubmit}>
-                <TextField
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      deviceName: e.target.value,
-                    })
-                  }
-                  className={`${classes.inputField} ${classes.myInputLabel}`}
-                  required
-                  id="deviceName"
-                  label="Hub Name"
-                  variant="outlined"
-                  name="deviceName"
-                  type="text"
-                  size="small"
-                  InputLabelProps={{
-                    style: { color: "#007982" },
-                  }}
-                  inputProps={{
-                    maxLength: CHARACTER_LIMIT
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.root,
-                      focused: classes.focused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <TextField
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    deviceName: e.target.value,
+                  })
+                }
+                className={`${classes.inputField} ${classes.myInputLabel}`}
+                required
+                id="deviceName"
+                label="Hub Name"
+                variant="outlined"
+                name="deviceName"
+                type="text"
+                size="small"
+                InputLabelProps={{
+                  style: { color: "#007982" },
+                }}
+                // inputProps={{   *** Its again defined in line 218 ***
+                //   maxLength: CHARACTER_LIMIT
+                // }}
+                InputProps={{
+                  maxLength: CHARACTER_LIMIT,
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
 
-                <TextField
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      serialNumber: e.target.value
-                    })
-                  }
-                  className={`${classes.inputField} ${classes.myInputLabel}`}
-                  required
-                  id="serialNumber"
-                  label="Hub Id"
-                  variant="outlined"
-                  name="serialNumber"
-                  type="text"
-                  size="small"
-                  InputLabelProps={{
-                    style: { color: "#007982" },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.root,
-                      focused: classes.focused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
+              <TextField
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    serialNumber: e.target.value
+                  })
+                }
+                className={`${classes.inputField} ${classes.myInputLabel}`}
+                required
+                id="serialNumber"
+                label="Hub Id"
+                variant="outlined"
+                name="serialNumber"
+                type="text"
+                size="small"
+                InputLabelProps={{
+                  style: { color: "#007982" },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
 
-                <Button
-                  onClick={handleSubmit}
-                  className={classes.button}
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                >
-                  Register
-                </Button>
-
-                </form>
-                <Button
-                 // onClick={handleSubmit}
-                  className={classes.buttonHelp}
-                onClick={handleClickOpen}
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  style={{ border: '2px solid' }}
-
-                >
-                  Need help?
-
-                </Button>
-
-              <Dialog
-                className={classes.dialog}
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+              <Button
+                onClick={handleSubmit}
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                type="submit"
               >
-                <DialogTitle id="alert-dialog-title">
-                  {"What need I to do here?"}
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Your can choose your own Hub Name.
-                    If you bought a <strong>Naunet</strong> Hub you can find the Id of the bottom of your Hub 'the Hub Id'.
-                    If you bought your own Hub pleace contact us per Email: <strong>Naunet.com</strong>!
+                Register
+                </Button>
+
+            </form>
+            <Button
+              // onClick={handleSubmit}
+              className={classes.buttonHelp}
+              onClick={handleClickOpen}
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{ border: '2px solid' }}
+
+            >
+              Need help?
+
+                </Button>
+
+            <Dialog
+              className={classes.dialog}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"What can I do here?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  You can choose your own Hub Name.
+                    If you bought a <strong>Naunet</strong> Hub you can find the Id at the bottom of your Hub 'The Hub Id'.
+                    If you bought your own Hub please contact us per Email: <strong>naunetmon@gmail.com</strong>!
 
                 </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose} color="primary" autoFocus>
-                    Close
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Close
                 </Button>
-                </DialogActions>
-              </Dialog>
+              </DialogActions>
+            </Dialog>
 
 
-              <div className={classes.footer}></div>
-            </div>
-          </Container>
-        </ThemeProvider>
+            <div className={classes.footer}></div>
+          </div>
+        </Container>
+      </ThemeProvider>
 
     </>
   );

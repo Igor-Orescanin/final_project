@@ -74,7 +74,12 @@ export const updateEmailAlert = (id, data) => axios.put(`${url}/devices/${id}`, 
 
 export const logout = (data) => axios.get(`${url}/users/logout`, data)
 
-export const deleteLight = (id) => axios.delete(`${url}/devices/${id}/lights`);
+export const deleteLight = (serialNumber, gpio) => axios.delete(`${url}/devices/${serialNumber}/lights/${gpio}`, {
+    headers: {
+        "x-access-token": localStorage.getItem('token')
+    }
+});
+
 
 //control
 export const fetchControls =(id) => axios.get(`${url}/devices/${id}/controls`, {
@@ -87,5 +92,9 @@ export const addControl = (id, data) => axios.post(`${url}/devices/${id}/control
         "x-access-token": localStorage.getItem('token')
     }
 });
-export const deleteControl = (id) => axios.delete(`${url}/devices/${id}/controls`);
 
+export const deleteControl = (serialNumber, gpio) => axios.delete(`${url}/devices/${serialNumber}/controls/${gpio}`, {
+    headers: {
+        "x-access-token": localStorage.getItem('token')
+    }
+});

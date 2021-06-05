@@ -60,7 +60,6 @@ export default makeStyles((theme) => ({
     position: "fixed",
     bottom: "0px",
     height: "250px",
-    //height:'170px',
     width: "100vw",
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",

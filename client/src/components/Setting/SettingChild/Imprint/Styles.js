@@ -3,20 +3,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import image from "../../../../image/charts_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
+
   container: {
-     
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     fontFamily: ("Roboto", "Helvetica", "Arial", "sans-serif"),
-    //height: '65vh',
   },
 
   paper: {
-  marginLeft:'25px',
-  marginRight:'25px',
-  marginBottom:'150px',
+    marginLeft: '25px',
+    marginRight: '25px',
+    marginBottom: '150px',
   },
 
   heading: {
@@ -55,7 +54,6 @@ export default makeStyles((theme) => ({
     fontSize: "15px",
   },
 
-  //for the Image on the bottom
   footer: {
     zIndex: "1",
     position: "fixed",

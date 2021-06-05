@@ -28,7 +28,7 @@ const Navbar = (props) => {
 
   const isChart = location.pathname.includes('water');
 
-  const isFixed = location.pathname.includes('water') || location.pathname.includes('weekly') || location.pathname.includes('monthly') || location.pathname.includes('imprint')|| location.pathname.includes('privacy');
+  const isFixed = location.pathname.includes('water') || location.pathname.includes('weekly') || location.pathname.includes('monthly') || location.pathname.includes('imprint') || location.pathname.includes('privacy') || location.pathname.includes('conditions');
 
   const logout = (e) => {
     e.preventDefault();

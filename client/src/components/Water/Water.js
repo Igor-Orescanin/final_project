@@ -8,7 +8,7 @@ import ReactApexChart from "react-apexcharts";
 import io from "socket.io-client";
 
 //axios
-import * as api from "../../api";
+//import * as api from "../../api";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -23,17 +23,16 @@ import {
   Typography,
   Button,
   Paper,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
+  IconButton,
 } from "@material-ui/core";
+
+// alert
+import Alert from "@material-ui/lab/Alert";
 
 // icon
 import WarningIcon from '@material-ui/icons/Warning';
 
-import { StylesProvider } from "@material-ui/core/styles";
+//import { StylesProvider } from "@material-ui/core/styles";
 
 //icon
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -75,7 +74,7 @@ const theme = createMuiTheme({
 const Water = (props) => {
   const { history } = props;
   const classes = useStyles();
-
+  console.log(props);
   const location = useLocation();
 
   const {username, socket} = props;
@@ -83,7 +82,7 @@ const Water = (props) => {
   let cleanAlertThreshold;
   let wasteAlertThreshold;
 
-  if (location.state != undefined) {
+  if (location.state !== undefined) {
     cleanAlertThreshold = props.location.state.cleanAlertThreshold;
     wasteAlertThreshold = props.location.state.wasteAlertThreshold;
   } else {
@@ -129,55 +128,55 @@ const Water = (props) => {
 
   useEffect(() => {
 
-      socket.on("sensorReading", (sensorObject) => {
+    socket.on("sensorReading", (sensorObject) => {
 
-        if (sensorObject.label === "CLEAN") {
+      if (sensorObject.label === "CLEAN") {
 
-          //var waterLevelCleanPercentage = sensorObject.levelPercentage;
-          setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
+        //var waterLevelCleanPercentage = sensorObject.levelPercentage;
+        setWaterLevelClean([...waterLevelClean, sensorObject.levelPercentage]);
 
-          //setLoading(false)
-          console.log(sensorObject.levelPercentage, cleanAlertThreshold);
+        //setLoading(false)
+        console.log(sensorObject.levelPercentage, cleanAlertThreshold);
 
-          if (sensorObject.levelPercentage <= cleanAlertThreshold && cleanAlertThreshold != 0) {
-           setOpen(true);
-          }
-
-          //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
-          //setWaterLevelClean([sensorPercent]);
-        } else {
-          setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
-          //var waterLevelGreyPercentage = sensorObject.levelPercentage;
-          setLoading(false);
-
-          if (sensorObject.levelPercentage >= wasteAlertThreshold && wasteAlertThreshold != 0) {
-            setOpen(true);
-          }
-          //console.log(waterLevelGreyPercentage)
+        if (sensorObject.levelPercentage <= cleanAlertThreshold && cleanAlertThreshold !== 0) {
+          setOpen(true);
         }
-        //console.log(waterLevelCleanPercentage.levelPercentage)
-        //console.log(sensorObject);
-        let sensorPercent = sensorObject.levelPercentage;
+
+        //setWaterLevel(currentWaterLevel => [...currentWaterLevel, cleanWaterSensorPercent]);
+        //setWaterLevelClean([sensorPercent]);
+      } else {
+        setWaterLevelGrey([...waterLevelGrey, sensorObject.levelPercentage]);
+        //var waterLevelGreyPercentage = sensorObject.levelPercentage;
+        setLoading(false);
+
+        if (sensorObject.levelPercentage >= wasteAlertThreshold && wasteAlertThreshold !== 0) {
+          setOpen(true);
+        }
+        //console.log(waterLevelGreyPercentage)
+      }
+      //console.log(waterLevelCleanPercentage.levelPercentage)
+      //console.log(sensorObject);
+      let sensorPercent = sensorObject.levelPercentage;
 
 
-        setChart([
-          {
-            name: "water Level",
-            data: [sensorPercent],
-          },
-          {
-            name: "Volts",
-            data: [waterLevelGrey],
-          },
-        ]);
-          // max sensor value = 1024
-          // pre = (current *100)/1024
-          // 500 === (500 * 100) /1024 ==> 48,.....%
+      setChart([
+        {
+          name: "water Level",
+          data: [sensorPercent],
+        },
+        {
+          name: "Volts",
+          data: [waterLevelGrey],
+        },
+      ]);
+      // max sensor value = 1024
+      // pre = (current *100)/1024
+      // 500 === (500 * 100) /1024 ==> 48,.....%
 
-          //options.chart.updateSeries(options.series);
-          //options = [...options, options.series ]
+      //options.chart.updateSeries(options.series);
+      //options = [...options, options.series ]
 
-      });
+    });
 
 
   }, []); // runs only once  ,,, run when the Graph component mount
@@ -300,127 +299,94 @@ const Water = (props) => {
     },
   };
 
-
-
   return (
     <>
       <Navbar username={props.username}> </Navbar>
 
       <ThemeProvider theme={theme}>
-
         <Container className={classes.container}>
-            <>
-              <Typography className={classes.typography}>Realtime Data</Typography>
-
-              <div >
-                <ReactApexChart
-                  options={options}
-                  series={waterLevelClean}
-                  type="radialBar"
-                  height={250}
-                />
-
-              {/* <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-
-              </Typography> */}
-
-                <ReactApexChart
-                  options={options2}
-                  series={waterLevelGrey}
-                  type="radialBar"
-                  height={250}
-                />
-              </div>
-
-
-              <Button
-                // onClick={() => history.push("/emailalert")}
-                onClick={() => history.push({
-                pathname: "/emailalert",
-                  state: {
-                    cleanAlertThreshold,
-                    wasteAlertThreshold,
+          <>
+            <Typography className={classes.typography}>Realtime Data</Typography>
+            <div >
+              <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelClean <= cleanAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
                   }
-                })}
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
-                Modify Alert
-              </Button>
-
-              <ExpandMoreIcon
-                className={classes.iconButton}
-                fontSize="large"
-              ></ExpandMoreIcon>
-
-              <Typography className={classes.typographyInfo1}>
-                Information
+                >
+                  Fresh water is under {cleanAlertThreshold}%
+</Alert> : null)}
               </Typography>
-              <Paper className={classes.paper2}>
-
+              <ReactApexChart
+                options={options}
+                series={waterLevelClean}
+                type="radialBar"
+                height={250}
+              />
+              <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
+                {(waterLevelGrey >= wasteAlertThreshold ? <Alert
+                  className={classes.alertTop}
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                    >
+                    </IconButton>
+                  }
+                >
+                  Waste water is under {wasteAlertThreshold}%
+              </Alert> : null)}
+              </Typography>
+              <ReactApexChart
+                options={options2}
+                series={waterLevelGrey}
+                type="radialBar"
+                height={250}
+              />
+            </div>
+            <Button
+              // onClick={() => history.push("/emailalert")}
+              onClick={() => history.push({
+                pathname: "/emailalert",
+                state: {
+                  cleanAlertThreshold,
+                  wasteAlertThreshold,
+                }
+              })}
+              className={classes.button}
+              variant="contained"
+              color="primary"
+            >
+              Modify Alert
+              </Button>
+            <ExpandMoreIcon
+              className={classes.iconButton}
+              fontSize="large"
+            ></ExpandMoreIcon>
+            <Typography className={classes.typographyInfo1}>
+              Information
+              </Typography>
+            <Paper className={classes.paper2}>
               <Typography className={(cleanAlertThreshold < waterLevelClean || cleanAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)} >
                 {/* <Typography className={classes.typographyInfo} > */}
                   Your Fresh water is by {waterLevelClean}%
                 </Typography>
-
               <Typography className={(wasteAlertThreshold >= waterLevelGrey || wasteAlertThreshold === 0 ? classes.typographyInfo : classes.typographyInfoRed)}>
                   Your Waste water is by {waterLevelGrey}%
                 </Typography>
-                <Typography className={classes.typographyInfo2}>
-                  All is good for you!
-                </Typography>
-              </Paper>
-
-
-
-        {/* <Typography> className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-
-                {(waterLevelClean <= cleanAlertThreshold ? `Your Freshwater is under ${cleanAlertThreshold}%` : null)}
-
-             </Typography>  */}
-
-            <Dialog
-              className={classes.dialog}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title" className={classes.alertTitle}>
-                {<WarningIcon fontSize="large" ></WarningIcon>}<br></br>
-                {"!!!Alert!!!"}
-              </DialogTitle>
-              <DialogContent>
-                {(waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold != 0 ? <div>
-                    <DialogContentText id="alert-dialog-description">
-                    {(waterLevelClean <= cleanAlertThreshold ? `Your Fresh water is under ${cleanAlertThreshold}%` : null)}
-                  </DialogContentText>
-                  </div>: null)}
-                {(waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold != 0 ? < div >
-                    <DialogContentText id="alert-dialog-description">
-                    {(waterLevelGrey >= wasteAlertThreshold ? `Your Waste water is higher ${wasteAlertThreshold}%` : null)}
-                  </DialogContentText>
-                </div> : null)}
-
-
-
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                    Close
-                    </Button>
-              </DialogActions>
-            </Dialog>
-
+            </Paper>
           </>
-
-            <div className={classes.footer}></div>
-
+          <div className={classes.footer}></div>
         </Container>
-
       </ThemeProvider>
 
     </>

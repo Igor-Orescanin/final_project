@@ -1,16 +1,18 @@
 // react
-import React, { useState} from "react";
+import React, { useState } from "react";
+import * as api from '../../../api'
 
 import LightOff from "../../../image/light_off.svg";
 import LightOn from "../../../image/light_on.svg";
 
-//axios
-import * as api from "../../../api";
+//styles to use the connection
+import useStyles from "./Styles";
 
 import { useHistory } from "react-router-dom";
 
-//styles to use the connection
-import useStyles from "./Styles";
+//axios';
+//import * as api from "../../../api";
+
 
 //css
 import "../../../App.css";
@@ -57,7 +59,7 @@ const Light = (props) => {
 
   const light = props.lightObject;
 
-  const {socket, device_id} = props
+  const { socket, device_id } = props
   //a hook
   const [lightStatus, setLightStatus] = useState(light.status);
 
@@ -71,14 +73,14 @@ const Light = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleClose1 = () => {
-   props.lightDeleted();
-    setOpen(false);
-   api.deleteLight(light._id);
-  };
 
-  //for radio button FormControlLabel
-  //const [value, setValue] = useState('');
+  const handleClose1 = () => {
+
+    props.lightDeleted();
+    setOpen(false);
+   // api.deleteLight(light._id);
+
+  };
 
   const lightHandler = (e) => {
     socket.emit("switchStatusLight", {gpio: light.gpio, device_id: device_id, forButtons:"Light"});
@@ -122,11 +124,11 @@ const Light = (props) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {" Are you sure you want to delete 'this Light'?"}
+                {" Are you sure you want to delete 'This Light'?"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Light will be disappear and is not connected anymore!
+                  Light will disappear and it will be not connected anymore!
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

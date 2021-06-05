@@ -12,17 +12,17 @@ const theme = createMuiTheme({
       light: "#18B0C3",
       main: "#0C9EB5",
       dark: "#008CA7",
-      contrastText: "#fff",
+
     },
   },
 });
 
-function Privacy(props) {
+function Imprint(props) {
   const classes = useStyles();
 
   return (
     <>
-      <Navbar username={props.username}> </Navbar>
+      <Navbar className={classes.navbar} username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <Typography className={classes.heading}>Imprint </Typography>
@@ -42,7 +42,7 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Represented by: <br />{" "}
+              Represented by: <br />
             </Typography>
             <Typography className={classes.typo}>
               Igor Oreščanin, <br />
@@ -52,11 +52,11 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Contakt: <br />
+              Contact: <br />
             </Typography>
             <Typography className={classes.typo}>
               Phone: +49 (0)40 00000000 <br />
-              E-Mail: Naunet.@com <br />
+              E-Mail: naunetmon@gmail.com <br />
             </Typography>
             <br />
             <Typography className={classes.typo2}>
@@ -77,7 +77,7 @@ function Privacy(props) {
             </Typography>
             <br />
             <Typography className={classes.typo2}>
-              Dispute settlement
+              Dispute settlement:
               <br />
             </Typography>
             <Typography className={classes.typo}>
@@ -92,4 +92,4 @@ function Privacy(props) {
   );
 }
 
-export default Privacy;
+export default Imprint;

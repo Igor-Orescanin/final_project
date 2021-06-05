@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
 
 //styles to use the connection
 import useStyles from "./styles";
@@ -9,7 +9,7 @@ import { Container, Button, ThemeProvider } from "@material-ui/core";
 // import { StylesProvider } from "@material-ui/core/styles";
 
 // to connect the routes
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 //css
 import "../../App.css";
@@ -32,7 +32,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Light(props) {
+function Setting(props) {
   const classes = useStyles();
 
   const { history } = props;
@@ -43,7 +43,7 @@ function Light(props) {
       <ThemeProvider theme={theme}>
 
         <Container className={classes.container}>
-      
+
                 <Button
                 onClick={() => history.push("/conditions")}
                 className={classes.button}
@@ -71,15 +71,15 @@ function Light(props) {
                 color="primary"
                 type="submit"
               >
-                Impressum
+                Imprint
               </Button>
 
             <div className={classes.footer}></div>
-     
+
         </Container>
       </ThemeProvider>
     </>
   );
 }
 
-export default Light;
+export default Setting;

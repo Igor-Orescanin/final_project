@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 import image from "../../image/background_mobile.svg";
-import image2 from "../../image/welcome3_bg_mobile.svg";
+//import image2 from "../../image/welcome3_bg_mobile.svg";
 
 export default makeStyles((
-  
+
 ) => ({
 
   // top: {
@@ -17,10 +17,9 @@ export default makeStyles((
   //   backgroundSize: "cover",
   //   backgroundRepeat: "no-repeat",
   // },
-  
+
   container: {
-    marginTop:'150px',
-    //backgroundColor:'red',
+    marginTop: '150px',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -28,21 +27,20 @@ export default makeStyles((
   },
 
   paper: {
-   // backgroundColor:'green',
     height: "65vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
   },
-  
+
   typography: {
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: "64px",
     color: "#007982",
     fontSize: "24px",
     fontWeight: "bold",
   },
- 
+
   form: {
     marginTop: "10px",
     display: "flex",
@@ -59,7 +57,7 @@ export default makeStyles((
     borderRadius: "20px",
     fontSize: "15px",
     fontWeight: "400",
-    marginTop:'30px',
+    marginTop: '30px',
     borderColor: "#008CA7",
     border: "solid",
     borderWidth: "2px",
@@ -70,7 +68,6 @@ export default makeStyles((
     paddingRight: "20px",
   },
 
-  //for the Image on the bottom
   footer: {
     zIndex: "-1",
     position: "fixed",

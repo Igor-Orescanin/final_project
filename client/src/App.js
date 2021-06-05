@@ -22,7 +22,7 @@ import AddControl from "./components/AddControl/AddControl.js";
 //import Control from "./components/Controls/Control/Control.js";
 import Controls from "./components/Controls/Controls.js";
 import Conditions from "./components/Setting/SettingChild/Conditions/Conditions.js";
-import Impressum from "./components/Setting/SettingChild/Impressum/Impressum.js";
+import Imprint from "./components/Setting/SettingChild/Imprint/Imprint.js";
 import Privacy from "./components/Setting/SettingChild/Privacy/Privacy.js";
 
 
@@ -82,7 +82,7 @@ function App() {
         <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} />}></Route>
 
         <Route path="/conditions" render={(props) => <Conditions {...props} device={device} username={response.username} />}></Route>
-        <Route path="/imprint" render={(props) => <Impressum {...props} device={device} username={response.username} />}></Route> 
+        <Route path="/imprint" render={(props) => <Imprint {...props} device={device} username={response.username} />}></Route> 
         <Route path="/privacy" render={(props) => <Privacy {...props} device={device} username={response.username} />}></Route>
 
       </div>
