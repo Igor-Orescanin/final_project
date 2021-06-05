@@ -139,7 +139,7 @@ function EmailAlert(props) {
   return (
     <>
       <Navbar username={props.username}> </Navbar>
-      
+
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
@@ -255,11 +255,11 @@ function EmailAlert(props) {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"What need I to do here?"}
+              {"What can I do here?"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Choose a % to get an Email for an Alert!
+                Choose a % to get an Email for an Alert to get the level of your water tanks.
               </DialogContentText>
             </DialogContent>
             <DialogActions>

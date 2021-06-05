@@ -286,13 +286,13 @@ const AddDevice = (props) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {"What need I to do here?"}
+                {"What can I do here?"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Your can choose your own Hub Name.
+                  You can choose your own Hub Name.
                     If you bought a <strong>Naunet</strong> Hub you can find the Id at the bottom of your Hub 'The Hub Id'.
-                    If you bought your own Hub please contact us per Email: <strong>naunet@naunet.com</strong>!
+                    If you bought your own Hub please contact us per Email: <strong>naunetmon@gmail.com</strong>!
 
                 </DialogContentText>
               </DialogContent>

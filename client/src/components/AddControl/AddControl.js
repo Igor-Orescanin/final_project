@@ -240,13 +240,13 @@ const [alert,setAlert] =useState(false)
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"What need I to do here?"}
+              {"What can I do here?"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-              Your can choose your own Device Name. And choose a proper Gpio Nummer.
-                If you have any problems pleace contact us per
-                Email: <strong>Naunet.com</strong>!
+              You can choose your own Device Name. And choose a proper GPIO Nummer.
+                If you have any problem please contact us per
+                Email: <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
