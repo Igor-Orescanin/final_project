@@ -56,7 +56,7 @@ const Control = (props) => {
 
   const { socket, device_id } = props
   //a hook
-  // const [control, setControl] = useState();
+  const [controlStatus, setControlStatus] = useState(control.status);
 
   //for dialogfeld
   const [open, setOpen] = useState(false);
@@ -79,7 +79,12 @@ const Control = (props) => {
   //const [value, setValue] = useState('');
 
   const controlHandler = (e) => {
-    socket.emit("switchStatusControl", { gpio: control.gpio, device_id: device_id, forButtons: "Control" });
+    socket.emit("switchStatusControl", {gpio: control.gpio, device_id: device_id, forButtons:"Control"});
+    if(controlStatus){
+      setControlStatus(0)
+    }else{
+      setControlStatus(1)
+    }
   };
 
 

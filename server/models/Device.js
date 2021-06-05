@@ -64,6 +64,8 @@ const DeviceSchema = new mongoose.Schema({
 
   controlsButton:[controlsButtonSchema],
 
+  freeButtons:[]
+
 })
 
 module.exports = mongoose.model('Device', DeviceSchema)
