@@ -73,8 +73,8 @@ const Light = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleClose1 = () => {
 
+  const handleClose1 = () => {
     props.lightDeleted();
     setOpen(false);
    // api.deleteLight(light._id);

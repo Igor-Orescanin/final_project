@@ -70,7 +70,7 @@ const Control = (props) => {
   };
 
   const handleClose1 = () => {
-    // props.controlDeleted();
+    props.controlDeleted();
     setOpen(false);
     // api.deleteControl(control._id);
   };
@@ -90,10 +90,10 @@ const Control = (props) => {
           <div className={classes.groupButton}>
             {control.status ? (
               <div className={classes.powerOff}> <PowerOffIcon /></div>
-             
+
             ) : (
               <div className={classes.powerOn}> <PowerIcon /></div>
-             
+
             )}
 
 
