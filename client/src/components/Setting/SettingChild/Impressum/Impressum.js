@@ -17,7 +17,9 @@ const theme = createMuiTheme({
   },
 });
 
-function Imprint(props) {
+
+function Impressum(props) {
+
   const classes = useStyles();
 
   return (
@@ -92,4 +94,5 @@ function Imprint(props) {
   );
 }
 
-export default Imprint;
+export default Impressum;
+

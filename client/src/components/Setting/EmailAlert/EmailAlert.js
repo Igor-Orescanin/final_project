@@ -139,6 +139,7 @@ function EmailAlert(props) {
   return (
     <>
       <Navbar username={props.username}> </Navbar>
+      
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.paper}>
