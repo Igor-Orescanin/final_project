@@ -132,11 +132,6 @@ console.log(device);
     api.addLight(device.serialNumber, formData)
       .then((res) => {
         console.log(res);
-        // if (res.data.message === "Gpio is already assigned") {
-        //   //   setLightExist(res.data.message);
-        // } else if (res.data.message === "Gpio not found") {
-        //   //   setLightExist(res.data.message);
-        // } else {
         history.push({
           pathname: "/lights",
           state: device
@@ -246,7 +241,7 @@ console.log(device.lightsButton.length)
                       },
                     }}
                   >
-                    {freeGPIOs.map((gpio) => (
+                    {freeGPIOs.sort((a, b) => a - b).map((gpio) => (
                       <MenuItem value={gpio}>{gpio}</MenuItem>
                     ))}
                   </Select>
