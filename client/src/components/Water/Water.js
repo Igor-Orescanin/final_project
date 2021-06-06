@@ -309,7 +309,7 @@ const Water = (props) => {
             <Typography className={classes.typography}>Realtime Data</Typography>
             <div >
               <Typography className={(waterLevelClean <= cleanAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-                {(waterLevelClean <= cleanAlertThreshold ? <Alert
+                {(waterLevelClean <= cleanAlertThreshold && cleanAlertThreshold !== 0 ? <Alert
                   className={classes.alertTop}
                   severity="error"
                   action={
@@ -331,7 +331,7 @@ const Water = (props) => {
                 height={250}
               />
               <Typography className={(waterLevelGrey >= wasteAlertThreshold ? classes.typographyInfoRed : classes.typographyInfo)} >
-                {(waterLevelGrey >= wasteAlertThreshold ? <Alert
+                {(waterLevelGrey >= wasteAlertThreshold && wasteAlertThreshold !== 0 ? <Alert
                   className={classes.alertTop}
                   severity="error"
                   action={
