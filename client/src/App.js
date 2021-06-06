@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import LogIn from "./components/LogIn/LogIn.js";
 import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
-import Navbar from "./components/Nav/Navbar.js";
+//import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
 import Setting from "./components/Setting/Setting.js";
