@@ -1,16 +1,19 @@
 // react
 import React, { useState } from "react";
 
-import Navbar from '../Nav/Navbar';
+import Navbar from "../Nav/Navbar";
 
 //axios';
 import * as api from "../../api";
 
 // material-ui
 import {
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
   Container,
   ThemeProvider,
-  Paper,
   IconButton,
   Typography,
   TextField,
@@ -21,6 +24,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
+
+import { useLocation } from "react-router-dom";
 
 // alert
 import Alert from "@material-ui/lab/Alert";
@@ -49,12 +54,31 @@ const theme = createMuiTheme({
         borderStyle: "solid",
       },
     },
+    MuiMenuItem: {
+      root: {
+        minHeight: "0px",
+        lineHeight: "15px",
+      },
+    },
+    MuiOutlinedInput: {
+      input: {
+        padding: "10px",
+      },
+    },
+    MuiInputBase: {
+      root: {
+        minWidth: "90px",
+        fontSize: "12px",
+      },
+    },
   },
 });
 
 function AddControl(props) {
   const classes = useStyles();
   const { history } = props;
+
+  const location = useLocation();
 
   //lengh of character
   const CHARACTER_LIMIT = 10;
@@ -71,7 +95,7 @@ function AddControl(props) {
 
   const [open, setOpen] = useState(false);
 
-const [alert,setAlert] =useState(false)
+  const [alert, setAlert] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -84,30 +108,31 @@ const [alert,setAlert] =useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if( formData.name !== '' || formData.gpio !== ''){
+    if (formData.name !== "" && formData.gpio !== "") {
+      api
+        .addControl(device.serialNumber, formData)
+        .then((res) => {
+          console.log(res);
 
-
-    api.addControl(device.serialNumber, formData)
-      .then((res) => {
-        console.log(res);
-
-        // if (res.data.message === "Gpio is already assigned") {
-        //   //   setLightExist(res.data.message);
-        // } else if (res.data.message === "Gpio not found") {
-        //   //   setLightExist(res.data.message);
-        // } else {
-        history.push({
-          pathname: "/devices",
+          // if (res.data.message === "Gpio is already assigned") {
+          //   //   setLightExist(res.data.message);
+          // } else if (res.data.message === "Gpio not found") {
+          //   //   setLightExist(res.data.message);
+          // } else {
+          history.push({
+            pathname: "/devices",
+          });
+        })
+        .catch((error) => {
+          if (error) {
+            //   setLichtExist("register a Light!");
+            //   setErrors("error");
+          }
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        if (error) {
-          //   setLichtExist("register a Light!");
-          //   setErrors("error");
-        }
-        console.log(error);
-      });
-    }else{ setAlert(true) }
+    } else {
+      setAlert(true);
+    }
   };
 
   return (
@@ -124,7 +149,7 @@ const [alert,setAlert] =useState(false)
               Register a new Device in this system!
             </Typography>
           )}
-          {alert? 
+          {alert ? (
             <Alert
               severity="error"
               action={
@@ -136,20 +161,12 @@ const [alert,setAlert] =useState(false)
               }
             >
               Name or GPIO is missing
-            </Alert> : <div></div>}
-        
+            </Alert>
+          ) : (
+            <div></div>
+          )}
+
           <form className={classes.form} onSubmit={handleSubmit}>
-            <Paper className={classes.gpioheading}>
-              <Typography className={classes.typographyInfo1}>
-                Choose a proper GPIO pin
-              </Typography>
-            </Paper>
-            <Paper className={classes.paper2}>
-              <Typography className={classes.typographyInfo}>17</Typography>
-              <Typography className={classes.typographyInfo}>20</Typography>
-              <Typography className={classes.typographyInfo}>23</Typography>
-              <Typography className={classes.typographyInfo}>27</Typography>
-            </Paper>
             <div className={classes.group}>
               <Typography className={classes.typography1}>Name</Typography>
               <TextField
@@ -166,38 +183,9 @@ const [alert,setAlert] =useState(false)
                 name="name"
                 type="text"
                 size="small"
-                // inputProps={{    *** Its again defined in line 171 ***
-                //   maxLength: CHARACTER_LIMIT,
-                // }}
-                InputLabelProps={{
-                  style: { color: "#007982" },
-                }}
-                InputProps={{
+                inputProps={{
                   maxLength: CHARACTER_LIMIT,
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
                 }}
-              />
-            </div>
-            <div className={classes.group}>
-              <Typography className={classes.typography1}>GPIO</Typography>
-              <TextField
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    gpio: e.target.value,
-                  })
-                }
-                className={classes.inputField}
-                required
-                id="gpio"
-                variant="outlined"
-                name="gpio"
-                type="text"
-                size="small"
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -211,6 +199,46 @@ const [alert,setAlert] =useState(false)
               />
             </div>
           </form>
+
+          <div className={classes.paper}>
+            <div className={classes.input}>
+              <div className={classes.name}>
+                <Typography className={classes.typography3}>Gpio</Typography>
+              </div>
+              <div className={classes.test}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel
+                    className={classes.typo2}
+                    id="demo-simple-select-outlined-label"
+                  >
+                    GPIO
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={""}
+                    onChange={""}
+                    label="Gpio"
+                    InputProps={{
+                      classes: {
+                        root: classes.root,
+                        focused: classes.focused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  >
+                    <MenuItem value={0}>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>10 </MenuItem>
+                    <MenuItem value={25}>25 </MenuItem>
+                    <MenuItem value={40}>40 </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            </div>
+          </div>
+
           <div>
             <Button
               onClick={handleSubmit}
@@ -244,9 +272,9 @@ const [alert,setAlert] =useState(false)
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-              You can choose your own Device Name. And choose a proper GPIO Nummer.
-                If you have any problem please contact us per
-                Email: <strong>naunetmon@gmail.com</strong>!
+                You can choose your own Device Name. And choose a proper GPIO
+                Nummer. If you have any problem please contact us per Email:{" "}
+                <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
