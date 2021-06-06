@@ -51,7 +51,7 @@ const Controls = (props) => {
   //for styles
   const classes = useStyles();
 
-  const { device, socket } = props;
+  const { device, socket, fetchDevice} = props;
 
   //a hook
   const [allControls, setAllControls] = useState([]);
@@ -67,7 +67,8 @@ const Controls = (props) => {
   };
 
   const controlDeletedHandler = async (serialNumber, gpio) => {
-    await api.deleteControl(device.serialNumber, gpio);
+    const {data} = await api.deleteControl(device.serialNumber, gpio);
+
     getControls();
   }
 
