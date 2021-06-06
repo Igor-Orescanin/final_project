@@ -147,8 +147,8 @@ function AddControl(props) {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {/* {device.controlsButton.length < 1 ? ( */}
-          {!device.hasControl ? (
+          {device.controlsButton.length < 1 ? ( 
+          // {!device.hasControl ? (
             <Typography className={classes.typography}>
               You have not registered any Device in this system yet!
             </Typography>

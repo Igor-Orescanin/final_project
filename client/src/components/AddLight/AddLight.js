@@ -159,7 +159,7 @@ console.log(device.lightsButton.length)
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {!device.hasLight ? (
+        {device.lightsButton.length < 1 ? ( 
             <Typography className={classes.typography}>
               You have not registered any Light in this system!
             </Typography>
