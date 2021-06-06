@@ -181,7 +181,8 @@ function EmailAlert(props) {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>10 %</MenuItem>
-                    <MenuItem value={25}>25 %</MenuItem>
+                    <MenuItem value={20}>20 %</MenuItem>
+                    <MenuItem value={30}>30 %</MenuItem>
                     <MenuItem value={40}>40 %</MenuItem>
                   </Select>
                 </FormControl>
@@ -210,9 +211,10 @@ function EmailAlert(props) {
                     <MenuItem value={0}>
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={50}>50 %</MenuItem>
+                    <MenuItem value={60}>60 %</MenuItem>
                     <MenuItem value={70}>70 %</MenuItem>
-                    <MenuItem value={85}>85 %</MenuItem>
+                    <MenuItem value={80}>80 %</MenuItem>
+                    <MenuItem value={90}>90 %</MenuItem>
                   </Select>
                 </FormControl>
               </div>

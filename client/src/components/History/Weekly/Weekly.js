@@ -200,18 +200,18 @@ function Weekly(props) {
                 fontSize="large"
               ></ExpandMoreIcon>
               <Typography className={classes.typographyInfo2}>
-                Water report of 7 days
+                Water consumption of 7 days
             </Typography>
               <Paper className={classes.paper2}>
                 <Typography className={classes.typographyInfo}>
                   average consumption: { } 12l/day
               </Typography>
-                <Typography className={classes.typographyInfo}>
+                {/* <Typography className={classes.typographyInfo}>
                   your Fresh water is by 33{ }%
               </Typography>
                 <Typography className={classes.typographyInfo}>
                   your Waste water is by 64{ }%
-              </Typography>
+              </Typography> */}
               </Paper>
 
               <div className={classes.footer}></div>
