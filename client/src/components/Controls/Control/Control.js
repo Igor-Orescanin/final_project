@@ -93,7 +93,7 @@ const Control = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.groupButton}>
-            {control.status ? (
+            {controlStatus ? (
               <div className={classes.powerOff}> <PowerOffIcon /></div>
 
             ) : (
