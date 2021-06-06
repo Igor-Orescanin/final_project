@@ -64,7 +64,7 @@ const DeviceSchema = new mongoose.Schema({
 
   controlsButton:[controlsButtonSchema],
 
-  freeButtons:[]
+  freeGPIOs:[]
 
 })
 
