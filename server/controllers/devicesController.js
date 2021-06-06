@@ -58,7 +58,7 @@ exports.updateDevice = async (req, res, next) => {
       new: true,
 
     });
-
+    
     if (!device) throw new createError.NotFound();
     res.status(200).send(device);
 
@@ -82,24 +82,26 @@ exports.addLightButton = async (req, res, next) =>{
   console.log(req.body)
   console.log(req.params.id)
   // const device = Device.find({serialNumber:req.params.id}).then(response =>res.send(response))
- try {
-   const device = await Device.findOneAndUpdate({serialNumber:req.params.id}, {hasLight: true}, {
-     new: true,
-   });
-   if (!device){
-     throw new createError.NotFound();
-   } else {
-     const newButton = {
-       name: req.body.name,
-       gpio: req.body.gpio
-     }
-     device.lightsButton.push(newButton)
-     await device.save();
-   }
-   res.status(200).send(device);
- } catch (e) {
-   next(e);
- }
+  try {
+    const device = await Device.findOneAndUpdate({ serialNumber: req.params.id }, { hasLight: true }, {
+      new: true,
+    });
+    if (!device) {
+      throw new createError.NotFound();
+    } else {
+      const newButton = {
+        name: req.body.name,
+        gpio: req.body.gpio
+      }
+      device.lightsButton.push(newButton)
+      let newFreeGPIOs = device.freeGPIOs.filter(gpio => gpio !== req.body.gpio)
+      device.freeGPIOs = newFreeGPIOs
+      await device.save();
+    }
+    res.status(200).send(device);
+  } catch (e) {
+    next(e);
+  }
 };
 
 exports.addControlButton = async (req, res, next) =>{
@@ -115,8 +117,8 @@ exports.addControlButton = async (req, res, next) =>{
         gpio: req.body.gpio
       }
       device.controlsButton.push(newButton)
-      let index = device.freeGPIOs.findIndex(btn => btn === req.body.gpio)
-      console.log(index)
+      let newFreeGPIOs = device.freeGPIOs.filter(gpio => gpio !== req.body.gpio)
+      device.freeGPIOs = newFreeGPIOs
       await device.save();
     }
     res.status(200).send(device);
@@ -158,7 +160,7 @@ exports.deleteLight = async (req, res, next) => {
     ];
 
     device.lightsButton = lightButtonsNew;
-
+    device.freeGPIOs.push(Number(req.params.gpio))
     await device.save();
     res.status(200).send(device);
 
@@ -180,10 +182,23 @@ exports.deleteControl = async (req, res, next) => {
     ];
 
     device.controlsButton = controlButtonsNew;
-
+    device.freeGPIOs.push(Number(req.params.gpio))
     await device.save();
     res.status(200).send(device);
 
+  } catch (e) {
+    next(e);
+  }
+};
+
+
+
+exports.freeGPIOs = async (req, res, next) => {
+  try {
+    const device = await Device.findById(req.params.id).exec() ;
+    if (!device) throw new createError.NotFound();
+    console.log(device)
+    res.status(200).send(device);
   } catch (e) {
     next(e);
   }

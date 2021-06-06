@@ -85,7 +85,7 @@ function AddControl(props) {
   const CHARACTER_LIMIT = 10;
 
   const { device } = props;
-  console.log(device);
+  //console.log(device);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -98,6 +98,12 @@ function AddControl(props) {
 
   const [alert, setAlert] = useState(false);
 
+  // useEffect(async() => {
+  //   const {data} = await api.fetchFreeGPIOs(device._id)
+  //   console.log(device._id)
+  //   console.log(data)
+
+  // }, [])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -119,12 +125,7 @@ function AddControl(props) {
       );
       api.addControl(device.serialNumber, formData)
         .then((res) => {
-          console.log(res);
-          // if (res.data.message === "Gpio is already assigned") {
-          //   //   setLightExist(res.data.message);
-          // } else if (res.data.message === "Gpio not found") {
-          //   //   setLightExist(res.data.message);
-          // } else {
+          //fetchDevice(res.data)
           history.push({
             pathname: "/devices",
           });
@@ -236,7 +237,8 @@ function AddControl(props) {
                       },
                     }}
                   >
-                    {freeGPIOs.map((gpio) => (
+
+                    {freeGPIOs.sort((a, b) => a - b).map(gpio => (
                       <MenuItem value={gpio}>{gpio}</MenuItem>
                     ))}
                   </Select>

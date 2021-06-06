@@ -16,6 +16,7 @@ const {
   getControlButtons,
   deleteLight,
   deleteControl,
+  freeGPIOs
 } = require("../controllers/devicesController");
 
 
@@ -43,10 +44,15 @@ router
   .post(auth, addControlButton)
 
 router
+  .route("/:id/freegpios")
+  .get(auth, freeGPIOs)
+  
+router
   .route("/:id")
   .get(auth, getDevice)
   .put(auth, updateDevice)   // update the thresold level
   .delete(auth, deleteDevice)
+
 
 
 
