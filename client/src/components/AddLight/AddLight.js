@@ -69,6 +69,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
+        paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -76,6 +77,16 @@ const theme = createMuiTheme({
         height: "160px",
       },
     },
+    MuiInputLabel: {
+      outlined: {
+        transform: "translate(18px, 10px)scale(1)",
+      },
+    },
+    MuiListItem:{
+      gutters:{
+        paddingLeft:'33px',
+      }
+    }
   },
 });
 
