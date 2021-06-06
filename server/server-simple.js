@@ -83,7 +83,7 @@ io.on('connection', (socket) => {
         socket.emit("avalibleGPIO", "HAHA")
         socket.on('freeGPIOs', async(possibleGPIOs) => {
           console.log(possibleGPIOs)
-          await Device.findOneAndUpdate({ serialNumber: deviceId }, { freeButtons: possibleGPIOs }, { new: true })
+          await Device.findOneAndUpdate({ serialNumber: deviceId }, { freeGPIOs: possibleGPIOs }, { new: true })
         })
         
     socket.on('sensorData', async (sensorReading) => {
