@@ -343,7 +343,7 @@ const Water = (props) => {
                     </IconButton>
                   }
                 >
-                  Waste water is under {wasteAlertThreshold}%
+                  Waste water is over {wasteAlertThreshold}%
               </Alert> : null)}
               </Typography>
               <ReactApexChart

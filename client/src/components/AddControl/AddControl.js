@@ -153,6 +153,7 @@ function AddControl(props) {
           )}
           {alert ? (
             <Alert
+            className={classes.alertTop}
               severity="error"
               action={
                 <IconButton
@@ -205,7 +206,7 @@ function AddControl(props) {
           <div className={classes.paper}>
             <div className={classes.input}>
               <div className={classes.name}>
-                <Typography className={classes.typography3}>Gpio</Typography>
+                <Typography className={classes.typography3}>GPIO</Typography>
               </div>
               <div className={classes.test}>
                 <FormControl variant="outlined" className={classes.formControl}>
@@ -216,11 +217,13 @@ function AddControl(props) {
                     GPIO
                   </InputLabel>
                   <Select
+                   className={classes.lableTypo}
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     value={formData.gpio}
                     onChange={handleGpio}
                     label="Gpio"
+
                     InputProps={{
                       classes: {
                         root: classes.root,
