@@ -4,12 +4,97 @@ import image from "../../image/water_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
+   // backgroundColor:'blue',
+   marginTop:'50px',
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
 
+  typo:{
+    fontSize: '15px',
+    fontWeight: '400',
+    paddingRight:'22px',
+  },
+
+   name:{
+  //backgroundColor:'blue',
+    height: '40px',
+    marginTop: '22px',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+   },
+
+   formControl: {
+      marginRight: '20px',
+      marginTop:'20px',
+   },
+   
+  typo2:{
+    fontSize: '14px',
+    padding:'0px'
+  },
+
+   root: {
+       "&:hover $notchedOutline": {
+           borderColor: "#007982",
+       },
+       "&$focused $notchedOutline": {
+           borderColor: "#007982",
+       },
+   },
+   
+   focused: {},
+
+   notchedOutline: {
+       borderColor: "#007982",
+   },
+
+  notification: {
+    fontWeight: "300",
+    margin: "20px 0 30px 0",
+    color: "#30D4DE",
+    fontSize: "15px",
+  },
+
+  test:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center", 
+  },
+
+  input: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
+
+  paper: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  heading: {
+    marginBottom: "30px",
+    fontWeight: "900",
+    fontSize: "15px",
+    color: "#007982",
+  },
+
+  headingSec: {
+    fontWeight: "700",
+    fontSize: "12px",
+    color: "#007982",
+    marginRight: "-140px",
+    paddingBottom:'8px',
+    marginBottom:'-20px'
+  },
   paper2: {
     zIndex: "-2",
     paddingTop: "27px",
@@ -32,13 +117,24 @@ export default makeStyles((theme) => ({
   },
 
   typography: {
-    marginTop: "30px",
+   
     marginLeft: "40px",
     marginRight: "40px",
     fontFamily: ("Roboto", "sans-serif"),
     color: "#007982",
     fontSize: "18px",
-    fontWeight: "bold",
+   paddingTop:'2px',
+    textAlign: "center",
+  },
+
+  typography3: {
+   
+    marginLeft: "36px",
+    marginRight: "34px",
+    fontFamily: ("Roboto", "sans-serif"),
+    color: "#008CA7",
+    fontSize: "15px",
+   paddingTop:'2px',
     textAlign: "center",
   },
   typographyInfo: {
@@ -55,6 +151,7 @@ export default makeStyles((theme) => ({
   },
 
   form: {
+   // backgroundColor:'blue',
     marginTop: "10px",
     display: "flex",
     flexDirection: "column",
@@ -80,7 +177,7 @@ export default makeStyles((theme) => ({
 
   inputField: {
     marginTop: "20px",
-    width: "154px",
+    width: "90px",
     backgroundColor: "white",
   },
 
