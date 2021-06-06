@@ -237,7 +237,7 @@ function AddControl(props) {
                       },
                     }}
                   >
-
+                    
                     {freeGPIOs.sort((a, b) => a - b).map(gpio => (
                       <MenuItem value={gpio}>{gpio}</MenuItem>
                     ))}
