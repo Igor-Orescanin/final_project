@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import LogIn from "./components/LogIn/LogIn.js";
 import Registration from "./components/Registration/Registration.js";
 import Welcome from "./components/Welcome/Welcome.js";
-import Navbar from "./components/Nav/Navbar.js";
+//import Navbar from "./components/Nav/Navbar.js";
 import LogOut from "./components/LogOut/LogOut.js";
 import Water from "./components/Water/Water.js";
 import Setting from "./components/Setting/Setting.js";
@@ -76,10 +76,10 @@ function App() {
         <Route path="/emailalert" render={(props) => <EmailAlert {...props} device={device} username={response.username} />}></Route>
 
         <Route path="/lights" render={(props) => <Lights {...props} device={device} username={response.username} socket={socket}/>}></Route>
-        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username} />}></Route>
+        <Route path="/addlight" render={(props) => <AddLight {...props} device={device} username={response.username} fetchDevice={fetchDevice} />}></Route>
 
-        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username} socket={socket}/>}></Route>
-        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} />}></Route>
+        <Route path="/devices" render={(props) => <Controls {...props} device={device} username={response.username} socket={socket} fetchDevice={fetchDevice} />}></Route>
+        <Route path="/adddevice" render={(props) => <AddControl {...props} device={device} username={response.username} fetchDevice={fetchDevice} />}></Route>
 
         <Route path="/conditions" render={(props) => <Conditions {...props} device={device} username={response.username} />}></Route>
         <Route path="/imprint" render={(props) => <Imprint {...props} device={device} username={response.username} />}></Route> 

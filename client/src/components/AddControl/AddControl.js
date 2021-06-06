@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import Navbar from "../Nav/Navbar";
 
@@ -24,8 +24,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-
-import { useLocation } from "react-router-dom";
 
 // alert
 import Alert from "@material-ui/lab/Alert";
@@ -71,6 +69,11 @@ const theme = createMuiTheme({
         fontSize: "12px",
       },
     },
+    MuiMenu: {
+      list: {
+        height: "160px",
+      },
+    },
   },
 });
 
@@ -82,7 +85,7 @@ function AddControl(props) {
   const CHARACTER_LIMIT = 10;
 
   const { device } = props;
-  console.log(device);
+  //console.log(device);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -95,6 +98,12 @@ function AddControl(props) {
 
   const [alert, setAlert] = useState(false);
 
+  // useEffect(async() => {
+  //   const {data} = await api.fetchFreeGPIOs(device._id)
+  //   console.log(device._id)
+  //   console.log(data)
+
+  // }, [])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -104,23 +113,19 @@ function AddControl(props) {
   };
 
   const handleGpio = (e) => {
-    setFormData({...formData, gpio: e.target.value})
-    console.log(formData.gpio)
-  } 
+    setFormData({ ...formData, gpio: e.target.value });
+    console.log(formData.gpio);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.name !== "" && formData.gpio !== "") {
-      setFreeGPIOs(freeGPIOs.filter(gpio => gpio !== formData.gpio ? gpio : null))
-      api
-        .addControl(device.serialNumber, formData)
+      setFreeGPIOs(
+        freeGPIOs.filter((gpio) => (gpio !== formData.gpio ? gpio : null))
+      );
+      api.addControl(device.serialNumber, formData)
         .then((res) => {
-          console.log(res);
-          // if (res.data.message === "Gpio is already assigned") {
-          //   //   setLightExist(res.data.message);
-          // } else if (res.data.message === "Gpio not found") {
-          //   //   setLightExist(res.data.message);
-          // } else {
+          //fetchDevice(res.data)
           history.push({
             pathname: "/devices",
           });
@@ -142,7 +147,8 @@ function AddControl(props) {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.controlsButton.length < 1 ? (
+          {/* {device.controlsButton.length < 1 ? ( */}
+          {!device.hasControl ? (
             <Typography className={classes.typography}>
               You have not registered any Device in this system yet!
             </Typography>
@@ -153,7 +159,7 @@ function AddControl(props) {
           )}
           {alert ? (
             <Alert
-            className={classes.alertTop}
+              className={classes.alertTop}
               severity="error"
               action={
                 <IconButton
@@ -217,13 +223,12 @@ function AddControl(props) {
                     GPIO
                   </InputLabel>
                   <Select
-                   className={classes.lableTypo}
+                    className={classes.lableTypo}
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     value={formData.gpio}
                     onChange={handleGpio}
                     label="Gpio"
-
                     InputProps={{
                       classes: {
                         root: classes.root,
@@ -232,7 +237,8 @@ function AddControl(props) {
                       },
                     }}
                   >
-                    {freeGPIOs.map(gpio => (
+
+                    {freeGPIOs.sort((a, b) => a - b).map(gpio => (
                       <MenuItem value={gpio}>{gpio}</MenuItem>
                     ))}
                   </Select>

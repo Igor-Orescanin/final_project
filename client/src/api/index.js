@@ -102,8 +102,7 @@ export const deleteControl = (serialNumber, gpio) => axios.delete(`${url}/device
 
 
 // free buttons
-//get device
-export const fetchFreeButtons = (id) => axios.get(`${url}/devices/${id}`, {
+export const fetchFreeGPIOs = (id) => axios.get(`${url}/devices/${id}/freegpios`, {
     headers: {
         "x-access-token": localStorage.getItem('token')
     }

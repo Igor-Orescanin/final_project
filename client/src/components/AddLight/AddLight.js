@@ -6,11 +6,16 @@ import Navbar from '../Nav/Navbar';
 //axios';
 import * as api from "../../api";
 
+import { useLocation } from "react-router-dom";
+
 // material-ui
 import {
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
   Container,
   ThemeProvider,
-  Paper,
   IconButton,
   Typography,
   TextField,
@@ -49,6 +54,28 @@ const theme = createMuiTheme({
         borderStyle: "solid",
       },
     },
+    MuiMenuItem: {
+      root: {
+        minHeight: "0px",
+        lineHeight: "15px",
+      },
+    },
+    MuiOutlinedInput: {
+      input: {
+        padding: "10px",
+      },
+    },
+    MuiInputBase: {
+      root: {
+        minWidth: "90px",
+        fontSize: "12px",
+      },
+    },
+    MuiMenu: {
+      list: {
+        height: "160px",
+      },
+    },
   },
 });
 
@@ -59,13 +86,25 @@ const AddLight = (props) => {
   //lengh of character
   const CHARACTER_LIMIT = 10;
 
-  const device = props.device;
+ // const device = props.device;
+  let device;
   console.log(device);
+
+  const location = useLocation();
+
+if(location.state !== undefined){
+  device = props.location.state
+}else{
+  device = props.device
+}
+console.log(device);
 
   const [formData, setFormData] = useState({
     name: "",
     gpio: "",
   });
+
+  const [freeGPIOs, setFreeGPIOs] = useState(device.freeGPIOs);
 
   const [open, setOpen] = useState(false);
 
@@ -79,17 +118,20 @@ const AddLight = (props) => {
     setOpen(false);
   };
 
+  const handleGpio = (e) => {
+    setFormData({ ...formData, gpio: e.target.value });
+    console.log(formData.gpio);
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if( formData.name !== '' || formData.gpio !== ''){
-
-    
-
+    if( formData.name !== '' && formData.gpio !== '') {
+      setFreeGPIOs(
+        freeGPIOs.filter((gpio) => (gpio !== formData.gpio ? gpio : null))
+      );
     api.addLight(device.serialNumber, formData)
       .then((res) => {
         console.log(res);
-
         // if (res.data.message === "Gpio is already assigned") {
         //   //   setLightExist(res.data.message);
         // } else if (res.data.message === "Gpio not found") {
@@ -97,6 +139,7 @@ const AddLight = (props) => {
         // } else {
         history.push({
           pathname: "/lights",
+          state: device
         });
       })
       .catch((error) => {
@@ -110,13 +153,13 @@ const AddLight = (props) => {
 
 
   };
-
+console.log(device.lightsButton.length)
   return (
     <>
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {device.lightsButton.length < 1 ? (
+          {!device.hasLight ? (
             <Typography className={classes.typography}>
               You have not registered any Light in this system!
             </Typography>
@@ -125,8 +168,9 @@ const AddLight = (props) => {
               Register a new Light in this system!
             </Typography>
           )}
-         {alert? 
+         {alert ? (
             <Alert
+            className={classes.alertTop}
               severity="error"
               action={
                 <IconButton
@@ -137,23 +181,13 @@ const AddLight = (props) => {
               }
             >
                  Name or GPIO is missing
-            </Alert>: <div></div>
-          } 
+            </Alert> ) : ( <div></div>
+          )} 
+
           <form className={classes.form} onSubmit={handleSubmit}>
-            <Paper className={classes.gpioheading}>
-              <Typography className={classes.typographyInfo1}>
-                Choose a proper GPIO pin
-              </Typography>
-            </Paper>
-            <Paper className={classes.paper2}>
-              <Typography className={classes.typographyInfo}>23</Typography>
-              <Typography className={classes.typographyInfo}>24</Typography>
-              <Typography className={classes.typographyInfo}>25</Typography>
-              <Typography className={classes.typographyInfo}>27</Typography>
-            </Paper>
-            <div className={classes.group}>
-              <Typography className={classes.typography1}>Name</Typography>
-              <TextField
+          <div className={classes.group}>
+          <Typography className={classes.typography1}>Name</Typography>
+          <TextField
                 onChange={(e) =>
                   setFormData({
                     ...formData,
@@ -167,38 +201,9 @@ const AddLight = (props) => {
                 name="name"
                 type="text"
                 size="small"
-                // inputProps={{      *** Its again defined in line 169 ***
-                //   maxLength: CHARACTER_LIMIT,
-                // }}
-                InputLabelProps={{
-                  style: { color: "#007982" },
-                }}
-                InputProps={{
+                inputProps={{
                   maxLength: CHARACTER_LIMIT,
-                  classes: {
-                    root: classes.root,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
                 }}
-              />
-            </div>
-            <div className={classes.group}>
-              <Typography className={classes.typography1}>GPIO</Typography>
-              <TextField
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    gpio: e.target.value,
-                  })
-                }
-                className={classes.inputField}
-                required
-                id="gpio"
-                variant="outlined"
-                name="gpio"
-                type="text"
-                size="small"
                 InputLabelProps={{
                   style: { color: "#007982" },
                 }}
@@ -212,6 +217,45 @@ const AddLight = (props) => {
               />
             </div>
           </form>
+
+          <div className={classes.paper}>
+            <div className={classes.input}>
+              <div className={classes.name}>
+                <Typography className={classes.typography3}>GPIO</Typography>
+              </div>
+              <div className={classes.test}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel
+                    className={classes.typo2}
+                    id="demo-simple-select-outlined-label"
+                  >
+                    GPIO
+                  </InputLabel>
+                  <Select
+                    className={classes.lableTypo}
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={formData.gpio}
+                    onChange={handleGpio}
+                    label="Gpio"
+                    InputProps={{
+                      classes: {
+                        root: classes.root,
+                        focused: classes.focused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  >
+                    {freeGPIOs.map((gpio) => (
+                      <MenuItem value={gpio}>{gpio}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+            </div>
+          </div>
+
+
           <div>
             <Button
               onClick={handleSubmit}
