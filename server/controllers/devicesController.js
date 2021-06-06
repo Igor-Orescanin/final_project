@@ -115,6 +115,8 @@ exports.addControlButton = async (req, res, next) =>{
         gpio: req.body.gpio
       }
       device.controlsButton.push(newButton)
+      let index = device.freeGPIOs.findIndex(btn => btn === req.body.gpio)
+      console.log(index)
       await device.save();
     }
     res.status(200).send(device);

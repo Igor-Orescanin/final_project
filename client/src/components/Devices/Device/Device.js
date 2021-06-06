@@ -120,8 +120,9 @@ const Device = (props) => { //props.deviceObject.deviceId
               color="primary"
 
 
-            disabled={device.serialNumber === "ac:67:5d:62:ec:e7" ? null : "true"}
-             // disabled={device.serialNumber === "b8:27:eb:ba:2d:83 " ? null : "true"}
+            //disabled={device.serialNumber === "ac:67:5d:62:ec:e7" ? null : "true"}
+             // disabled={device.serialNumber === "b8:27:eb:ba:2d:83" ? null : "true"}
+             disabled={!device.isConnected}
 
             >
               {device.deviceName}

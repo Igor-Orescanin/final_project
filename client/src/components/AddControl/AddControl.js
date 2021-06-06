@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "../Nav/Navbar";
 
@@ -78,12 +78,10 @@ function AddControl(props) {
   const classes = useStyles();
   const { history } = props;
 
-  const location = useLocation();
-
   //lengh of character
   const CHARACTER_LIMIT = 10;
 
-  const device = props.device;
+  const { device } = props;
   console.log(device);
 
   const [formData, setFormData] = useState({
@@ -91,7 +89,7 @@ function AddControl(props) {
     gpio: "",
   });
 
-  const [controlExist, setControlExist] = useState("");
+  const [freeGPIOs, setFreeGPIOs] = useState(device.freeGPIOs);
 
   const [open, setOpen] = useState(false);
 
@@ -105,15 +103,19 @@ function AddControl(props) {
     setOpen(false);
   };
 
+  const handleGpio = (e) => {
+    setFormData({...formData, gpio: e.target.value})
+    console.log(formData.gpio)
+  } 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (formData.name !== "" && formData.gpio !== "") {
+      setFreeGPIOs(freeGPIOs.filter(gpio => gpio !== formData.gpio ? gpio : null))
       api
         .addControl(device.serialNumber, formData)
         .then((res) => {
           console.log(res);
-
           // if (res.data.message === "Gpio is already assigned") {
           //   //   setLightExist(res.data.message);
           // } else if (res.data.message === "Gpio not found") {
@@ -218,9 +220,10 @@ function AddControl(props) {
                    className={classes.lableTypo}
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={10}
-                    onChange={10}
-                    label="GPIO"
+                    value={formData.gpio}
+                    onChange={handleGpio}
+                    label="Gpio"
+
                     InputProps={{
                       classes: {
                         root: classes.root,
@@ -229,12 +232,9 @@ function AddControl(props) {
                       },
                     }}
                   >
-                    <MenuItem value={0}>
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>10 </MenuItem>
-                    <MenuItem value={25}>25 </MenuItem>
-                    <MenuItem value={40}>40 </MenuItem>
+                    {freeGPIOs.map(gpio => (
+                      <MenuItem value={gpio}>{gpio}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </div>
