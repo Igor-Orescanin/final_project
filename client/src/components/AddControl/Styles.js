@@ -34,7 +34,8 @@ export default makeStyles((theme) => ({
    
   typo2:{
     fontSize: '14px',
-    padding:'0px'
+   // padding:'0px',
+   marginTop:'-10px',
   },
 
    root: {
@@ -127,10 +128,18 @@ export default makeStyles((theme) => ({
     textAlign: "center",
   },
 
+  alertTop:{
+    marginTop:'25px'
+  },
+
+  lableTypo:{
+    marginTop:'-10px',
+  },
+
   typography3: {
-   
-    marginLeft: "36px",
-    marginRight: "34px",
+
+    marginLeft: "33px",
+    marginRight: "28px",
     fontFamily: ("Roboto", "sans-serif"),
     color: "#008CA7",
     fontSize: "15px",

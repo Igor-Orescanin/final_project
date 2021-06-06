@@ -199,18 +199,18 @@ function Monthly(props) {
                 fontSize="large"
               ></ExpandMoreIcon>
               <Typography className={classes.typographyInfo2}>
-                Water report of 30 days
+                Water consumption of 30 days
               </Typography>
               <Paper className={classes.paper2}>
                 <Typography className={classes.typographyInfo}>
                   average consumption: { } 9l/day
                 </Typography>
-                <Typography className={classes.typographyInfo}>
+                {/* <Typography className={classes.typographyInfo}>
                   your Fresh water is by 30{ }%
                 </Typography>
                 <Typography className={classes.typographyInfo}>
                   your Waste water is by 45{ }%
-                </Typography>
+                </Typography> */}
               </Paper>
 
               <div className={classes.footer}></div>
