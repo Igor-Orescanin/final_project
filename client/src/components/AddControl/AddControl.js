@@ -67,7 +67,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
-        paddingLeft:'25px',
+        //paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -294,9 +294,9 @@ function AddControl(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                You can choose your own Device Name. And choose a proper GPIO
-                Nummer. If you have any problem please contact us per Email:{" "}
-                <strong>naunetmon@gmail.com</strong>!
+              You can set your own device name. And choose a proper GPIO number.
+                If you have any problems please contact us via
+                Email: <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
