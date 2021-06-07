@@ -69,7 +69,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
-        paddingLeft:'25px',
+        //paddingLeft:'25px',
       },
     },
     MuiMenu: {
