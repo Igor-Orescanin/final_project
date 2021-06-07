@@ -82,7 +82,7 @@ const Devices = (props) => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
           <div className={classes.top}>
-            <Typography className={classes.typography}>Connected</Typography>
+            <Typography className={classes.typography}>Status</Typography>
             <Typography className={classes.typography}>Your Hubs</Typography>
           </div>
           <div className={classes.paper}>
