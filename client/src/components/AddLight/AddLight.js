@@ -69,6 +69,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
+        paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -76,6 +77,16 @@ const theme = createMuiTheme({
         height: "160px",
       },
     },
+    MuiInputLabel: {
+      outlined: {
+        transform: "translate(18px, 10px)scale(1)",
+      },
+    },
+    MuiListItem:{
+      gutters:{
+        paddingLeft:'33px',
+      }
+    }
   },
 });
 
@@ -132,11 +143,6 @@ console.log(device);
     api.addLight(device.serialNumber, formData)
       .then((res) => {
         console.log(res);
-        // if (res.data.message === "Gpio is already assigned") {
-        //   //   setLightExist(res.data.message);
-        // } else if (res.data.message === "Gpio not found") {
-        //   //   setLightExist(res.data.message);
-        // } else {
         history.push({
           pathname: "/lights",
           state: device
@@ -159,7 +165,7 @@ console.log(device.lightsButton.length)
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {!device.hasLight ? (
+        {device.lightsButton.length < 1 ? ( 
             <Typography className={classes.typography}>
               You have not registered any Light in this system!
             </Typography>
@@ -246,7 +252,7 @@ console.log(device.lightsButton.length)
                       },
                     }}
                   >
-                    {freeGPIOs.map((gpio) => (
+                    {freeGPIOs.sort((a, b) => a - b).map((gpio) => (
                       <MenuItem value={gpio}>{gpio}</MenuItem>
                     ))}
                   </Select>
