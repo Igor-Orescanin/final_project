@@ -261,7 +261,7 @@ function EmailAlert(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Choose a % to get an Email for an Alert to get the level of your water tanks.
+                Choose a percentage to get an email alert when your tank level is critical.
               </DialogContentText>
             </DialogContent>
             <DialogActions>

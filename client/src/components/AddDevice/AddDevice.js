@@ -292,7 +292,7 @@ const AddDevice = (props) => {
                 <DialogContentText id="alert-dialog-description">
                   You can choose your own Hub Name.
                     If you bought a <strong>Naunet</strong> Hub you can find the Id at the bottom of your Hub 'The Hub Id'.
-                    If you bought your own Hub please contact us per Email: <strong>naunetmon@gmail.com</strong>!
+                    If you bought a Hub from another provider please contact us via Email: <strong>naunetmon@gmail.com</strong>!
 
                 </DialogContentText>
               </DialogContent>

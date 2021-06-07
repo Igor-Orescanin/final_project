@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
 
     const rpiConnected = await Device.findOneAndUpdate({ serialNumber: deviceId }, { isConnected: true }, { new: true });
     
-        console.log(rpiConnected.isConnected);
+        console.log(rpiConnected);
         socket.emit("registerd", rpiConnected)
         socket.emit("avalibleGPIO", "HAHA")
         socket.on('freeGPIOs', async(possibleGPIOs) => {
@@ -120,7 +120,7 @@ io.on('connection', (socket) => {
 
         } else if (sensorReading.label === "WASTE") {
 
-          const isInAlarmState = sensorReading.levelPercentage <= device.wasteAlertThreshold;
+          const isInAlarmState = sensorReading.levelPercentage >= device.wasteAlertThreshold;
           const shouldSendAlarmEmail = isInAlarmState && !hasPreviousWasteWaterAlarm;
           const hasDeviceWantsEmails = device.wasteAlertThreshold !== 0;
           const shouldSendEmail = hasDeviceWantsEmails && isInAlarmState && shouldSendAlarmEmail;

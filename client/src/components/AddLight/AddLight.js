@@ -69,7 +69,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
-        paddingLeft:'25px',
+        //paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -295,8 +295,8 @@ console.log(device.lightsButton.length)
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                You can choose your own Light Name. And choose a proper GPIO Nummer.
-                If you have any problems please contact us per
+                You can set your own light name. And choose a proper GPIO number.
+                If you have any problems please contact us via
                 Email: <strong>naunetmon@gmail.com</strong>!
               </DialogContentText>
             </DialogContent>
