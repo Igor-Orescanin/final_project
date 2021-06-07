@@ -4,54 +4,50 @@ import image from "../../image/water_bg_mobile.svg";
 
 export default makeStyles((theme) => ({
   container: {
-   // backgroundColor:'blue',
-   marginTop:'50px',
+    marginTop: "50px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
 
-  typo:{
-    fontSize: '15px',
-    fontWeight: '400',
-    paddingRight:'22px',
+  typo: {
+    fontSize: "15px",
+    fontWeight: "400",
+    paddingRight: "22px",
   },
 
-   name:{
-  //backgroundColor:'blue',
-    height: '40px',
-    marginTop: '22px',
+  name: {
+    height: "40px",
+    marginTop: "22px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-   },
-
-   formControl: {
-      marginRight: '20px',
-      marginTop:'20px',
-   },
-   
-  typo2:{
-    fontSize: '14px',
-   // padding:'0px',
-   marginTop:'-10px',
   },
 
-   root: {
-       "&:hover $notchedOutline": {
-           borderColor: "#007982",
-       },
-       "&$focused $notchedOutline": {
-           borderColor: "#007982",
-       },
-   },
-   
-   focused: {},
+  formControl: {
+    marginRight: "20px",
+    marginTop: "20px",
+  },
 
-   notchedOutline: {
-       borderColor: "#007982",
-   },
+  typo2: {
+    fontSize: "14px",
+  },
+
+  root: {
+    "&:hover $notchedOutline": {
+      borderColor: "#007982",
+    },
+    "&$focused $notchedOutline": {
+      borderColor: "#007982",
+    },
+  },
+
+  focused: {},
+
+  notchedOutline: {
+    borderColor: "#007982",
+  },
 
   notification: {
     fontWeight: "300",
@@ -60,11 +56,11 @@ export default makeStyles((theme) => ({
     fontSize: "15px",
   },
 
-  test:{
+  test: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center", 
+    alignItems: "center",
   },
 
   input: {
@@ -72,7 +68,6 @@ export default makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-
   },
 
   paper: {
@@ -81,6 +76,7 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+
   heading: {
     marginBottom: "30px",
     fontWeight: "900",
@@ -93,9 +89,10 @@ export default makeStyles((theme) => ({
     fontSize: "12px",
     color: "#007982",
     marginRight: "-140px",
-    paddingBottom:'8px',
-    marginBottom:'-20px'
+    paddingBottom: "8px",
+    marginBottom: "-20px",
   },
+
   paper2: {
     zIndex: "-2",
     paddingTop: "27px",
@@ -118,34 +115,29 @@ export default makeStyles((theme) => ({
   },
 
   typography: {
-   
     marginLeft: "40px",
     marginRight: "40px",
     fontFamily: ("Roboto", "sans-serif"),
     color: "#007982",
     fontSize: "18px",
-   paddingTop:'2px',
+    paddingTop: "2px",
     textAlign: "center",
   },
 
-  alertTop:{
-    marginTop:'25px'
-  },
-
-  lableTypo:{
-    marginTop:'-10px',
+  alertTop: {
+    marginTop: "25px",
   },
 
   typography3: {
-
     marginLeft: "33px",
     marginRight: "28px",
     fontFamily: ("Roboto", "sans-serif"),
     color: "#008CA7",
     fontSize: "15px",
-   paddingTop:'2px',
+    paddingTop: "2px",
     textAlign: "center",
   },
+
   typographyInfo: {
     fontSize: "12px",
     fontFamily: ("Roboto", "sans-serif"),
@@ -160,7 +152,6 @@ export default makeStyles((theme) => ({
   },
 
   form: {
-   // backgroundColor:'blue',
     marginTop: "10px",
     display: "flex",
     flexDirection: "column",
@@ -199,7 +190,6 @@ export default makeStyles((theme) => ({
     marginLeft: "10px",
     paddingTop: "2px",
     borderRadius: "4px",
-    //padding: "24px",
     paddingBottom: "0px",
     border: "solid",
     borderWidth: "2px",
