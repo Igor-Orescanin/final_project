@@ -108,7 +108,7 @@ io.on('connection', (socket) => {
 
           if (shouldSendEmail) {
 
-            let message = `ALERT Clean water level tank is lower than ${device.cleanAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
+            let message = `ALERT!!! The clean water level tank is lower or equal to ${device.cleanAlertThreshold}%. Your tank is at ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {
                 // resolve();
@@ -129,7 +129,7 @@ io.on('connection', (socket) => {
 
           if (shouldSendEmail) {
 
-            let message = `ALERT Waste water level tank is higher than ${device.wasteAlertThreshold}% percentage ... Your tank has ${sensorReading.levelPercentage}%`;
+            let message = `ALERT!!! The waste water level tank is higher or equal to ${device.wasteAlertThreshold}%. Your tank is at ${sensorReading.levelPercentage}%`;
             emailSender.sendEmail(email, message, (ok) => {
               if (ok) {
                 // resolve();
