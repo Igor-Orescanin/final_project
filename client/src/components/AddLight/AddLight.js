@@ -69,6 +69,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
+        paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -76,6 +77,16 @@ const theme = createMuiTheme({
         height: "160px",
       },
     },
+    MuiInputLabel: {
+      outlined: {
+        transform: "translate(18px, 10px)scale(1)",
+      },
+    },
+    MuiListItem:{
+      gutters:{
+        paddingLeft:'33px',
+      }
+    }
   },
 });
 
@@ -154,7 +165,7 @@ console.log(device.lightsButton.length)
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {!device.hasLight ? (
+        {device.lightsButton.length < 1 ? ( 
             <Typography className={classes.typography}>
               You have not registered any Light in this system!
             </Typography>

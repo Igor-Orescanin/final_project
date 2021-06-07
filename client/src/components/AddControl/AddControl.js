@@ -1,5 +1,5 @@
 // react
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 import Navbar from "../Nav/Navbar";
 
@@ -67,6 +67,7 @@ const theme = createMuiTheme({
       root: {
         minWidth: "90px",
         fontSize: "12px",
+        paddingLeft:'25px',
       },
     },
     MuiMenu: {
@@ -74,6 +75,17 @@ const theme = createMuiTheme({
         height: "160px",
       },
     },
+    MuiInputLabel: {
+      outlined: {
+        transform: "translate(18px, 10px)scale(1)",
+      },
+    },
+    MuiListItem:{
+      gutters:{
+        paddingLeft:'33px',
+      }
+    }
+
   },
 });
 
@@ -123,7 +135,8 @@ function AddControl(props) {
       setFreeGPIOs(
         freeGPIOs.filter((gpio) => (gpio !== formData.gpio ? gpio : null))
       );
-      api.addControl(device.serialNumber, formData)
+      api
+        .addControl(device.serialNumber, formData)
         .then((res) => {
           //fetchDevice(res.data)
           history.push({
@@ -147,8 +160,8 @@ function AddControl(props) {
       <Navbar username={props.username}> </Navbar>
       <ThemeProvider theme={theme}>
         <Container className={classes.container}>
-          {/* {device.controlsButton.length < 1 ? ( */}
-          {!device.hasControl ? (
+          {device.controlsButton.length < 1 ? (
+            // {!device.hasControl ? (
             <Typography className={classes.typography}>
               You have not registered any Device in this system yet!
             </Typography>
@@ -237,10 +250,11 @@ function AddControl(props) {
                       },
                     }}
                   >
-                    
-                    {freeGPIOs.sort((a, b) => a - b).map(gpio => (
-                      <MenuItem value={gpio}>{gpio}</MenuItem>
-                    ))}
+                    {freeGPIOs
+                      .sort((a, b) => a - b)
+                      .map((gpio) => (
+                        <MenuItem value={gpio}>{gpio}</MenuItem>
+                      ))}
                   </Select>
                 </FormControl>
               </div>
